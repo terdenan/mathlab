@@ -3,8 +3,8 @@ const express = require('express'),
       http = require('http'),
       config = require('config.json')('./config.json');
 
-require('./app')(app);
+require('./routers/app')(app);
 
 app.listen(config.httpPort, function () {
-	console.log('MathLab is listening at ' + config.httpPort);
+	console.log('MathLab is listening on port' + config.httpPort);
 })
