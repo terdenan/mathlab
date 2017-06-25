@@ -1,3 +1,4 @@
+doctype html
 html( lang='ru' )
 	head
 		meta( charset="utf-8" )
@@ -26,6 +27,8 @@ html( lang='ru' )
 		<![endif]-->
 
 	body
+
+		// NAVBAR
 		nav.navbar.navbar-inverse
 			div.container-fluid
 				div.navbar-header
@@ -62,7 +65,10 @@ html( lang='ru' )
 					ul( class="nav navbar-nav navbar-right" )
 						li
 							a( href="/sign-in" ) Кабинет
+
+		// CONTENT
 		div.error-alerts
+
 		div.container.main-content
 			div.row
 				div.col-md-8.col-md-offset-2.base
@@ -74,6 +80,8 @@ html( lang='ru' )
 								small Кажется, что-то пошло не так...
 							h3( class="margin-10" ) К сожалению, запрашиваемой Вами страницы не существует.
 							h5 Вы можете вернуться на #[a(href="/") главную страницу] и начать сначала.
+
+		// FOOTER
 		footer
 			div.container
 				div.row
@@ -90,5 +98,6 @@ html( lang='ru' )
 							ul( class="footer-links" )
 								li © MathLab.kz 2017
 		script( src="js/bootstrap.min.js" )
+		script( src="js/test.js" )
 
 

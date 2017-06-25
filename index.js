@@ -6,5 +6,5 @@ const express = require('express'),
 require('./routers/app')(app);
 
 app.listen(config.httpPort, function () {
-	console.log('MathLab is listening on port' + config.httpPort);
-})
+	console.log('MathLab is listening on port ' + config.httpPort);
+});
