@@ -47,7 +47,7 @@ passport.use(new LocalStrategy(
 
 passport.use(new VKontakteStrategy(
   {
-    clientID:     6088660, // VK.com docs call it 'API ID', 'app_id', 'api_id', 'client_id' or 'apiId'
+    clientID:     6088660,
     clientSecret: "ynzLi2vKo1m66G8qsMk6",
     callbackURL:  "http://localhost/auth/vkontakte/callback"
   },
@@ -93,7 +93,6 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
 
 module.exports = function(app){
 	app.locals.moment = require('moment');
