@@ -168,6 +168,12 @@ module.exports = function(app){
 			.render('./request');
 	});
 
+	app.get('/teachers', function(req, res){
+		res
+			.status(200)
+			.render('./teachers');
+	});
+
 	app.post('/login', function(req, res, next){
 		passport.authenticate('local', function(err, user, info){
 			if (err) return next(err);

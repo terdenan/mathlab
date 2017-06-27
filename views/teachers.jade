@@ -1,0 +1,80 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Наши преподаватели
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="/js/main.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		// CONTENT
+		div( class="container main-content" )
+			div( class="row" )
+				div( class="col-md-12" )
+					h2 Наши преподаватели
+			div( class="row" )
+				div( class="col-md-12" )
+					div(	class="base" )
+						div(	class="col-md-10" )
+							p Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. Они постоянно повышают педагогическое мастерство, осваивают новые, передовые педагогические технологии. В своей педагогической деятельности основываются на гуманном отношении к ученику, индивидуальном подходе к обучению каждого ребенка, исходя из его способностей, уровня подготовки, целей обучения.
+						div( class="col-md-2 text-left" )
+							img( src="images/network.svg" style="width: 120px;" )
+		div( class="container main-content" )
+			div( class="base" )
+				table( class="table table-hover table-responsive teachers-list") 
+					thead
+						tr
+							th
+							th ФИО
+							th Предмет
+					tbody 
+						tr
+							td
+								img( src="images/teacher-img-2.jpg" class="teachers-list-img img-circle" )
+							td Альжанова Галия Мрзановна
+							td Информатика, математика
+							tr
+							td
+								img( src="images/teacher-img-1.jpg" class="teachers-list-img img-circle" )
+								td Соколов Василий Васильевич
+								td Физика
+							tr
+							td
+								img( src="images/teacher-img-3.jpg" class="teachers-list-img img-circle" )
+							td Гребенюк Анастасия Николаевна
+							td Математика
+
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+
+
