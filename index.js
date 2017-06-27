@@ -1,10 +1,18 @@
 const express = require('express'),
       app = express(),
-      http = require('http'),
-      config = require('config.json')('./config.json');
+      http = require('http').Server(app),
+      config = require('config.json')('./config.json'),
+      mongoose = require('mongoose');
+      io = require('socket.io')(http);
 
-require('./app')(app);
+require('./db/db');
 
-app.listen(config.httpPort, function () {
-	console.log('MathLab is listening at ' + config.httpPort);
-})
+require('./routers/app')(app);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+http.listen(config.httpPort, function(){
+  console.log('MathLab is listening on port ' + config.httpPort);
+});

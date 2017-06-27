@@ -1,0 +1,255 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="MathLab - это интерактивный обучающий портал, на который предоставляет качественные online курсы по таким предметам как математика, физика и информатика" )
+		meta( name="keywords" content="Репетитор онлайн, репетиторские услуги, математика онлайн, информатика онлайн, физика онлайн, онлайн образование" )
+		meta( name="author" content="Quve Development" )
+		meta( property="og:title" content="Портал дистанционного обучения - MathLab.kz" )
+		meta( property="og:type" content="website" )
+		meta( property="og:url" content="http://mathlab.kz" )
+		meta( property="og:image" content="http://mathlab.kz/images/social-img.png" )
+		meta( property="og:description" content="MathLab - это интерактивный обучающий портал, который предоставляет качественные online курсы по таким предметам как математика, физика и информатика" )
+
+		title Портал дистанционного обучения - MathLab.kz
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="css/font-awesome.min.css" )
+		link( href="css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="js/jquery.min.js" defer )
+		script( src="js/viewportchecker.js" defer )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+	body( class="landing" itemscope itemtype="http://schema.org/EducationalOrganization" )
+
+		// NAVBAR
+		nav( class="navbar navbar-inverse navbar-fixed-top no-margin" )
+			div( class="container-fluid" )
+				div( class="navbar-header" )
+					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
+						span( class="sr-only" ) Меню
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+					a( class="navbar-brand" href="/" )
+						img( src="images/logo.svg" alt="MathLab" title="MathLab - Logo" itemprop="logo" )
+						span(itemprop="brand") MathLab.kz
+				div( class="collapse navbar-collapse" id="navbar-collapse" )
+					ul( class="nav navbar-nav" )
+						li
+							a( href="#main" ) Главная
+						li
+							a( href="#about-us" ) О нас
+						li
+							a( href="#teachers" ) Наши преподаватели
+						li
+							a( href="#comments" ) Отзывы
+						li
+							a( href="#contacts" ) Контакты
+						li
+							a( href="/how-to-use" target="_blank" ) Как проходит обучение
+						li
+							a( href="/prices" target="_blank" ) Расценки и способы оплаты
+					ul( class="nav navbar-nav navbar-right" )
+						li
+							a( href="/sign-in" )
+								i( class="fa fa-lock" aria-hidden="true" ) &nbsp;Вход и регистрация
+
+		// CONTENT
+		div( class="landing-head" id="main" )
+			div( class="container" )
+				div( class="row" )
+					div( class="col-md-7" )
+						h1( itemprop="name" ) Интерактивный портал дистанционного обучения
+					div( class="col-md-5 start-button text-center" )
+						a( href="/sign-up" class="btn btn-landing btn-lg" role="button" ) Начать пользоваться
+						h5 Образование, которое не знает преград!
+				div( class="row main-content" )
+					div( class="col-md-7" )
+						h3( class="no-margin normal-text hidden-sm hidden-xs" ) Дорогой друг! Добро пожаловать на интерактивный портал «Mathlab.kz»
+						p( class="landing-text hidden-sm hidden-xs" )
+							span( itemprop="description") Мы предлагаем Вам репетиторские услуги в on-line режиме по математике, физике и информатике.#[br] On-line обучение имеет несколько неоспоримых преимуществ:
+						div( class="landing-collapses hidden-sm hidden-xs" )
+
+							h4( data-toggle="collapse" data-target="#text-1" class="landing-h4" ) Нет привязки к месту #[i( class="fa fa-angle-down" aria-hidden="true" )]
+							ul( id="text-1" class="collapse" )
+								li Вам не нужно вести ребенка в другой конец города к определенному репетитору, отвлекаться от своих дел, переносить их.
+								li Вы не должны делать паузы в обучении, если уезжаете в другой город или страну, к родственникам, на отдых. Ваш ребенок можете загорать на пляже и продолжать обучение!
+								li Вы не будете переживать – как ребенок доберется до репетитора и обратно в темное время суток и по безлюдным улицам.
+								li Репетитор не откажет вам в обучении потому, что «вы живете далеко» и «неудобно добираться».
+
+							h4( data-toggle="collapse" data-target="#text-2" class="landing-h4" ) Нет привязки ко времени #[i( class="fa fa-angle-down" aria-hidden="true" )]
+							ul( id="text-2" class="collapse" )
+								li Можно выполнять задания в любое удобное время.
+								li Достаточно отправлять выполненный урок до 20.00 в тот день, на который есть договоренность с репетитором.
+
+							h4( data-toggle="collapse" data-target="#text-3" class="landing-h4" ) Нет ценовых накруток за обучение #[i( class="fa fa-angle-down" aria-hidden="true" )]
+							ul( id="text-3" class="collapse" )
+								li Ваш репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
+							h4( style="padding-top: 20px;" ) Эти условия показались вам привлекательными? Смело регистрируйтесь на нашем портале и начинайте обучение!
+						div( class="row main-content hidden-sm hidden-xs" )
+							div( class="col-xs-12 text-left" )
+								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" style="margin-right: 20px;" ) Регистрация
+								a( href="/sign-in" class="btn btn-warning btn-lg" role="button" ) Вход в Личный кабинет
+					div( class="col-md-5 landing-lamp text-center hidden-sm hidden-xs" )
+						img( src="images/lamp.svg" alt="Онлайн обучение" title="Онлайн обучение" )
+
+		div( id="about-us" class="nav-anchor" )
+
+		div( class="container main-content" )
+			div( class="row animated animated-post" )
+				div( class="col-sm-12" )
+					h2( class="article-title" ) MathLab.kz - Услуги репетитора on-line
+			div( class="row article animated animated-post" )
+				div( class="col-sm-3 col-sm-push-9 text-center" )
+					img( src="images/article-img-1.svg" alt="MathLab" title="MathLab" )
+				div( class="col-sm-9 col-sm-pull-3" )
+					p( class="article-p" ) On-line репетиторский центр «MathLab.kz» оказывает услуги по подготовке детей к поступлению в специализированные школы и лицеи с физико-математическим уклоном, начиная с 5-ого класса.#[br] Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика и программирование ребятам, обучающимся по стандартной школьной программе.
+			div( class="row article animated animated-post" )
+				div( class="col-sm-3 text-center" )
+					img( src="images/article-img-2.svg" alt="MathLab" title="MathLab" )
+				div( class="col-sm-9" )
+					p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад.
+			div( class="row article animated animated-post" )
+				div( class="col-sm-3 col-sm-push-9 text-center" )
+					img( src="images/article-img-3.svg" alt="MathLab" title="MathLab" )
+				div( class="col-sm-9 col-sm-pull-3" )
+					p( class="article-p" ) Мы рекомендуем нашим ученикам настроиться на серьезное обучение по индивидуальной программе, которая будет корректироваться в соответствии с потребностями обучающегося и выявленными «провалами» в знаниях.
+			div( class="row article animated animated-post" )
+				div( class="col-sm-3 text-center" )
+					img( src="images/article-img-4.svg" alt="MathLab" title="MathLab" )
+				div( class="col-sm-9" )
+					p( class="article-p" ) Обучаясь в нашем онлайн центре, ваш ребенок не будет привязан к определенному времени встречи с учителем, а вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
+
+		div( id="teachers" class="nav-anchor" )
+			div( class="container main-content animated animated-post" )
+				div( class="row" )
+					div( class="col-sm-12" )
+						h2( class="article-title" ) Наши преподаватели
+				div( class="row" )
+					div( class="col-md-12" )
+
+						div( class="col-md-4" )
+							div( class="landing-comment landing-teacher" )
+								div( class="landing-comment-body text-center" )
+									img( src="images/teacher-img-2.png" class="img-circle img-thumbnail" alt="Галия Мрзановна Альжанова" title="Учитель математики, информатики" )
+									h4 Галия Мрзановна Альжанова
+									h6 Учитель математики, информатики
+									blockquote
+										p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
+										h6 Стаж работы репетитором - 10 лет
+						div( class="col-md-4" )
+							div( class="landing-comment landing-teacher" )
+								div( class="landing-comment-body text-center" )
+									img( src="images/teacher-img-1.png" class="img-circle img-thumbnail" alt="Василий Васильевич Соколов" title="Учитель физики" )
+									h4 Василий Васильевич Соколов
+									h6 Учитель физики
+									blockquote
+										p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
+										h6 Стаж работы репетитором - 7 лет
+						div( class="col-md-4" )
+							div( class="landing-comment landing-teacher" )
+								div( class="landing-comment-body text-center" )
+									img( src="images/teacher-img-3.png" class="img-circle img-thumbnail" alt="Анастасия Николаевна Гребенюк" title="Учитель математики" )
+									h4 Анастасия Николаевна Гребенюк
+									h6 Учитель математики
+									blockquote
+										p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
+										h6 Стаж работы репетитором - 3 года
+		div( id="comments" class="nav-anchor" )
+		div( class="container main-content animated animated-post" )
+			div( class="row" )
+				div( class="col-sm-12" )
+					h2( class="article-title" ) Отзывы
+			div( class="row" )
+				div( class="col-sm-12" )
+					div( class="col-md-4" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body text-center" )
+								img( src="images/comment-img-2.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+								h4 Гулистан Нусипжан
+								h6 Мама
+								blockquote
+									p Галия Мрзановна – профессионал своего дела, Учитель с большой буквы и просто наша любимая учительница. Она вела уроки у моих старших детей, а сейчас – у младших. Галия Мрзановна – очень добрый, отзывчивый в меру строгий учитель. Если нужна помощь, то всегда можно к ней обратиться. Она нам помогала в подготовке к поступлению в физмат школу. Огромная благодарность ей как учителю и как человеку. Спасибо Вам, мои дети Вас любят и благодарны за все, что Вы им дали.
+					div( class="col-md-4" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body text-center" )
+								img( src="images/comment-img-3.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+								h4 Алия Абдраимова
+								h6 Мама
+								blockquote
+									p Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм!
+					div( class="col-md-4" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body text-center" )
+								img( src="images/comment-img-1.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+								h4 Майя Ванькова
+								h6 Мама
+								blockquote
+									p Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать!
+
+		div( id="contacts" class="nav-anchor" )
+			div( class="container main-content animated animated-post" )
+				div( class="row" )
+					div( class="col-md-12" )
+						h2( class="article-title" ) Контакты и реквизиты
+				div( class="row" )
+
+					div( class="col-sm-4 contacts-block" )
+						div( class="col-md-5 text-center" )
+							img( src="images/contacts-img-1.svg" alt="Телефоны" title="Телефоны" )
+						div( class="col-md-7" )
+							p
+								span( itemprop="telephone" ) +7 (707) 308-53-33
+								span( itemprop="telephone" ) +7 (777) 794-45-05
+
+					div( class="col-sm-4 contacts-block" )
+						div( class="col-md-5 text-center" )
+							img( src="images/contacts-img-2.svg" alt="Режим работы" title="Режим работы" )
+						div( class="col-md-7" )
+							p Пн-Сб: С 9.00 до 19.00#[br]Вс: Выходной
+
+					div( class="col-sm-4 contacts-block" )
+						div( class="col-md-5 text-center" )
+							img( src="images/contacts-img-3.svg" alt="Методы оплаты" title="Методы оплаты" )
+						div( class="col-md-7" )
+							p Расчетный счет: Kaspi Bank#[br]KZ04722R000134318824
+		// FOOTER
+		footer
+			div( class="container" )
+				div( class="row" )
+					div( class="col-md-12" )
+						div( class="col-md-7 md-text-center" )
+							ul( class="footer-links" )
+								li Мы в социальных сетях:
+								li
+									a( href="https://vk.com/mathlabkz" target="_blank")
+										img( src="images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
+								li
+									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
+										img( src="images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
+								li
+									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
+										img( src="images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
+						div( class="col-md-5 text-right md-text-center" )
+							ul( class="footer-links" )
+								li © MathLab.kz 2017
+
+		link( href="/css/animate.css" rel="stylesheet" )
+		script( src="js/smoothscroll.min.js" defer )
+		script( src="js/bootstrap.min.js" defer )
+		span( itemprop="address" style="display: none;" ) Казахстан, Алматы
+		
+
+

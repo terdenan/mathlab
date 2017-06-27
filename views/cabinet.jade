@@ -1,0 +1,90 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Личный кабинет
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/js/moment.min.js" )
+		script( src="/socket.io/socket.io.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		// CONTENT
+		div( class="container main-content" )
+			div( class="row" )
+				div( class="col-md-4" )
+					div( class="base" )
+						div( class="profile" )
+							div( class="profile-img text-center" )
+								div( class="center-cropped img-130" id="profile-img" style="background-image: url(#{avatarUrl});" )
+								div( class="profile-info text-center" )
+									h4( id="fullname" ) #{fullname}
+									h6( id="priority" ) Ученик
+								div( class="profile-contacts" )
+									h5 Контактная информация
+									h6( class="sub" ) E-mail:
+									h6( id="email" ) #{email}
+									h6( class="sub" ) Телефон:
+									h6( id="phone" ) #{phone}
+									h6( class="sub" ) Класс учебы:
+									h6( id="grad" ) #{grade}
+								a( href="/settings" class="btn btn-default btn-block" ) Редактировать
+				div( class="col-md-8" )
+					div( class="base" )
+						ul( class="nav nav-tabs" )
+							li( class="active" )
+								a( href="#" ) Активные курсы
+							li
+								a( href="#" ) История курсов
+							li
+								a( href="#" ) Заявки на обучение
+						div( class="profile-content" )
+							div( class="alert alert-info" id="empty-courses" style="display: none;" ) У Вас пока нет активных курсов, Вы можете подать #[a( href="/request" class="alert-link" ) заявку на обучение] на специальной странице.
+							div( class="courses" )
+								div( class="table-responsive" )
+									table( class="table" )
+										tbody
+											for item in courses
+												tr
+													td( id="#{item.id}" )
+														div( class="course active-course" onClick="window.location.href=/course/#{item.id}")
+															div( class="course-header" )
+																div( class="course-info-img" )
+																	div( class="center-cropped img-50" style="background-image: url(/uploads/#{item.teacherId}.jpg);" )
+																div( class="course-info-titles" )
+																	h5 #{item.teacher}
+																	h6 #{item.subject} #[small]
+																	p #{item.date}
+																	p moment(#{item.date}).format("DD.MM.YY")
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+
+
