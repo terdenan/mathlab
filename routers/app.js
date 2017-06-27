@@ -1,8 +1,16 @@
-const subdomain = require('express-subdomain'),
+const http = require('http'),
+			subdomain = require('express-subdomain'),
 			express = require('express'),
 			api = express.Router(),
 			compression = require('compression'),
 			passport = require('passport'),
+
+			VK = require('vksdk'),
+			vk = new VK({
+			  'appId'     : 6088660,
+			  'appSecret' : 'ynzLi2vKo1m66G8qsMk6',
+			  'language'  : 'ru'
+			});
 
 			bcrypt = require('bcrypt'),
 
@@ -44,18 +52,35 @@ passport.use(new VKontakteStrategy(
     callbackURL:  "http://localhost/auth/vkontakte/callback"
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
-  	/*User.findOne( {$or: [ {vk_id: profile.id }, {email: params.email} ] }, function(err, user){
+  	User.findOne( {vk_id: profile.id }, function(err, user){
   		if (err) return done(err);
   		if (!user) {
   			var newUser = User({
+  				_id: new mongoose.Types.ObjectId,
   				fullname: profile.displayName,
-
+  				email: params.email || "Не указано",
+  				confirmed: true,
+  				priority: 0,
+  				vk_id: profile.id
   			});
+  			newUser.sex = (profile.gender == "male") ? 0 : 1;
+
+  			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'});
+				vk.on('done:users.get', function(_o) {
+
+					newUser.avatarUrl = _o.response[0].photo_200;
+
+					newUser.save(function(err){
+	  				if (err) return done(err);
+	  				done(null, newUser);
+	  			});
+
+				});
   		}
   		else {
   			return done(null, user);
   		}
-  	});*/
+  	});
   }
 ));
 
@@ -68,6 +93,7 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
+
 
 module.exports = function(app){
 	app.locals.moment = require('moment');
@@ -100,12 +126,20 @@ module.exports = function(app){
 	});
 
 	app.get('/sign-in', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet/' + req.user._id);
+			return;
+		}
 		res
 			.status(200)
 			.render('./sign-in', {message: req.flash('error')});
 	});
 
 	app.get('/sign-up', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet/' + req.user._id);
+			return;
+		}
 		res
 			.status(200)
 			.render('./sign-up');
@@ -124,6 +158,10 @@ module.exports = function(app){
 	});
 
 	app.get('/cabinet/:id', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
 
 		if (!ObjectId.isValid(req.params.id)) {
 			res
@@ -162,10 +200,24 @@ module.exports = function(app){
 
 	});
 
-	app.get('/request', function(req, res){
+	app.get('/settings', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
 		res
 			.status(200)
-			.render('./request');
+			.render('./settings', req.user);
+	});
+
+	app.get('/request', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./request', {_id: (req.user._id).toString()});
 	});
 
 	app.post('/login', function(req, res, next){
@@ -182,15 +234,34 @@ module.exports = function(app){
 	});
 
   app.get('/auth/vkontakte', 
-  	passport.authenticate('vkontakte', { scope: ['email'] }), function(req, res){
+  	passport.authenticate('vkontakte', { scope: ['email', 'photos'] }), function(req, res){
   	});
 
-  app.get('/auth/vkontakte/callback',
-	  passport.authenticate('vkontakte', {
-	    successRedirect: '/success',
-	    failureRedirect: '/sign-in' 
-	  })
-	);
+  app.get('/auth/vkontakte/callback', function(req, res, next){
+  	passport.authenticate('vkontakte', function(err, user, info){
+			if (err) return next(err);
+			if (!user) return res.redirect('/sign-in');
+
+			req.logIn(user, function(err) {
+	      if (err) return next(err);
+	      return res.redirect('/cabinet/' + user._id);
+	    });
+
+		})(req, res, next);
+  });
+
+	app.get('/log-out', function(req, res){
+		req.session.destroy(function (err) {
+			if (err) {
+				console.log(err);
+				res
+					.status(500)
+					.send("Internal server error, try later");
+					return;
+			}
+		  res.redirect('/sign-in');
+		});
+	});
 
 	app.get('*', function(req, res){
 		res

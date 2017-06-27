@@ -10,7 +10,6 @@ require('./db/db');
 require('./routers/app')(app);
 
 io.on('connection', function(socket){
-  console.log('a user connected');
 });
 
 http.listen(config.httpPort, function(){

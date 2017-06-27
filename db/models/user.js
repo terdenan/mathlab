@@ -6,9 +6,9 @@ var userSchema = new Schema({
   email: String,
   password: String,
   avatarUrl: {type: String, default: "/images/profile.jpg"},
-  phone: {type: String, default: "Не указано"},
+  phone: String,
   sex: Number, // 0 - Male, 1 - Female
-  grade: {type: String, default: "Не указано"},
+  grade: String,
   confirmed: Boolean,
   priority: Number, // 0 - student, 1 - teacher, 2 - admin
   subject: String,
