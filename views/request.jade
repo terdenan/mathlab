@@ -1,0 +1,159 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Заявка на обучение
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="css/bootstrap-formhelpers.min.css" rel="stylesheet" )
+		link( href="css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="js/jquery.min.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="js/main.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		// CONTENT
+		div( class="container main-content" )
+			div( class="row" )
+				div( class="col-md-12" )
+					h2 Заявка на обучение
+			div( class="row" )
+				div( class="col-md-12" )
+					div( class="base" )
+						div( class="col-md-10" )
+							h4 Для того, что бы подать заявку на обучение достаточно нажать на кнопку справа.
+							p Вскоре с Вами свяжется Наш менеджер, который подберёт для Вас подходяшего преподавателя, учтя все Ваши пожелания, а так же расскажет как проходят уроки на портале MathLab.kz.
+						div( class="col-md-2 text-right" )
+							a( href="" class="btn btn-success" data-toggle="modal" data-target="#requestModal" ) Подать заявку
+							// Request modal
+							div( id="requestModal" class="modal fade text-left" role="dialog" )
+								div( class="modal-dialog" )
+									// Request content
+									div( class="modal-content" )
+										div( class="modal-header" )
+											button( type="button" class="close" data-dismiss="modal" ) &times;
+											h4( class="modal-title" ) Форма заявки на обучение
+										div( class="modal-body" )
+											form( data-toggle="validator" role="form" onsubmit="return false" )
+												div( class="form-group" )
+													label( for="subject" ) Предмет обучения:
+													select( class="form-control" id="subject" )
+														option Математика
+														option Информатика
+														option Физика
+												div( class="form-group" )
+													label( for="days" ) Желаемые дни уроков:
+													div( class="btn-group btn-group-justified" data-toggle="buttons" )
+														label( class="btn btn-default focus-none" ) Пн
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Вт
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Ср
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Чт
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Пт
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Сб
+															input( type="checkbox" autocomplete="off" id="monday" )
+														label( class="btn btn-default focus-none" ) Вс
+															input( type="checkbox" autocomplete="off" id="monday" )
+												div( class="form-group" )
+													label( for="time" ) Желаемое время урока:
+													div( class="bfh-timepicker" data-time="18:00" )
+														div( class="input-prepend bfh-timepicker-toggle" data-toggle="bfh-timepicker" )
+															span( class="add-on" )
+																i( class="icon-time" )
+															input( type="text" id="time" class="input-medium" readonly )
+														div( class="bfh-timepicker-popover" )
+															table( class="table" )
+																tbody
+																	tr
+																		td( class="hour" )
+																			a( class="next" href="#" )
+																				i( class="icon-chevron-up" )
+																			br
+																			input( input type="text" class="input-mini" readonly )
+																			a( class="previous" href="#" )
+																				i( class="icon-chevron-down" )
+																		td( class="separator" ) :
+																		td( class="minute" )
+																			a( class="next" href="#" )
+																				i( class="icon-chevron-up" )
+																			br
+																			input( input type="text" class="input-mini" readonly )
+																			br
+																			a( class="previous" href="#" )
+																				i( class="icon-chevron-down" )
+												div( class="form-group" )
+													label( for="target" ) Цель занятий:
+													select( class="form-control" id="target" )
+														option Не выбрано
+														option Улучшить успеваемость по предмету
+														option Поступить в физико-математическую школу
+												div( class="form-group" )
+													button( type="submit" class="btn btn-primary btn-block btn-md" id="req-submit" ) Отправить
+										div( class="modal-footer" )
+											button( type="button" class="btn btn-default" data-dismiss="modal" ) Закрыть
+			div( class="row main-content" )
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-2.jpg" class="img-circle" )
+							h4 Галия Мрзановна Альжанова
+							h6 Учитель математики и информатики
+							blockquote
+								p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
+								h6 Стаж работы репетитором - 10 лет
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-1.jpg" class="img-circle" )
+							h4 Василий Васильевич Соколов
+							h6 Учитель физики
+							blockquote
+								p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
+								h6 Стаж работы репетитором - 7 лет
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-3.jpg" class="img-circle" )
+							h4 Анастасия Николаевна Гребенюк
+							h6 Учитель математики
+							blockquote
+								p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
+								h6 Стаж работы репетитором - 3 года
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="js/bootstrap.min.js" )
+		script( src="js/formhelpers.min.js" )
+
+

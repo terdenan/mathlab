@@ -14,13 +14,13 @@ html( lang='ru' )
 		link( href="/css/bootstrap.css" rel="stylesheet" )
 
 		//Custom CSS	
-		link( rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" )
-		link( rel="stylesheet" href="css/font-awesome.min.css" )
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
 		link( href="/css/animate.css" rel="stylesheet" )
-		link( href="css/default.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
 
 		//Scripts
-		script( src="js/jquery.min.js" )
+		script( src="/js/jquery.min.js" )
 		script( src="/js/moment.min.js" )
 		script( src="/socket.io/socket.io.js" )
 
@@ -41,7 +41,7 @@ html( lang='ru' )
 					div( class="base" )
 						div( class="profile" )
 							div( class="profile-img text-center" )
-								div( class="center-cropped img-130" id="profile-img" style="background-image: url(#{photoURL});" )
+								div( class="center-cropped img-130" id="profile-img" style="background-image: url(#{avatarUrl});" )
 								div( class="profile-info text-center" )
 									h4( id="fullname" ) #{fullname}
 									h6( id="priority" ) Ученик
@@ -78,11 +78,13 @@ html( lang='ru' )
 																	div( class="center-cropped img-50" style="background-image: url(/uploads/#{item.teacherId}.jpg);" )
 																div( class="course-info-titles" )
 																	h5 #{item.teacher}
-																	h6 #{item.subject} #[small ТУТ БУДЕТ ВРЕМЯ]
+																	h6 #{item.subject} #[small]
+																	p #{item.date}
+																	p moment(#{item.date}).format("DD.MM.YY")
 
 		// FOOTER
 		include ./includes/footer
 
-		script( src="js/bootstrap.min.js" )
+		script( src="/js/bootstrap.min.js" )
 
 
