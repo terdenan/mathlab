@@ -45,6 +45,8 @@ passport.use(new LocalStrategy(
   }
 ));
 
+
+
 passport.use(new VKontakteStrategy(
   {
     clientID:     6088660,
