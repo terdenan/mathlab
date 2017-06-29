@@ -123,6 +123,7 @@ $(document).ready(function() {
     }
   });
   function setPhoto() {
+    alert();
     $("#avatar").fileinput({
       overwriteInitial: true,
       maxFileSize: 1500,
@@ -138,7 +139,7 @@ $(document).ready(function() {
       removeTitle: 'Отменить',
       elErrorContainer: '#kv-avatar-errors-1',
       msgErrorClass: 'alert alert-block alert-danger',
-      defaultPreviewContent: '<img src="/uploads/' + userInfo.id + ".jpg" + '" alt="Ваш аватар" class="img-circle" style="width:100%">',
+      defaultPreviewContent: '<img src="/images/member-2.png" alt="Ваш аватар" class="img-circle" style="width:100%">',
       layoutTemplates: {main2: '{preview} ' + '<div class="btn-group">' + '{browse} {remove} {upload}' + '</div>'},
       allowedFileExtensions: ["jpg", "jpeg", "png"]
     });
