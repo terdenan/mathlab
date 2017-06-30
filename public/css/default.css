@@ -99,12 +99,13 @@ body {
 }
 
 footer {
-  margin: 80px 0 30px;
-  padding: 40px 0;
+  margin: 80px 0 0px;
+  padding: 40px 0 20px;
   border-top: 3px solid #ebedef;
   color: #7b7b7b;
   font-size: 12px;
   font-weight: 300;
+  background: #f0f3f5;
 }
 
 .main-content {
@@ -849,6 +850,10 @@ footer {
 .img-30 {
   width: 30px;
   height: 30px;
+}
+
+.panel {
+  margin-top: 10vh;
 }
 
 .panel-heading {
