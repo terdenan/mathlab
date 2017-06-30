@@ -1,21 +1,8 @@
-module.exports = function(api) {
+const MongoClient = require('mongodb').MongoClient,
+			ObjectId = require('mongodb').ObjectID,
+			MongoStore = require('connect-mongo')(session),
+			mongoose = require('mongoose');
 
-	api.use(function(req, res, next){
-		res.set('Access-Control-Allow-Origin', '*');
-		next();
-	});
-
-	api.get('/getInfo', function(req, res){
-		res
-			.status(200)
-			.send('It works!');
-	});
-
-	api.get('*', function(req, res){
-		console.log('here');
-		res
-			.status(404)
-			.send('Not found');
-	});
+module.exports = function(app) {
 
 }
