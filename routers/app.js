@@ -53,10 +53,7 @@ passport.use(new VKontakteStrategy(
     profileFields: ['phone']
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
-  	console.log(profile);
-  	console.log(profile.phone);
-  	console.log(params);
-  	/*User.findOne( {vk_id: profile.id }, function(err, user){
+  	User.findOne( {vk_id: profile.id }, function(err, user){
   		if (err) return done(err);
   		if (!user) {
   			var newUser = User({
@@ -84,17 +81,9 @@ passport.use(new VKontakteStrategy(
   		else {
   			return done(null, user);
   		}
-  	});*/
+  	});
   }
 ));
-
-/*User.find({}, function(err, data){
-	console.log(data);
-});
-
-User.findOneAndRemove({vk_id: 145458606}, function(err){
-	console.log('deleted');
-});*/
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -168,7 +157,6 @@ module.exports = function(app){
 	});
 
 	app.get('/cabinet/:id', function(req, res){
-		console.log(req.user);
 		if (!req.user){
 			res.redirect('/sign-in');
 			return;
