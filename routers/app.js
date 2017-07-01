@@ -45,13 +45,12 @@ passport.use(new LocalStrategy(
   }
 ));
 
-
-
 passport.use(new VKontakteStrategy(
   {
     clientID:     6088660,
     clientSecret: "ynzLi2vKo1m66G8qsMk6",
-    callbackURL:  "http://localhost/auth/vkontakte/callback"
+    callbackURL:  "http://localhost/auth/vkontakte/callback",
+    profileFields: ['phone']
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
   	User.findOne( {vk_id: profile.id }, function(err, user){
@@ -101,7 +100,6 @@ module.exports = function(app){
 
 	app.set('view engine', 'jade');
 	app.use(express.static('public'));
-	app.use(subdomain('api', api));
 	app.use(compression());
 
 	app.use(cookieParser());
@@ -163,7 +161,6 @@ module.exports = function(app){
 			res.redirect('/sign-in');
 			return;
 		}
-
 		if (!ObjectId.isValid(req.params.id)) {
 			res
 				.status(400)
@@ -224,7 +221,7 @@ module.exports = function(app){
 	app.get('/teachers', function(req, res){
 		res
 			.status(200)
-			.render('./teachers');
+			.render('./teachers', {_id: (req.user._id).toString()});
 	});
 
 	app.post('/login', function(req, res, next){
@@ -241,7 +238,7 @@ module.exports = function(app){
 	});
 
   app.get('/auth/vkontakte', 
-  	passport.authenticate('vkontakte', { scope: ['email', 'photos'] }), function(req, res){
+  	passport.authenticate('vkontakte', { scope: ['email', 'phone', 'asd'] }), function(req, res){
   	});
 
   app.get('/auth/vkontakte/callback', function(req, res, next){
@@ -270,11 +267,11 @@ module.exports = function(app){
 		});
 	});
 
+	require('./api')(app);
+
 	app.get('*', function(req, res){
 		res
 			.status(404)
 			.render('./404');
 	});
-
-	require('./api')(api);
 };

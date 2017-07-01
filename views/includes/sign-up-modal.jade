@@ -1,4 +1,3 @@
-button( type="button" class="btn btn-success" id="signUpModalBtn" ) Open
 div( id="signUpModal" class="modal fade text-left" role="dialog" )
 	div( class="modal-dialog" id="signUpModalEffect")
 		div( class="modal-content" )
@@ -10,11 +9,14 @@ div( id="signUpModal" class="modal fade text-left" role="dialog" )
 				form( data-toggle="validator" role="form" onsubmit="return false" )
 					div( class="form-group" )
 						label( for="modal-email" ) Ваш e-mail:
-						input( id="modal-email" type="email" class="form-control" name="email" placeholder="Введите Ваш e-mail" required )
+						if (email)
+							input( id="modal-email" type="email" class="form-control" name="email"  required disabled="disabled" value="#{email}")
+						else
+							input( id="modal-email" type="email" class="form-control" name="email" placeholder="Введите Ваш e-mail" required )
 						div( class="help-block with-errors" ) 
 					div( class="form-group" )
-								label( for="modal-telephone" ) Ваш телефон:
-								input( type="tel" class="form-control bfh-phone" id="modal-telephone" data-format="+7 (ddd) ddd-dd-dd" required )
+								label( for="modal-phone" ) Ваш телефон:
+								input( type="tel" class="form-control bfh-phone" id="modal-phone" data-format="+7 (ddd) ddd-dd-dd" required )
 								div( class="help-block with-errors" ) 
 					div( class="form-group" )
 						label( for="modal-grade" ) Ваш класс обучения:
@@ -31,6 +33,6 @@ div( id="signUpModal" class="modal fade text-left" role="dialog" )
 							option 10
 							option 11
 					div( class="form-group" )
-						button( type="submit" class="btn btn-primary btn-block btn-md" ) Сохранить
+						button( type="submit" class="btn btn-primary btn-block btn-md" id="signUpModalSubmit" ) Сохранить
 			div( class="modal-footer" )
-				div( class="alert alert-info text-center" id="signUpModalErr" style="display: none;") Мы понимаем, что Вы не хотите этого делать, но надо :)
+				div( class="alert alert-info text-center" id="signUpModalErr" style="display: none;" ) Мы понимаем, что Вы не хотите этого делать, но надо :)
