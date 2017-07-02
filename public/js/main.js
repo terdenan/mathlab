@@ -1,108 +1,21 @@
 $(document).ready(function() { 
 
-  function setUserInfo() {
-    $('#fullname').html(userInfo.fullname);
-    $('#email').html(userInfo.email);
-    $('#phone').html(userInfo.phone);
-    $('#grade').html(userInfo.grade);
-    $('#profile-img').css('backgroundImage', "url(/uploads/" + userInfo.id + ".jpg)");
-    $('#link-to-cabinet').attr("href", "/cabinet/" + userInfo.id);
-  }
-
   var socket = io();
-  var userInfo = new Object();
-
-  $.ajax({
-    url: '/api/userInfo',
-    method: 'post',
-    success: function(response){
-      userInfo = response;
-      setUserInfo();
-      socket.emit('setRooms', response.id);
-    }
-  });
-  $("#log-out").on("click", function(){
-    $.ajax({
-      url: '/api/log-out',
-      method: 'post',
-      success: function(){
-        //window.location.href = "/";
-        console.log("log-out completed")
-      }
-    });
-  });
-  $.ajax({
-    url: '/api/loadStudentCourses',
-    method: 'get',
-    success: function(response) {
-      if (response.answer.length == 0) $("#empty-courses").show();
-      var courses = "<tr>", cnt = 0, len = 0, siz = response.length;
-      var arr = response.answer;
-      var activeCourse = "";
-      arr.forEach(function(item, arr){
-        if (moment(response.time) < moment(item.endingTime)) activeCourse = 'active-course';
-        else activeCourse = '';
-        courses += 
-          "<td id='" + item._id + "''>" +
-            "<div class='course " + activeCourse + "' onClick='window.location.href=`/course/" + item._id + "`'>" +
-              "<div class='course-header'>" +
-                "<div class='course-info-img'>" +
-                  "<div class='center-cropped img-50' style='background-image: url(/uploads/" + item.teacherId + ".jpg);'></div>" +
-                "</div>" +
-                "<div class='course-info-titles'>" + 
-                  "<h5>" + item.teacher + "</h5>" +
-                  "<h6>" + item.subject + " <small>" + moment(item.date).format('DD.MM.YY') + ' - ' + moment(item.endingTime).format('DD.MM.YY') + "</small></h6>" +
-                "</div>" +
-              "</div>" +
-            "</div>" +
-            "</a>" +
-          "</td>";
-        cnt++;
-        len++;
-        if (cnt == 2 && len != siz) {
-          courses += "</tr><tr>";
-          cnt = 0;
-        }
-      });
-      courses += "</tr>";
-      $('tbody').append(courses);
-    }
-  });
-  $.ajax({
-    url: '/api/loadTeacherCourses',
-    method: 'get',
-    success: function(response) {
-      if (response.length == 0) $("#empty-courses-t").show();
-      var courses = "<tr>", cnt = 0, len = 0, siz = response.length;
-      var arr = response.answer;
-      var activeCourse = "";
-      arr.forEach(function(item, arr){
-        courses += 
-          "<td id='" + item._id + "''>" +
-            "<div class='course active-course' onClick='window.location.href=`/course/" + item._id + "`'>" +
-              "<div class='course-header'>" +
-                "<div class='course-info-img'>" +
-                  "<div class='center-cropped img-50' style='background-image: url(/uploads/" + item.studentId + ".jpg);'></div>" +
-                "</div>" +
-                "<div class='course-info-titles'>" + 
-                  "<h5>" + item.student + "</h5>" +
-                  "<h6>" + item.subject + " <small>" + moment(item.date).format('DD.MM.YY') + ' - ' + moment(item.endingTime).format('DD.MM.YY') + "</small></h6>" +
-                "</div>" +
-              "</div>" +
-            "</div>" +
-            "</a>" +
-          "</td>";
-        cnt++;
-        len++;
-        if (cnt == 2 && len != siz) {
-          courses += "</tr><tr>";
-          cnt = 0;
-        }
-      });
-      courses += "</tr>";
-      $('tbody').append(courses);
-    }
-  });
+  /*"<td id='" + item._id + "''>" +
+    "<div class='course " + activeCourse + "' onClick='window.location.href=`/course/" + item._id + "`'>" +
+      "<div class='course-header'>" +
+        "<div class='course-info-img'>" +
+          "<div class='center-cropped img-50' style='background-image: url(/uploads/" + item.teacherId + ".jpg);'></div>" +
+        "</div>" +
+        "<div class='course-info-titles'>" + 
+          "<h5>" + item.teacher + "</h5>" +
+          "<h6>" + item.subject + " <small>" + moment(item.date).format('DD.MM.YY') + ' - ' + moment(item.endingTime).format('DD.MM.YY') + "</small></h6>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+    "</a>" +
+  "</td>";*/
+  
   $("#req-submit").on("click", function(){
     var prefDays = "";
     if ($('#monday')[0].checked) prefDays += "Пн ";
@@ -113,21 +26,22 @@ $(document).ready(function() {
     if ($('#saturday')[0].checked) prefDays += "Сб ";
     if ($('#sunday')[0].checked) prefDays += "Вс ";
     $.ajax({
-      url: "api/putBid",
+      url: "api/bid",
       method: "put",
       data: {subject: $('#subject option:selected').text(), prefDays: prefDays, prefTime: $(".bfh-timepicker input").val(), target: $('#target option:selected').text()},
       beforeLoad: function(){
         $(".modal-body").html("<img src='images/loading.svg'>");
       },
+      error: function(){
+        $(".modal-body").append(
+          "<div class='alert alert-danger'>" +
+            "<strong>Произошла ошибка!</strong> Попробуйте позже.</a>." +
+          "</div>");
+      },
       success: function(response) {
-        if (response == "Success") {
+        if (response == "success") {
           $("#requestModal").modal('hide');
           $("#succesModal").modal({show: true});
-        }
-        else {
-          $(".modal-body").append("<div class='alert alert-danger'>" +
-                                    "<strong>Произошла ошибка!</strong> Попробуйте позже.</a>." +
-                                  "</div>")
         }
       }
     });

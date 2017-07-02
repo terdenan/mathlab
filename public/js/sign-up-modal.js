@@ -14,7 +14,6 @@ $(document).ready(function() {
     if ($("#modal-email").val()) reqBody['email'] = $("#modal-email").val();
     reqBody['grade'] = +($("#modal-grade option:selected").text());
     reqBody['phone'] = $("#modal-phone").val();
-    console.log(reqBody);
     $.ajax({
       type: 'put',
       url: '/api/profileInfo',
