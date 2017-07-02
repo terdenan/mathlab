@@ -13,6 +13,7 @@ module.exports = function(app) {
     	{ $set: req.body }, 
     	function(err){
       	if (err) {
+      		console.log(err);
       		res
 						.status(500)
 						.send("Internal server error, try later");
