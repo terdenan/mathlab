@@ -28,6 +28,7 @@ const http = require('http'),
 			mongoose = require('mongoose');
 
 const User = require('../db/models/user'),
+			Bid = require('../db/models/bid'),
 			Course = require('../db/models/course');
 
 passport.use(new LocalStrategy(
@@ -53,13 +54,13 @@ passport.use(new VKontakteStrategy(
     profileFields: ['phone']
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
-  	User.findOne( {vk_id: profile.id }, function(err, user){
+  	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
   		if (err) return done(err);
   		if (!user) {
   			var newUser = User({
   				_id: new mongoose.Types.ObjectId,
   				fullname: profile.displayName,
-  				email: params.email || "Не указано",
+  				email: params.email || "",
   				confirmed: true,
   				priority: 0,
   				vk_id: profile.id
@@ -70,7 +71,6 @@ passport.use(new VKontakteStrategy(
 				vk.on('done:users.get', function(_o) {
 
 					newUser.avatarUrl = _o.response[0].photo_200;
-
 					newUser.save(function(err){
 	  				if (err) return done(err);
 	  				done(null, newUser);
@@ -79,7 +79,13 @@ passport.use(new VKontakteStrategy(
 				});
   		}
   		else {
-  			return done(null, user);
+  			user.email = params.email || "";
+  			user.vk_id = profile.id;
+  			user.confirmed = true;
+  			user.save(function(err){
+  				if (err) return done(err);
+  				done(null, user);
+  			});
   		}
   	});
   }
