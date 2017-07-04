@@ -1,7 +1,5 @@
 const http = require('http'),
-			subdomain = require('express-subdomain'),
 			express = require('express'),
-			api = express.Router(),
 			compression = require('compression'),
 			passport = require('passport'),
 
@@ -14,6 +12,7 @@ const http = require('http'),
 
 			bcrypt = require('bcrypt'),
 
+			path = require('path'),
 			cookieParser = require('cookie-parser'),
 			bodyParser = require('body-parser'),
 			session = require('express-session'),
@@ -50,8 +49,7 @@ passport.use(new VKontakteStrategy(
   {
     clientID:     6088660,
     clientSecret: "ynzLi2vKo1m66G8qsMk6",
-    callbackURL:  "http://localhost/auth/vkontakte/callback",
-    profileFields: ['phone']
+    callbackURL:  "http://localhost/auth/vkontakte/callback"
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
   	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
@@ -101,22 +99,26 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-module.exports = function(app){
+module.exports = function(app, dir){
 	app.locals.moment = require('moment');
 
 	app.set('view engine', 'jade');
+	app.set('views', path.join(__dirname, '../views/main'));
 	app.use(express.static('public'));
 	app.use(compression());
 
 	app.use(cookieParser());
-	app.use(bodyParser());
+	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(bodyParser.json());
 	app.use(session(
 		{ 
 			secret: 'keyboard cat',
 			store: new MongoStore ({
 			  mongooseConnection: mongoose.connection
 			}),
-			cookie: {httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7}
+			cookie: {httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7},
+			resave: true,
+    	saveUninitialized: true
 		}
 	));
 	app.use(passport.initialize());
@@ -244,7 +246,7 @@ module.exports = function(app){
 	});
 
   app.get('/auth/vkontakte', 
-  	passport.authenticate('vkontakte', { scope: ['email', 'phone', 'asd'] }), function(req, res){
+  	passport.authenticate('vkontakte', { scope: ['email'] }), function(req, res){
   	});
 
   app.get('/auth/vkontakte/callback', function(req, res, next){
