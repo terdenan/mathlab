@@ -1,0 +1,41 @@
+div( id="sidebar-menu" class="main_menu_side hidden-print main_menu" )
+  div( class="menu_section" )
+    h3 Основные
+    ul( class="nav side-menu" )
+      li
+        a #[i( class="fa fa-home" )] Главная #[span( class="fa fa-chevron-down" )]
+        ul( class="nav child_menu" )
+          li
+            a( href="/" ) Сводка
+          li
+            a( href="/teacher-form" ) Регистрация учителя
+          li
+            a( href="/bids" ) Заявки на обучение
+      li
+        a #[i( class="fa fa-table" )] Списки #[span( class="fa fa-chevron-down" )]
+        ul( class="nav child_menu" )
+          li
+            a( href="/students" ) Ученики
+          li
+            a( href="/teachers" ) Учителя
+          li
+            a( a href="/courses" ) Курсы
+      li
+        a #[i( class="fa fa-bar-chart-o" )] Статистика #[span( class="fa fa-chevron-down" )]
+        ul( class="nav child_menu" )
+          li
+            a( href="#" ) Stat
+      li
+        a #[i( class="fa fa-clone" )] Расписание #[span( class="fa fa-chevron-down" )]
+        ul( class="nav child_menu" )
+          li
+            a( href="#" ) Page
+div( class="sidebar-footer hidden-small" )
+  a( data-toggle="tooltip" data-placement="top" title="Settings" )
+    span( class="glyphicon glyphicon-cog" aria-hidden="true" )
+  a( data-toggle="tooltip" data-placement="top" title="FullScreen" )
+    span( class="glyphicon glyphicon-fullscreen" aria-hidden="true" )
+  a( data-toggle="tooltip" data-placement="top" title="Lock" )
+    span( class="glyphicon glyphicon-eye-close" aria-hidden="true" )
+  a( data-toggle="tooltip" data-placement="top" title="Logout" href="#" )
+    span( class="glyphicon glyphicon-off" aria-hidden="true" )

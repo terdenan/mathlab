@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin Panel - MathLab.kz </title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="js/viewportchecker.js"></script>
+    <script src="js/bids.js"></script>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/" class="site_title"><img src="images/logo.svg"> <span>Admin Panel</span></a>
+            </div>
+            <div class="clearfix"></div>
+            <!-- /menu profile quick info -->
+            <br />
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Основные</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> Главная <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/">Сводка</a></li>
+                      <li><a href="/teacher-form">Регистрация учителя</a></li>
+                      <li><a href="/bids">Заявки на обучение</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> Списки <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/students">Ученики</a></li>
+                      <li><a href="/teachers">Учителя</a></li>
+                      <li><a href="/courses">Курсы</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Статистика <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Stat</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-clone"></i> Расписание <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Page</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+            <div class="abs-alerts"></div>
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="#">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Admin
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;">Помощь</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Выход</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Заявки на обучение</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table">
+                        <thead>
+                          <tr class="headings">
+                            <th class="column-title">От кого </th>
+                            <th class="column-title">Дата заявки</th>
+                            <th class="column-title">Предмет</th>
+                            <th class="column-title">Желаемые дни</th>
+                            <th class="column-title">Желаемое время</th>
+                            <th class="column-title">Телефон</th>
+                            <th class="column-title">Цель обучения</th>
+                            <th class="column-title"><span class="nobr">Статус</span></th>
+                            <th class="column-title last"></th>
+                          </tr>
+                        </thead>
+                        <tbody class="tbody-bids">
+                        </tbody>
+                      </table>
+                      <span id="anchor"></span>
+                    </div>
+                    <div class="loading text-center"></div>
+                    <!-- Course Adding Modal -->
+                    <div id="courseAddingModal" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Создание курса</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>Для того, что бы создать курс между учителем и учеником выберите соответсвуюещего преподавателя для данного ученика.</p>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>ФИО:</h4></div>
+                                <div class="col-md-8"><h4 id="student"></h4></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Предмет:</h4></div>
+                                <div class="col-md-8"><h4 id="subject"></h4></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Желаемые дни:</h4></div>
+                                <div class="col-md-8"><h4 id="prefDays"></h4></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Желаемое время:</h4></div>
+                                <div class="col-md-8"><h4 id="prefTime"></h4></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Учитель:</h4></div>
+                                <div class="col-md-8">
+                                  <div class="form-group">
+                                    <select class="form-control" id="teacher-list">
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Дни уроков:</h4></div>
+                                <div class="col-md-8">
+                                  <div class="form-group">
+                                      <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="monday"> Пн
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="tuesday"> Вт
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="wednesday"> Ср
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="thursday"> Чт
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="friday"> Пт
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="saturday"> Сб
+                                        </label>
+                                        <label class="btn btn-default focus-none">
+                                            <input type="checkbox" autocomplete="off" id="sunday"> Вс
+                                        </label>
+                                      </div>
+                                   </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right"><h4>Время уроков:</h4></div>
+                                <div class="col-md-8">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                    <input id="time" type="text" class="form-control" name="time" value="18:00">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 text-right">
+                                  <button type="button" class="btn btn-success" id="create-course">Создать курс</button>
+                                </div>
+                                <div class="col-md-8">Перед созданием проверьте правильность введных Вами данных.</div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Admin Panel - MathLab.kz
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="vendors/Flot/jquery.flot.js"></script>
+    <script src="vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="vendors/Flot/jquery.flot.time.js"></script>
+    <script src="vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="vendors/moment/min/moment.min.js"></script>
+    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.min.js"></script>
+	
+  </body>
+</html>

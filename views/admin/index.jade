@@ -1,0 +1,144 @@
+doctype html
+html( lang='ru' )
+	head
+		mata( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+
+		title Портал дистанционного обучения - MathLab.kz
+
+		link( rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" )
+
+		// Bootstrap Core CSS
+		link( href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+
+		// Font Awesome
+		link( href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+
+		//iCheck
+		link( href="vendors/iCheck/skins/flat/green.css" rel="stylesheet" )
+
+		// Bootstrap progressbar
+		link( href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" )
+
+		// Bootstrap daterangepicker
+		link( href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( href="css/custom.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="vendors/jquery/dist/jquery.min.js" )
+		script( src="js/main.js" )
+
+	body( class="nav-md" )
+		div( class="container body" )
+			div( class="main_container" )
+				div( class="col-md-3 left_col" )
+					div( class="left_col scroll-view" )
+						div( class="navbar nav_title" style="border: 0;" )
+							a( href="/" class="site_title" )
+								img( src="images/logo.svg" )
+								span Admin Panel
+						div( class="clearfix" )
+						br
+						include ./includes/sidebar
+
+				include ./includes/navigation
+
+				div( class="right_col" role="main" )
+					div( class="row tile_count" )
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-user" )] Всего пользователей
+							div( class="count" ) 2500
+							span( class="count_bottom" ) #[i( class="green" ) #[i( class="fa fa-sort-asc" )]4% ] Прошлая неделя
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-user" )] Активных пользователей
+							div( class="count green" ) 1,500
+							span( class="count_bottom" ) #[i( class="green" ) #[i( class="fa fa-sort-asc" )]34% ] Прошлая неделя
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-clock-o" )] Проведено уроков
+							div( class="count" ) 1239
+							span( class="count_bottom" ) #[i( class="green" ) #[i( class="fa fa-sort-asc" )]3% ] Прошлая неделя
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-user" )] Учителей в системе
+							div( class="count" ) 109
+							span( class="count_bottom" ) #[i( class="red" ) #[i( class="fa fa-sort-desc" )]12% ] Прошлая неделя
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-usd" )] Заработано за неделю
+							div( class="count green" ) 2,315 $
+							span( class="count_bottom" ) #[i( class="green" ) #[i( class="fa fa-sort-asc" )]34% ] Прошлая неделя
+						div( class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" )
+							span( class="count_top" ) #[i( class="fa fa-usd" )] Заработано за месяц
+							div( class="count green" ) 7,325 $
+							span( class="count_bottom" ) #[i( class="green" ) #[i( class="fa fa-sort-asc" )]34% ] Прошлый месяц
+					div( class="row" )
+						div( class="col-md-12 col-sm-12 col-xs-12" )
+							div( class="dashboard_graph" )
+								div( class="row x_title" )
+									div( class="col-md-12" )
+										h3 Статистика уроков #[small Количество уроков, проведенных в день]
+								div( class="col-md-9 col-sm-9 col-xs-12" )
+									div( id="chart_plot_01" class="demo-placeholder" )
+								div( class="col-md-3 col-sm-3 col-xs-12 bg-white" )
+									div( class="x_title" )
+										h2 Уроки по предметам
+										div( class="clearfix" )
+									div( class="col-md-12 col-sm-12 col-xs-6" )
+										div
+											p Математика
+											div
+												div( class="progress progress_sm" style="width: 76%;" )
+													div( class="progress-bar bg-green" role="progressbar" data-transitiongoal="80" )
+										div
+											p Физика
+											div
+												div( class="progress progress_sm" style="width: 76%;" )
+													div( class="progress-bar bg-green" role="progressbar" data-transitiongoal="60" )
+										div
+											p Информатика
+											div
+												div( class="progress progress_sm" style="width: 76%;" )
+													div( class="progress-bar bg-green" role="progressbar" data-transitiongoal="40" )
+								div( class="clearfix" )
+				footer
+					div( class="pull-right" ) Admin Panel - MathLab.kz
+					div( class="clearfix" )
+
+		
+		// Bootstrap
+		script( src="vendors/bootstrap/dist/js/bootstrap.min.js" )
+		// FastClick
+		script( src="vendors/fastclick/lib/fastclick.js" )
+		// bootstrap-progressbar
+		script( src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		// iCheck
+		script( src="vendors/iCheck/icheck.min.js" )
+		// Skycons
+		script( src="vendors/skycons/skycons.js" )
+		// Flot
+		script( src="vendors/Flot/jquery.flot.js" )
+		script( src="vendors/Flot/jquery.flot.pie.js" )
+		script( src="vendors/Flot/jquery.flot.time.js" )
+		script( src="vendors/Flot/jquery.flot.stack.js" )
+		script( src="vendors/Flot/jquery.flot.resize.js" )
+		// Flot plugins
+		script( src="vendors/flot.orderbars/js/jquery.flot.orderBars.js" )
+		script( src="vendors/flot-spline/js/jquery.flot.spline.min.js" )
+		script( src="vendors/flot.curvedlines/curvedLines.js" )
+		// DateJS
+		script( src="vendors/DateJS/build/date.js" )
+		// JQVMap
+		script( src="vendors/jqvmap/dist/jquery.vmap.js" )
+		script( src="vendors/jqvmap/dist/maps/jquery.vmap.world.js" )
+		script( src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js" )
+		// bootstrap-daterangepicker
+		script( src="vendors/moment/min/moment.min.js" )
+		script( src="vendors/bootstrap-daterangepicker/daterangepicker.js" )
+
+		// Custom Theme Scripts
+		script( src="js/custom.min.js" )
+		
+
+
