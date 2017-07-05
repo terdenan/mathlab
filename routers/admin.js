@@ -51,7 +51,7 @@ passport.deserializeUser(function(id, done) {
 module.exports = function(admin){
 
 	function errorHandler(err, req, res, statusCode, errMessage){
-		console.log(err);
+		if (err) console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -94,10 +94,15 @@ module.exports = function(admin){
 			.render('./bids');
 	});
 
+	admin.get('/teacher-form', function(req, res){
+		res
+			.status(200)
+			.render('./teacher-form');
+	});
+
 	admin.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {
 			if (err) {
-				console.log(err);
 				errorHandler(err, req, res, 500, "Internal server error, try later");
 				return;
 			}
@@ -129,6 +134,37 @@ module.exports = function(admin){
 	    	return;
 	    }
 	    res.send(data);
+	  });
+	});
+
+	admin.put('/api/teacher', function(req, res){
+		User.findOne({email: req.body.email}, function(err, user){
+	    if (user) {
+	    	errorHandler(err, req, res, 400, "This email is not available");
+	    	return;
+	    }
+      bcrypt.hash(req.body.password, 10).then(function(hash) {
+        var newUser = User({
+          _id: new mongoose.Types.ObjectId,
+          fullname: req.body.fullname,
+          email: req.body.email,
+          password: hash,
+          phone: req.body.phone,
+          sex: (req.body.sex == "Мужской") ? 0 : 1,
+          confirmed: false,
+          priority: 1,
+          subject: req.body.subject
+        });
+        newUser.save(function(err){
+          if(err) {
+          	errorHandler(err, req, res, 500, "Internal server error, try later");
+          	return;
+          }
+          res
+          	.status(200)
+          	.send('success');
+        }); 
+      });
 	  });
 	});
 };
