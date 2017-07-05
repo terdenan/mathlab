@@ -17,6 +17,8 @@ const http = require('http'),
 			MongoStore = require('connect-mongo')(session),
 			mongoose = require('mongoose');
 
+mongoose.Promise = require('bluebird');
+
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Course = require('../db/models/course');
@@ -46,7 +48,14 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-module.exports = function(admin, dir){
+module.exports = function(admin){
+
+	function errorHandler(err, req, res, statusCode, errMessage){
+		if (err) console.log(err);
+		res
+			.status(statusCode)
+			.send(errMessage);
+	}
 	admin.locals.moment = require('moment');
 
 	admin.set('view engine', 'jade');
@@ -79,22 +88,83 @@ module.exports = function(admin, dir){
 			.render('./index');
 	});
 
+	admin.get('/bids', function(req, res){
+		res
+			.status(200)
+			.render('./bids');
+	});
+
+	admin.get('/teacher-form', function(req, res){
+		res
+			.status(200)
+			.render('./teacher-form');
+	});
+
 	admin.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {
 			if (err) {
-				console.log(err);
-				res
-					.status(500)
-					.send("Internal server error, try later");
-					return;
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
 			}
 		  res.redirect('/sign-in');
 		});
 	});
 
-	admin.get('*', function(req, res){
-		res
-			.status(404)
-			.render('./404');
+	admin.get('/api/bid', function(req, res){
+		Bid.
+	    find({
+	      _id: {$lt: ObjectId(req.query.lastID)}
+	    }).
+	    select('_id student studentId subject prefDays prefTime date target phone status').
+	    sort({date: -1}).
+	    limit(10).
+	    exec(function(err, data){
+	      if (err) {
+	      	errorHandler(err, req, res, 500, "Internal server error, try later");
+	      	return;
+	      }
+	      res.send(data);
+	    });
+	});
+
+	admin.get('/api/teachers', function(req, res){
+		User.find({priority: 1}, '_id fullname', function(err, data){
+	    if (err) {
+	    	errorHandler(err, req, res, 500, "Internal server error, try later");
+	    	return;
+	    }
+	    res.send(data);
+	  });
+	});
+
+	admin.put('/api/teacher', function(req, res){
+		User.findOne({email: req.body.email}, function(err, user){
+	    if (user) {
+	    	errorHandler(err, req, res, 400, "This email is not available");
+	    	return;
+	    }
+      bcrypt.hash(req.body.password, 10).then(function(hash) {
+        var newUser = User({
+          _id: new mongoose.Types.ObjectId,
+          fullname: req.body.fullname,
+          email: req.body.email,
+          password: hash,
+          phone: req.body.phone,
+          sex: (req.body.sex == "Мужской") ? 0 : 1,
+          confirmed: false,
+          priority: 1,
+          subject: req.body.subject
+        });
+        newUser.save(function(err){
+          if(err) {
+          	errorHandler(err, req, res, 500, "Internal server error, try later");
+          	return;
+          }
+          res
+          	.status(200)
+          	.send('success');
+        }); 
+      });
+	  });
 	});
 };
