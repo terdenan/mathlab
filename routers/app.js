@@ -99,7 +99,14 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-module.exports = function(app, dir){
+module.exports = function(app){
+	function errorHandler(err, req, res, statusCode, errMessage){
+		console.log(err);
+		res
+			.status(statusCode)
+			.send(errMessage);
+	}
+
 	app.locals.moment = require('moment');
 
 	app.set('view engine', 'jade');
@@ -180,22 +187,16 @@ module.exports = function(app, dir){
 			.select("_id fullname email phone grade avatarUrl")
 			.exec(function(err, user){
 				if (err) {
-					console.log(err);
-					res
-						.status(500)
-						.send("Internal server error, try later");
-						return;
+					errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
 				}
 				Course
 					.find({studentId: ObjectId(req.params.id)})
 					.select("_id teacher teacherId date endingTime")
 					.exec(function(err, courses){
 						if (err) {
-							console.log(err);
-							res
-								.status(500)
-								.send("Internal server error, try later");
-								return;
+							errorHandler(err, req, res, 500, "Internal server error, try later");
+							return;
 						}
 						user.courses = courses;
 						res
@@ -265,11 +266,8 @@ module.exports = function(app, dir){
 	app.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {
 			if (err) {
-				console.log(err);
-				res
-					.status(500)
-					.send("Internal server error, try later");
-					return;
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
 			}
 		  res.redirect('/sign-in');
 		});

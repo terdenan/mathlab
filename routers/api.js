@@ -8,17 +8,20 @@ const User = require('../db/models/user'),
 			Course = require('../db/models/course');
 			
 module.exports = function(app) {
+	function errorHandler(err, req, res, statusCode, errMessage){
+		console.log(err);
+		res
+			.status(statusCode)
+			.send(errMessage);
+	}
 	app.put('/api/profileInfo', function(req, res){
 		User.update(
 			{ _id: ObjectId(req.user._id) }, 
     	{ $set: req.body }, 
     	function(err){
       	if (err) {
-      		console.log(err);
-      		res
-						.status(500)
-						.send("Internal server error, try later");
-						return;
+      		errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
       	}
       	res
       		.status(200)
@@ -30,16 +33,12 @@ module.exports = function(app) {
 	app.put('/api/user', function(req, res){
 		User.findOne({ email: req.body.email }, function(err, data){
 			if (err) {
-    		res
-					.status(500)
-					.send("Internal server error, try later");
-					return;
+    		errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
     	}
     	if (data) {
-    		res
-					.status(400)
-					.send("This email is not available");
-					return;
+    		errorHandler(err, req, res, 400, "This email is not available");
+				return;
     	}
     	bcrypt.hash(req.body.password, 10).then(function(hash) {
         var newUser = User({
@@ -55,21 +54,13 @@ module.exports = function(app) {
         });
         newUser.save(function(err){
           if(err) {
-          	if (err) {
-			    		console.log(err);
-			    		res
-								.status(500)
-								.send("Internal server error, try later");
-								return;
-			    	}
+          	errorHandler(err, req, res, 500, "Internal server error, try later");
+          	return;
           }
           req.logIn(newUser, function(err){
             if (err) {
-			    		console.log(err);
-			    		res
-								.status(500)
-								.send("Internal server error, try later");
-								return;
+			    		errorHandler(err, req, res, 500, "Internal server error, try later");
+			    		return;
 			    	}
             res
             	.status(200)
@@ -94,11 +85,8 @@ module.exports = function(app) {
 	  });
 	  newBid.save(function(err){
 	    if (err) {
-	  		console.log(err);
-	  		res
-					.status(500)
-					.send("Internal server error, try later");
-					return;
+	  		errorHandler(err, req, res, 500, "Internal server error, try later");
+	  		return;
 	  	}
 	    res
 	    	.status(200)

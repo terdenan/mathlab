@@ -7,8 +7,8 @@ var acceptStatus = "<span class='label label-success'id='acceptStatus' >Подт
 var refuseStatus = "<span class='label label-danger' id='refuseStatus'>Отказано</span>";
 function loadBids(lastID) {
   $.ajax({
-    url: 'api/loadBids',
-    method: 'post',
+    url: 'api/bid',
+    method: 'get',
     data: {lastID: lastID},
     beforeSend: function() {
       pending = true;
