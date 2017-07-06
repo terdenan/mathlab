@@ -13,16 +13,6 @@ $(document).ready(function() {
   var socket = io();
   var userInfo = new Object();
 
-  $.ajax({
-    url: '/api/userInfo',
-    method: 'post',
-    success: function(response){
-      userInfo = response;
-      setSettings();
-      socket.emit('setRooms', response.id);
-    }
-  });
-
   $('#save-settings').on('click', function(){
     if ($('#login').val() || $('#phone').val() || userInfo.grade != $('#grade1 option:selected').text()) {
       $.ajax({
@@ -41,8 +31,7 @@ $(document).ready(function() {
                                         "</div>");
             setTimeout(function(){
               $(".password-block").find(".alert").fadeOut(500);
-              sessionStorage.clear();
-              window.location.href = "/cabinet/" + response;
+              window.location.href = "/cabinet";
             },2200)
           }
           else {
@@ -54,17 +43,6 @@ $(document).ready(function() {
         }
       });
     }
-  });
-
-  $("#log-out").on("click", function(){
-    $.ajax({
-      url: '/api/log-out',
-      method: 'post',
-      success: function(){
-        //window.location.href = "/";
-        console.log("log-out completed")
-      }
-    });
   });
 
   $('#submit-1').on('click', function(){

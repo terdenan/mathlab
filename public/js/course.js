@@ -77,27 +77,6 @@ $(document).ready(function() {
   var socket = io();
 
   $.ajax({
-    url: '/api/userInfo',
-    method: 'post',
-    success: function(response){
-      userInfo = response;
-      socket.emit('setRooms', response.id);
-      $('#link-to-cabinet').attr("href", "/cabinet/" + userInfo.id);
-    }
-  });
-
-  $("#log-out").on("click", function(){
-    $.ajax({
-      url: '/api/log-out',
-      method: 'post',
-      success: function(){
-        //window.location.href = "/";
-        console.log("log-out completed")
-      }
-    });
-  });
-
-  $.ajax({
     url: '/api/courseInfo',
     method: 'post',
     data: {dialogId: dialogId},
@@ -141,18 +120,6 @@ $(document).ready(function() {
         loadMessages(currenTr);
       }
     }
-  });
-
-  $("#log-out").on("click", function(){
-    sessionStorage.clear();
-    $.ajax({
-      url: '/api/log-out',
-      method: 'post',
-      success: function(){
-        //window.location.href = "/";
-        console.log("log-out completed")
-      }
-    });
   });
 
   var windowHeight = $(window).height();

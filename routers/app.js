@@ -141,7 +141,7 @@ module.exports = function(app){
 
 	app.get('/sign-in', function(req, res){
 		if (req.user) {
-			res.redirect('/cabinet/' + req.user._id);
+			res.redirect('/cabinet');
 			return;
 		}
 		res
@@ -151,7 +151,7 @@ module.exports = function(app){
 
 	app.get('/sign-up', function(req, res){
 		if (req.user) {
-			res.redirect('/cabinet/' + req.user._id);
+			res.redirect('/cabinet');
 			return;
 		}
 		res
@@ -171,38 +171,24 @@ module.exports = function(app){
 			.render('./prices');
 	});
 
-	app.get('/cabinet/:id', function(req, res){
+	app.get('/cabinet', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');
 			return;
 		}
-		if (!ObjectId.isValid(req.params.id)) {
-			res
-				.status(400)
-				.send("Bad request");
-			return;
-		}
-		User
-			.findOne({_id: ObjectId(req.params.id)})
-			.select("_id fullname email phone grade avatarUrl")
-			.exec(function(err, user){
+		Course
+			.find({studentId: req.user._id})
+			.select("_id teacher teacherId date endingTime")
+			.exec(function(err, courses){
 				if (err) {
 					errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
 				}
-				Course
-					.find({studentId: ObjectId(req.params.id)})
-					.select("_id teacher teacherId date endingTime")
-					.exec(function(err, courses){
-						if (err) {
-							errorHandler(err, req, res, 500, "Internal server error, try later");
-							return;
-						}
-						user.courses = courses;
-						res
-							.status(200)
-							.render('./cabinet', user);
-					});
+				var user = req.user;
+				user.courses = courses;
+				res
+					.status(200)
+					.render('./cabinet', user);
 			});
 
 	});
@@ -224,13 +210,13 @@ module.exports = function(app){
 		}
 		res
 			.status(200)
-			.render('./request', {_id: (req.user._id).toString()});
+			.render('./request', req.user);
 	});
 
 	app.get('/teachers', function(req, res){
 		res
 			.status(200)
-			.render('./teachers', {_id: (req.user._id).toString()});
+			.render('./teachers', req.user);
 	});
 
 	app.post('/login', function(req, res, next){
@@ -240,7 +226,7 @@ module.exports = function(app){
 
 			req.logIn(user, function(err) {
 	      if (err) return next(err);
-	      return res.redirect('/cabinet/' + user._id);
+	      return res.redirect('/cabinet');
 	    });
 
 		})(req, res, next);
@@ -257,7 +243,7 @@ module.exports = function(app){
 
 			req.logIn(user, function(err) {
 	      if (err) return next(err);
-	      return res.redirect('/cabinet/' + user._id);
+	      return res.redirect('/cabinet');
 	    });
 
 		})(req, res, next);
