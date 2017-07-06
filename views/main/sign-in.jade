@@ -43,22 +43,23 @@ html( lang='ru' )
 						span(itemprop="brand") MathLab.kz
 				div( class="collapse navbar-collapse" id="navbar-collapse" )
 					ul( class="nav navbar-nav" )
-						li( class="dropdown" )
-							a( class="dropdown-toggle" data-toggle="dropdown" href="#" )
-								i( class="fa fa-bars" aria-hidden="true" )
-							ul( class="dropdown-menu" )
-								li
-									a(href="#")
-										i(class="fa fa-home" aria-hidden="true") &nbsp;Главная
-								li
-									a(href="#")
-										i(class="fa fa-usd" aria-hidden="true") &nbsp;Оплата
-								li
-									a(href="#")
-										i(class="fa fa-phone" aria-hidden="true") &nbsp;Контакты
+						li
+							a( href="/" )
+								i( class="fa fa-home" aria-hidden="true" )
+								| &nbsp; Главная
+						li
+							a( href="/how-to-use" target="_blank" )
+								i( class="fa fa-graduation-cap" aria-hidden="true" )
+								| &nbsp; Как проходит обучение
+						li
+							a( href="/prices" target="_blank" )
+								i( class="fa fa-usd" aria-hidden="true" )
+								| &nbsp; Расценки и способы оплаты
 					ul( class="nav navbar-nav navbar-right" )
 						li
-							a( href="/sign-up" ) Регистрация
+							a( href="/sign-up" )
+								i( class="fa fa-user-plus" aria-hidden="true" )
+								| &nbsp; Регистрация
 
 		// CONTENT
 		div( class="error-alerts" )
@@ -69,7 +70,7 @@ html( lang='ru' )
 				div( class="col-md-6 col-md-offset-3" )
 					div( class="row form-head" )
 						div( class="col-xs-8 nopadding" )
-							h3 Вход в систему
+							h3 Вход в личный кабинет
 						div( class="col-xs-4 text-right form-head-reg" )
 							a( href="sign-up" ) Регистрация
 					div( class="form" )

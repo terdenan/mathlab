@@ -29,19 +29,18 @@ $(document).ready(function() {
       url: "api/bid",
       method: "put",
       data: {subject: $('#subject option:selected').text(), prefDays: prefDays, prefTime: $(".bfh-timepicker input").val(), target: $('#target option:selected').text()},
-      beforeLoad: function(){
-        $(".modal-body").html("<img src='images/loading.svg'>");
-      },
       error: function(){
-        $(".modal-body").append(
+        $("#request-form").append(
           "<div class='alert alert-danger'>" +
-            "<strong>Произошла ошибка!</strong> Попробуйте позже.</a>." +
+            "<strong>Произошла ошибка!</strong> Попробуйте позже.</a>" +
           "</div>");
       },
       success: function(response) {
         if (response == "success") {
-          $("#requestModal").modal('hide');
-          $("#succesModal").modal({show: true});
+          $("#request-form").append(
+          "<div class='alert alert-success'>" +
+            "<strong>Отлично!</strong> Ваша заявка отправлена и находится на рассмотрении.</a>" +
+          "</div>");
         }
       }
     });

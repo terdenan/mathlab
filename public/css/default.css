@@ -93,19 +93,19 @@
 /* End Fonts */
 
 body {
-    background-color: #F2F4F7;
+    background-color: #f5f7fb;
     color: #354251;
-    font-family: "OpenSans" , Helvetica, Arial;
+    font-family: "Trebuchet MS", Helvetica, sans-serif
 }
 
 footer {
   margin: 80px 0 0px;
   padding: 40px 0 20px;
-  border-top: 3px solid #ebedef;
+  border-top: 3px solid #f1f4f9;
   color: #7b7b7b;
   font-size: 12px;
   font-weight: 300;
-  background: #f0f3f5;
+  background: #f5f7fb;
 }
 
 .main-content {
@@ -135,14 +135,33 @@ footer {
 
 .form, .base {
     padding: 20px;
-    border: 1px solid #DCE1E8;
-    border-radius: 1px;
+    border: 1px solid #ebeff7;
+    border-radius: 3px;
     background: #fff;
     overflow: hidden;
 }
 
 .base .nav-tabs {
     margin: 0 -20px;
+}
+
+.btn-default {
+  border-color: #ebeff7;
+}
+
+.base header {
+  border-bottom: 1px solid #ebeff7;
+  margin: -20px -20px 20px;
+  padding: 15px 20px;
+}
+
+.base header h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.navbar i {
+  font-size: 14px;
 }
 
 .form button {
@@ -265,7 +284,7 @@ footer {
 
 
 .profile-img {
-    margin: auto;
+    margin: 25px auto;
 }
 
 .profile-img img {
@@ -283,7 +302,7 @@ footer {
 .profile-info {
     margin: 10px auto;
     padding-bottom: 10px;
-    border-bottom: 1px solid #dce1e8;
+    border-bottom: 1px solid #ebeff7;
 }
 
 .profile-info h6, .teacher-profile h6 {
@@ -293,7 +312,7 @@ footer {
 .profile-contacts {
     margin: 15px auto 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #dce1e8;
+    border-bottom: 1px solid #ebeff7;
 }
 
 .profile-contacts h5 {
@@ -318,32 +337,44 @@ footer {
 }
 
 .course {
-    padding: 10px;
-    border: 1px solid #dce1e8;
+    padding: 0 0 15px;
+    border-bottom: 1px solid #ebeff7;
     border-radius: 1px;
     cursor: pointer;
-    opacity: 0.6;
+    position: relative;
 }
 
-.active-course {
-    opacity: 1;
+
+.course-entrance a {
+  position: absolute;
+  top: calc( 50% - 20px );
+  right: 20px;
+  height: 35px;
+  width: 19px;
+  background: url(../images/right-arrow.png);
 }
 
 .course-header, .course-footer {
     display: flex;
 }
 
+.course-info-img  {
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #f5f7fb
+}
+
 .course-info-img img {
-    width: 50px;
+    height: 70px;
 }
 
 .course-info-titles {
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 .course-info-titles h5 {
     margin: 5px 0;
-    max-width: 247px;
+    max-width: 450px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -852,6 +883,11 @@ footer {
   height: 30px;
 }
 
+.img-20 {
+  width: 20px;
+  height: 20px;
+}
+
 .panel {
   margin-top: 10vh;
 }
@@ -935,6 +971,14 @@ footer {
   width: 60px;
 }
 
+.course-desc {
+  font-size: 12px;
+  color: #777;
+  line-height: 1;
+  font-weight: 400;
+  margin-right: 5px;
+}
+
 .payment-method {
   padding: 4px;
   border: 1px solid #ddd;
@@ -944,6 +988,11 @@ footer {
 .payment-method img {
   height: 40px;
   margin: 30px auto 10px;
+}
+
+.align-items-center {
+  display: flex !important;
+  align-items: center;
 }
 
 @media (max-width: 991px) {

@@ -35,6 +35,16 @@ nav( class="navbar navbar-inverse" )
 						li
 							a( href="/request" ) Подать заявку на обучение
 					ul( class="nav navbar-nav navbar-right" )
-						li( id="log-out" )
-							a( href="/log-out" ) Выход
-							
+						li( class="dropdown" )
+							a( class="dropdown-toggle align-items-center " data-toggle="dropdown" href="#" )
+								div( class="center-cropped img-20" style="background-image: url(#{avatarUrl}); margin-right: 10px;" )
+								span( class="caret" )
+							ul( class="dropdown-menu" )
+								li
+									a( href="/settings" )
+										i(class="fa fa-cogs" aria-hidden="true")
+										| &nbsp; Настройки
+								li
+									a( href="/log-out" )
+										i(class="fa fa-sign-out" aria-hidden="true")
+										| &nbsp; Выход

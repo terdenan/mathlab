@@ -46,31 +46,36 @@ html( lang='ru' )
 							p Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. Они постоянно повышают педагогическое мастерство, осваивают новые, передовые педагогические технологии. В своей педагогической деятельности основываются на гуманном отношении к ученику, индивидуальном подходе к обучению каждого ребенка, исходя из его способностей, уровня подготовки, целей обучения.
 						div( class="col-md-2 text-left" )
 							img( src="images/network.svg" style="width: 120px;" )
-		div( class="container main-content" )
-			div( class="base" )
-				table( class="table table-hover table-responsive teachers-list") 
-					thead
-						tr
-							th
-							th ФИО
-							th Предмет
-					tbody 
-						tr
-							td
-								img( src="images/teacher-img-2.jpg" class="teachers-list-img img-circle" )
-							td Альжанова Галия Мрзановна
-							td Информатика, математика
-							tr
-							td
-								img( src="images/teacher-img-1.jpg" class="teachers-list-img img-circle" )
-								td Соколов Василий Васильевич
-								td Физика
-							tr
-							td
-								img( src="images/teacher-img-3.jpg" class="teachers-list-img img-circle" )
-							td Гребенюк Анастасия Николаевна
-							td Математика
+			div( class="row main-content" )
+					div( class="col-md-4 text-right" )
+						div( class="base" )
+							div( class="teacher-profile text-center" )
+								img( src="images/teacher-img-2.jpg" class="img-circle" )
+								h4 Галия Мрзановна Альжанова
+								h6 Учитель математики и информатики
+								blockquote
+									p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
+									h6 Стаж работы репетитором - 10 лет
 
+					div( class="col-md-4 text-right" )
+						div( class="base" )
+							div( class="teacher-profile text-center" )
+								img( src="images/teacher-img-1.jpg" class="img-circle" )
+								h4 Василий Васильевич Соколов
+								h6 Учитель физики
+								blockquote
+									p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
+									h6 Стаж работы репетитором - 7 лет
+
+					div( class="col-md-4 text-right" )
+						div( class="base" )
+							div( class="teacher-profile text-center" )
+								img( src="images/teacher-img-3.jpg" class="img-circle" )
+								h4 Анастасия Николаевна Гребенюк
+								h6 Учитель математики
+								blockquote
+									p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
+									h6 Стаж работы репетитором - 3 года
 
 		// FOOTER
 		include ./includes/footer
