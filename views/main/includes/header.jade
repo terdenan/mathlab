@@ -17,13 +17,16 @@ nav( class="navbar navbar-inverse" )
 							ul( class="dropdown-menu" )
 								li
 									a(href="#")
-										i(class="fa fa-home" aria-hidden="true") &nbsp;Главная
+										i(class="fa fa-home" aria-hidden="true")
+										| &nbsp;Главная
 								li
 									a(href="#")
-										i(class="fa fa-usd" aria-hidden="true") &nbsp;Оплата
+										i(class="fa fa-usd" aria-hidden="true")
+										| &nbsp;Оплата
 								li
-									a(href="#")
-										i(class="fa fa-phone" aria-hidden="true") &nbsp;Контакты
+									a(href="#") 
+										i(class="fa fa-phone" aria-hidden="true") 
+										| &nbsp;Контакты
 					ul( class="nav navbar-nav" )
 						li( class="active" )
 							a( href="/cabinet" id="link-to-cabinet" ) Личный кабинет
@@ -32,6 +35,16 @@ nav( class="navbar navbar-inverse" )
 						li
 							a( href="/request" ) Подать заявку на обучение
 					ul( class="nav navbar-nav navbar-right" )
-						li( id="log-out" )
-							a( href="/log-out" ) Выход
-							
+						li( class="dropdown" )
+							a( class="dropdown-toggle align-items-center " data-toggle="dropdown" href="#" )
+								div( class="center-cropped img-20" style="background-image: url(#{avatarUrl}); margin-right: 10px;" )
+								span( class="caret" )
+							ul( class="dropdown-menu" )
+								li
+									a( href="/settings" )
+										i(class="fa fa-cogs" aria-hidden="true")
+										| &nbsp; Настройки
+								li
+									a( href="/log-out" )
+										i(class="fa fa-sign-out" aria-hidden="true")
+										| &nbsp; Выход
