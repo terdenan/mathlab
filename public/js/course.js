@@ -76,24 +76,6 @@ $(document).ready(function() {
   var rows = 1;
   var socket = io();
 
-  $.ajax({
-    url: '/api/courseInfo',
-    method: 'post',
-    data: {dialogId: dialogId},
-    success: function(response) {
-      dialogInfo = response;
-      $("#panel-heading-img").html((dialogInfo.studentId != userInfo.id) ? ("<div class='center-cropped img-30 panel-heading-img' style='background-image: url(/uploads/" + dialogInfo.studentId + ".jpg);'></div>" + dialogInfo.student) : ("<div class='center-cropped img-30 panel-heading-img' style='background-image: url(/uploads/" + dialogInfo.teacherId + ".jpg);'></div>" + dialogInfo.teacher));
-      $("#panel-heading-subject").html(dialogInfo.subject);
-      $(document).prop('title', dialogInfo.subject + " (" + dialogInfo.teacher + ")");
-      $("#ci-teacher").html(dialogInfo.teacher);
-      $("#ci-student").html(dialogInfo.student);
-      $("#ci-start-date").html(moment(dialogInfo.date).format('DD.MM.YY'));
-      $("#ci-end-date").html(moment(dialogInfo.endingTime).format('DD.MM.YY'));
-      $("#ci-days").html(dialogInfo.days);
-      $("#ci-time").html(dialogInfo.time);
-    }
-  });
-
   $('#anchor').viewportChecker({
     offset: 0,
     repeat: true,
