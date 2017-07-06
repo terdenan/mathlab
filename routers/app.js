@@ -101,7 +101,7 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(app){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		console.log(err);
+		if (err) console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -177,8 +177,8 @@ module.exports = function(app){
 			return;
 		}
 		Course
-			.find({studentId: req.user._id})
-			.select("_id teacher teacherId date endingTime")
+			.find({ _student_id: ObjectId(req.user._id) })
+			.select("_id subject teacher _teacher_id teacherAvatarUrl startingDate endingDate")
 			.exec(function(err, courses){
 				if (err) {
 					errorHandler(err, req, res, 500, "Internal server error, try later");

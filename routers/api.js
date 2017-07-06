@@ -9,7 +9,7 @@ const User = require('../db/models/user'),
 			
 module.exports = function(app) {
 	function errorHandler(err, req, res, statusCode, errMessage){
-		console.log(err);
+		if (err) console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -70,7 +70,7 @@ module.exports = function(app) {
       });
 		});
 	});
-	
+
 	app.put('/api/bid', function(req, res){
 		var newBid = Bid({
 	    student: req.user.fullname,
@@ -81,7 +81,7 @@ module.exports = function(app) {
 	    prefTime: req.body.prefTime,
 	    target: req.body.target,
 	    date: Date.now(),
-	    status: "Pending"
+	    status: "pending"
 	  });
 	  newBid.save(function(err){
 	    if (err) {
