@@ -4,9 +4,11 @@ var Schema = mongoose.Schema;
 var courseSchema = new Schema({
 	subject: String,
 	student: String,
-	studentId: String,
+	_student_id: Schema.Types.ObjectId,
 	teacher: String,
-	teacherId: String,
+	_teacher_id: Schema.Types.ObjectId,
+	studentAvatarUrl: String,
+	teacherAvatarUrl: String,
 	days: String,
 	time: String,
 	comment: String,

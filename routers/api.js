@@ -64,7 +64,7 @@ module.exports = function(app) {
 			    	}
             res
             	.status(200)
-            	.send({id: req.user._id, email: req.user.email});
+            	.send({ email: req.user.email });
           });
         }); 
       });
