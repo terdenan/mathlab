@@ -42,7 +42,6 @@ html( lang='ru' )
 							div( class="row" )
 								div( class="col-sm-6 dialog-info" id="panel-heading-img" )
 									img( src="#{courseInfo.teacherAvatarUrl}" class="img-circle" )
-									// Этого спана не было в оригинальном коде
 									span #{courseInfo.teacher}
 								div( class="col-sm-6 text-right" )
 									span( id="panel-heading-subject" ) #{courseInfo.subject}
@@ -77,13 +76,11 @@ html( lang='ru' )
 							div( class="nano-content" )
 								span( id="anchor" )
 								div( class="messages" )
-									//- div( class="messages-loader" )
-									//- 	div( id="loader-md" )
-									//- 		div( id="loader-md_1" class="loader-md" )
-									//- 		div( id="loader-md_2" class="loader-md" )
-									//- 		div( id="loader-md_3" class="loader-md" )
-									div( id="empty-dialog" class="empty-dialog" )
-										h5 Здесь будет выводиться история сообщений
+									if (messages.length)
+										include ./includes/messages
+									else 
+										div( id="empty-dialog" class="empty-dialog" )
+											h5 Здесь будет выводиться история сообщений
 						div( class="panel-footer" )
 							div( class="row" )
 								div( class="col-sm-1 col-xs-2 text-center attachment no-padding" )
