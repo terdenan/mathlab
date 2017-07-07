@@ -1,6 +1,7 @@
 $(document).ready(function() { 
 
   var socket = io();
+  var pathname = window.location.pathname;
   /*"<td id='" + item._id + "''>" +
     "<div class='course " + activeCourse + "' onClick='window.location.href=`/course/" + item._id + "`'>" +
       "<div class='course-header'>" +
@@ -45,6 +46,10 @@ $(document).ready(function() {
       }
     });
   });
+
+  //Set active current li 
+  $('.nav > li > a[href="' + pathname + '"]').parent().addClass('active');
+
 });
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
