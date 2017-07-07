@@ -62,9 +62,6 @@ html( lang='ru' )
 								| &nbsp; Регистрация
 
 		// CONTENT
-		div( class="error-alerts" )
-			div( class="message-body" ) #{message}
-
 		div( class="container main-content" )
 			div( class="row" )
 				div( class="col-md-6 col-md-offset-3" )
@@ -86,6 +83,10 @@ html( lang='ru' )
 										button( class="btn btn-default" type="button" ) #[i( class="fa fa-question" aria-hidden="true" )]
 							div( class="form-group" )
 								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" ) Войти
+							if (message != '')
+								div( class="alert alert-warning alert-dismissable text-center" )
+									a( href="#" class="close" data-dismiss="alert" aria-label="close") &times;
+									|	Неверный логин или пароль, попробуйте еще раз.
 						hr
 						h6( class="text-center" ) Войдите или зарегиструйтесь всего за один клик.
 						ul( class="list-inline text-center" )
