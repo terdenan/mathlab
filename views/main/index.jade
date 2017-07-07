@@ -69,75 +69,38 @@ html( lang='ru' )
 
 		// CONTENT
 		div( class="landing-head" id="main" )
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-7" )
-						h1( itemprop="name" ) Интерактивный портал дистанционного обучения
-					div( class="col-md-5 start-button text-center" )
-						a( href="/sign-up" class="btn btn-landing btn-lg" role="button" ) Начать пользоваться
-						h5 Образование, которое не знает преград!
-				div( class="row main-content" )
-					div( class="col-md-7" )
-						p( class="landing-text hidden-sm hidden-xs" )
-							span( itemprop="description") Мы предлагаем Вам репетиторские услуги в on-line режиме по математике, физике и информатике.#[br] On-line обучение имеет несколько неоспоримых преимуществ:
-						div( class="landing-collapses hidden-sm hidden-xs" )
-
-							h4( data-toggle="collapse" data-target="#text-1" class="landing-h4" ) Нет привязки к месту #[i( class="fa fa-angle-down" aria-hidden="true" )]
-							ul( id="text-1" class="collapse" )
-								li Вам не нужно вести ребенка в другой конец города к определенному репетитору, отвлекаться от своих дел.
-								li Вам не нужно делать паузы в обучении, если уезжаете в другой город или страну, к родственникам, на отдых. Ваш ребенок может загорать на пляже и продолжать обучение!
-								li Вы не будете переживать – как ребенок доберется до репетитора и обратно в темное время суток и по безлюдным улицам.
-								li Репетитор не откажет вам в обучении потому, что «вы живете далеко» и «неудобно добираться».
-
-							h4( data-toggle="collapse" data-target="#text-2" class="landing-h4" ) Нет привязки ко времени #[i( class="fa fa-angle-down" aria-hidden="true" )]
-							ul( id="text-2" class="collapse" )
-								li Можно выполнять задания в любое удобное время.
-								li Достаточно отправлять выполненный урок до 20.00 в тот день, на который есть договоренность с репетитором.
-
-							h4( data-toggle="collapse" data-target="#text-3" class="landing-h4" ) Нет ценовых накруток за обучение #[i( class="fa fa-angle-down" aria-hidden="true" )]
-							ul( id="text-3" class="collapse" )
-								li Ваш репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
-							h4( style="padding-top: 20px;" ) Эти условия показались вам привлекательными? Смело регистрируйтесь на нашем портале и начинайте обучение!
-						div( class="row main-content hidden-sm hidden-xs" )
-							div( class="col-xs-12 text-left" )
-								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" style="margin-right: 20px;" ) Регистрация
-								a( href="/sign-in" class="btn btn-warning btn-lg" role="button" ) Вход в Личный кабинет
-					div( class="col-md-5 landing-lamp text-center hidden-sm hidden-xs" )
-						img( src="images/lamp.svg" alt="Онлайн обучение" title="Онлайн обучение" )
+			div( class="container-fluid" )
+				div( class="row text-center" )
+					h1( itemprop="name" ) Новая эра в дистанционном образовании
+					p 
+						span( itemprop="description") MathLab - это интерактивный обучающий портал, который поможет Вам подготовиться даже к самым сложным экзаменам!
+				div( class="row landing-mac" )
+					div( class="col-md-3 text-center" )
+						h4 Перестаньте нанимать репетиторов
+						p Наш портал специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. 
+						a( href="/sign-up" class="btn btn-warning" role="button" ) Попробовать
+					div( class="col-md-6 text-center" )
+						img( src="/images/landing-mac.svg" )
+					div( class="col-md-3 text-center" )
+						h4 Почему именно дистанционное образование?
+						p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
+						a( href="/sign-up" class="btn btn-warning" role="button" ) Регистрация 
+				div( class="row text-center" )
+					ul( class="social-network social-circle" )
+						li: a( href="https://vk.com/mathlabkz" title="VK") 
+							i( class="fa fa-vk" )
+						li: a( href="https://www.facebook.com/mathlabkz-246075022465656" title="Facebook") 
+							i( class="fa fa-facebook" )
+						li: a( href="https://www.instagram.com/mathlab.kz/" title="Instagram") 
+							i( class="fa fa-instagram" )
 
 		div( id="about-us" class="nav-anchor" )
-
-		//- div( class="container main-content" )
-		//- 	div( class="row animated animated-post" )
-		//- 		div( class="col-sm-12" )
-		//- 			h2( class="article-title" ) Интерактивное обучение - это удобно и интересно! #[br] #[small Mathlab.kz] 
-		//- 	div( class="row article animated animated-post" )
-		//- 		div( class="col-sm-3 col-sm-push-9 text-center" )
-		//- 			img( src="images/article-img-1.svg" alt="MathLab" title="MathLab" )
-		//- 		div( class="col-sm-9 col-sm-pull-3" )
-		//- 			p( class="article-p" ) Online репетиторский центр «MathLab.kz» оказывает услуги по подготовке детей к поступлению в специализированные школы и лицеи с физико-математическим уклоном, начиная с 5-ого класса.#[br] Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика и программирование ребятам, обучающимся по стандартной школьной программе.
-		//- 	div( class="row article animated animated-post" )
-		//- 		div( class="col-sm-3 text-center" )
-		//- 			img( src="images/article-img-2.svg" alt="MathLab" title="MathLab" )
-		//- 		div( class="col-sm-9" )
-		//- 			p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад.
-		//- 	div( class="row article animated animated-post" )
-		//- 		div( class="col-sm-3 col-sm-push-9 text-center" )
-		//- 			img( src="images/article-img-3.svg" alt="MathLab" title="MathLab" )
-		//- 		div( class="col-sm-9 col-sm-pull-3" )
-		//- 			p( class="article-p" ) Мы рекомендуем нашим ученикам настроиться на серьезное обучение по индивидуальной программе, которая будет корректироваться в соответствии с потребностями обучающегося и выявленными «провалами» в знаниях.
-		//- 	div( class="row article animated animated-post" )
-		//- 		div( class="col-sm-3 text-center" )
-		//- 			img( src="images/article-img-4.svg" alt="MathLab" title="MathLab" )
-		//- 		div( class="col-sm-9" )
-		//- 			p( class="article-p" ) Обучаясь в нашем онлайн центре, ваш ребенок не будет привязан к определенному времени встречи с учителем, а вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
-
 		div( class="container main-content" )
 			div( class="row animated animated-post" )
 				div( class="col-sm-12" )
 					h2( class="article-title" ) Интерактивное обучение - это удобно и интересно! #[br] #[small Mathlab.kz] 
 
-			div( class="row article animated animated-post" )
+			div( class="row article main-content animated animated-post" )
 				div( class="col-sm-4 text-center" )
 					img( src="images/article-img-1.svg" alt="MathLab" title="MathLab" )
 					h4 Различные образовательные программы
@@ -256,7 +219,7 @@ html( lang='ru' )
 									a( href="https://vk.com/mathlabkz" target="_blank")
 										img( src="images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
 								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
+									a( href="https://www.facebook.com/mathlabkz-246075022465656" target="_blank" )
 										img( src="images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
 								li
 									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
