@@ -72,31 +72,32 @@ html( lang='ru' )
 								div( class="table-responsive" )
 									table( class="table" )
 										tbody
-											for item in courses
-												tr
-													td( id="#{item.id}" )
-														div( class="course" onClick="window.location.href='/course/#{item.id}'")
-															div( class="course-header" )
-																div( class="course-info-img" )
-																	case item.subject
-																		when 'Математика'
-																			img( src="/images/subject-math.png" )
-																		when 'Информатика'
-																			img( src="/images/subject-inform.png" )
-																		when 'Физика'
-																			img( src="/images/subject-physic.png" )
-																		default
-																			img( src="/images/subject-math.png" )
-																div( class="course-info-titles" )
-																	h5 #[span( class="course-desc" ) Преподаватель:] #{item.teacher}
-																	h5 #[span( class="course-desc" ) Предмет обучения:] #{item.subject}
-																	h5 #[span( class="course-desc" ) Сроки обучения:]  #{moment(item.startingDate).format('DD.MM.YYYY')} - #{moment(item.endingDate).format('DD.MM.YYYY')}
-																	if (moment(item.endingDate).format() > moment().format())
-																		h5 #[span( class="course-desc" ) Статус:] #[span( class="text-success" ) Активен ]
-																	else 
-																		h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]
-															div( class="course-entrance" )
-																a( href="/course/#{item.id}" )
+											if courses
+												for item in courses
+													tr
+														td( id="#{item.id}" )
+															div( class="course" onClick="window.location.href='/course/#{item.id}'")
+																div( class="course-header" )
+																	div( class="course-info-img" )
+																		case item.subject
+																			when 'Математика'
+																				img( src="/images/subject-math.png" )
+																			when 'Информатика'
+																				img( src="/images/subject-inform.png" )
+																			when 'Физика'
+																				img( src="/images/subject-physic.png" )
+																			default
+																				img( src="/images/subject-math.png" )
+																	div( class="course-info-titles" )
+																		h5 #[span( class="course-desc" ) Преподаватель:] #{item.teacher}
+																		h5 #[span( class="course-desc" ) Предмет обучения:] #{item.subject}
+																		h5 #[span( class="course-desc" ) Сроки обучения:]  #{moment(item.startingDate).format('DD.MM.YYYY')} - #{moment(item.endingDate).format('DD.MM.YYYY')}
+																		if (moment(item.endingDate).format() > moment().format())
+																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-success" ) Активен ]
+																		else 
+																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]
+																div( class="course-entrance" )
+																	a( href="/course/#{item.id}" )
 
 		// FOOTER
 		include ./includes/footer
