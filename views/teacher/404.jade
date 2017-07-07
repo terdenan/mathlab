@@ -1,0 +1,102 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="" )
+
+		title Запрашиваемой страницы не найдено
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+
+		<!--[if lt IE 8]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		nav.navbar.navbar-inverse
+			div.container-fluid
+				div.navbar-header
+					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
+						span( class="sr-only" ) Меню
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+					a( class="navbar-brand" href="/" )
+						img( src="/images/logo.svg" alt="Logo" )
+						span MathLab.kz
+				div.collapse.navbar-collapse#navbar-collapse
+					ul( class="nav navbar-nav" )
+						li( class="dropdown" )
+							a( class="dropdown-toggle" data-toggle="dropdown" href="#" )
+								i( class="fa fa-bars" aria-hidden="true" )
+							ul( class="dropdown-menu" )
+								li
+									a(href="#")
+										i( class="fa fa-home" aria-hidden="true") &nbsp;Главная
+								li
+									a(href="#")
+										i( class="fa fa-usd" aria-hidden="true") &nbsp;Оплата
+								li
+									a(href="#")
+										i( class="fa fa-phone" aria-hidden="true") &nbsp;Контакты
+					ul( class="nav navbar-nav" )
+						li
+							a( href="/" ) Главная
+						li
+							a( href="/how-to-use" ) Как проходит обучение
+						li
+							a( href="/prices" ) Расценки и способы оплаты
+					ul( class="nav navbar-nav navbar-right" )
+						li
+							a( href="/sign-in" ) Кабинет
+
+		// CONTENT
+		div.error-alerts
+
+		div.container.main-content
+			div.row
+				div.col-md-8.col-md-offset-2.base
+					div.row
+						div.col-md-4.text-center
+							img( src="/images/404.svg" class="img-100-p" )
+						div.col-md-8
+							h3
+								small Кажется, что-то пошло не так...
+							h3( class="margin-10" ) К сожалению, запрашиваемой Вами страницы не существует.
+							h5 Вы можете вернуться на #[a(href="/") главную страницу] и начать сначала.
+
+		// FOOTER
+		footer
+			div.container
+				div.row
+					div.col-md-12
+						div.col-md-7
+							ul( class="footer-links" )
+								li
+									a(href="/") Личный кабинет
+								li
+									a(href="#") Техническая поддержка
+								li
+									a(href="#") FAQ
+						div.col-md-5.text-right
+							ul( class="footer-links" )
+								li © MathLab.kz 2017
+		script( src="/js/bootstrap.min.js" )
+
+
