@@ -11,6 +11,7 @@ const http = require('http'),
 			});
 
 			bcrypt = require('bcrypt'),
+			multer = require('multer'),
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
@@ -30,6 +31,16 @@ const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Message = require('../db/models/message'),
 			Course = require('../db/models/course');
+
+const storage = multer.diskStorage({
+		    destination: function (req, file, cb) {
+		      cb(null, './public/uploads/')
+		    },
+		    filename: function (req, file, cb) {
+		      cb(null, file.fieldname + '-' + Date.now())
+		    }
+			}),
+			upload = multer({ storage: storage });
 
 passport.use(new LocalStrategy(
   function(login, password, done) {
@@ -208,11 +219,22 @@ module.exports = function(app){
 				errorHandler(err, req, res, 500, "Internal server error, try later");
 				return;
 			}
-			var user = req.user;
-			user.courseInfo =  data;
-			res
-				.status(200)
-				.render('./course', user);
+			var responseBody = req.user;
+			responseBody.courseInfo = data;
+			Message
+				.find({ _course_id: ObjectId(req.params.id) })
+				.sort({ date: -1 })
+				.limit(15)
+				.exec(function(err, data){
+					if (err) {
+						errorHandler(err, req, res, 500, "Internal server error, try later");
+						return;
+					}
+					responseBody.messages = data.reverse();
+					res
+						.status(200)
+						.render('./course', responseBody);
+				});
 		});
 	});
 
