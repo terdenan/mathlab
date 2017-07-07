@@ -171,6 +171,12 @@ module.exports = function(app){
 			.render('./prices');
 	});
 
+	app.get('/teacher', function(req, res){
+		res
+			.status(200)
+			.render('./teacher');
+	});
+
 	app.get('/cabinet', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');

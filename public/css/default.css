@@ -258,6 +258,15 @@ footer {
   height: 35px;
   width: 19px;
   background: url(../images/right-arrow.png);
+  transition: all 0.15s ease-in-out;
+}
+
+.course:hover > .course-entrance a {
+  transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -webkit-transform: translateX(10px);
+  -o-transform: translateX(10px);
 }
 
 .course-header, .course-footer {
@@ -320,7 +329,7 @@ footer {
 
 .message-input {
   height: 40px;
-  border: 1px solid #DCE1E8;
+  border: 1px solid #ebeff7;
   border-radius: 1px;
   background: #fff;
   padding: 10px 10px;
@@ -500,18 +509,14 @@ footer {
   -webkit-font-smoothing: antialiased;
 }
 
-.article-p {
-  font-size: 17px;
-}
 
 .article {
   margin-bottom: 60px;
-  display: flex;
-  align-items: center;
 }
 
 .article img {
-  width: 60%;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 991px) {
@@ -520,8 +525,7 @@ footer {
     margin-bottom: 10px;
   }
   .article-p {
-    font-size: 15px;
-    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .article {
@@ -795,15 +799,17 @@ footer {
 }
 
 .panel {
-  /* margin-top: 10vh; */
+  border-color: #ebeff7;
 }
 
 .panel-heading {
   background-color: #fff !important;
+  border-color: #ebeff7 !important;
 }
 
 .panel-footer {
-  background-color: #fbfbfb !important;
+  background-color: #fdfdfd !important;
+  border-top: 1px solid #ebeff7 !important;
 }
 
 .panel-heading-img {
