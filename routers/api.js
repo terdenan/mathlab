@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient,
 
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
+			Message = require('../db/models/message'),
 			Course = require('../db/models/course');
 			
 module.exports = function(app) {

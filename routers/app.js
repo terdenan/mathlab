@@ -28,6 +28,7 @@ const http = require('http'),
 
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
+			Message = require('../db/models/message'),
 			Course = require('../db/models/course');
 
 passport.use(new LocalStrategy(
@@ -244,7 +245,7 @@ module.exports = function(app){
 	app.post('/login',
 	  passport.authenticate('local', { successRedirect: '/cabinet',
 	                                   failureRedirect: '/sign-in',
-	                                   failureFlash: "Неверный логин или пароль" })
+	                                   failureFlash: "fail" })
 	);
 
   app.get('/auth/vkontakte', 
