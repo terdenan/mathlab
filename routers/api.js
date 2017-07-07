@@ -1,7 +1,9 @@
 const MongoClient = require('mongodb').MongoClient,
 			ObjectId = require('mongodb').ObjectID,
 			MongoStore = require('connect-mongo')(session),
-			mongoose = require('mongoose');
+			mongoose = require('mongoose'),
+
+			async = require('async');
 
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
@@ -13,7 +15,7 @@ const storage = multer.diskStorage({
 		      cb(null, './public/uploads/')
 		    },
 		    filename: function (req, file, cb) {
-		      cb(null, file.fieldname + '-' + Date.now())
+		      cb(null, Date.now() + "-" + (file.originalname));
 		    }
 			}),
 			upload = multer({ storage: storage });
@@ -82,7 +84,11 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/api/sendMessage', upload.single('file'), function(req, res){
+	/*Message.remove({}, function(err){
+		console.log('delted');
+	});*/
+
+	app.post('/api/sendMessage', upload.array('file', 5), function(req, res){
 		var newMessage = Message({
 	    _course_id: ObjectId(req.body.courseId),
 	    _sender_id: ObjectId(req.user._id),
@@ -91,36 +97,50 @@ module.exports = function(app) {
 	    read_state: false,
 	    date: Date.now()
 	  });
-	  if (req.file) {
-	  	newMessage.attachment.push({
-		  	url: "/" + req.file.path,
-		  	size: req.file.size
-			});
-	  }
-	  newMessage.save(function(err){
-	    if (err) {
-	    	errorHandler(err, req, res, 500, "Internal server error, try later");
-	    	return;
-	    }
-	    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl', function(err, data){
-	    	if (err) {
-	    		errorHandler(err, req, res, 500, "Internal server error, try later");
-	    		return;
-	    	}
-	    	var responseBody = {
-	    		_id: newMessage._id,
-	    		_course_id: newMessage._course_id,
-			    _sender_id: newMessage._sender_id,
-			    sender: newMessage.sender,
-			    message: newMessage.message,
-			    read_state: newMessage.read_state,
-			    date: newMessage.date,
-			    avatarUrl: data.teacherAvatarUrl
-	    	};
-	    	res
-		    	.status(200)
-		    	.send(responseBody);
-	    });
+	  async.waterfall([
+	  	function(callback){
+	  		var arr = req.files, length = (req.files).length;
+	  		if (!length) callback(null);
+	  		arr.forEach(function(item, i, arr){
+	  			newMessage.attachment.push({
+				  	url: "/uploads/" + item.filename,
+				  	size: item.size
+					});
+	  			if (i == length - 1) callback(null);
+	  		});
+	  	}
+	  	], 
+	  	function(err){
+	  		if (err) {
+	  			errorHandler(err, req, res, 500, "Internal server error, try later");
+	  			return;
+	  		}
+	  		newMessage.save(function(err){
+		    if (err) {
+		    	errorHandler(err, req, res, 500, "Internal server error, try later");
+		    	return;
+		    }
+		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl', function(err, data){
+		    	if (err) {
+		    		errorHandler(err, req, res, 500, "Internal server error, try later");
+		    		return;
+		    	}
+		    	var responseBody = {
+		    		_id: newMessage._id,
+		    		_course_id: newMessage._course_id,
+				    _sender_id: newMessage._sender_id,
+				    sender: newMessage.sender,
+				    message: newMessage.message,
+				    read_state: newMessage.read_state,
+				    attachment: newMessage.attachment,
+				    date: newMessage.date,
+				    avatarUrl: data.teacherAvatarUrl
+		    	};
+		    	res
+			    	.status(200)
+			    	.render('./includes/message', responseBody);
+		    });
+		  });
 	  });
 	});
 

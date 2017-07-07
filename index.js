@@ -6,14 +6,17 @@ const express = require('express'),
       io = require('socket.io')(http),
 
       subdomain = require('express-subdomain'),
-      admin = express();
+      admin = express(),
+      teacher = express();
 
 app.use(subdomain('admin', admin));
+app.use(subdomain('t', teacher));
 
 require('./db/db');
 
 require('./routers/app')(app);
 require('./routers/admin')(admin);
+require('./routers/teacher')(teacher);
 
 io.on('connection', function(socket){
 });

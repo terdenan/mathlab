@@ -265,6 +265,10 @@ module.exports = function(app){
 	});
 
 	app.get('/teachers', function(req, res){
+		if (!req.user) {
+			res.redirect('/');
+			return;
+		}
 		res
 			.status(200)
 			.render('./teachers', req.user);

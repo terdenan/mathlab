@@ -1,0 +1,18 @@
+div( class="message" id="_id" )
+		div( class="message-img" )
+				div( class="center-cropped img-40" style="background-image: url(#{avatarUrl});" )
+		div( class="message-body" )
+			h5 #{sender}
+			if (attachment)
+				for file in attachment
+					div( class="message-attachment" )
+						div( class="message-attachment-img" onClick="window.location='#{file.url}'" )
+							a( href="#{file.url}" class="btn btn-primary" role="button" download )
+								i( class="fa fa-paperclip" aria-hidden="true" )
+						div( class="message-attachment-body" )
+							h5 #{file.url}
+							h6 #{file.size}
+			ul
+				li #{message}
+		div( class="message-date" )
+			span #{moment(date).format("DD.MM.YY, HH:mm")}
