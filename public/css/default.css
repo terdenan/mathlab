@@ -449,8 +449,10 @@ footer {
 .landing-head {
   height: 100vh;
   padding-top: 15vh;
-  background-image: -webkit-linear-gradient(45deg, #00537e, #136d7e 33%, #3aa17e);
-  background-image: linear-gradient(45deg, #00537e, #136d7e 33%, #3aa17e);
+  background-image: linear-gradient(to right, rgba(59,187,238,1) 0%, rgba(108,46,242,1) 100%);
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
   color: #fff !important;
   -webkit-font-smoothing: antialiased;
 }
@@ -463,6 +465,18 @@ footer {
 
 .start-button {
   padding-top: 10px;
+}
+
+.landing-mac img {
+  width: 100%;
+}
+
+.landing-mac h4 {
+  margin-top: 100px;
+}
+
+.landing-mac .btn {
+  margin-top: 5px;
 }
 
 
@@ -492,7 +506,7 @@ footer {
   }
 }
 
-.landing-lamp img {
+.landing-img img {
   width: 60%;
 }
 
@@ -552,9 +566,10 @@ footer {
 .landing-comment {
   border-radius: 2px;
   padding: 30px 10px;
-  -webkit-box-shadow: 0px 0px 5px 0px rgb(214, 214, 214);
+  border: 1px solid #ebeff7;
+  /* -webkit-box-shadow: 0px 0px 5px 0px rgb(214, 214, 214); */
   -moz-box-shadow: 0px 0px 5px 0px rgb(214, 214, 214);
-  box-shadow: 0px 0px 5px 0px rgb(214, 214, 214);
+  /* box-shadow: 0px 0px 5px 0px rgb(214, 214, 214); */
 }
 
 .landing-comment-body {
@@ -576,7 +591,7 @@ footer {
 }
 
 .landing-comment-body blockquote {
-  border-left: 2px solid #e3e3e3;
+  border-left: 2px solid #ebeff7;
   margin: 0;
 }
 
@@ -935,6 +950,66 @@ blockquote footer {
   margin: 0 !important;
   padding: 0 !important;
   border-top: none !important; 
+}
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left:0 !important;
+  padding: 0;
+}
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i,
+.social-network a.icoInstagram:hover i, .social-network a.icoYelp:hover i {
+  color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+  color:#44BCDD;
+}
+
+.social-circle li a {
+  display:inline-block;
+  position:relative;
+  margin:0 auto 0 auto;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  border-radius:50%;
+  text-align:center;
+  width: 50px;
+  height: 50px;
+  font-size:20px;
+}
+.social-circle li i {
+  margin:0;
+  line-height:50px;
+  text-align: center;
+  opacity: 0.3;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+  opacity: 1;
+}
+.social-circle i {
+  color: #fff;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
 }
 
 .loader-md{
