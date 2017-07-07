@@ -86,37 +86,33 @@ $(document).ready(function() {
     if ($('#saturday')[0].checked) prefDaysFinally += "Сб ";
     if ($('#sunday')[0].checked) prefDaysFinally += "Вс ";
     $.ajax({
-      url: 'api/createCourse',
+      url: 'api/course',
       method: 'put',
       data: {id: id, studentId: studentId, student: student, subject: subject, teacherId: $('#teacher-list option:selected').attr('id'), teacher: $('#teacher-list option:selected').text(), days: prefDaysFinally, time: $("#time").val()},
+      error: function(response){
+        console.log(response);
+        $("#courseAddingModal").modal('hide');
+        $(".abs-alerts").html("<div class='alert alert-danger'>" +
+                                "<strong>Ошибка!</strong> Попробуйте позже" +
+                              "</div>");
+        setTimeout(function() { 
+          $(".abs-alerts").html("");
+        }, 2000);
+      },
       success: function(response){
-        if (response == 'Success') {
-          $("#courseAddingModal").modal('hide');
-          $(".abs-alerts").html("<div class='alert alert-success'>" +
-                                  "<strong>Готово!</strong> Курс установлен!" +
-                                "</div>");
-          $("#" + id).find(".bid-status").first().html(acceptStatus);
-          setTimeout(function() { 
-            $(".abs-alerts").html("");
-          }, 2000);
-          $.ajax({
-            url: 'api/updateBid',
-            method: 'post',
-            data: {bidId: id, bidStatus: 'accept'},
-            success: function(){
-
-            }
-          });
-        }
-        else {
-          $("#courseAddingModal").modal('hide');
-          $(".abs-alerts").html("<div class='alert alert-danger'>" +
-                                  "<strong>Ошибка!</strong> Попробуйте позже" +
-                                "</div>");
-          setTimeout(function() { 
-            $(".abs-alerts").html("");
-          }, 2000);
-        }
+        $("#courseAddingModal").modal('hide');
+        $(".abs-alerts").html("<div class='alert alert-success'>" +
+                                "<strong>Готово!</strong> Курс установлен!" +
+                              "</div>");
+        $("#" + id).find(".bid-status").first().html(acceptStatus);
+        setTimeout(function() { 
+          $(".abs-alerts").html("");
+        }, 2000);
+        $.ajax({
+          url: 'api/bid',
+          method: 'post',
+          data: {id: id, fields: {status: 'accept'} }
+        });
       }
     });
   });
@@ -125,9 +121,9 @@ $(document).ready(function() {
     $("#courseAddingModal").modal('hide');
     $(this).parent().parent().find(".bid-status").first().html(refuseStatus);
     $.ajax({
-      url: 'api/updateBid',
+      url: 'api/bid',
       method: 'post',
-      data: {bidId: id, bidStatus: 'refuse'},
+      data: {id: id, fields: { status: 'refuse' } },
       success: function(response){
         console.log('Bid refused.');
       }

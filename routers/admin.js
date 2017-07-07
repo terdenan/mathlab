@@ -15,7 +15,9 @@ const http = require('http'),
 			MongoClient = require('mongodb').MongoClient,
 			ObjectId = require('mongodb').ObjectID,
 			MongoStore = require('connect-mongo')(session),
-			mongoose = require('mongoose');
+			mongoose = require('mongoose'),
+
+			moment = require('moment');
 
 mongoose.Promise = require('bluebird');
 
@@ -100,16 +102,6 @@ module.exports = function(admin){
 			.render('./teacher-form');
 	});
 
-	admin.get('/log-out', function(req, res){
-		req.session.destroy(function (err) {
-			if (err) {
-				errorHandler(err, req, res, 500, "Internal server error, try later");
-				return;
-			}
-		  res.redirect('/sign-in');
-		});
-	});
-
 	admin.get('/api/bid', function(req, res){
 		Bid.
 	    find({
@@ -125,6 +117,18 @@ module.exports = function(admin){
 	      }
 	      res.send(data);
 	    });
+	});
+
+	admin.post('/api/bid', function(req, res){
+		Bid.update({ _id: ObjectId(req.body.id) }, req.body.fields, function(err){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+	      return;
+			}
+			res
+				.status(200)
+				.send('success');
+		});
 	});
 
 	admin.get('/api/teachers', function(req, res){
@@ -166,5 +170,51 @@ module.exports = function(admin){
         }); 
       });
 	  });
+	});
+
+	admin.put('/api/course', function(req, res){
+	  var newCourse = Course({
+	    subject: req.body.subject,
+	    student: req.body.student,
+	    _student_id: ObjectId(req.body.studentId),
+	    teacher: req.body.teacher,
+	    _teacher_id: ObjectId(req.body.teacherId),
+	    days: req.body.days,
+	    time: req.body.time,
+	    startingDate: Date.now(),
+	    endingDate: moment( Date.now() ).add(1, 'months').toDate()
+	  });
+	  User.find({ $or: [ { _id: ObjectId(req.body.studentId) }, { _id: ObjectId(req.body.teacherId) } ] }, function(err, data){
+	  	if (err) {
+	  		errorHandler(err, req, res, 500, "Internal server error, try later");
+	  		return;
+	  	}
+	  	if (data[0].priority == 0) {
+	  		newCourse.studentAvatarUrl = data[0].avatarUrl;
+	  		newCourse.teacherAvatarUrl = data[1].avatarUrl;
+	  	} else {
+	  		newCourse.studentAvatarUrl = data[1].avatarUrl;
+	  		newCourse.teacherAvatarUrl = data[0].avatarUrl;
+	  	}
+	  	newCourse.save(function(err){
+	  		if (err) {
+	  			errorHandler(err, req, res, 500, "Internal server error, try later");
+	  			return;
+	  		}
+	  		res
+	  			.status(200)
+	  			.send('success');
+	  	});
+	  });
+	});
+
+	admin.get('/log-out', function(req, res){
+		req.session.destroy(function (err) {
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+		  res.redirect('/sign-in');
+		});
 	});
 };

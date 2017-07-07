@@ -101,7 +101,7 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(app){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		console.log(err);
+		if (err) console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -177,8 +177,8 @@ module.exports = function(app){
 			return;
 		}
 		Course
-			.find({studentId: req.user._id})
-			.select("_id teacher teacherId date endingTime")
+			.find({ _student_id: ObjectId(req.user._id) })
+			.select("_id subject teacher _teacher_id teacherAvatarUrl startingDate endingDate")
 			.exec(function(err, courses){
 				if (err) {
 					errorHandler(err, req, res, 500, "Internal server error, try later");
@@ -191,6 +191,28 @@ module.exports = function(app){
 					.render('./cabinet', user);
 			});
 
+	});
+
+	app.get('/course/:id', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		if (!ObjectId.isValid(req.params.id)) {
+			errorHandler(null, req, res, 400, "This URL isn't valid");
+			return;
+		}
+		Course.findOne({ _id: ObjectId(req.params.id) }, function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			var user = req.user;
+			user.courseInfo =  data;
+			res
+				.status(200)
+				.render('./course', user);
+		});
 	});
 
 	app.get('/settings', function(req, res){
@@ -219,18 +241,11 @@ module.exports = function(app){
 			.render('./teachers', req.user);
 	});
 
-	app.post('/login', function(req, res, next){
-		passport.authenticate('local', function(err, user, info){
-			if (err) return next(err);
-			if (!user) return res.redirect('/sign-in');
-
-			req.logIn(user, function(err) {
-	      if (err) return next(err);
-	      return res.redirect('/cabinet');
-	    });
-
-		})(req, res, next);
-	});
+	app.post('/login',
+	  passport.authenticate('local', { successRedirect: '/cabinet',
+	                                   failureRedirect: '/sign-in',
+	                                   failureFlash: "Неверный логин или пароль" })
+	);
 
   app.get('/auth/vkontakte', 
   	passport.authenticate('vkontakte', { scope: ['email'] }), function(req, res){

@@ -12,8 +12,8 @@ var courseSchema = new Schema({
 	days: String,
 	time: String,
 	comment: String,
-	date: {type: Date},
-	endingTime: {type: Date}
+	startingDate: {type: Date},
+	endingDate: {type: Date}
 });
 
 var course = mongoose.model('course', courseSchema);
