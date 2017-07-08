@@ -3,7 +3,8 @@ const MongoClient = require('mongodb').MongoClient,
 			MongoStore = require('connect-mongo')(session),
 			mongoose = require('mongoose'),
 
-			async = require('async');
+			async = require('async'),
+			jade = require('jade');
 
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
@@ -84,10 +85,6 @@ module.exports = function(app) {
 		});
 	});
 
-	/*Message.remove({}, function(err){
-		console.log('delted');
-	});*/
-
 	app.post('/api/sendMessage', upload.array('file', 5), function(req, res){
 		var newMessage = Message({
 	    _course_id: ObjectId(req.body.courseId),
@@ -120,7 +117,7 @@ module.exports = function(app) {
 		    	errorHandler(err, req, res, 500, "Internal server error, try later");
 		    	return;
 		    }
-		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl', function(err, data){
+		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'studentAvatarUrl', function(err, data){
 		    	if (err) {
 		    		errorHandler(err, req, res, 500, "Internal server error, try later");
 		    		return;
@@ -134,7 +131,7 @@ module.exports = function(app) {
 				    read_state: newMessage.read_state,
 				    attachment: newMessage.attachment,
 				    date: newMessage.date,
-				    avatarUrl: data.teacherAvatarUrl
+				    avatarUrl: data.studentAvatarUrl
 		    	};
 		    	res
 			    	.status(200)

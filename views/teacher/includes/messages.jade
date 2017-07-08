@@ -4,18 +4,18 @@ div( class="messages-loader" )
 		div( id="loader-md_2" class="loader-md" )
 		div( id="loader-md_3" class="loader-md" )
 for item in messages
-	div( class="message" id="item._id" )
+	div( class="message" id="#{item._id}" )
 		div( class="message-img" )
-			if (_id == item._sender_id) 
+			if (_id.toString() == (item._sender_id).toString()) 
 				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.teacherAvatarUrl});" )
 			else
-				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.teacherAvatarUrl});" )
+				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.studentAvatarUrl});" )
 		div( class="message-body" )
 			h5 #{item.sender}
 			if (item.attachment)
 				for file in item.attachment
 					div( class="message-attachment" )
-						div( class="message-attachment-img" onClick="window.location='#{file.url}'" )
+						div( class="message-attachment-img")
 							a( href="#{file.url}" class="btn btn-primary" role="button" download )
 								i( class="fa fa-paperclip" aria-hidden="true" )
 						div( class="message-attachment-body" )
@@ -24,4 +24,9 @@ for item in messages
 			ul
 				li #{item.message}
 		div( class="message-date" )
+			if _id.toString() == (item._sender_id).toString()
+				if (item.read_state).toString()
+					span Прочитано 
+				else
+					span Не прочитано 
 			span #{moment(item.date).format("DD.MM.YY, HH:mm")}

@@ -79,7 +79,6 @@ passport.use(new VKontakteStrategy(
 
   			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'});
 				vk.on('done:users.get', function(_o) {
-
 					newUser.avatarUrl = _o.response[0].photo_200;
 					newUser.save(function(err){
 	  				if (err) return done(err);
@@ -227,20 +226,27 @@ module.exports = function(app){
 			}
 			var responseBody = req.user;
 			responseBody.courseInfo = data;
-			Message
-				.find({ _course_id: ObjectId(req.params.id) })
-				.sort({ date: -1 })
-				.limit(15)
-				.exec(function(err, data){
-					if (err) {
-						errorHandler(err, req, res, 500, "Internal server error, try later");
-						return;
-					}
-					responseBody.messages = data.reverse();
-					res
-						.status(200)
-						.render('./course', responseBody);
-				});
+			Message.update({ $and: [ { _course_id: ObjectId(req.params.id) }, {_sender_id: data._teacher_id}, { read_state: false } ] }, 
+				{ $set: { read_state: true } }, { multi: true }, function(err){
+				if (err) {
+					errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				Message
+					.find({ _course_id: ObjectId(req.params.id) })
+					.sort({ date: -1 })
+					.limit(15)
+					.exec(function(err, data){
+						if (err) {
+							errorHandler(err, req, res, 500, "Internal server error, try later");
+							return;
+						}
+						responseBody.messages = data.reverse();
+						res
+							.status(200)
+							.render('./course', responseBody);
+					});
+			});
 		});
 	});
 
