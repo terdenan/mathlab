@@ -4,8 +4,12 @@ var courseId = (window.location.pathname).split('/')[2];
 $(document).ready(function() {
   socket.emit('setRoom', courseId);
   socket.on('newMessage', function(data){
+    data = data.replace(" unread", "");
     $('.messages').append(data);
-    socket.emit('accepted', { _message_id: $('.message:last-child').attr('id') });
+    socket.emit('accepted', { courseId: courseId, _message_id: $('.message:last-child').attr('id') });
+  });
+  socket.on('markReaded', function(){
+    $(".unread").removeClass("unread");
   });
   var windowHeight = $(window).height();
   $(".panel-body").height(windowHeight * 0.7);
