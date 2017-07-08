@@ -207,7 +207,6 @@ module.exports = function(app){
 					.status(200)
 					.render('./cabinet', user);
 			});
-
 	});
 
 	app.get('/course/:id', function(req, res){
