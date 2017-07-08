@@ -1,6 +1,12 @@
-$(document).ready(function() {
-  var socket = io();
+var socket = io();
+var courseId = (window.location.pathname).split('/')[2];
 
+$(document).ready(function() {
+  socket.emit('setRoom', courseId);
+  socket.on('newMessage', function(data){
+    $('.messages').append(data);
+    socket.emit('accepted', { _message_id: $('.message:last-child').attr('id') });
+  });
   var windowHeight = $(window).height();
   $(".panel-body").height(windowHeight * 0.7);
 
@@ -91,6 +97,7 @@ function sendMessage() {
       });
       $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
       $("#empty-dialog").hide();
+      socket.emit('sendMessage', {courseId: courseId, message: response} );
     }
   });
 };
