@@ -100,8 +100,9 @@ module.exports = function(app) {
 	  		if (!length) callback(null);
 	  		arr.forEach(function(item, i, arr){
 	  			newMessage.attachment.push({
+				  	originalName: (item.filename).substr(14),
 				  	url: "/uploads/" + item.filename,
-				  	size: item.size
+				  	size: (item.size / 1024).toFixed(2)
 					});
 	  			if (i == length - 1) callback(null);
 	  		});
@@ -127,6 +128,7 @@ module.exports = function(app) {
 		    		_course_id: newMessage._course_id,
 				    _sender_id: newMessage._sender_id,
 				    sender: newMessage.sender,
+				    _user_id: req.user._id,
 				    message: newMessage.message,
 				    read_state: newMessage.read_state,
 				    attachment: newMessage.attachment,

@@ -7,6 +7,7 @@ var messageSchema = new Schema({
 	sender: String,
 	message: String,
 	attachment: [ {
+		originalName: String,
 		url: String,
 		size: Number
 	} ],
