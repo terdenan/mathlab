@@ -360,8 +360,14 @@ footer {
 
 .message {
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   position: relative;
+  padding: 7px;
+  border-radius: 3px;
+}
+
+.unread {
+  background: #f5f7fb;
 }
 
 .message-img {
@@ -378,9 +384,10 @@ footer {
 }
 
 .message-body h5, .attachment-document h5 {
-  margin: 5px 0;
+  margin: 0;
   font-weight: bolder;
   color: #3a65a7;
+  line-height: 20px;
   font-size: 13px;
 }
 
@@ -391,7 +398,7 @@ footer {
 }
 
 .message-body li {
-  margin-bottom: 5px;
+  line-height: 20px;
 }
 
 .messages-content {
@@ -712,7 +719,7 @@ footer {
 
 .message-date {
   position: absolute;
-  right: 0;
+  right: 7px;
   top: 5px;
 }
 

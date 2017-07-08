@@ -93,6 +93,7 @@ function sendMessage() {
         $('.messages').append(response);
         $('.message-input').html("");
         $('.attachments-block').html("");
+        $("#attachment").val("");
         $(".panel-body").height(windowHeight * 0.7);
         $(".nano").nanoScroller();
         $(".nano").nanoScroller({ 
