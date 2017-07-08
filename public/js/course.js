@@ -52,47 +52,52 @@ function addMessage(message){
 
 function sendMessage() {
   var formData = new FormData(),
-      courseId = (window.location.href).split('/')[4];
+      courseId = (window.location.href).split('/')[4],
+      message = $('.message-input').html(),
+      fileList = $("#attachment").prop('files');
   
-  $.each($("#attachment").prop('files'), function(i, file){
+  $.each(fileList, function(i, file){
     formData.append('file', file);
   });
 
-  formData.append('message', $('.message-input').html());
+  formData.append('message', message);
   formData.append('courseId', courseId);
 
-  $.ajax({
-    url: '/api/sendMessage',
-    data: formData,
-    method: 'post',
-    contentType: false,
-    processData: false,
-    beforeSend: function(){
-      $("#send-button").removeClass("send-button").html("<div class='send-message-loader'>" +
-                                                          "<div id='loader-sm'>" +
-                                                            "<div id='loader-sm_1' class='loader-sm'></div>" +
-                                                            "<div id='loader-sm_2' class='loader-sm'></div>" +
-                                                            "<div id='loader-sm_3' class='loader-sm'></div>" +
-                                                          "</div>" +
-                                                        "</div>");
-    },
-    error: function(response){
-      console.log('error');
-    },
-    success: function(response){
-      var windowHeight = $(window).height();
-      $('.messages').append(response);
-      $('.message-input').html("");
-      $('.attachments-block').html("");
-      $(".panel-body").height(windowHeight * 0.7);
-      $(".nano").nanoScroller();
-      $(".nano").nanoScroller({ 
-        scroll: 'bottom' 
-      });
-      $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
-      $("#empty-dialog").hide();
-    }
-  });
+  if (!(!message && fileList.length == 0)) {
+    $.ajax({
+      url: '/api/sendMessage',
+      data: formData,
+      method: 'post',
+      contentType: false,
+      processData: false,
+      beforeSend: function(){
+        $("#send-button").removeClass("send-button").html("<div class='send-message-loader'>" +
+                                                            "<div id='loader-sm'>" +
+                                                              "<div id='loader-sm_1' class='loader-sm'></div>" +
+                                                              "<div id='loader-sm_2' class='loader-sm'></div>" +
+                                                              "<div id='loader-sm_3' class='loader-sm'></div>" +
+                                                            "</div>" +
+                                                          "</div>");
+      },
+      error: function(response){
+        console.log('error');
+      },
+      success: function(response){
+        var windowHeight = $(window).height();
+        $('.messages').append(response);
+        $('.message-input').html("");
+        $('.attachments-block').html("");
+        $("#attachment").val("");
+        $(".panel-body").height(windowHeight * 0.7);
+        $(".nano").nanoScroller();
+        $(".nano").nanoScroller({ 
+          scroll: 'bottom' 
+        });
+        $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
+        $("#empty-dialog").hide();
+      }
+    });
+  }
 };
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

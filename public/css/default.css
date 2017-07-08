@@ -45,6 +45,7 @@ footer {
     border-radius: 3px;
     background: #fff;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .base .nav-tabs {
@@ -449,11 +450,18 @@ footer {
 .landing-head {
   height: 100vh;
   padding-top: 15vh;
-  background-image: linear-gradient(to right, rgba(59,187,238,1) 0%, rgba(108,46,242,1) 100%);
-  background-repeat: no-repeat;
-  background-position-x: 50%;
-  background-position-y: 50%;
+  background: rgba(0,183,196,1);
+  background: -moz-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(0,183,196,1)), color-stop(100%, rgba(30,62,144,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: url(../images/world-map.svg), linear-gradient(135deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7c4', endColorstr='#1e3e90', GradientType=1 );
   color: #fff !important;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100%;
   -webkit-font-smoothing: antialiased;
 }
 

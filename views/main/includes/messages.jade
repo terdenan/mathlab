@@ -15,7 +15,7 @@ for item in messages
 			if (item.attachment)
 				for file in item.attachment
 					div( class="message-attachment" )
-						div( class="message-attachment-img" onClick="window.location='#{file.url}'" )
+						div( class="message-attachment-img" )
 							a( href="#{file.url}" class="btn btn-primary" role="button" download )
 								i( class="fa fa-paperclip" aria-hidden="true" )
 						div( class="message-attachment-body" )

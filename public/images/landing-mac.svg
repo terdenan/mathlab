@@ -865,26 +865,26 @@
                         </g>
                     </g>
                 </g>
-                <rect id="Screen-(Use-as-mask)" fill="#F5F7FB" x="155" y="41" width="752" height="484"></rect>
+                <rect id="Screen-(Use-as-mask)" fill="#E9EEF8" x="155" y="41" width="752" height="484"></rect>
                 <g id="Group-3" transform="translate(397.000000, 99.000000)">
                     <use id="Rectangle-5" stroke="#F3F5FA" mask="url(#mask-166)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-165"></use>
                     <g id="Group-2" transform="translate(40.000000, 45.000000)">
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-168)" stroke-width="2" fill="#F5F7FB" xlink:href="#path-167"></use>
+                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-168)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-167"></use>
                     </g>
                     <g id="Group-2-Copy" transform="translate(40.000000, 141.000000)">
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-170)" stroke-width="2" fill="#F5F7FB" xlink:href="#path-169"></use>
+                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-170)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-169"></use>
                     </g>
                     <g id="Group-2-Copy-2" transform="translate(40.000000, 237.000000)">
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
                         <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-172)" stroke-width="2" fill="#F5F7FB" xlink:href="#path-171"></use>
+                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-172)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-171"></use>
                     </g>
                 </g>
                 <g id="Group" transform="translate(175.000000, 99.000000)">
