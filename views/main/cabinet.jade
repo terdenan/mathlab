@@ -67,12 +67,11 @@ html( lang='ru' )
 						header
 							h4 Ваши курсы
 						div( class="profile-content" )
-							div( class="alert alert-info" id="empty-courses" style="display: none;" ) У Вас пока нет активных курсов, Вы можете подать #[a( href="/request" class="alert-link" ) заявку на обучение] на специальной странице.
 							div( class="courses" )
-								div( class="table-responsive" )
-									table( class="table" )
-										tbody
-											if courses
+								if (courses.length > 0)
+									div( class="table-responsive" )
+										table( class="table" )
+											tbody
 												for item in courses
 													tr
 														td( id="#{item.id}" )
@@ -98,6 +97,13 @@ html( lang='ru' )
 																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]
 																div( class="course-entrance" )
 																	a( href="/course/#{item.id}" )
+								else
+									div( class="no-courses text-center" )
+										img( src="/images/blackboard.png" )
+										h4 У Вас пока нет активных курсов
+										p Подайте заявку на обучение и начинайте заниматься.
+										a( href="/request" class="btn btn-default" ) Подать заявку
+
 
 		// FOOTER
 		include ./includes/footer
