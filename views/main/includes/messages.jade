@@ -20,8 +20,8 @@ for item in messages
 							a( href="#{file.url}" class="btn btn-primary" role="button" download )
 								i( class="fa fa-paperclip" aria-hidden="true" )
 						div( class="message-attachment-body" )
-							h5 #{file.url}
-							h6 #{file.size}
+							h5 #{file.originalName}
+							h6 #{file.size} КБ
 			ul
 				li #{item.message}
 		div( class="message-date" )

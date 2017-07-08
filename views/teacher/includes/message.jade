@@ -6,13 +6,15 @@ div( class="message" id="#{_id}" )
 			if (attachment)
 				for file in attachment
 					div( class="message-attachment" )
-						div( class="message-attachment-img" onClick="window.location='#{file.url}'" )
+						div( class="message-attachment-img" )
 							a( href="#{file.url}" class="btn btn-primary" role="button" download )
 								i( class="fa fa-paperclip" aria-hidden="true" )
 						div( class="message-attachment-body" )
-							h5 #{file.url}
-							h6 #{file.size}
+							h5 #{file.originalName}
+							h6 #{file.size} КБ
 			ul
 				li #{message}
 		div( class="message-date" )
+			if _user_id.toString() == (_sender_id).toString()
+				span Не прочитано 
 			span #{moment(date).format("DD.MM.YY, HH:mm")}
