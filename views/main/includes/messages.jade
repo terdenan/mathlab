@@ -1,13 +1,14 @@
+-var id = _id
 div( class="messages-loader" )
 	div( id="loader-md" )
 		div( id="loader-md_1" class="loader-md" )
 		div( id="loader-md_2" class="loader-md" )
 		div( id="loader-md_3" class="loader-md" )
 for item in messages
-	div( class="message" id="item._id" )
+	div( class="message" id="#{item._id}" )
 		div( class="message-img" )
-			if (_id == item._sender_id) 
-				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.teacherAvatarUrl});" )
+			if (_id.toString() == (item._sender_id).toString()) 
+				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.studentAvatarUrl});" )
 			else
 				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.teacherAvatarUrl});" )
 		div( class="message-body" )
@@ -24,4 +25,9 @@ for item in messages
 			ul
 				li #{item.message}
 		div( class="message-date" )
+			if _id.toString() == (item._sender_id).toString()
+				if item.read_state
+					span Прочитано 
+				else
+					span Не прочитано 
 			span #{moment(item.date).format("DD.MM.YY, HH:mm")}

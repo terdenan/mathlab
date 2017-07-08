@@ -6,6 +6,7 @@ const http = require('http'),
 			async = require('async'),
 			bcrypt = require('bcrypt'),
 			multer = require('multer'),
+			jade = require('jade'),
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
@@ -127,20 +128,23 @@ module.exports = function(teacher){
 			}
 			var responseBody = req.user;
 			responseBody.courseInfo = data;
-			Message
-				.find({ _course_id: ObjectId(req.params.id) })
-				.sort({ date: -1 })
-				.limit(15)
-				.exec(function(err, data){
-					if (err) {
-						errorHandler(err, req, res, 500, "Internal server error, try later");
-						return;
-					}
-					responseBody.messages = data.reverse();
-					res
-						.status(200)
-						.render('./course', responseBody);
-				});
+			Message.update({ $and: [ { _course_id: ObjectId(req.params.id) }, {_sender_id: data._student_id}, { read_state: false } ] }, 
+				{ $set: { read_state: true } }, { multi: true }, function(err){
+					Message
+						.find({ _course_id: ObjectId(req.params.id) })
+						.sort({ date: -1 })
+						.limit(15)
+						.exec(function(err, data){
+							if (err) {
+								errorHandler(err, req, res, 500, "Internal server error, try later");
+								return;
+							}
+							responseBody.messages = data.reverse();
+							res
+								.status(200)
+								.render('./course', responseBody);
+						});
+			});
 		});
 	});
 
@@ -159,6 +163,10 @@ module.exports = function(teacher){
 		  res.redirect('/sign-in');
 		});
 	});
+
+	/*Message.remove({}, function(err){
+		console.log('delte');
+	});*/
 
 	teacher.post('/api/sendMessage', upload.array('file', 5), function(req, res){
 		var newMessage = Message({
@@ -192,7 +200,7 @@ module.exports = function(teacher){
 		    	errorHandler(err, req, res, 500, "Internal server error, try later");
 		    	return;
 		    }
-		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'studentAvatarUrl', function(err, data){
+		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl', function(err, data){
 		    	if (err) {
 		    		errorHandler(err, req, res, 500, "Internal server error, try later");
 		    		return;
@@ -205,7 +213,7 @@ module.exports = function(teacher){
 				    message: newMessage.message,
 				    read_state: newMessage.read_state,
 				    date: newMessage.date,
-				    avatarUrl: data.studentAvatarUrl
+				    avatarUrl: data.teacherAvatarUrl
 		    	};
 		    	res
 			    	.status(200)
