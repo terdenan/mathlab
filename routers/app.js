@@ -240,6 +240,7 @@ module.exports = function(app){
 							errorHandler(err, req, res, 500, "Internal server error, try later");
 							return;
 						}
+						(res.io.in(req.params.id)).emit('markReaded');
 						responseBody.messages = data.reverse();
 						res
 							.status(200)

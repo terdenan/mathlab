@@ -13,9 +13,9 @@ for item in messages
 	div( class="message #{unread}" id="#{item._id}" )
 		div( class="message-img" )
 			if (_id.toString() == (item._sender_id).toString()) 
-				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.studentAvatarUrl});" )
-			else
 				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.teacherAvatarUrl});" )
+			else
+				div( class="center-cropped img-40" style="background-image: url(#{courseInfo.studentAvatarUrl});" )
 		div( class="message-body" )
 			h5 #{item.sender}
 			if (item.attachment)
