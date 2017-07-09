@@ -25,6 +25,21 @@ const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Course = require('../db/models/course');
 
+passport.use(new LocalStrategy(
+  function(login, password, done) {
+  	User.findOne({email: login}, function(err, user) {
+			if (err) return done(err);
+			if (!user) return done(null, false);
+
+      bcrypt.compare(password, user.password).then(function(result) {
+        if (!result) return done(null, false);
+        else return done(null, user);
+      });
+
+    });
+  }
+));
+
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -36,20 +51,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 module.exports = function(admin){
-	passport.use(new LocalStrategy(
-	  function(login, password, done) {
-	  	User.findOne({email: login}, function(err, user) {
-				if (err) return done(err);
-				if (!user) return done(null, false);
-
-	      bcrypt.compare(password, user.password).then(function(result) {
-	        if (!result) return done(null, false);
-	        else return done(null, user);
-	      });
-
-	    });
-	  }
-	));
 	function errorHandler(err, req, res, statusCode, errMessage){
 		if (err) console.log(err);
 		res
@@ -82,19 +83,41 @@ module.exports = function(admin){
 
 	admin.use(flash());
 
+	admin.get('/sign-in', function(req, res){
+		if (req.user) {
+			res.redirect('/');
+			return;
+		}
+		res
+			.status(200)
+			.render('./sign-in', {message: req.flash('error')});
+	});
+
 	admin.get('/', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
 		res
 			.status(200)
 			.render('./index');
 	});
 
 	admin.get('/bids', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
 		res
 			.status(200)
 			.render('./bids');
 	});
 
 	admin.get('/teacher-form', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
 		res
 			.status(200)
 			.render('./teacher-form');
@@ -205,6 +228,12 @@ module.exports = function(admin){
 	  	});
 	  });
 	});
+
+	admin.post('/login',
+	  passport.authenticate('local', { successRedirect: '/',
+	                                   failureRedirect: '/sign-in',
+	                                   failureFlash: "fail" })
+	);
 
 	admin.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {
