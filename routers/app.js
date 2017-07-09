@@ -144,6 +144,19 @@ module.exports = function(app){
 
 	app.use(flash());
 
+	app.use(function(req, res, next){
+		if (req.user && req.user.priority != 0) {
+			req.session.destroy(function (err) {
+				if (err) {
+					errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+			  res.redirect('/sign-in');
+			});
+		}
+		else next();
+	});
+
 	app.get('/', function(req, res){
 		res
 			.status(200)
@@ -203,6 +216,7 @@ module.exports = function(app){
 				}
 				var user = req.user;
 				user.courses = courses;
+				user.currentDate = Date.now();
 				res
 					.status(200)
 					.render('./cabinet', user);
@@ -218,9 +232,15 @@ module.exports = function(app){
 			errorHandler(null, req, res, 400, "This URL isn't valid");
 			return;
 		}
-		Course.findOne({ _id: ObjectId(req.params.id) }, function(err, data){
+		Course.findOne({ $and: [ { _id: ObjectId(req.params.id) }, { _student_id: ObjectId(req.user._id)} ] }, function(err, data){
 			if (err) {
 				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			if (!data) {
+				res
+					.status(403)
+					.render('permission-denied');
 				return;
 			}
 			var responseBody = req.user;
@@ -242,6 +262,7 @@ module.exports = function(app){
 						}
 						(res.io.in(req.params.id)).emit('markReaded');
 						responseBody.messages = data.reverse();
+						responseBody.currentDate = Date.now();
 						res
 							.status(200)
 							.render('./course', responseBody);
