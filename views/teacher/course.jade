@@ -23,7 +23,7 @@ html( lang='ru' )
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/socket.io/socket.io.js" )
-		script( src="/js/viewportchecker.js" )
+		script( src="/js/jscroll.js" )
 		<!--[if IE]>
 		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
 		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
@@ -86,7 +86,7 @@ html( lang='ru' )
 								div( class="col-sm-1 col-xs-2 text-center attachment no-padding" )
 									label( for="attachment" )
 										i( class="fa fa-paperclip" aria-hidden="true" )
-									input( type="file" name="attachment" id="attachment" class="attachment-input" data-multiple-caption="{count} files selected" multiple )
+									input( type="file" name="attachment" id="attachment" class="attachment-input" data-multiple-caption="Количество файлов: {count}" multiple )
 								div( class="col-sm-10 col-xs-8 message-input-block no-padding" )
 									div( class="message-input" contenteditable="true" )
 									div( class="placeholder" ) Ваше сообщение...
