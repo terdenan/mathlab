@@ -1,0 +1,53 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="" )
+
+		title Запрашиваемой страницы не найдено
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+
+		<!--[if lt IE 8]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		// CONTENT
+		div.error-alerts
+
+		div.container.main-content
+			div.row
+				div.col-md-8.col-md-offset-2.base
+					div.row
+						div.col-md-4.text-center
+							img( src="/images/lock.svg" class="ad-lock" )
+						div.col-md-8
+							h3
+								small Кажется, что-то пошло не так...
+							h2( class="margin-10" ) К сожалению, Вам запрещен доступ к данной странице.
+							h5 Вы можете вернуться в #[a(href="/cabinet") личный кабинет] и начать сначала.
+
+		// FOOTER
+		include ./includes/footer
+		script( src="/js/bootstrap.min.js" )
+
+

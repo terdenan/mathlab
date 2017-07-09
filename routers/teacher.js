@@ -71,6 +71,19 @@ module.exports = function(teacher){
 
 	teacher.use(flash());
 
+	teacher.use(function(req, res, next){
+		if (req.user && req.user.priority == 0) {
+			req.session.destroy(function (err) {
+				if (err) {
+					errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+			  res.redirect('/sign-in');
+			});
+		}
+		else next();
+	});
+
 	teacher.get('/sign-in', function(req, res){
 		if (req.user) {
 			res.redirect('/');
@@ -106,6 +119,7 @@ module.exports = function(teacher){
 				}
 				var user = req.user;
 				user.courses = courses;
+				user.currentDate = Date.now();
 				res
 					.status(200)
 					.render('./cabinet', user);
@@ -126,6 +140,12 @@ module.exports = function(teacher){
 				errorHandler(err, req, res, 500, "Internal server error, try later");
 				return;
 			}
+			if (!data) {
+				res
+					.status(403)
+					.render('permission-denied');
+				return;
+			}
 			var responseBody = req.user;
 			responseBody.courseInfo = data;
 			Message.update({ $and: [ { _course_id: ObjectId(req.params.id) }, {_sender_id: data._student_id}, { read_state: false } ] }, 
@@ -141,6 +161,7 @@ module.exports = function(teacher){
 							}
 							(res.io.in(req.params.id)).emit('markReaded');
 							responseBody.messages = data.reverse();
+							responseBody.currentDate = Date.now();
 							res
 								.status(200)
 								.render('./course', responseBody);

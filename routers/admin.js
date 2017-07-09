@@ -25,21 +25,6 @@ const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Course = require('../db/models/course');
 
-passport.use(new LocalStrategy(
-  function(login, password, done) {
-  	User.findOne({email: login}, function(err, user) {
-			if (err) return done(err);
-			if (!user) return done(null, false);
-
-      bcrypt.compare(password, user.password).then(function(result) {
-        if (!result) return done(null, false);
-        else return done(null, user);
-      });
-
-    });
-  }
-));
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -51,7 +36,20 @@ passport.deserializeUser(function(id, done) {
 });
 
 module.exports = function(admin){
+	passport.use(new LocalStrategy(
+	  function(login, password, done) {
+	  	User.findOne({email: login}, function(err, user) {
+				if (err) return done(err);
+				if (!user) return done(null, false);
 
+	      bcrypt.compare(password, user.password).then(function(result) {
+	        if (!result) return done(null, false);
+	        else return done(null, user);
+	      });
+
+	    });
+	  }
+	));
 	function errorHandler(err, req, res, statusCode, errMessage){
 		if (err) console.log(err);
 		res
