@@ -1,12 +1,18 @@
 var socket = io();
 var courseId = (window.location.pathname).split('/')[2];
+var rows = 1;
 
 $(document).ready(function() {
+
   socket.emit('setRoom', courseId);
   socket.on('newMessage', function(data){
     data = data.replace(" unread", "");
     $('.messages').append(data);
     socket.emit('accepted', { courseId: courseId, _message_id: $('.message:last-child').attr('id') });
+    $(".nano").nanoScroller();
+    $(".nano").nanoScroller({ 
+      scroll: 'bottom' 
+    });
   });
   socket.on('markReaded', function(){
     $(".unread").removeClass("unread");
@@ -17,6 +23,12 @@ $(document).ready(function() {
   $(".send-button").on('click', function(){
     sendMessage();
   });
+
+  $(".nano").nanoScroller();
+  $(".nano").nanoScroller({ 
+    scroll: 'bottom' 
+  });
+
 
   $(".message-input").on("focusin", function(){
     if (!$(".message-input").html()) {
@@ -52,13 +64,11 @@ $(document).ready(function() {
     if ($('.message-input').html() == "" || $('.message-input').html() == "<br>") {
       $('.message-input').html("");
       $(".message-input").css("height", "40px");
+      $(".panel-body").height(windowHeight * 0.7);
     }
   });
+  
 });
-
-function addMessage(message){
-
-}
 
 function sendMessage() {
   var formData = new FormData(),

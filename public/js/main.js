@@ -2,20 +2,9 @@ $(document).ready(function() {
 
   var socket = io();
   var pathname = window.location.pathname;
-  /*"<td id='" + item._id + "''>" +
-    "<div class='course " + activeCourse + "' onClick='window.location.href=`/course/" + item._id + "`'>" +
-      "<div class='course-header'>" +
-        "<div class='course-info-img'>" +
-          "<div class='center-cropped img-50' style='background-image: url(/uploads/" + item.teacherId + ".jpg);'></div>" +
-        "</div>" +
-        "<div class='course-info-titles'>" + 
-          "<h5>" + item.teacher + "</h5>" +
-          "<h6>" + item.subject + " <small>" + moment(item.date).format('DD.MM.YY') + ' - ' + moment(item.endingTime).format('DD.MM.YY') + "</small></h6>" +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-    "</a>" +
-  "</td>";*/
+  var loader = "<img src='/images/loader.svg' class='loader'>",
+      loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
+
   
   $("#req-submit").on("click", function(){
     var prefDays = "";
@@ -30,6 +19,9 @@ $(document).ready(function() {
       url: "api/bid",
       method: "put",
       data: {subject: $('#subject option:selected').text(), prefDays: prefDays, prefTime: $(".bfh-timepicker input").val(), target: $('#target option:selected').text()},
+      beforeSend: function() {
+        $("#req-submit").html(loaderWhite).addClass("disable-point-events");
+      },
       error: function(){
         $("#request-form").append(
           "<div class='alert alert-danger'>" +
@@ -42,6 +34,7 @@ $(document).ready(function() {
           "<div class='alert alert-success'>" +
             "<strong>Отлично!</strong> Ваша заявка отправлена и находится на рассмотрении.</a>" +
           "</div>");
+          $("#req-submit").html("Отправить").removeClass("disable-point-events");
         }
       }
     });

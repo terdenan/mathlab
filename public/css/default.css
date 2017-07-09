@@ -1,7 +1,8 @@
 body {
     background-color: #f5f7fb;
     color: #354251;
-    font-family: "Trebuchet MS", Helvetica, sans-serif
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    outline: none;
 }
 
 footer {
@@ -88,6 +89,10 @@ footer {
     display: none;
 }
 
+.btn:focus {
+  outline: none !important;
+}
+
 .btn-md {
     height: 40px;
     padding: 10px 12px;
@@ -164,21 +169,10 @@ footer {
 }
 
 .loader {
-    position: absolute;
-    top: 45%;
-    left: calc(50% - 20px);
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #555; 
-    border-radius: 50%;
-    width: 40px;
     height: 40px;
-    animation: spin 1s linear infinite;
-    display: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    position: absolute;
+    top: 0;
+    left: calc(50% - 20px);
 }
 
 .confirm-info {
@@ -325,6 +319,10 @@ footer {
   top: 10px;
   left: 10px;
   color: #ccc;
+  pointer-events: none;
+}
+
+.disable-point-events {
   pointer-events: none;
 }
 
