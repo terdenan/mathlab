@@ -7,37 +7,10 @@ const express = require('express'),
 
       subdomain = require('express-subdomain'),
       admin = express(),
-      teacher = express(),
-      nodemailer = require('nodemailer');
+      teacher = express();
 
 const ObjectId = require('mongodb').ObjectID,
 			Message = require('./db/models/message');
-
-const	smtpTransport = nodemailer.createTransport("SMTP",{
-			    service: "Gmail",
-			    auth: {
-			        user: "humbledevelopers@gmail.com",
-			        pass: "87051605199Dd"
-			    }
-			});
-const mailOptions = {
-    from: '"Fred Foo 👻" <humbledevelopers@bgmail.com>', // sender address
-    to: 'terdenan@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ?', // plain text body
-    html: '<b>Hello world ?</b>' // html body
-};
-
-smtpTransport.sendMail(mailOptions, function(error, response){
-    if(error){
-        console.log(error);
-    }else{
-        console.log("Message sent: " + response.message);
-    }
-
-    // if you don't want to use this transport object anymore, uncomment following line
-    //smtpTransport.close(); // shut down the connection pool, no more messages
-});
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
