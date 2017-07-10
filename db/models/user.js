@@ -12,7 +12,12 @@ var userSchema = new Schema({
   confirmed: Boolean,
   priority: Number, // 0 - student, 1 - teacher, 2 - admin
   subject: String,
-  vk_id: Number
+  vk_id: Number,
+  emailConfirmCode: String,
+  emailConfirmDuration: Date,
+  lastEmailDate: Date,
+  changePasswordCode: String,
+  changePasswordDuration: Date
 });
 
 var User = mongoose.model('User', userSchema);

@@ -2,5 +2,5 @@ div( class="alert-top-fixed alert alert-info alert-dismissable" )
 	div( class="container" )
 		div( class="row" )
 			div( class="col-xs-12" )
-				a( href="#" class="close" data-dismiss="alert" aria-label="close") &times;
-				h6 Ваш e-mail не подтвержден: #[a( href="#"  class="alert-link" ) Подтвердить]
+				a( href="#" class="close" data-dismiss="alert" aria-label="close" ) &times;
+				h6( id="status-message" ) Ваш e-mail не подтвержден: #[a( href="#"  class="alert-link" onClick="sendConfirmationEmail()" ) Подтвердить]

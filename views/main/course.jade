@@ -34,6 +34,9 @@ html( lang='ru' )
 		// NAVBAR
 		include ./includes/header
 
+		if (!confirmed)
+			include ./includes/email-confirm-alert
+
 		div( class="container main-content" )
 			div( class="row" )
 				div( class="col-md-10 col-md-offset-1" )
