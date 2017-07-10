@@ -1,45 +1,29 @@
 $(document).ready(function() {
-
-  function setSettings() {
-    $('#login').attr('placeholder', userInfo.fullname);
-    $('#email').attr('placeholder', userInfo.email);
-    $('#phone').attr('placeholder', userInfo.phone);
-    $('#phone').val("");
-    $('#grade1').val(userInfo.grade);
-    $('#sex').val(userInfo.sex);
-    setPhoto();
-  }
-
-  var socket = io();
-  var userInfo = new Object();
-
   $('#save-settings').on('click', function(){
-    if ($('#login').val() || $('#phone').val() || userInfo.grade != $('#grade1 option:selected').text()) {
+    if ($('#login').val() || $('#phone').val() != "+7 ") {
+      var request = {};
+      if ($('#login').val()) request.fullname = $('#login').val();
+      if ($('#phone').val() != "+7 ") request.phone = $('#phone').val();
+      request.grade = $('#grade1 option:selected').text();
       $.ajax({
-        url: 'api/changeSettings',
+        url: '/api/profileInfo',
         method: 'post',
-        data: {
-          newLogin: ($('#login').val()) ? $('#login').val() : userInfo.fullname, 
-          newPhone: ($('#phone').val()) ? $('#phone').val() : userInfo.phone, 
-          newGrade: $('#grade1 option:selected').text()
+        data: request,
+        error: function(response){
+          $(".settings-block").append("<div class='alert alert-danger alert-dismissable'>" +
+                                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                        "<strong>Ошибка!</strong> Попробуйте позже." +
+                                      "</div>");
         },
         success: function(response){
-          if (response) {
-            $(".settings-block").append("<div class='alert alert-success alert-dismissable'>" +
-                                          "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                                          "<i class='fa fa-spinner fa-pulse fa-fw'></i>&nbsp;<strong>Ваши данные успешно изменены!</strong> Перенаправление в личный кабинет..." +
-                                        "</div>");
-            setTimeout(function(){
-              $(".password-block").find(".alert").fadeOut(500);
-              window.location.href = "/cabinet";
-            },2200)
-          }
-          else {
-            $(".settings-block").append("<div class='alert alert-danger alert-dismissable'>" +
-                                          "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                                          "<strong>Ошибка!</strong> Попробуйте позже." +
-                                        "</div>");
-          }
+          $(".settings-block").append("<div class='alert alert-success alert-dismissable'>" +
+                                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                        "<i class='fa fa-spinner fa-pulse fa-fw'></i>&nbsp;<strong>Ваши данные успешно изменены!</strong> Перенаправление в личный кабинет..." +
+                                      "</div>");
+          setTimeout(function(){
+            $(".password-block").find(".alert").fadeOut(500);
+            window.location.href = "/cabinet";
+          }, 2200);
         }
       });
     }
@@ -47,25 +31,33 @@ $(document).ready(function() {
 
   $('#submit-1').on('click', function(){
     $.ajax({
-      url: 'api/changePassword',
+      url: '/api/changePassword',
       method: 'post',
       data: {oldPassword: $('#old-password').val(), newPassword: $('#new-password').val()},
-      success: function(response){
-        if (response == "Success") {
-          $(".password-block").append("<div class='alert alert-success alert-dismissable'>" +
-                                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                                        "<strong>Готово!</strong> Ваш пароль успешно изменен." +
-                                      "</div>");
-        }
-        else {
+      error: function(response){
+        if (response.status == 400) {
           $(".password-block").append("<div class='alert alert-danger alert-dismissable'>" +
                                         "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                                         "<strong>Ошибка!</strong> Введеный пароль не совпадает с нынешним." +
                                       "</div>");
         }
+        else if (response.status == 500) {
+          $(".password-block").append("<div class='alert alert-danger alert-dismissable'>" +
+                                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                        "<strong>Ошибка!</strong> Попробуйте позже." +
+                                      "</div>");
+        }
+      },
+      success: function(response){
+        $('#old-password').val("");
+        $('#new-password').val("");
+        $(".password-block").append("<div class='alert alert-success alert-dismissable'>" +
+                                      "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                      "<strong>Готово!</strong> Ваш пароль успешно изменен." +
+                                    "</div>");
         setTimeout(function(){
           $(".password-block").find(".alert").fadeOut(500);
-        },2000)
+        }, 2000)
       }
     });
   });

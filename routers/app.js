@@ -76,7 +76,6 @@ passport.use(new VKontakteStrategy(
   				vk_id: profile.id
   			});
   			newUser.sex = (profile.gender == "male") ? 0 : 1;
-
   			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'});
 				vk.on('done:users.get', function(_o) {
 					newUser.avatarUrl = _o.response[0].photo_200;

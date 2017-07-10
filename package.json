@@ -24,6 +24,7 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "express-subdomain": "^1.0.5",
+    "gmail-send": "^1.2.11",
     "jade": "^1.11.0",
     "moment": "^2.18.1",
     "mongodb": "^2.2.29",
