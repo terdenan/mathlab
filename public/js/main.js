@@ -1,9 +1,10 @@
+var loader = "<img src='/images/loader.svg' class='loader'>",
+    loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
+
 $(document).ready(function() { 
 
   var socket = io();
   var pathname = window.location.pathname;
-  var loader = "<img src='/images/loader.svg' class='loader'>",
-      loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
 
   
   $("#req-submit").on("click", function(){
@@ -49,6 +50,9 @@ function sendConfirmationEmail(){
   $.ajax({
     type: 'post',
     url: '/api/sendConfirmationEmail',
+    beforeSend: function(){
+      $('#status-message').html(loader);
+    },
     error: function(response){
       if (response.status == 500)
         $('#status-message').html("Произошла ошибка! Попробуйте позже.");

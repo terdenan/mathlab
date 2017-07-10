@@ -84,6 +84,12 @@ hr {
   border-radius: 0;
 }
 
+.alert-top-fixed .loader {
+  left: 0px;
+  position: relative;
+  height: 14px;
+}
+
 .alert-top-fixed.alert-dismissable .close {
   top: 5px;
   right: 5px;
@@ -187,9 +193,12 @@ hr {
 
 .loader {
     height: 40px;
+    width: 40px;
     position: absolute;
-    top: 0;
+    top: calc(50% - 20px);
     left: calc(50% - 20px);
+    margin: auto;
+    background: url(../images/loader.svg);
 }
 
 .confirm-info {
@@ -579,6 +588,10 @@ hr {
   .article img {
     width: 70%;
   }
+}
+
+.navbar-nav>li>.dropdown-menu {
+  margin-top: 1px;
 }
 
 @media (max-width: 767px) {

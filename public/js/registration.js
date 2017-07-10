@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $(".loader").hide();
   $("#submit-1").on("click", function(){
     if (!($("#submit-1").hasClass('disabled'))) {
       var reqBody = new Object();
