@@ -195,12 +195,20 @@ module.exports = function(app){
 	});
 
 	app.get('/forgotten-password', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet');
+			return;
+		}
 		res
 			.status(200)
 			.render('./forgotten-password');
 	});
 
 	app.get('/change-password', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet');
+			return;
+		}
 		res
 			.status(200)
 			.render('./change-password');
