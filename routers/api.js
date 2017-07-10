@@ -4,7 +4,8 @@ const MongoClient = require('mongodb').MongoClient,
 			mongoose = require('mongoose'),
 
 			async = require('async'),
-			jade = require('jade');
+			jade = require('jade'),
+			moment = require('moment');
 
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
@@ -190,18 +191,18 @@ module.exports = function(app) {
 		async.waterfall([
 			function(callback){
 				var code = require('md5')(Date.now());
-				User.findOne({ _id: ObjectId(req.user._id) }, 'emailConfirmDuration', function(err, data){
+				User.findOne({ _id: ObjectId(req.user._id) }, 'lastEmailDate', function(err, data){
 					if (err) {
 						callback(err);
 						return;
 					}
-					if (data.emailConfirmDuration > Date.now()) {
+					if (data.lastEmailDate && moment(Date.now()).format() < moment(data.lastEmailDate).add(15, 'm').format()) {
 						callback('timeError');
 						return;
 					}
 					User.update(
 						{ _id: ObjectId(req.user._id) },
-						{ $set: {emailConfirmCode: code, emailConfirmDuration: Date.now() + 15 * 60 * 1000} },
+						{ $set: {emailConfirmCode: code, emailConfirmDuration: Date.now() + 24 * 60 * 60 * 1000, lastEmailDate: Date.now() } },
 						function(err){
 							if (err) {
 								callback(err);
@@ -212,7 +213,7 @@ module.exports = function(app) {
 							  pass: '87051605199dD',
 							  to:   'humbledevelopers@gmail.com',
 							  subject: 'test subject',
-							  html:    "<a href='http://mysite.com/?code=" + code + "'>Страница подтверждения</a>"
+							  html:    "<a href='http://mysite.com/email-confirm?code=" + code + "'>Страница подтверждения</a>"
 							});
 							send({}, function(err, res){
 								if (err) {

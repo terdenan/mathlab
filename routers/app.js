@@ -12,6 +12,7 @@ const http = require('http'),
 
 			bcrypt = require('bcrypt'),
 			multer = require('multer'),
+			moment = require('moment');
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
@@ -195,21 +196,51 @@ module.exports = function(app){
 	});
 
 	app.get('/forgotten-password', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet');
+			return;
+		}
 		res
 			.status(200)
 			.render('./forgotten-password');
 	});
 
 	app.get('/change-password', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet');
+			return;
+		}
 		res
 			.status(200)
 			.render('./change-password');
 	});
 
 	app.get('/email-confirm', function(req, res){
-		res
-			.status(200)
-			.render('./email-confirm');
+		User.findOne({ emailConfirmCode: req.query.code }, 'emailConfirmDuration',function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			if (!data || moment(Date.now()).format() > moment(data.emailConfirmDuration).format()){
+				res
+					.status(200)
+					.render('./email-confirm', { valid: false } );
+				return;
+			}
+			User.update(
+				{ emailConfirmCode: req.query.code }, 
+	    	{ $set: { confirmed: true, emailConfirmDuration: Date.now() } }, 
+	    	function(err){
+	      	if (err) {
+	      		errorHandler(err, req, res, 500, "Internal server error, try later");
+						return;
+	      	}
+	      	res
+						.status(200)
+						.render('./email-confirm', { valid: true } );
+	      }
+	    );
+		});
 	});
 
 	app.get('/cabinet', function(req, res){
