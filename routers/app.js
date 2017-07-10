@@ -214,6 +214,12 @@ module.exports = function(app){
 			.render('./change-password');
 	});
 
+	app.get('/email-confirm', function(req, res){
+		res
+			.status(200)
+			.render('./email-confirm');
+	});
+
 	app.get('/cabinet', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');
