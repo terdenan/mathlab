@@ -1,0 +1,11 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "globalReturn": true
+    }
+  },
+  "env": {
+    "es6": true
+  }
+
+}

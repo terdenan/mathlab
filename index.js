@@ -48,6 +48,18 @@ io.on('connection', function(socket){
 	});
 });
 
+/*var send = require('gmail-send')({
+  user: 'humbledevelopers@gmail.com',
+  pass: '87051605199dD',
+  to:   'terdenan@gmail.com',
+  subject: 'test subject',
+  html:    '<b>html text</b>'
+});
+
+send({}, function(err, res){
+	console.log('* [example 1.1] send() callback returned: err:', err, '; res:', res);
+});*/
+
 http.listen(config.httpPort, function(){
   console.log('MathLab is listening on port ' + config.httpPort);
 });
