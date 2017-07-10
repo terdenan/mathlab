@@ -194,10 +194,16 @@ module.exports = function(app){
 			.render('./prices');
 	});
 
-	app.get('/teacher', function(req, res){
+	app.get('/forgotten-password', function(req, res){
 		res
 			.status(200)
-			.render('./teacher');
+			.render('./forgotten-password');
+	});
+
+	app.get('/change-password', function(req, res){
+		res
+			.status(200)
+			.render('./change-password');
 	});
 
 	app.get('/cabinet', function(req, res){
