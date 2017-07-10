@@ -88,7 +88,10 @@ html( lang='ru' )
 																		h5 #[span( class="course-desc" ) Ученик:] #{item.student}
 																		h5 #[span( class="course-desc" ) Предмет обучения:] #{item.subject}
 																		h5 #[span( class="course-desc" ) Сроки обучения:]  #{moment(item.startingDate).format('DD.MM.YYYY')} - #{moment(item.endingDate).format('DD.MM.YYYY')}
-																		h5 #[span( class="course-desc" ) Статус:] #[span( class="text-success" ) Активен ]
+																		if (moment(item.endingDate).format() > moment(currentDate).format())
+																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-success" ) Активен ]
+																		else 
+																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]
 																div( class="course-entrance" )
 																	a( href="/course/#{item.id}" )
 								else
