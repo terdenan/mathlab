@@ -92,26 +92,6 @@ $(document).ready(function() {
       });
     }
   });
-  function setPhoto() {
-    alert();
-    $("#avatar").fileinput({
-      overwriteInitial: true,
-      maxFileSize: 1500,
-      showClose: false,
-      showCaption: false,
-      browseLabel: 'Выбрать...',
-      removeLabel: 'Удалить',
-      uploadLabel: 'Загрузить',
-      browseIcon: '<i class="fa fa-folder-open" aria-hidden="true"></i>',
-      removeIcon: '<i class="fa fa-close" aria-hidden="true"></i>',
-      uploadIcon: '<i class="fa fa-upload" aria-hidden="true"></i>',
-      browseClass: 'btn btn-default',
-      removeTitle: 'Отменить',
-      elErrorContainer: '#kv-avatar-errors-1',
-      msgErrorClass: 'alert alert-block alert-danger',
-      defaultPreviewContent: '<img src="/images/member-2.png" alt="Ваш аватар" class="img-circle" style="width:100%">',
-      layoutTemplates: {main2: '{preview} ' + '<div class="btn-group">' + '{browse} {remove} {upload}' + '</div>'},
-      allowedFileExtensions: ["jpg", "jpeg", "png"]
-    });
-  }
+
+  setPhoto();
 });
