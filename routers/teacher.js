@@ -244,6 +244,48 @@ module.exports = function(teacher){
 	  });
 	});
 
+	teacher.post('/api/profileInfo', function(req, res){
+		var request = req.body;
+		User.update(
+			{ _id: ObjectId(req.user._id) }, 
+    	{ $set: request }, 
+    	function(err){
+      	if (err) {
+      		errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+      	}
+      	res
+      		.status(200)
+      		.send("success");
+      }
+    );
+	});
+
+	teacher.post('/api/changePassword', function(req, res){
+		bcrypt.compare(req.body.oldPassword, req.user.password).then(function(result){
+	    if (!result) {
+	    	errorHandler(null, req, res, 400, "Incorrect password");
+	    	return;
+	    }
+	    else {
+	      bcrypt.hash(req.body.newPassword, 10).then(function(hash) {
+	        User.update(
+	        	{ _id: ObjectId(req.user._id) },
+	          { $set: { password: hash } }, 
+	          function(err){
+	            if (err) {
+			      		errorHandler(err, req, res, 500, "Internal server error, try later");
+								return;
+			      	}
+	            res
+	            	.status(200)
+	            	.send("success");
+	          });
+	      });
+	    }
+	  });
+	});
+
 	teacher.get('*', function(req, res){
 		res
 			.status(404)

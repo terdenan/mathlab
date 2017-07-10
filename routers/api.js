@@ -186,6 +186,57 @@ module.exports = function(app) {
 	  });
 	});
 
+	app.post('/api/sendConfirmationEmail', function(req, res){
+		async.waterfall([
+			function(callback){
+				var code = require('md5')(Date.now());
+				User.findOne({ _id: ObjectId(req.user._id) }, 'emailConfirmDuration', function(err, data){
+					if (err) {
+						callback(err);
+						return;
+					}
+					if (data.emailConfirmDuration > Date.now()) {
+						callback('timeError');
+						return;
+					}
+					User.update(
+						{ _id: ObjectId(req.user._id) },
+						{ $set: {emailConfirmCode: code, emailConfirmDuration: Date.now() + 15 * 60 * 1000} },
+						function(err){
+							if (err) {
+								callback(err);
+								return;
+							}
+							var send = require('gmail-send')({
+							  user: 'humbledevelopers@gmail.com',
+							  pass: '87051605199dD',
+							  to:   'humbledevelopers@gmail.com',
+							  subject: 'test subject',
+							  html:    "<a href='http://mysite.com/?code=" + code + "'>Страница подтверждения</a>"
+							});
+							send({}, function(err, res){
+								if (err) {
+						  		callback(err);
+						  		return;
+						  	}
+						  	callback(null);
+							});
+						});
+				});
+			}
+			], 
+			function(err){
+				if (err){
+					if (err == 'timeError') errorHandler(err, req, res, 400, "Time is not over");
+					else errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				res
+					.status(200)
+					.send('success');
+		});
+	});
+
 	app.put('/api/bid', function(req, res){
 		var newBid = Bid({
 	    student: req.user.fullname,

@@ -26,6 +26,7 @@
     "express-subdomain": "^1.0.5",
     "gmail-send": "^1.2.11",
     "jade": "^1.11.0",
+    "md5": "^2.2.1",
     "moment": "^2.18.1",
     "mongodb": "^2.2.29",
     "mongoose": "^4.10.8",

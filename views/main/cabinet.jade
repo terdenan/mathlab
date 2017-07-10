@@ -38,7 +38,8 @@ html( lang='ru' )
 		// NAVBAR
 		include ./includes/header
 
-		include ./includes/email-confirm-alert
+		if (!confirmed)
+			include ./includes/email-confirm-alert
 
 		// CONTENT
 		div( class="container main-content" )
