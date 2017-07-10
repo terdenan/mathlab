@@ -38,7 +38,10 @@ html( lang='ru' )
 								input( type="password" class="form-control" placeholder="Пароль" required="" id="password" )
 							div
 								button( type="submit" class="btn btn-default btn-block" id="submit" ) Вход
-							div( class="error-alerts" ) #{message}
+							if (message != '')
+								div( class="alert alert-warning alert-dismissable text-center" )
+									a( href="#" class="close" data-dismiss="alert" aria-label="close") &times;
+									|	Неверный логин или пароль, попробуйте еще раз.
 							div( class="clearfix" )
 							div( class="separator" )
 								div( class="clearfix" )

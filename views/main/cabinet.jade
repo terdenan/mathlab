@@ -38,6 +38,8 @@ html( lang='ru' )
 		// NAVBAR
 		include ./includes/header
 
+		include ./includes/email-confirm-alert
+
 		// CONTENT
 		div( class="container main-content" )
 			div( class="row" )
@@ -91,7 +93,7 @@ html( lang='ru' )
 																		h5 #[span( class="course-desc" ) Преподаватель:] #{item.teacher}
 																		h5 #[span( class="course-desc" ) Предмет обучения:] #{item.subject}
 																		h5 #[span( class="course-desc" ) Сроки обучения:]  #{moment(item.startingDate).format('DD.MM.YYYY')} - #{moment(item.endingDate).format('DD.MM.YYYY')}
-																		if (moment(item.endingDate).format() > moment().format())
+																		if (moment(item.endingDate).format() > moment(currentDate).format())
 																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-success" ) Активен ]
 																		else 
 																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]

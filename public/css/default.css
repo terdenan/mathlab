@@ -72,6 +72,19 @@ footer {
   font-size: 14px;
 }
 
+.alert-top-fixed {
+  width: 100%;
+  border-bottom: 1px solid #bce8f1;
+  margin-top: -20px;
+  padding: 0;
+  border-radius: 0;
+}
+
+.alert-top-fixed.alert-dismissable .close {
+  top: 5px;
+  right: 5px;
+}
+
 .form button {
     height: 40px;
 }
