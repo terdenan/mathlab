@@ -4,7 +4,7 @@ $(document).ready(function() {
       var request = {};
       if ($('#login').val()) request.fullname = $('#login').val();
       if ($('#phone').val() != "+7 ") request.phone = $('#phone').val();
-      request.grade = $('#grade1 option:selected').text();
+      if ($('#grade1 option:selected').text()) request.grade = $('#grade1 option:selected').text();
       $.ajax({
         url: '/api/profileInfo',
         method: 'post',
@@ -69,26 +69,23 @@ $(document).ready(function() {
       var formData = new FormData();
       formData.append('file', file);
       $.ajax({
-        url: 'api/uploadImg',
+        url: 'api/changeAvatar',
         method: 'post',
         data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response){
-              sessionStorage.clear();
-              if (response == "Success") {
-                $(".avatar-block").append("<div class='alert alert-success alert-dismissable'>" +
-                                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                                            "<strong>Готово!</strong> Фотография профиля успешно загружена." +
-                                          "</div>");
-              }
-              else {
-                $(".avatar-block").append("<div class='alert alert-error alert-dismissable'>" +
-                                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                                            "<strong>Произошла ошибка!</strong> Попробуйте позже." +
-                                          "</div>");
-              }
-          }
+        processData: false,
+        contentType: false,
+        error: function(response){
+          $(".avatar-block").append("<div class='alert alert-error alert-dismissable'>" +
+                                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                        "<strong>Произошла ошибка!</strong> Попробуйте позже." +
+                                      "</div>");
+        },
+        success: function(response){
+          $(".avatar-block").append("<div class='alert alert-success alert-dismissable'>" +
+                                      "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                      "<strong>Готово!</strong> Фотография профиля успешно загружена." +
+                                    "</div>");
+        }
       });
     }
   });

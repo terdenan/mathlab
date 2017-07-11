@@ -71,21 +71,6 @@ html( lang='ru' )
 								label( for="tel" ) Ваш телефон:
 								input( type="tel" class="form-control bfh-phone" id="phone" data-format="+7 (ddd) ddd-dd-dd" value="" placeholder="#{phone}")
 								div( class="help-block with-errors" )
-							div( class="form-group" )
-								label( for="sex" ) Ваш пол:
-								select( class="form-control" id="sex" disabled)
-									option Не указано
-									option Мужской
-									option Женский
-							div( class="form-group" )
-								label( for="grade1" ) Ваш класс учебы:
-								select( class="form-control" id="grade1" value="alo" )
-									-for (var i = 1; i <= 11; i++) {
-										if i == grade
-											option(selected) #{i}
-										else
-											option #{i}
-									-}
 
 							div( class="form-group" )
 								button( type="submit" class="btn btn-primary btn-block btn-md" id="save-settings" ) Сохранить личные данные

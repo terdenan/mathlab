@@ -2,6 +2,7 @@ const http = require('http'),
 			express = require('express'),
 			compression = require('compression'),
 			passport = require('passport'),
+			fs = require('fs'),
 
 			async = require('async'),
 			bcrypt = require('bcrypt'),
@@ -84,6 +85,10 @@ module.exports = function(teacher){
 		else next();
 	});
 
+	teacher.get('/cabinet', function(req, res){
+		res.redirect('/');
+	});
+
 	teacher.get('/sign-in', function(req, res){
 		if (req.user) {
 			res.redirect('/');
@@ -96,12 +101,22 @@ module.exports = function(teacher){
 
 	teacher.get('/teachers', function(req, res){
 		if (!req.user) {
-			res.redirect('/');
+			res.redirect('/sign-in');
 			return;
 		}
 		res
 			.status(200)
 			.render('./teachers', req.user);
+	});
+
+	teacher.get('/settings', function(req, res){
+		if (!req.user) {
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./settings', req.user);
 	});
 
 	teacher.get('/', function(req, res){
@@ -249,6 +264,22 @@ module.exports = function(teacher){
 		User.update(
 			{ _id: ObjectId(req.user._id) }, 
     	{ $set: request }, 
+    	function(err){
+      	if (err) {
+      		errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+      	}
+      	res
+      		.status(200)
+      		.send("success");
+      }
+    );
+	});
+
+	teacher.post('/api/changeAvatar', upload.single('file'), function(req, res){
+		User.update(
+			{ _id: ObjectId(req.user._id) }, 
+    	{ $set: { avatarUrl: "/uploads/" + req.file.filename } }, 
     	function(err){
       	if (err) {
       		errorHandler(err, req, res, 500, "Internal server error, try later");

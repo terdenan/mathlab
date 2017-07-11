@@ -2,6 +2,7 @@ const http = require('http'),
 			express = require('express'),
 			compression = require('compression'),
 			passport = require('passport'),
+			fs = require('fs'),
 
 			VK = require('vksdk'),
 			vk = new VK({
