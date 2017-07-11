@@ -163,10 +163,6 @@ module.exports = function(app){
 			.render('./index');
 	});
 
-	/*User.remove({}, function(){
-		console.log("w")
-	})*/
-
 	app.get('/sign-in', function(req, res){
 		if (req.user) {
 			res.redirect('/cabinet');

@@ -43,7 +43,7 @@ html( lang='ru' )
 							h4 Личные данные
 						div( class="profile" )
 							div( class="profile-img text-center" )
-								div( class="center-cropped img-130" id="profile-img" style="background-image: url(/images/profile.svg);" )
+								div( class="center-cropped img-130" id="profile-img" style="background-image: url(#{avatarUrl});" )
 							div( class="profile-info text-center" )
 								h4( id="fullname" ) #{fullname}
 								h6( id="priority" ) Преподаватель
@@ -105,7 +105,6 @@ html( lang='ru' )
 		include ./includes/footer
 
 		script( src="/js/bootstrap.min.js" )
-		script( src="/js/sign-up-modal.js" )
 		script( src="/js/validator.js" )
 		script( src="/js/main.js" )
 		script( src="/js/formhelpers.min.js" )

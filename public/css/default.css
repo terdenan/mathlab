@@ -192,8 +192,16 @@ hr {
 }
 
 .loader {
-    height: 40px;
+    height: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    margin: auto;
+}
+
+.loader-reg {
     width: 40px;
+    height: 40px;
     position: absolute;
     top: calc(50% - 20px);
     left: calc(50% - 20px);
