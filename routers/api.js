@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient,
 			ObjectId = require('mongodb').ObjectID,
 			MongoStore = require('connect-mongo')(session),
 			mongoose = require('mongoose'),
+			fs = require('fs'),
 
 			async = require('async'),
 			jade = require('jade'),
@@ -208,7 +209,7 @@ module.exports = function(app) {
 								callback(err);
 								return;
 							}
-							var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', {code: code});
+							var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', { code: code, email: data.email, fullname: data.fullname });
 							var send = require('gmail-send')({
 							  user: 'humbledevelopers@gmail.com',
 							  pass: '87051605199dD',
@@ -282,7 +283,7 @@ module.exports = function(app) {
 								callback(err);
 								return;
 							}
-							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', {code: code, email: data.email, fullname: data.fullname});
+							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
 							  user: 'humbledevelopers@gmail.com',
 							  pass: '87051605199dD',
@@ -312,6 +313,22 @@ module.exports = function(app) {
 					.status(200)
 					.send('success');
 		});
+	});
+
+	app.post('/api/changeAvatar', upload.single('file'), function(req, res){
+		User.update(
+			{ _id: ObjectId(req.user._id) }, 
+    	{ $set: { avatarUrl: "uploads/" + req.file.filename } }, 
+    	function(err){
+      	if (err) {
+      		errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+      	}
+      	res
+      		.status(200)
+      		.send("success");
+      }
+    );
 	});
 
 	app.put('/api/bid', function(req, res){
