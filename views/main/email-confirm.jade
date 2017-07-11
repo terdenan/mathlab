@@ -62,15 +62,26 @@ html( lang='ru' )
 								| &nbsp; Регистрация
 
 		// CONTENT
-		div( class="container main-content" )
-			div( class="row" )
-				div( class="col-md-8 col-md-offset-2" )
-					div( class="base text-center" )
-						img( src="/images/mail-confirm.png" )
-						h4 Ваша почта успешно подтверждена
-						h5 Теперь Вы можете пользоваться всем функционалом сервиса
-						hr
-						a( href="/cabinet" class="btn btn-default" ) Вход в личный кабинет
+		if (valid)
+			div( class="container main-content" )
+				div( class="row" )
+					div( class="col-md-8 col-md-offset-2" )
+						div( class="base text-center" )
+							img( src="/images/mail-confirm.png" )
+							h4 Ваша почта успешно подтверждена
+							h5 Теперь Вы можете пользоваться всем функционалом сервиса
+							hr
+							a( href="/cabinet" class="btn btn-default" ) Вход в личный кабинет
+		else 
+			div( class="container main-content" )
+				div( class="row" )
+					div( class="col-md-8 col-md-offset-2" )
+						div( class="base text-center" )
+							img( src="/images/mail-confirm-err.png" )
+							h4 Данный код подтверждения уже не актуален
+							h5 Запросите новый код в личном кабинете
+							hr
+							a( href="/cabinet" class="btn btn-default" ) Вход в личный кабинет
 
 		// FOOTER
 		include ./includes/footer

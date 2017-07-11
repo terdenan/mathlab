@@ -1,9 +1,10 @@
+var loader = "<img src='/images/loader.svg' class='loader'>",
+    loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
+
 $(document).ready(function() { 
 
   var socket = io();
   var pathname = window.location.pathname;
-  var loader = "<img src='/images/loader.svg' class='loader'>",
-      loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
 
   
   $("#req-submit").on("click", function(){
@@ -35,6 +36,8 @@ $(document).ready(function() {
             "<strong>Отлично!</strong> Ваша заявка отправлена и находится на рассмотрении.</a>" +
           "</div>");
           $("#req-submit").html("Отправить").removeClass("disable-point-events");
+          $("input[type=chekbox]").attr('checked', false);
+          $("label").removeClass("active", "focus");
         }
       }
     });
@@ -49,6 +52,9 @@ function sendConfirmationEmail(){
   $.ajax({
     type: 'post',
     url: '/api/sendConfirmationEmail',
+    beforeSend: function(){
+      $('#status-message').html(loader);
+    },
     error: function(response){
       if (response.status == 500)
         $('#status-message').html("Произошла ошибка! Попробуйте позже.");
