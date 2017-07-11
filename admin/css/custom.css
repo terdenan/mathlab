@@ -699,6 +699,12 @@ a:focus {
     width: 100%;
     padding: 12px 20px
 }
+
+.top_nav .dropdown-menu li form {
+    width: 100%;
+    padding: 12px 0
+}
+
 .top_nav li a i {
     font-size: 15px
 }
