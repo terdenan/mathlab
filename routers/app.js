@@ -13,7 +13,6 @@ const http = require('http'),
 			bcrypt = require('bcrypt'),
 			multer = require('multer'),
 			moment = require('moment'),
-			jade = require('jade'),
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
