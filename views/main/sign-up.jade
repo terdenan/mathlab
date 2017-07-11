@@ -128,16 +128,21 @@ html( lang='ru' )
 											option 11
 									div( class="form-group" )
 										button( type="submit" class="btn btn-primary btn-block btn-md" id="submit-1" ) Далее
-							div( id="form-3" class="hide-form animated" )
+							div( id="form-3" class="hide-form animated text-center" )
 								div( class="confirm-info" )
-									h5 Для того, что бы подтвердить регистрацию перейдите по ссылке, отправленной Вам на почту#[br]#[small (#[span( id="user-email" ) user@gmail.com]) &nbsp; #[a( href="#" ) Отправить еще раз]]
-									h5 Однако, Вы можете пропустить этот шаг и сделать это позже.
+									img( src="/images/mail-confirm-req.png" )
+									h4 Мы выслали Вам на почту письмо с подтверждением Вашего E-mail 
+									hr
+									p Для подтверждения почты просто перейдите по ссылке в письме. 
 								button( type="submit" class="btn btn-primary btn-block btn-md" id="submit-3" ) Далее
-							div( id="form-4" class="hide-form animated" )
-								div( class="alert alert-success" )
-									h4 Поздравляем с успешной регистрацией на портале MathLab.kz!
-									h5 Для начала работы Вы можете перейти в #[a( href="/" class="alert-link" id="cabinet-link" ) личный кабинет] или сразу #[a( href="/request" class="alert-link" ) подать заявку] на обучение.
-							div( class="loader" )
+							div( id="form-4" class="hide-form animated text-center" )
+								img( src="/images/success.png" )
+								h4 Вы успешно зарегистрировались на портале MathLab.kz! 
+								hr
+								ul( class="list-inline text-center" )
+									li: a( href="/cabinet" class="btn btn-default btn-block" ) Личный кабинет
+									li: a( href="/request" class="btn btn-default btn-block" ) Заявка на обучение
+							div( class="loader-reg" )
 											
 											
 		// FOOTER

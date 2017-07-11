@@ -206,7 +206,7 @@ module.exports = function(app){
 	});
 
 	app.get('/change-password', function(req, res){
-		User.findOne({ emailConfirmCode: req.query.code }, 'changePasswordDuration', function(err, data){
+		User.findOne({ changePasswordCode: req.query.code }, 'changePasswordDuration', function(err, data){
 			if (err) {
 				errorHandler(err, req, res, 500, "Internal server error, try later");
 				return;
