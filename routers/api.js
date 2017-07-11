@@ -238,6 +238,63 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/api/recoverPassword', function(req, res){
+		async.waterfall([
+			function(callback){
+				var code = require('md5')(Date.now());
+				User.findOne({ email: req.body.email }, 'lastEmailDate', function(err, data){
+					if (err) {
+						callback(err);
+						return;
+					}
+					if (!data) {
+						callback('dataError');
+						return;
+					}
+					console.log(data);
+					if (data.lastEmailDate && moment(Date.now()).format() < moment(data.lastEmailDate).add(15, 'm').format()) {
+						callback('timeError');
+						return;
+					}
+					User.update(
+						{ email: req.body.email },
+						{ $set: {changePasswordCode: code, changePasswordDuration: Date.now() + 24 * 60 * 60 * 1000, lastEmailDate: Date.now() } },
+						function(err){
+							if (err) {
+								callback(err);
+								return;
+							}
+							var send = require('gmail-send')({
+							  user: 'humbledevelopers@gmail.com',
+							  pass: '87051605199dD',
+							  to:   'humbledevelopers@gmail.com',
+							  subject: 'test subject',
+							  html:    "<a href='http://mysite.com/change-password?code=" + code + "'>Восстановление пароля</a>"
+							});
+							send({}, function(err, res){
+								if (err) {
+						  		callback(err);
+						  		return;
+						  	}
+						  	callback(null);
+							});
+						});
+				});
+			}
+			], 
+			function(err){
+				if (err){
+					if (err == 'timeError') errorHandler(err, req, res, 400, "Time is not over");
+					else if (err == 'dataError') errorHandler(err, req, res, 400, "Email is not valid");
+					else errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				res
+					.status(200)
+					.send('success');
+		});
+	});
+
 	app.put('/api/bid', function(req, res){
 		var newBid = Bid({
 	    student: req.user.fullname,

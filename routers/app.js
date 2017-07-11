@@ -195,7 +195,7 @@ module.exports = function(app){
 			.render('./prices');
 	});
 
-	app.get('/forgotten-password', function(req, res){
+	app.get('/recover', function(req, res){
 		if (req.user) {
 			res.redirect('/cabinet');
 			return;
@@ -206,13 +206,21 @@ module.exports = function(app){
 	});
 
 	app.get('/change-password', function(req, res){
-		if (req.user) {
-			res.redirect('/cabinet');
-			return;
-		}
-		res
-			.status(200)
-			.render('./change-password');
+		User.findOne({ emailConfirmCode: req.query.code }, 'changePasswordDuration', function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			if (!data || moment(Date.now()).format() > moment(data.changePasswordDuration).format()){
+				res
+					.status(200)
+					.render('./change-password', { valid: false });
+				return;
+			}
+			res
+				.status(200)
+				.render('./change-password', { valid: true });
+		});
 	});
 
 	app.get('/email-confirm', function(req, res){
