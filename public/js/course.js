@@ -67,8 +67,26 @@ $(document).ready(function() {
       $(".panel-body").height(windowHeight * 0.7);
     }
   });
-  
+
 });
+
+$(window).on('resize load', function() {
+  waypoint();
+})
+
+function waypoint() {
+  var waypoint = new Waypoint({
+    element: $('.message')[0],
+    handler: function(direction) {
+      if (direction === "up")
+        // Ajax request here, please :)
+    },
+    context: $('.nano-content')[0],
+    offset: -180
+  })
+}
+
+
 
 function sendMessage() {
   var formData = new FormData(),

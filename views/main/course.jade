@@ -23,7 +23,8 @@ html( lang='ru' )
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/socket.io/socket.io.js" )
-		script( src="/js/jscroll.js" )
+		script( src="/js/waypoints.min.js" )
+		script( src="/js/infinite.min.js" )
 		<!--[if IE]>
 		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
 		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
@@ -77,7 +78,6 @@ html( lang='ru' )
 													span( id="ci-time" ) #{courseInfo.time}
 						div( class="panel-body nano" style="height: 600px;" )
 							div( class="nano-content" )
-								span( id="anchor" )
 								div( class="messages" )
 									if (messages.length)
 										include ./includes/messages
