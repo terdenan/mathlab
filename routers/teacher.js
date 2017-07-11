@@ -119,6 +119,16 @@ module.exports = function(teacher){
 			.render('./settings', req.user);
 	});
 
+	teacher.get('/recover', function(req, res){
+		if (req.user) {
+			res.redirect('/cabinet');
+			return;
+		}
+		res
+			.status(200)
+			.render('./forgotten-password');
+	});
+
 	teacher.get('/', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');
@@ -139,6 +149,24 @@ module.exports = function(teacher){
 					.status(200)
 					.render('./cabinet', user);
 			});
+	});
+
+	teacher.get('/change-password', function(req, res){
+		User.findOne({ changePasswordCode: req.query.code }, 'changePasswordDuration', function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			if (!data || moment(Date.now()).format() > moment(data.changePasswordDuration).format()){
+				res
+					.status(200)
+					.render('./change-password', { valid: false });
+				return;
+			}
+			res
+				.status(200)
+				.render('./change-password', { valid: true });
+		});
 	});
 
 	teacher.get('/course/:id', function(req, res){
@@ -198,6 +226,32 @@ module.exports = function(teacher){
 				return;
 			}
 		  res.redirect('/sign-in');
+		});
+	});
+
+	teacher.post('/api/getMessages', function(req, res){
+		Course.findOne({ _id: ObjectId(req.body.courseId) }, function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+	  		return;
+			}
+			var responseBody = req.user;
+			responseBody.courseInfo = data;
+			Message
+				.find({ $and: [ { _course_id: ObjectId(req.body.courseId) }, { _id: { $lt: ObjectId(req.body.lastId) } } ] })
+				.sort({ date: -1 })
+				.limit(15)
+				.exec(function(err, data){
+					if (err) {
+						errorHandler(err, req, res, 500, "Internal server error, try later");
+		  			return;
+					}
+					responseBody.messages = data.reverse();
+					var htmlBody = jade.renderFile('./views/teacher/includes/messages.jade', responseBody);
+					res
+						.status(200)
+						.send(htmlBody);
+				});
 		});
 	});
 
@@ -315,6 +369,81 @@ module.exports = function(teacher){
 	      });
 	    }
 	  });
+	});
+
+	teacher.put('/api/recoverPassword', function(req, res){
+		bcrypt.hash(req.body.newPassword, 10).then(function(hash) {
+     	User.update(
+				{ changePasswordCode: req.body.code }, 
+	    	{ $set: {password: hash, changePasswordDuration: Date.now() } }, 
+	    	function(err){
+	      	if (err) {
+	      		errorHandler(err, req, res, 500, "Internal server error, try later");
+						return;
+	      	}
+	      	res
+	      		.status(200)
+	      		.send("success");
+	      }
+	    );
+    });
+	});
+
+	teacher.post('/api/recoverPassword', function(req, res){
+		async.waterfall([
+			function(callback){
+				var code = require('md5')(Date.now());
+				User.findOne({ email: req.body.email }, 'lastEmailDate', function(err, data){
+					if (err) {
+						callback(err);
+						return;
+					}
+					if (!data) {
+						callback('dataError');
+						return;
+					}
+					if (data.lastEmailDate && moment(Date.now()).format() < moment(data.lastEmailDate).add(15, 'm').format()) {
+						callback('timeError');
+						return;
+					}
+					User.update(
+						{ email: req.body.email },
+						{ $set: {changePasswordCode: code, changePasswordDuration: Date.now() + 24 * 60 * 60 * 1000, lastEmailDate: Date.now() } },
+						function(err){
+							if (err) {
+								callback(err);
+								return;
+							}
+							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', { code: code });
+							var send = require('gmail-send')({
+							  user: 'humbledevelopers@gmail.com',
+							  pass: '87051605199dD',
+							  to:   'humbledevelopers@gmail.com',
+							  subject: 'Смена забытого пароля',
+							  html:    emailBody
+							});
+							send({}, function(err, res){
+								if (err) {
+						  		callback(err);
+						  		return;
+						  	}
+						  	callback(null);
+							});
+						});
+				});
+			}
+			], 
+			function(err){
+				if (err){
+					if (err == 'timeError') errorHandler(err, req, res, 403, "Time is not over");
+					else if (err == 'dataError') errorHandler(err, req, res, 400, "Email is not valid");
+					else errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				res
+					.status(200)
+					.send('success');
+		});
 	});
 
 	teacher.get('*', function(req, res){

@@ -78,8 +78,21 @@ function waypoint() {
   var waypoint = new Waypoint({
     element: $('.message')[0],
     handler: function(direction) {
-      if (direction === "up")
+      if (direction === "up") {
         // Ajax request here, please :)
+        // Yes, sir
+        $.ajax({
+          url: '/api/getMessages',
+          type: 'post',
+          data: { courseId: courseId, lastId: $(".message").first().attr('id') },
+          error: function(response){
+
+          },
+          success: function(response){
+            $('.messages').prepend(response);
+          }
+        });
+      }
     },
     context: $('.nano-content')[0],
     offset: -180

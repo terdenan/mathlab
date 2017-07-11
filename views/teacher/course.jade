@@ -23,7 +23,8 @@ html( lang='ru' )
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/socket.io/socket.io.js" )
-		script( src="/js/jscroll.js" )
+		script( src="/js/waypoints.min.js" )
+		script( src="/js/infinite.min.js" )
 		<!--[if IE]>
 		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
 		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
@@ -41,7 +42,7 @@ html( lang='ru' )
 						div( class="panel-heading" )
 							div( class="row" )
 								div( class="col-sm-6 dialog-info" id="panel-heading-img" )
-									img( src="/#{courseInfo.studentAvatarUrl}" class="img-circle" )
+									img( src="#{courseInfo.studentAvatarUrl}" class="img-circle" )
 									span #{courseInfo.student}
 								div( class="col-sm-6 text-right" )
 									span( id="panel-heading-subject" ) #{courseInfo.subject}

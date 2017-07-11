@@ -18,6 +18,14 @@ $(document).ready(function(){
                    );
                    $("#submit-recover").html("Отправить").removeClass("disable-point-events"); 
                 }
+                else if (response.status == 403) {
+                    $("#send-feedback .form").append(
+                        "<div class='alert alert-danger text-center'>" +
+                            "E-mail можно отправлять не чаще, чем раз в 15 минут." +
+                        "</div>"
+                   );
+                   $("#submit-recover").html("Отправить").removeClass("disable-point-events"); 
+                }
         	},
         	success: function(response){
                 if (response == 'success') {
