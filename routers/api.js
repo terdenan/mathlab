@@ -192,7 +192,7 @@ module.exports = function(app) {
 		async.waterfall([
 			function(callback){
 				var code = require('md5')(Date.now());
-				User.findOne({ _id: ObjectId(req.user._id) }, 'lastEmailDate', function(err, data){
+				User.findOne({ _id: ObjectId(req.user._id) }, 'lastEmailDate email fullname', function(err, data){
 					if (err) {
 						callback(err);
 						return;
@@ -262,7 +262,7 @@ module.exports = function(app) {
 		async.waterfall([
 			function(callback){
 				var code = require('md5')(Date.now());
-				User.findOne({ email: req.body.email }, 'lastEmailDate email fullname', function(err, data){
+				User.findOne({ email: req.body.email }, 'lastEmailDate', function(err, data){
 					if (err) {
 						callback(err);
 						return;
