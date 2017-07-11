@@ -36,7 +36,7 @@ $(document).ready(function() {
             "<strong>Отлично!</strong> Ваша заявка отправлена и находится на рассмотрении.</a>" +
           "</div>");
           $("#req-submit").html("Отправить").removeClass("disable-point-events");
-          $("input[type=chekbox]").attr('checked', false);
+          $("input[type=checkbox]").prop('checked', false);
           $("label").removeClass("active", "focus");
         }
       }

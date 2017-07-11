@@ -515,26 +515,54 @@
             <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-165" x="0" y="0" width="491" height="360" rx="4"></rect>
-        <mask id="mask-166" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="491" height="360" fill="white">
-            <use xlink:href="#path-165"></use>
+        <rect id="path-165" x="0" y="0" width="752" height="484"></rect>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-167">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0518568841 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-168" x="0" y="0" width="491" height="360" rx="4"></rect>
+        <mask id="mask-169" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="491" height="360" fill="white">
+            <use xlink:href="#path-168"></use>
         </mask>
-        <rect id="path-167" x="0" y="0" width="92" height="71" rx="4"></rect>
-        <mask id="mask-168" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
-            <use xlink:href="#path-167"></use>
+        <rect id="path-170" x="0" y="0" width="92" height="71" rx="4"></rect>
+        <mask id="mask-171" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
+            <use xlink:href="#path-170"></use>
         </mask>
-        <rect id="path-169" x="0" y="0" width="92" height="71" rx="4"></rect>
-        <mask id="mask-170" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
-            <use xlink:href="#path-169"></use>
+        <rect id="path-172" x="0" y="0" width="92" height="71" rx="4"></rect>
+        <mask id="mask-173" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
+            <use xlink:href="#path-172"></use>
         </mask>
-        <rect id="path-171" x="0" y="0" width="92" height="71" rx="4"></rect>
-        <mask id="mask-172" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
-            <use xlink:href="#path-171"></use>
+        <rect id="path-174" x="0" y="0" width="92" height="71" rx="4"></rect>
+        <mask id="mask-175" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="92" height="71" fill="white">
+            <use xlink:href="#path-174"></use>
         </mask>
-        <rect id="path-173" x="0" y="0" width="199" height="360" rx="4"></rect>
-        <mask id="mask-174" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="199" height="360" fill="white">
-            <use xlink:href="#path-173"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-176">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0518568841 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-177" x="0" y="0" width="199" height="360" rx="4"></rect>
+        <mask id="mask-178" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="199" height="360" fill="white">
+            <use xlink:href="#path-177"></use>
         </mask>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-179">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0518568841 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="White" transform="translate(-111.000000, -79.000000)">
@@ -865,41 +893,56 @@
                         </g>
                     </g>
                 </g>
-                <rect id="Screen-(Use-as-mask)" fill="#E9EEF8" x="155" y="41" width="752" height="484"></rect>
-                <g id="Group-3" transform="translate(397.000000, 99.000000)">
-                    <use id="Rectangle-5" stroke="#F3F5FA" mask="url(#mask-166)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-165"></use>
-                    <g id="Group-2" transform="translate(40.000000, 45.000000)">
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-168)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-167"></use>
+                <g id="Group-6" transform="translate(155.000000, 41.000000)">
+                    <mask id="mask-166" fill="white">
+                        <use xlink:href="#path-165"></use>
+                    </mask>
+                    <use id="Mask" fill="#F1F4FB" xlink:href="#path-165"></use>
+                    <g mask="url(#mask-166)">
+                        <g id="Group-3" filter="url(#filter-167)" transform="translate(242.000000, 66.000000)">
+                            <use id="Rectangle-5" stroke="#F3F5FA" mask="url(#mask-169)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-168"></use>
+                            <g id="Group-2" transform="translate(40.000000, 45.000000)">
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
+                                <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-171)" stroke-width="2" fill="#6BF7D7" xlink:href="#path-170"></use>
+                            </g>
+                            <g id="Group-2-Copy" transform="translate(40.000000, 141.000000)">
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
+                                <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-173)" stroke-width="2" fill="#73B4FF" xlink:href="#path-172"></use>
+                            </g>
+                            <g id="Group-2-Copy-2" transform="translate(40.000000, 237.000000)">
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
+                                <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
+                                <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-175)" stroke-width="2" fill="#E691F7" xlink:href="#path-174"></use>
+                            </g>
+                        </g>
+                        <g id="Group" filter="url(#filter-176)" transform="translate(20.000000, 66.000000)">
+                            <use id="Rectangle" stroke="#EBEFF7" mask="url(#mask-178)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-177"></use>
+                            <rect id="Rectangle-3" fill="#88D25F" x="16" y="299" width="163" height="24" rx="3"></rect>
+                            <path d="M0.5,172.5 L198.5,172.5" id="Line" stroke="#EBEFF7" stroke-linecap="square"></path>
+                            <rect id="Rectangle-2" fill="#D8D8D8" x="30" y="127" width="140" height="5" rx="2.5"></rect>
+                            <rect id="Rectangle-2" fill="#F3F3F3" x="50" y="143" width="100" height="5" rx="2.5"></rect>
+                            <rect id="Rectangle-2" fill="#F3F3F3" x="22" y="202" width="100" height="3" rx="1.5"></rect>
+                            <rect id="Rectangle-2-Copy-2" fill="#F3F3F3" x="72" y="244" width="100" height="3" rx="1.5"></rect>
+                            <rect id="Rectangle-2" fill="#F3F3F3" x="22" y="215" width="100" height="3" rx="1.5"></rect>
+                            <rect id="Rectangle-2-Copy-3" fill="#F3F3F3" x="72" y="257" width="100" height="3" rx="1.5"></rect>
+                            <rect id="Rectangle-2-Copy" fill="#F3F3F3" x="22" y="228" width="100" height="3" rx="1.5"></rect>
+                            <rect id="Rectangle-2-Copy-4" fill="#F3F3F3" x="72" y="270" width="100" height="3" rx="1.5"></rect>
+                            <circle id="Oval" fill="#F2F2F2" cx="100" cy="67" r="40"></circle>
+                        </g>
+                        <g id="Group-5" filter="url(#filter-179)">
+                            <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="752" height="30"></rect>
+                            <g id="Group-7" opacity="0.403023098" transform="translate(10.000000, 10.000000)">
+                                <circle id="Oval-2" fill="#FF4545" cx="2.5" cy="2.5" r="2.5"></circle>
+                                <circle id="Oval-2-Copy" fill="#FFBE00" cx="12.5" cy="2.5" r="2.5"></circle>
+                                <circle id="Oval-2-Copy-2" fill="#00D343" cx="22.5" cy="2.5" r="2.5"></circle>
+                            </g>
+                        </g>
                     </g>
-                    <g id="Group-2-Copy" transform="translate(40.000000, 141.000000)">
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-170)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-169"></use>
-                    </g>
-                    <g id="Group-2-Copy-2" transform="translate(40.000000, 237.000000)">
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="8" width="251" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#D8D8D8" x="116" y="27" width="200" height="4" rx="2"></rect>
-                        <rect id="Rectangle-2" fill="#F2F2F2" x="116" y="45" width="160" height="4" rx="2"></rect>
-                        <use id="Rectangle-6" stroke="#EBEEF4" mask="url(#mask-172)" stroke-width="2" fill="#F2F2F2" xlink:href="#path-171"></use>
-                    </g>
-                </g>
-                <g id="Group" transform="translate(175.000000, 99.000000)">
-                    <use id="Rectangle" stroke="#EBEFF7" mask="url(#mask-174)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-173"></use>
-                    <rect id="Rectangle-3" fill="#F2F2F2" x="16" y="299" width="163" height="24" rx="3"></rect>
-                    <path d="M0.5,172.5 L198.5,172.5" id="Line" stroke="#EBEFF7" stroke-linecap="square"></path>
-                    <rect id="Rectangle-2" fill="#D8D8D8" x="30" y="127" width="140" height="5" rx="2.5"></rect>
-                    <rect id="Rectangle-2" fill="#F3F3F3" x="50" y="143" width="100" height="5" rx="2.5"></rect>
-                    <rect id="Rectangle-2" fill="#F3F3F3" x="22" y="202" width="100" height="3" rx="1.5"></rect>
-                    <rect id="Rectangle-2-Copy-2" fill="#F3F3F3" x="72" y="244" width="100" height="3" rx="1.5"></rect>
-                    <rect id="Rectangle-2" fill="#F3F3F3" x="22" y="215" width="100" height="3" rx="1.5"></rect>
-                    <rect id="Rectangle-2-Copy-3" fill="#F3F3F3" x="72" y="257" width="100" height="3" rx="1.5"></rect>
-                    <rect id="Rectangle-2-Copy" fill="#F3F3F3" x="22" y="228" width="100" height="3" rx="1.5"></rect>
-                    <rect id="Rectangle-2-Copy-4" fill="#F3F3F3" x="72" y="270" width="100" height="3" rx="1.5"></rect>
-                    <circle id="Oval" fill="#F2F2F2" cx="100" cy="67" r="40"></circle>
                 </g>
             </g>
         </g>

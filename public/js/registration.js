@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".loader").hide();
+  $(".loader-reg").hide();
   $("#submit-1").on("click", function(){
     if (!($("#submit-1").hasClass('disabled'))) {
       var reqBody = new Object();
@@ -24,12 +24,12 @@ $(document).ready(function() {
         success: function(response){
           realHeight();
           $("#form-1").hide();
-          $(".loader").show();
+          $(".loader-reg").show();
           $(".error-alerts").html("");
           $("#cabinet-link").attr("href", "/cabinet");
           $("#user-email").html(response.email);
           setTimeout(function() {
-            $(".loader").hide();
+            $(".loader-reg").hide();
             $("#form-3").show();
             $("#page-1").addClass("disabled-page");
             $("#page-3").removeClass("disabled-page");
@@ -44,9 +44,9 @@ $(document).ready(function() {
   $("#submit-2").on("click", function(){
     $(".forms").css({height: "200px"});
     $("#form-2").hide();
-    $(".loader").show();
+    $(".loader-reg").show();
     setTimeout(function() {
-      $(".loader").hide();
+      $(".loader-reg").hide();
       $("#form-3").show();
       $("#page-2").addClass("disabled-page");
       $("#page-3").removeClass("disabled-page");
@@ -58,9 +58,9 @@ $(document).ready(function() {
   $("#submit-3").on("click", function(){
     $(".forms").css({height: "200px"});
     $("#form-3").hide();
-    $(".loader").show();
+    $(".loader-reg").show();
     setTimeout(function() {
-      $(".loader").hide();
+      $(".loader-reg").hide();
       $("#form-4").show();
       $("#page-3").addClass("disabled-page");
       $("#page-4").removeClass("disabled-page");
