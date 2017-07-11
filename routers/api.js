@@ -130,6 +130,32 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/api/getMessages', function(req, res){
+		Course.findOne({ _id: ObjectId(req.body.courseId) }, function(err, data){
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+	  		return;
+			}
+			var responseBody = req.user;
+			responseBody.courseInfo = data;
+			Message
+				.find({ $and: [ { _course_id: ObjectId(req.body.courseId) }, { _id: { $lt: ObjectId(req.body.lastId) } } ] })
+				.sort({ date: -1 })
+				.limit(15)
+				.exec(function(err, data){
+					if (err) {
+						errorHandler(err, req, res, 500, "Internal server error, try later");
+		  			return;
+					}
+					responseBody.messages = data.reverse();
+					var htmlBody = jade.renderFile('./views/main/includes/messages.jade', responseBody);
+					res
+						.status(200)
+						.send(htmlBody);
+				});
+		});
+	});
+
 	app.post('/api/sendMessage', upload.array('file', 5), function(req, res){
 		var newMessage = Message({
 	    _course_id: ObjectId(req.body.courseId),
@@ -304,7 +330,7 @@ module.exports = function(app) {
 			], 
 			function(err){
 				if (err){
-					if (err == 'timeError') errorHandler(err, req, res, 400, "Time is not over");
+					if (err == 'timeError') errorHandler(err, req, res, 403, "Time is not over");
 					else if (err == 'dataError') errorHandler(err, req, res, 400, "Email is not valid");
 					else errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
@@ -318,7 +344,7 @@ module.exports = function(app) {
 	app.post('/api/changeAvatar', upload.single('file'), function(req, res){
 		User.update(
 			{ _id: ObjectId(req.user._id) }, 
-    	{ $set: { avatarUrl: "uploads/" + req.file.filename } }, 
+    	{ $set: { avatarUrl: "/uploads/" + req.file.filename } }, 
     	function(err){
       	if (err) {
       		errorHandler(err, req, res, 500, "Internal server error, try later");
