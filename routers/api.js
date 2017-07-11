@@ -88,6 +88,23 @@ module.exports = function(app) {
 	  });
 	});
 
+	app.post('/api/recoverPassword', function(req, res){
+		/*bcrypt.hash(req.body.newPassword, 10).then(function(hash) {
+      User.update(
+      	{ _id: ObjectId(req.user._id) },
+        { $set: { password: hash } }, 
+        function(err){
+          if (err) {
+	      		errorHandler(err, req, res, 500, "Internal server error, try later");
+						return;
+	      	}
+          res
+          	.status(200)
+          	.send("success");
+        });
+    });*/
+	});
+
 	app.put('/api/user', function(req, res){
 		User.findOne({ email: req.body.email }, function(err, data){
 			if (err) {
