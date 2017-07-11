@@ -5,7 +5,8 @@ $(document).ready(function() {
 
   var socket = io();
   var pathname = window.location.pathname;
-
+  var loader = "<img src='/images/loader.svg' class='loader'>",
+      loaderWhite = "<img src='/images/loader-white.svg' class='loader'>";
   
   $("#req-submit").on("click", function(){
     var prefDays = "";

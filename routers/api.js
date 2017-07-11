@@ -208,12 +208,13 @@ module.exports = function(app) {
 								callback(err);
 								return;
 							}
+							var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', {code: code});
 							var send = require('gmail-send')({
 							  user: 'humbledevelopers@gmail.com',
 							  pass: '87051605199dD',
 							  to:   'humbledevelopers@gmail.com',
-							  subject: 'test subject',
-							  html:    "<a href='http://mysite.com/email-confirm?code=" + code + "'>Страница подтверждения</a>"
+							  subject: 'Подтверждение адреса электронной почты',
+							  html:   emailBody
 							});
 							send({}, function(err, res){
 								if (err) {
@@ -229,6 +230,81 @@ module.exports = function(app) {
 			function(err){
 				if (err){
 					if (err == 'timeError') errorHandler(err, req, res, 400, "Time is not over");
+					else errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				res
+					.status(200)
+					.send('success');
+		});
+	});
+
+	app.put('/api/recoverPassword', function(req, res){
+		bcrypt.hash(req.body.newPassword, 10).then(function(hash) {
+     	User.update(
+				{ changePasswordCode: req.body.code }, 
+	    	{ $set: {password: hash, changePasswordDuration: Date.now() } }, 
+	    	function(err){
+	      	if (err) {
+	      		errorHandler(err, req, res, 500, "Internal server error, try later");
+						return;
+	      	}
+	      	res
+	      		.status(200)
+	      		.send("success");
+	      }
+	    );
+    });
+	});
+
+	app.post('/api/recoverPassword', function(req, res){
+		async.waterfall([
+			function(callback){
+				var code = require('md5')(Date.now());
+				User.findOne({ email: req.body.email }, 'lastEmailDate email fullname', function(err, data){
+					if (err) {
+						callback(err);
+						return;
+					}
+					if (!data) {
+						callback('dataError');
+						return;
+					}
+					if (data.lastEmailDate && moment(Date.now()).format() < moment(data.lastEmailDate).add(15, 'm').format()) {
+						callback('timeError');
+						return;
+					}
+					User.update(
+						{ email: req.body.email },
+						{ $set: {changePasswordCode: code, changePasswordDuration: Date.now() + 24 * 60 * 60 * 1000, lastEmailDate: Date.now() } },
+						function(err){
+							if (err) {
+								callback(err);
+								return;
+							}
+							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', {code: code, email: data.email, fullname: data.fullname});
+							var send = require('gmail-send')({
+							  user: 'humbledevelopers@gmail.com',
+							  pass: '87051605199dD',
+							  to:   'humbledevelopers@gmail.com',
+							  subject: 'Смена забытого пароля',
+							  html:    emailBody
+							});
+							send({}, function(err, res){
+								if (err) {
+						  		callback(err);
+						  		return;
+						  	}
+						  	callback(null);
+							});
+						});
+				});
+			}
+			], 
+			function(err){
+				if (err){
+					if (err == 'timeError') errorHandler(err, req, res, 400, "Time is not over");
+					else if (err == 'dataError') errorHandler(err, req, res, 400, "Email is not valid");
 					else errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
 				}
