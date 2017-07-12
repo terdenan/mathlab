@@ -878,6 +878,20 @@ hr {
   height: 20px;
 }
 
+.dialog-info {
+  display: flex;
+  align-items: center;
+}
+
+.course-info {
+  line-height: 30px;
+}
+
+.dialog-info .center-cropped {
+  margin: 0;
+  margin-right: 10px
+}
+
 .panel {
   border-color: #ebeff7;
 }
@@ -885,6 +899,7 @@ hr {
 .panel-heading {
   background-color: #fff !important;
   border-color: #ebeff7 !important;
+  padding: 5px 15px;
 }
 
 .panel-footer {

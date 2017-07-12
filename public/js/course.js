@@ -150,7 +150,7 @@ function sendMessage() {
           scroll: 'bottom' 
         });
         $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
-        $("#empty-dialog").hide();
+        $(".empty-dialog").remove();
         socket.emit('sendMessage', {courseId: courseId, message: response} );
       }
     });
