@@ -24,7 +24,6 @@ html( lang='ru' )
 		script( src="/js/jquery.min.js" )
 		script( src="/socket.io/socket.io.js" )
 		script( src="/js/waypoints.min.js" )
-		script( src="/js/infinite.min.js" )
 		<!--[if IE]>
 		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
 		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
@@ -42,9 +41,9 @@ html( lang='ru' )
 			div( class="row" )
 				div( class="col-md-10 col-md-offset-1" )
 					div( class="panel panel-default" )
-						div( class="panel-heading" )
+						div( class="panel-heading relative" )
 							div( class="row" )
-								div( class="col-sm-6 dialog-info" id="panel-heading-img" )
+								div( class="col-sm-6 dialog-info")
 									img( src="#{courseInfo.teacherAvatarUrl}" class="img-circle" )
 									span #{courseInfo.teacher}
 								div( class="col-sm-6 text-right" )
@@ -82,7 +81,7 @@ html( lang='ru' )
 									if (messages.length)
 										include ./includes/messages
 									else 
-										div( id="empty-dialog" class="empty-dialog" )
+										div( class="empty-dialog text-center" )
 											h5 Здесь будет выводиться история сообщений
 						div( class="panel-footer" )
 							div( class="row" )

@@ -1,9 +1,5 @@
 -var id = _id
-div( class="messages-loader" )
-	div( id="loader-md" )
-		div( id="loader-md_1" class="loader-md" )
-		div( id="loader-md_2" class="loader-md" )
-		div( id="loader-md_3" class="loader-md" )
+
 for item in messages
 	-var unread
 	if item.read_state 
@@ -14,7 +10,7 @@ for item in messages
 	div( class="message #{unread}" id="#{item._id}" )
 		div( class="message-img" )
 			if (_id.toString() == (item._sender_id).toString()) 
-				div( class="center-cropped img-40" style="background-image: url('#{courseInfo.studentAvatarUrl}');" )
+				div( class="center-cropped img-40" style="background-image: url('/#{courseInfo.studentAvatarUrl}');" )
 			else
 				div( class="center-cropped img-40" style="background-image: url('#{courseInfo.teacherAvatarUrl}');" )
 		div( class="message-body" )

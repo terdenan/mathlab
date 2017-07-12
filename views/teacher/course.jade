@@ -39,10 +39,10 @@ html( lang='ru' )
 			div( class="row" )
 				div( class="col-md-10 col-md-offset-1" )
 					div( class="panel panel-default" )
-						div( class="panel-heading" )
+						div( class="panel-heading relative" )
 							div( class="row" )
 								div( class="col-sm-6 dialog-info" id="panel-heading-img" )
-									img( src="#{courseInfo.studentAvatarUrl}" class="img-circle" )
+									img( src="/#{courseInfo.studentAvatarUrl}" class="img-circle" )
 									span #{courseInfo.student}
 								div( class="col-sm-6 text-right" )
 									span( id="panel-heading-subject" ) #{courseInfo.subject}
@@ -75,7 +75,6 @@ html( lang='ru' )
 													span( id="ci-time" ) #{courseInfo.time}
 						div( class="panel-body nano" style="height: 600px;" )
 							div( class="nano-content" )
-								span( id="anchor" )
 								div( class="messages" )
 									if (messages.length)
 										include ./includes/messages
