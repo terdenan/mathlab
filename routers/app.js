@@ -14,6 +14,7 @@ const http = require('http'),
 			bcrypt = require('bcrypt'),
 			multer = require('multer'),
 			moment = require('moment'),
+			helmet = require('helmet'),
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
@@ -113,7 +114,7 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(app){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err) console.log(err);
+		if (err && err != "timeError" && err != "dataError") console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -125,6 +126,7 @@ module.exports = function(app){
 	app.set('views', path.join(__dirname, '../views/main'));
 	app.use(express.static('public'));
 	app.use(compression());
+	app.use(helmet());
 
 	app.use(cookieParser());
 	app.use(bodyParser.urlencoded({ extended: true }));

@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 var messageSchema = new Schema({
 	_course_id: Schema.Types.ObjectId,
 	_sender_id: Schema.Types.ObjectId,
-	sender: String,
 	message: String,
 	attachment: [ {
 		originalName: String,

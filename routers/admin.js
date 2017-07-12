@@ -4,6 +4,7 @@ const http = require('http'),
 			passport = require('passport'),
 
 			bcrypt = require('bcrypt'),
+			helmet = require('helmet'),
 
 			cookieParser = require('cookie-parser'),
 			bodyParser = require('body-parser'),
@@ -52,7 +53,7 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(admin){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err) console.log(err);
+		if (err && err != "timeError" && err != "dataError") console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -63,6 +64,7 @@ module.exports = function(admin){
 	admin.set('views', path.join(__dirname, '../views/admin'));
 	admin.use(express.static('admin'));
 	admin.use(compression());
+	admin.use(helmet());
 
 	admin.use(cookieParser());
 	admin.use(bodyParser.urlencoded({ extended: true }));
@@ -211,7 +213,7 @@ module.exports = function(admin){
           subject: req.body.subject
         });
         newUser.save(function(err){
-          if(err) {
+          if (err) {
           	errorHandler(err, req, res, 500, "Internal server error, try later");
           	return;
           }
@@ -220,6 +222,71 @@ module.exports = function(admin){
           	.send('success');
         }); 
       });
+	  });
+	});
+
+	admin.post('/api/loadStudents', function (req, res){
+	  User.
+	    find({
+	      $and: [ { _id: {$gt: mongoose.Types.ObjectId(req.body.lastID)} }, { priority: 0 } ]
+	    }).
+	    select('_id email fullname phone sex grade confirmed').
+	    //limit(10).
+	    exec(function(err, data){
+	      if (err) {
+        	errorHandler(err, req, res, 500, "Internal server error, try later");
+        	return;
+        }
+	      res.send(data);
+	    });
+	});
+
+	admin.post('/api/loadTeachers', function (req, res){
+	  User.
+	    find({
+	      $and: [ { _id: {$gt: mongoose.Types.ObjectId(req.body.lastID)} }, { priority: 1 } ]
+	    }).
+	    select('_id email fullname phone sex subject').
+	    //limit(10).
+	    exec(function(err, data){
+	      if (err) {
+        	errorHandler(err, req, res, 500, "Internal server error, try later");
+        	return;
+        }
+	      res.send(data);
+	    });
+	});
+
+	admin.post('/api/loadCourses', function (req, res){
+	  Course.
+	    find({
+	      _id: { $gt: mongoose.Types.ObjectId(req.body.lastID) }
+	    }).
+	    select('_id subject student teacher days time date endingTime').
+	    //limit(10).
+	    exec(function(err, data){
+	      if (err) {
+        	errorHandler(err, req, res, 500, "Internal server error, try later");
+        	return;
+        }
+	      res.send(data);
+	    });
+	});
+
+	admin.post('/api/extendCourse', function (req, res){
+	  Course.findOne({_id: mongoose.Types.ObjectId(req.body.courseId)}, function(err, data){
+	    if (err) {
+      	errorHandler(err, req, res, 500, "Internal server error, try later");
+      	return;
+      }
+	    data.endingDate = moment(data.endingDate).add(1, 'months').toDate();
+	    data.save(function(err){
+	      if (err) {
+        	errorHandler(err, req, res, 500, "Internal server error, try later");
+        	return;
+        }
+	      res.send('Success');
+	    });
 	  });
 	});
 
