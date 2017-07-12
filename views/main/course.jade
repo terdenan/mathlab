@@ -44,9 +44,9 @@ html( lang='ru' )
 						div( class="panel-heading relative" )
 							div( class="row" )
 								div( class="col-sm-6 dialog-info")
-									img( src="#{courseInfo.teacherAvatarUrl}" class="img-circle" )
+									div( class="center-cropped img-30" style="background-image: url('#{courseInfo.teacherAvatarUrl}');" )
 									span #{courseInfo.teacher}
-								div( class="col-sm-6 text-right" )
+								div( class="col-sm-6 text-right course-info" )
 									span( id="panel-heading-subject" ) #{courseInfo.subject}
 									span( class="dropdown" )
 										img( src="/images/ellipsis.svg" class="panel-heading-icon" data-toggle="dropdown" )

@@ -41,10 +41,10 @@ html( lang='ru' )
 					div( class="panel panel-default" )
 						div( class="panel-heading relative" )
 							div( class="row" )
-								div( class="col-sm-6 dialog-info" id="panel-heading-img" )
-									img( src="#{courseInfo.studentAvatarUrl}" class="img-circle" )
+								div( class="col-sm-6 dialog-info" )
+									div( class="center-cropped img-30" style="background-image: url('#{courseInfo.studentAvatarUrl}');" )
 									span #{courseInfo.student}
-								div( class="col-sm-6 text-right" )
+								div( class="col-sm-6 text-right course-info" )
 									span( id="panel-heading-subject" ) #{courseInfo.subject}
 									span( class="dropdown" )
 										img( src="/images/ellipsis.svg" class="panel-heading-icon" data-toggle="dropdown" )
