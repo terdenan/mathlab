@@ -15,6 +15,10 @@ footer {
   background: #f5f7fb;
 }
 
+input[type=text], input[type=submit], textarea{
+  -webkit-appearance: none;
+}
+
 .main-content {
     margin-top: 30px;
 }
@@ -175,6 +179,12 @@ hr {
     border-bottom: 2px solid #8c9eae;
 }
 
+.loader-block {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+}
+
 .disabled-page {
     color: #777;
     cursor: no-drop;
@@ -196,7 +206,7 @@ hr {
     position: absolute;
     top: calc(50% - 15px);
     left: calc(50% - 15px);
-    margin: auto;
+    margin: auto !important;
 }
 
 .loader-reg {
@@ -348,6 +358,10 @@ hr {
   position: relative;
 }
 
+.table-responsive {
+  border: none !important;
+}
+
 .placeholder {
   position: absolute;
   top: 10px;
@@ -490,11 +504,11 @@ hr {
   height: 100vh;
   padding-top: 15vh;
   background: rgba(0,183,196,1);
-  background: -moz-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(0,183,196,1)), color-stop(100%, rgba(30,62,144,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: url(../images/world-map.svg), -moz-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: url(../images/world-map.svg), -webkit-gradient(left top, right bottom, color-stop(0%, rgba(0,183,196,1)), color-stop(100%, rgba(30,62,144,1)));
+  background: url(../images/world-map.svg), -webkit-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: url(../images/world-map.svg), -o-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
+  background: url(../images/world-map.svg), -ms-linear-gradient(-45deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
   background: url(../images/world-map.svg), linear-gradient(135deg, rgba(0,183,196,1) 0%, rgba(30,62,144,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7c4', endColorstr='#1e3e90', GradientType=1 );
   color: #fff !important;
@@ -924,7 +938,6 @@ hr {
 }
 
 .empty-dialog {
-  display: none;
   position: absolute;
   top: 40%;
   left: calc(50% - 150px);

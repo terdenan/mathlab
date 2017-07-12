@@ -1,6 +1,7 @@
 var socket = io();
 var courseId = (window.location.pathname).split('/')[2];
 var rows = 1;
+var loaderGrey = "<img src='/images/loader-grey.svg' class='loader'>";
 
 $(document).ready(function() {
 
@@ -85,11 +86,15 @@ function waypoint() {
           url: '/api/getMessages',
           type: 'post',
           data: { courseId: courseId, lastId: $(".message").first().attr('id') },
+          beforeSend: function(){
+            $(".panel-heading").prepend(loaderGrey);
+          },
           error: function(response){
 
           },
           success: function(response){
             $('.messages').prepend(response);
+            $('.loader').remove();
           }
         });
       }
