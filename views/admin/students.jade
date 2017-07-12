@@ -1,0 +1,140 @@
+doctype html
+html( lang='ru' )
+	head
+		mata( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+
+		title Admin Panel - MathLab.kz
+
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+
+		// Bootstrap Core CSS
+		link( href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+
+		// Font Awesome
+		link( href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( href="/css/custom.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="vendors/jquery/dist/jquery.min.js" )
+		script( src="js/viewportchecker.js" )
+		script( src="js/students.js" )
+
+	body( class="nav-md" )
+		div( class="container body" )
+			div( class="main_container" )
+				div( class="col-md-3 left_col" )
+					div( class="left_col scroll-view" )
+						div( class="navbar nav_title" style="border: 0;" )
+							a( href="/" class="site_title" )
+								img( src="images/logo.svg" )
+								span Admin Panel
+						div( class="clearfix" )
+						br
+						include ./includes/sidebar
+
+				include ./includes/navigation
+
+				div( class="right_col" role="main" )
+					div( class="row" )
+						div( class="col-md-12 col-sm-12 col-xs-12" )
+							div( class="x_panel" )
+								div( class="x_title" )
+									h2 Ученики
+									div( class="clearfix" )
+								div( class="x_content" )
+									div( class="table-responsive" )
+										table( class="table table-striped jambo_table" )
+											thead
+												tr( class="headings" )
+													th( class="column-title" ) ФИО
+													th( class="column-title" ) E-mail
+													th( class="column-title" ) Телефон
+													th( class="column-title" ) Класс учебы
+													th( class="column-title" ) Пол
+													th( class="column-title" ) Статус
+											tbody
+										span( id="anchor" )
+									div( class="loading text-center" )
+
+									// Course Adding Modal
+									div( id="courseAddingModal" class="modal fade" role="dialog" )
+										div( class="modal-dialog" )
+											div( class="modal-content" )
+												div( class="modal-header" )
+													button( type="button" class="close" data-dismiss="modal" ) &times;
+													h4( class="modal-title" ) Создание курса
+												div( class="modal-body" )
+													p Для того, что бы создать курс между учителем и учеником выберите соответсвуюещего преподавателя для данного ученика.
+													div( class="container" )
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 ФИО:]
+															div( class="col-md-8" ) #[h4( id="student" )]
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Предмет:]
+															div( class="col-md-8" ) #[h4( id="subject" )]
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Желаемые дни:]
+															div( class="col-md-8" ) #[h4( id="prefDays" )]
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Желаемое время:]
+															div( class="col-md-8" ) #[h4( id="prefTime" )]
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Учитель:]
+															div( class="col-md-8" )
+																div( class="form-group" )
+																	select( class="form-control" id="teacher-list" )
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Дни уроков:]
+															div( class="col-md-8" )
+																div( class="form-group" )
+																	div( class="btn-group btn-group-justified" data-toggle="buttons" )
+																		label( class="btn btn-default focus-none" ) Пн
+																			input( type="checkbox" autocomplete="off" id="monday" )
+																		label( class="btn btn-default focus-none" ) Вт
+																			input( type="checkbox" autocomplete="off" id="tuesday" )
+																		label( class="btn btn-default focus-none" ) Ср
+																			input( type="checkbox" autocomplete="off" id="wednesday" )
+																		label( class="btn btn-default focus-none" ) Чт
+																			input( type="checkbox" autocomplete="off" id="thursday" )
+																		label( class="btn btn-default focus-none" ) Пт
+																			input( type="checkbox" autocomplete="off" id="friday" )
+																		label( class="btn btn-default focus-none" ) Сб
+																			input( type="checkbox" autocomplete="off" id="saturday" )
+																		label( class="btn btn-default focus-none" ) Вс
+																			input( type="checkbox" autocomplete="off" id="sunday" )
+														div( class="row" )
+															div( class="col-md-4 text-right" ) #[h4 Время уроков:]
+															div( class="col-md-8" )
+																div( class="input-group" )
+																	span( class="input-group-addon" )
+																		i( class="glyphicon glyphicon-time" )
+																	input( id="time" type="text" class="form-control" name="time" value="18:00" )
+														div( class="row" )
+															div( class="col-md-4 text-right" )
+																button( type="button" class="btn btn-success" id="create-course" ) Создать курс
+															div( class="col-md-8" ) Перед созданием проверьте правильность введных Вами данных.
+												div( class="modal-footer" )
+													button( type="button" class="btn btn-default" data-dismiss="modal" ) Close
+													
+				footer
+					div( class="pull-right" ) Admin Panel - MathLab.kz
+					div( class="clearfix" )
+
+		
+		// Bootstrap
+		script( src="vendors/bootstrap/dist/js/bootstrap.min.js" )
+		// FastClick
+		script( src="vendors/fastclick/lib/fastclick.js" )
+		// bootstrap-progressbar
+		script( src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		// bootstrap-daterangepicker
+		script( src="vendors/moment/min/moment.min.js" )
+		script( src="vendors/bootstrap-daterangepicker/daterangepicker.js" )
+
+		// Custom Theme Scripts
+		script( src="js/custom.min.js" )
