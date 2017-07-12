@@ -14,8 +14,8 @@ const ObjectId = require('mongodb').ObjectID,
 			Message = require('./db/models/message');
 
 const options = {
-			  cert: fs.readFileSync('./sslcert/fullchain.pem'),
-			  key: fs.readFileSync('./sslcert/privkey.pem')
+			  cert: fs.readFileSync(config.sslcert.cert),
+			  key: fs.readFileSync(config.sslcert.key)
 			};
 
 const httpServer = http.createServer(function(req, res){

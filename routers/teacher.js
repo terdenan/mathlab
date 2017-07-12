@@ -3,6 +3,7 @@ const http = require('http'),
 			compression = require('compression'),
 			passport = require('passport'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
 
 			async = require('async'),
 			bcrypt = require('bcrypt'),
@@ -446,9 +447,9 @@ module.exports = function(teacher){
 							}
 							var emailBody = jade.renderFile('./views/teacher/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   req.body.email,
 							  subject: 'Смена забытого пароля',
 							  html:    emailBody
 							});

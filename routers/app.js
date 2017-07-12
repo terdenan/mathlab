@@ -3,12 +3,13 @@ const http = require('http'),
 			compression = require('compression'),
 			passport = require('passport'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
 
 			VK = require('vksdk'),
 			vk = new VK({
-			  'appId'     : 6088660,
-			  'appSecret' : 'ynzLi2vKo1m66G8qsMk6',
-			  'language'  : 'ru'
+			  'appId'     : config.vk.appId,
+			  'appSecret' : config.vk.appSecret,
+			  'language'  : config.vk.language
 			});
 
 			bcrypt = require('bcrypt'),

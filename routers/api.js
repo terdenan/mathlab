@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient,
 			MongoStore = require('connect-mongo')(session),
 			mongoose = require('mongoose'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
 
 			async = require('async'),
 			jade = require('jade'),
@@ -254,9 +255,9 @@ module.exports = function(app) {
 							}
 							var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', { code: code, email: data.email, fullname: data.fullname });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   data.email,
 							  subject: 'Подтверждение адреса электронной почты',
 							  html:   emailBody
 							});
@@ -328,9 +329,9 @@ module.exports = function(app) {
 							}
 							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   req.body.email,
 							  subject: 'Смена забытого пароля',
 							  html:    emailBody
 							});
