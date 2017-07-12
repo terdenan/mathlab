@@ -113,6 +113,36 @@ module.exports = function(admin){
 			.render('./bids');
 	});
 
+	admin.get('/teachers', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./teachers');
+	});
+
+	admin.get('/students', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./students');
+	});
+
+	admin.get('/courses', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./courses');
+	});
+
 	admin.get('/teacher-form', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');

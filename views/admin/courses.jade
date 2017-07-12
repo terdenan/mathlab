@@ -1,0 +1,112 @@
+doctype html
+html( lang='ru' )
+	head
+		mata( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+
+		title Admin Panel - MathLab.kz
+
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+
+		// Bootstrap Core CSS
+		link( href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+
+		// Font Awesome
+		link( href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( href="/css/custom.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="vendors/jquery/dist/jquery.min.js" )
+		script( src="js/viewportchecker.js" )
+		script( src="js/courses.js" )
+
+	body( class="nav-md" )
+		div( class="container body" )
+			div( class="main_container" )
+				div( class="col-md-3 left_col" )
+					div( class="left_col scroll-view" )
+						div( class="navbar nav_title" style="border: 0;" )
+							a( href="/" class="site_title" )
+								img( src="images/logo.svg" )
+								span Admin Panel
+						div( class="clearfix" )
+						br
+						include ./includes/sidebar
+
+				include ./includes/navigation
+
+				div( class="right_col" role="main" )
+					div( class="row" )
+						div( class="col-md-12 col-sm-12 col-xs-12" )
+							div( class="x_panel" )
+								div( class="x_title" )
+									h2 Курсы
+									div( class="clearfix" )
+								div( class="x_content" )
+									div( class="table-responsive" )
+										table( class="table table-striped jambo_table" )
+											thead
+												tr( class="headings" )
+													th( class="column-title" ) Предмет
+													th( class="column-title" ) Ученик
+													th( class="column-title" ) Учителя
+													th( class="column-title" ) Дни уроков
+													th( class="column-title" ) Время уроков
+													th( class="column-title" ) Начало курса
+													th( class="column-title" ) Окончание курса
+													th( class="column-title" ) Статус 
+											tbody( class="tbody-bids" )
+										span( id="anchor" )
+									div( class="loading text-center" )
+
+									// Course Adding Modal
+									div( id="courseExtendModal" class="modal fade" role="dialog" )
+										div( class="modal-dialog" )
+											div( class="modal-content" )
+												div( class="modal-header" )
+													button( type="button" class="close" data-dismiss="modal" ) &times;
+													h4( class="modal-title" ) Продлевание курса
+												div( class="modal-body" )
+													p Для того, что бы продлить курс, нажмите на кнопку ниже.
+													.container
+														.row
+															.col-md-4.text-right
+																h4 Ученик:
+															.col-md-8
+																h4#student
+														.row
+															.col-md-4.text-right
+																h4 Преподаватель:
+															.col-md-8
+																h4#teacher
+														.row
+															.col-md-4.text-right
+																h4 Предмет:
+															.col-md-8
+																h4#subject
+														.row(style='padding-top: 20px;')
+															.col-md-4.text-right
+																button#extend-course.btn.btn-success(type='button') Продлить курс
+															.col-md-8 Курс будет продлен на один месяц.
+													
+				footer
+					div( class="pull-right" ) Admin Panel - MathLab.kz
+					div( class="clearfix" )
+
+		
+		// Bootstrap
+		script( src="vendors/bootstrap/dist/js/bootstrap.min.js" )
+		// FastClick
+		script( src="vendors/fastclick/lib/fastclick.js" )
+		// bootstrap-progressbar
+		script( src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		// bootstrap-daterangepicker
+		script( src="vendors/moment/min/moment.min.js" )
+		script( src="vendors/bootstrap-daterangepicker/daterangepicker.js" )
+
+		// Custom Theme Scripts
+		script( src="js/custom.min.js" )
