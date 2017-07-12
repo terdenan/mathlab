@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 			
 module.exports = function(app) {
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err) console.log(err);
+		if (err && err != "timeError" && err != "dataError") console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -57,9 +57,27 @@ module.exports = function(app) {
       		errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
       	}
-      	res
-      		.status(200)
-      		.send("success");
+      	if (req.body.fullname){
+      		Course.update(
+	      		{ _student_id: ObjectId(req.user._id) },
+	      		{ $set: { student: req.body.fullname } },
+	      		{ multi: true },
+	      		function(err){
+	      			if (err) {
+			      		errorHandler(err, req, res, 500, "Internal server error, try later");
+								return;
+			      	}
+			      	res
+			      		.status(200)
+			      		.send("success");
+	      		}
+	      	);
+      	}
+      	else {
+      		res
+	      		.status(200)
+	      		.send("success");
+      	}
       }
     );
 	});
@@ -160,7 +178,6 @@ module.exports = function(app) {
 		var newMessage = Message({
 	    _course_id: ObjectId(req.body.courseId),
 	    _sender_id: ObjectId(req.user._id),
-	    sender: req.user.fullname,
 	    message: req.body.message,
 	    read_state: false,
 	    date: Date.now()
@@ -189,7 +206,7 @@ module.exports = function(app) {
 		    	errorHandler(err, req, res, 500, "Internal server error, try later");
 		    	return;
 		    }
-		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'studentAvatarUrl', function(err, data){
+		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'studentAvatarUrl student', function(err, data){
 		    	if (err) {
 		    		errorHandler(err, req, res, 500, "Internal server error, try later");
 		    		return;
@@ -198,7 +215,7 @@ module.exports = function(app) {
 		    		_id: newMessage._id,
 		    		_course_id: newMessage._course_id,
 				    _sender_id: newMessage._sender_id,
-				    sender: newMessage.sender,
+				    sender: data.student,
 				    _user_id: req.user._id,
 				    message: newMessage.message,
 				    read_state: newMessage.read_state,
@@ -350,9 +367,20 @@ module.exports = function(app) {
       		errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
       	}
-      	res
-      		.status(200)
-      		.send("success");
+      	Course.update(
+      		{ _student_id: ObjectId(req.user._id) },
+      		{ $set: { studentAvatarUrl: "/uploads/" + req.file.filename } },
+      		{ multi: true },
+      		function(err){
+      			if (err) {
+		      		errorHandler(err, req, res, 500, "Internal server error, try later");
+							return;
+		      	}
+		      	res
+		      		.status(200)
+		      		.send("success");
+      		}
+      	);
       }
     );
 	});

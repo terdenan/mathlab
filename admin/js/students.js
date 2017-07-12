@@ -16,6 +16,8 @@ function loadStudents(lastID) {
       var students = "";
       pending = false;
       response.forEach(function(student, response){
+        student.sex = (student.sex) ? "Женский" : "Мужской";
+        student.confirmed = (student.confirmed) ? "Подтвержден" : "Не подтвержден";
         students += 
           "<tr id='" + student._id + "'>" +
             "<td>" + student.fullname + "</td>" +

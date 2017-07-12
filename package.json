@@ -25,6 +25,7 @@
     "express-session": "^1.15.3",
     "express-subdomain": "^1.0.5",
     "gmail-send": "^1.2.11",
+    "helmet": "^3.6.1",
     "jade": "^1.11.0",
     "md5": "^2.2.1",
     "moment": "^2.18.1",

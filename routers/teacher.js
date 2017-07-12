@@ -8,6 +8,7 @@ const http = require('http'),
 			bcrypt = require('bcrypt'),
 			multer = require('multer'),
 			jade = require('jade'),
+			helmet = require('helmet'),
 
 			path = require('path'),
 			cookieParser = require('cookie-parser'),
@@ -40,7 +41,7 @@ const storage = multer.diskStorage({
 
 module.exports = function(teacher){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err) console.log(err);
+		if (err && err != "timeError" && err != "dataError") console.log(err);
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -52,6 +53,7 @@ module.exports = function(teacher){
 	teacher.set('views', path.join(__dirname, '../views/teacher'));
 	teacher.use(express.static('public'));
 	teacher.use(compression());
+	teacher.use(helmet());
 
 	teacher.use(cookieParser());
 	teacher.use(bodyParser.urlencoded({ extended: true }));
@@ -259,7 +261,6 @@ module.exports = function(teacher){
 		var newMessage = Message({
 	    _course_id: ObjectId(req.body.courseId),
 	    _sender_id: ObjectId(req.user._id),
-	    sender: req.user.fullname,
 	    message: req.body.message,
 	    read_state: false,
 	    date: Date.now()
@@ -288,7 +289,7 @@ module.exports = function(teacher){
 		    	errorHandler(err, req, res, 500, "Internal server error, try later");
 		    	return;
 		    }
-		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl', function(err, data){
+		    Course.findOne({ _id: ObjectId(req.body.courseId) }, 'teacherAvatarUrl teacher', function(err, data){
 		    	if (err) {
 		    		errorHandler(err, req, res, 500, "Internal server error, try later");
 		    		return;
@@ -297,7 +298,7 @@ module.exports = function(teacher){
 		    		_id: newMessage._id,
 		    		_course_id: newMessage._course_id,
 				    _sender_id: newMessage._sender_id,
-				    sender: newMessage.sender,
+				    sender: data.teacher,
 				    _user_id: req.user._id,
 				    message: newMessage.message,
 				    read_state: newMessage.read_state,
@@ -323,9 +324,27 @@ module.exports = function(teacher){
       		errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
       	}
-      	res
-      		.status(200)
-      		.send("success");
+      	if (req.body.fullname){
+      		Course.update(
+	      		{ _teacher_id: ObjectId(req.user._id) },
+	      		{ $set: { teacher: req.body.fullname } },
+	      		{ multi: true },
+	      		function(err){
+	      			if (err) {
+			      		errorHandler(err, req, res, 500, "Internal server error, try later");
+								return;
+			      	}
+			      	res
+			      		.status(200)
+			      		.send("success");
+	      		}
+	      	);
+      	}
+      	else {
+      		res
+	      		.status(200)
+	      		.send("success");
+      	}
       }
     );
 	});
@@ -339,9 +358,20 @@ module.exports = function(teacher){
       		errorHandler(err, req, res, 500, "Internal server error, try later");
 					return;
       	}
-      	res
-      		.status(200)
-      		.send("success");
+      	Course.update(
+      		{ _teacher_id: ObjectId(req.user._id) },
+      		{ $set: { teacherAvatarUrl: "/uploads/" + req.file.filename } },
+      		{ multi: true },
+      		function(err){
+      			if (err) {
+		      		errorHandler(err, req, res, 500, "Internal server error, try later");
+							return;
+		      	}
+		      	res
+		      		.status(200)
+		      		.send("success");
+      		}
+      	);
       }
     );
 	});
@@ -414,7 +444,7 @@ module.exports = function(teacher){
 								callback(err);
 								return;
 							}
-							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', { code: code });
+							var emailBody = jade.renderFile('./views/teacher/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
 							  user: 'humbledevelopers@gmail.com',
 							  pass: '87051605199dD',
