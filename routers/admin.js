@@ -2,6 +2,7 @@ const http = require('http'),
 			express = require('express'),
 			compression = require('compression'),
 			passport = require('passport'),
+			config = require('config.json')('./config.json'),
 
 			bcrypt = require('bcrypt'),
 			helmet = require('helmet'),
