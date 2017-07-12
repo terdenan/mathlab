@@ -1,6 +1,0 @@
-{
-	"httpPort": 80,
-	"mongodb": {
-		"url": "mongodb://mysite.com:27017/MathLab"
-	}
-}
