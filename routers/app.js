@@ -361,22 +361,14 @@ module.exports = function(app){
 	                                   failureFlash: "fail" })
 	);
 
-  app.get('/auth/vkontakte', 
-  	passport.authenticate('vkontakte', { scope: ['email'] }), function(req, res){
-  	});
+  app.get('/auth/vkontakte', passport.authenticate('vkontakte', { scope: ['email'] }));
 
-  app.get('/auth/vkontakte/callback', function(req, res, next){
-  	passport.authenticate('vkontakte', function(err, user, info){
-			if (err) return next(err);
-			if (!user) return res.redirect('/sign-in');
-
-			req.logIn(user, function(err) {
-	      if (err) return next(err);
-	      return res.redirect('/cabinet');
-	    });
-
-		})(req, res, next);
-  });
+  app.get('/auth/vkontakte/callback',
+	  passport.authenticate('vkontakte', {
+	    successRedirect: '/cabinet',
+	    failureRedirect: '/sign-in' 
+	  })
+	);
 
 	app.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {

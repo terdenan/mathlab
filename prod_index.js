@@ -23,7 +23,7 @@ const httpServer = http.createServer(function(req, res){
 			  res.end();
 			}),
 			httpsServer = https.createServer(options, app),
-			io = require('socket.io')(httpServer);
+			io = require('socket.io')(httpsServer);
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
