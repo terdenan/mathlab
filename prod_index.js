@@ -1,6 +1,6 @@
 const express = require('express'),
       app = express(),
-      http = require('http').createServer(app),
+      http = require('http'),
       https = require('https'),
       fs = require('fs'),
       config = require('config.json')('./config.json'),
@@ -23,7 +23,7 @@ const httpServer = http.createServer(function(req, res){
 			  res.end();
 			}),
 			httpsServer = https.createServer(options, app),
-			io = require('socket.io')(server);
+			io = require('socket.io')(httpServer);
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
