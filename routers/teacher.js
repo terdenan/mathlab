@@ -4,6 +4,7 @@ const http = require('http'),
 			passport = require('passport'),
 			fs = require('fs'),
 			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			async = require('async'),
 			bcrypt = require('bcrypt'),
@@ -52,7 +53,7 @@ module.exports = function(teacher){
 
 	teacher.set('view engine', 'jade');
 	teacher.set('views', path.join(__dirname, '../views/teacher'));
-	teacher.use(express.static('public'));
+	teacher.use(serveStatic('teacher'));
 	teacher.use(compression());
 	teacher.use(helmet());
 
