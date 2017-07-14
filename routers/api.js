@@ -119,6 +119,7 @@ module.exports = function(app) {
 				return;
     	}
     	bcrypt.hash(req.body.password, 10).then(function(hash) {
+    		var code = require('md5')(Date.now());
         var newUser = User({
           _id: new mongoose.Types.ObjectId,
           fullname: req.body.fullname,
@@ -128,7 +129,9 @@ module.exports = function(app) {
           sex: req.body.sex,
           grade: req.body.grade,
           confirmed: false,
-          priority: 0
+          priority: 0,
+          emailConfirmCode: code,
+          emailConfirmDuration: Date.now() + 24 * 60 * 60 * 1000
         });
         newUser.save(function(err){
           if(err) {
@@ -140,6 +143,20 @@ module.exports = function(app) {
 			    		errorHandler(err, req, res, 500, "Internal server error, try later");
 			    		return;
 			    	}
+			    	var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', { code: code, email: req.user.email, fullname: req.user.fullname });
+						var send = require('gmail-send')({
+						  user: config.gmail.login,
+						  pass: config.gmail.password,
+						  to:   req.user.email,
+						  subject: 'Подтверждение адреса электронной почты',
+						  html:   emailBody
+						});
+						send({}, function(err, res){
+							if (err) {
+					  		errorHandler(err, req, res, 500, "Internal server error, try later");
+					  		return;
+					  	}
+						});
             res
             	.status(200)
             	.send({ email: req.user.email });
