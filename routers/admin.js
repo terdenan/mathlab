@@ -3,6 +3,7 @@ const http = require('http'),
 			compression = require('compression'),
 			passport = require('passport'),
 			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			bcrypt = require('bcrypt'),
 			helmet = require('helmet'),
@@ -63,7 +64,7 @@ module.exports = function(admin){
 
 	admin.set('view engine', 'jade');
 	admin.set('views', path.join(__dirname, '../views/admin'));
-	admin.use(express.static('admin'));
+	admin.use(serveStatic('public'));
 	admin.use(compression());
 	admin.use(helmet());
 

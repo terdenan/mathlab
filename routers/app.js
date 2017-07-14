@@ -4,6 +4,7 @@ const http = require('http'),
 			passport = require('passport'),
 			fs = require('fs'),
 			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			VK = require('vksdk'),
 			vk = new VK({
@@ -132,7 +133,7 @@ module.exports = function(app){
 
 	app.set('view engine', 'jade');
 	app.set('views', path.join(__dirname, '../views/main'));
-	app.use(express.static('public'));
+	app.use(serveStatic('public'));
 	app.use(compression());
 	app.use(helmet());
 
