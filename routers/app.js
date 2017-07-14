@@ -63,9 +63,9 @@ passport.use(new LocalStrategy(
 
 passport.use(new VKontakteStrategy(
   {
-    clientID:     6088660,
-    clientSecret: "ynzLi2vKo1m66G8qsMk6",
-    callbackURL:  "http://localhost/auth/vkontakte/callback"
+    clientID:     config.vk.appId,
+    clientSecret: config.vk.appSecret,
+    callbackURL:  "https://mathlab.kz/auth/vkontakte/callback"
   },
   function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
   	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
@@ -80,14 +80,13 @@ passport.use(new VKontakteStrategy(
   				vk_id: profile.id
   			});
   			newUser.sex = (profile.gender == "male") ? 0 : 1;
-  			/*vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'});
-				vk.on('done:users.get', function(_o) {
+  			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'}, function(_o) {
 					newUser.avatarUrl = _o.response[0].photo_200;
-				});*/
-				newUser.save(function(err){
-  				if (err) return done(err);
-  				done(null, newUser);
-  			});
+					newUser.save(function(err){
+	  				if (err) return done(err);
+	  				done(null, newUser);
+	  			});
+				});
   		}
   		else {
   			user.email = params.email || "";
@@ -119,6 +118,15 @@ module.exports = function(app){
 			.status(statusCode)
 			.send(errMessage);
 	}
+
+	app.set('trust proxy', true);
+	app.use(function(req, res, next){
+		if (req.headers.host.slice(0, 4) === 'www.') {
+    	var newHost = req.headers.host.slice(4);
+    	return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+    }
+    next();
+	});
 
 	app.locals.moment = require('moment');
 
@@ -360,14 +368,22 @@ module.exports = function(app){
 	                                   failureFlash: "fail" })
 	);
 
-  app.get('/auth/vkontakte', passport.authenticate('vkontakte', { scope: ['email'] }));
+  app.get('/auth/vkontakte', 
+  	passport.authenticate('vkontakte', { scope: ['email'] }), function(req, res){
+  	});
 
-  app.get('/auth/vkontakte/callback',
-	  passport.authenticate('vkontakte', {
-	    successRedirect: '/cabinet',
-	    failureRedirect: '/sign-in' 
-	  })
-	);
+  app.get('/auth/vkontakte/callback', function(req, res, next){
+  	passport.authenticate('vkontakte', function(err, user, info){
+			if (err) return next(err);
+			if (!user) return res.redirect('/sign-in');
+
+			req.logIn(user, function(err) {
+	      if (err) return next(err);
+	      return res.redirect('/cabinet');
+	    });
+
+		})(req, res, next);
+  });
 
 	app.get('/log-out', function(req, res){
 		req.session.destroy(function (err) {
