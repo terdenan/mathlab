@@ -32,13 +32,14 @@ $(document).ready(function() {
       },
       success: function(response) {
         if (response == "success") {
-          $("#request-form").append(
-          "<div class='alert alert-success'>" +
-            "<strong>Отлично!</strong> Ваша заявка отправлена и находится на рассмотрении.</a>" +
-          "</div>");
-          $("#req-submit").html("Отправить").removeClass("disable-point-events");
-          $("input[type=checkbox]").prop('checked', false);
-          $("label").removeClass("active", "focus");
+          $("#request-form").html(
+            "<div class='text-center'>" +
+              "<img src='/images/success.png' >" +
+              "<h3>Отлично!</h3>" +
+              "<p>Ваша заявка подана и находится на рассмотрении.</p>" +
+              "<hr>" +
+              "<a href='/request'>Подать еще одну заявку</a>" +
+            "</div>");
         }
       }
     });
