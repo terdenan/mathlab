@@ -53,7 +53,7 @@ module.exports = function(teacher){
 
 	teacher.set('view engine', 'jade');
 	teacher.set('views', path.join(__dirname, '../views/teacher'));
-	teacher.use(serveStatic('teacher'));
+	teacher.use(serveStatic('public'));
 	teacher.use(compression());
 	teacher.use(helmet());
 

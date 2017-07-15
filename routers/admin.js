@@ -64,7 +64,7 @@ module.exports = function(admin){
 
 	admin.set('view engine', 'jade');
 	admin.set('views', path.join(__dirname, '../views/admin'));
-	admin.use(serveStatic('public'));
+	admin.use(serveStatic('admin'));
 	admin.use(compression());
 	admin.use(helmet());
 
