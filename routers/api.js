@@ -24,9 +24,12 @@ const storage = multer.diskStorage({
 			}),
 			upload = multer({ storage: storage });
 			
-module.exports = function(app) {
+module.exports = function(app, bot) {
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -157,6 +160,12 @@ module.exports = function(app) {
 					  		return;
 					  	}
 						});
+						var message = 'New user:\nGiven name: ' + newUser.fullname + 
+																	 '\nEmail: ' + newUser.email + 
+																	 '\nThrough VK: no\n';
+		  			bot.sendMessage(298493325, message);
+		  			bot.sendMessage(66075583, message);
+		  			bot.sendMessage(288260717, message);
             res
             	.status(200)
             	.send({ email: req.user.email });
@@ -420,6 +429,15 @@ module.exports = function(app) {
 	  		errorHandler(err, req, res, 500, "Internal server error, try later");
 	  		return;
 	  	}
+	  	var message = 'New bid:\nStudent: ' + newBid.student + 
+	  												'\nPhone: ' + newBid.phone + 
+	  												'\nSubject: ' + newBid.subject +
+	  												'\nPreferred days: ' + newBid.prefDays +
+	  												'\nPreferred time: ' + newBid.prefTime +
+	  												'\nTarget: ' + newBid.target + '\n';
+		  bot.sendMessage(298493325, message);
+		  bot.sendMessage(66075583, message);
+		  bot.sendMessage(288260717, message);
 	    res
 	    	.status(200)
 	    	.send('success');
