@@ -55,7 +55,10 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(admin){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
