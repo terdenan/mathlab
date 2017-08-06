@@ -1,6 +1,6 @@
 const express = require('express'),
       app = express(),
-      http = require('http').createServer(app),
+      http = require('http'),
       https = require('https'),
       fs = require('fs'),
       config = require('config.json')('./config.json'),
@@ -14,8 +14,8 @@ const ObjectId = require('mongodb').ObjectID,
 			Message = require('./db/models/message');
 
 const options = {
-			  cert: fs.readFileSync('./sslcert/fullchain.pem'),
-			  key: fs.readFileSync('./sslcert/privkey.pem')
+			  cert: fs.readFileSync(config.sslcert.cert),
+			  key: fs.readFileSync(config.sslcert.key)
 			};
 
 const httpServer = http.createServer(function(req, res){
@@ -23,7 +23,10 @@ const httpServer = http.createServer(function(req, res){
 			  res.end();
 			}),
 			httpsServer = https.createServer(options, app),
-			io = require('socket.io')(server);
+			io = require('socket.io')(httpsServer);
+
+const TelegramBot = require('node-telegram-bot-api'),
+			bot = new TelegramBot(config.telegram.token, {polling: true});
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
@@ -39,9 +42,11 @@ teacher.use(function(req, res, next){
 
 require('./db/db');
 
-require('./routers/app')(app);
+require('./routers/app')(app, bot);
 require('./routers/admin')(admin);
 require('./routers/teacher')(teacher);
+
+require('./routers/telegramBot')(bot);
 
 io.on('connection', function(socket){
 	socket.on('setRoom', function(courseId){

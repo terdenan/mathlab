@@ -3,12 +3,14 @@ const http = require('http'),
 			compression = require('compression'),
 			passport = require('passport'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			VK = require('vksdk'),
 			vk = new VK({
-			  'appId'     : 6088660,
-			  'appSecret' : 'ynzLi2vKo1m66G8qsMk6',
-			  'language'  : 'ru'
+			  'appId'     : config.vk.appId,
+			  'appSecret' : config.vk.appSecret,
+			  'language'  : config.vk.language
 			});
 
 			bcrypt = require('bcrypt'),
@@ -45,86 +47,100 @@ const storage = multer.diskStorage({
 			}),
 			upload = multer({ storage: storage });
 
-passport.use(new LocalStrategy(
-  function(login, password, done) {
-  	User.findOne({email: login}, function(err, user) {
-			if (err) return done(err);
-			if (!user) return done(null, false);
+module.exports = function(app, bot){
+	passport.use(new LocalStrategy(
+	  function(login, password, done) {
+	  	User.findOne({email: login}, function(err, user) {
+				if (err) return done(err);
+				if (!user) return done(null, false);
 
-      bcrypt.compare(password, user.password).then(function(result) {
-        if (!result) return done(null, false);
-        else return done(null, user);
-      });
+	      bcrypt.compare(password, user.password).then(function(result) {
+	        if (!result) return done(null, false);
+	        else return done(null, user);
+	      });
 
-    });
-  }
-));
+	    });
+	  }
+	));
 
-passport.use(new VKontakteStrategy(
-  {
-    clientID:     6088660,
-    clientSecret: "ynzLi2vKo1m66G8qsMk6",
-    callbackURL:  "http://localhost/auth/vkontakte/callback"
-  },
-  function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
-  	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
-  		if (err) return done(err);
-  		if (!user) {
-  			var newUser = User({
-  				_id: new mongoose.Types.ObjectId,
-  				fullname: profile.displayName,
-  				email: params.email || "",
-  				confirmed: true,
-  				priority: 0,
-  				vk_id: profile.id
-  			});
-  			newUser.sex = (profile.gender == "male") ? 0 : 1;
-  			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'});
-				vk.on('done:users.get', function(_o) {
-					newUser.avatarUrl = _o.response[0].photo_200;
-					newUser.save(function(err){
-	  				if (err) return done(err);
-	  				done(null, newUser);
+	passport.use(new VKontakteStrategy(
+	  {
+	    clientID:     config.vk.appId,
+	    clientSecret: config.vk.appSecret,
+	    callbackURL:  "http://localhost/auth/vkontakte/callback"
+	  },
+	  function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
+	  	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
+	  		if (err) return done(err);
+	  		if (!user) {
+	  			var newUser = User({
+	  				_id: new mongoose.Types.ObjectId,
+	  				fullname: profile.displayName,
+	  				email: params.email || "",
+	  				confirmed: true,
+	  				priority: 0,
+	  				vk_id: profile.id
 	  			});
+	  			newUser.sex = (profile.gender == "male") ? 0 : 1;
+	  			vk.request('users.get', {'user_ids' : profile.id, 'access_token' : accessToken, 'fields': 'photo_200'}, function(_o) {
+						newUser.avatarUrl = _o.response[0].photo_200;
+						newUser.save(function(err){
+		  				if (err) return done(err);
+		  				var message = 'New user:\nGiven name: ' + newUser.fullname + '\nEmail: ' + newUser.email + '\nThrough VK: yes\n';
+		  				bot.sendMessage(298493325, message);
+		  				bot.sendMessage(66075583, message);
+		  				bot.sendMessage(288260717, message);
+		  				done(null, newUser);
+		  			});
+					});
+	  		}
+	  		else {
+	  			user.email = params.email || "";
+	  			user.vk_id = profile.id;
+	  			user.confirmed = true;
+	  			user.save(function(err){
+	  				if (err) return done(err);
+	  				done(null, user);
+	  			});
+	  		}
+	  	});
+	  }
+	));
 
-				});
-  		}
-  		else {
-  			user.email = params.email || "";
-  			user.vk_id = profile.id;
-  			user.confirmed = true;
-  			user.save(function(err){
-  				if (err) return done(err);
-  				done(null, user);
-  			});
-  		}
-  	});
-  }
-));
+	passport.serializeUser(function(user, done) {
+	  done(null, user.id);
+	});
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+	passport.deserializeUser(function(id, done) {
+		User.findById(id, function(err, user) {
+	    done(err, user);
+	  });
+	});
 
-passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-module.exports = function(app){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
 	}
 
+	app.set('trust proxy', true);
+	app.use(function(req, res, next){
+		if (req.headers.host.slice(0, 4) === 'www.') {
+    	var newHost = req.headers.host.slice(4);
+    	return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+    }
+    next();
+	});
+
 	app.locals.moment = require('moment');
 
 	app.set('view engine', 'jade');
 	app.set('views', path.join(__dirname, '../views/main'));
-	app.use(express.static('public'));
+	app.use(serveStatic('public'));
 	app.use(compression());
 	app.use(helmet());
 
@@ -387,7 +403,7 @@ module.exports = function(app){
 		});
 	});
 
-	require('./api')(app);
+	require('./api')(app, bot);
 
 	app.get('*', function(req, res){
 		res

@@ -2,6 +2,8 @@ const http = require('http'),
 			express = require('express'),
 			compression = require('compression'),
 			passport = require('passport'),
+			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			bcrypt = require('bcrypt'),
 			helmet = require('helmet'),
@@ -53,7 +55,10 @@ passport.deserializeUser(function(id, done) {
 
 module.exports = function(admin){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -62,7 +67,7 @@ module.exports = function(admin){
 
 	admin.set('view engine', 'jade');
 	admin.set('views', path.join(__dirname, '../views/admin'));
-	admin.use(express.static('admin'));
+	admin.use(serveStatic('admin'));
 	admin.use(compression());
 	admin.use(helmet());
 

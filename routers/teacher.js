@@ -3,6 +3,8 @@ const http = require('http'),
 			compression = require('compression'),
 			passport = require('passport'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
+			serveStatic = require('serve-static'),
 
 			async = require('async'),
 			bcrypt = require('bcrypt'),
@@ -41,7 +43,10 @@ const storage = multer.diskStorage({
 
 module.exports = function(teacher){
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -51,7 +56,7 @@ module.exports = function(teacher){
 
 	teacher.set('view engine', 'jade');
 	teacher.set('views', path.join(__dirname, '../views/teacher'));
-	teacher.use(express.static('public'));
+	teacher.use(serveStatic('public'));
 	teacher.use(compression());
 	teacher.use(helmet());
 
@@ -446,9 +451,9 @@ module.exports = function(teacher){
 							}
 							var emailBody = jade.renderFile('./views/teacher/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   req.body.email,
 							  subject: 'Смена забытого пароля',
 							  html:    emailBody
 							});

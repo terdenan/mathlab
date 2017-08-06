@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient,
 			MongoStore = require('connect-mongo')(session),
 			mongoose = require('mongoose'),
 			fs = require('fs'),
+			config = require('config.json')('./config.json'),
 
 			async = require('async'),
 			jade = require('jade'),
@@ -23,9 +24,12 @@ const storage = multer.diskStorage({
 			}),
 			upload = multer({ storage: storage });
 			
-module.exports = function(app) {
+module.exports = function(app, bot) {
 	function errorHandler(err, req, res, statusCode, errMessage){
-		if (err && err != "timeError" && err != "dataError") console.log(err);
+		if (err && err != "timeError" && err != "dataError") {
+			console.log(err);
+			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+		}
 		res
 			.status(statusCode)
 			.send(errMessage);
@@ -118,6 +122,7 @@ module.exports = function(app) {
 				return;
     	}
     	bcrypt.hash(req.body.password, 10).then(function(hash) {
+    		var code = require('md5')(Date.now());
         var newUser = User({
           _id: new mongoose.Types.ObjectId,
           fullname: req.body.fullname,
@@ -127,7 +132,9 @@ module.exports = function(app) {
           sex: req.body.sex,
           grade: req.body.grade,
           confirmed: false,
-          priority: 0
+          priority: 0,
+          emailConfirmCode: code,
+          emailConfirmDuration: Date.now() + 24 * 60 * 60 * 1000
         });
         newUser.save(function(err){
           if(err) {
@@ -139,6 +146,26 @@ module.exports = function(app) {
 			    		errorHandler(err, req, res, 500, "Internal server error, try later");
 			    		return;
 			    	}
+			    	var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', { code: code, email: req.user.email, fullname: req.user.fullname });
+						var send = require('gmail-send')({
+						  user: config.gmail.login,
+						  pass: config.gmail.password,
+						  to:   req.user.email,
+						  subject: 'Подтверждение адреса электронной почты',
+						  html:   emailBody
+						});
+						send({}, function(err, res){
+							if (err) {
+					  		errorHandler(err, req, res, 500, "Internal server error, try later");
+					  		return;
+					  	}
+						});
+						var message = 'New user:\nGiven name: ' + newUser.fullname + 
+																	 '\nEmail: ' + newUser.email + 
+																	 '\nThrough VK: no\n';
+		  			bot.sendMessage(298493325, message);
+		  			bot.sendMessage(66075583, message);
+		  			bot.sendMessage(288260717, message);
             res
             	.status(200)
             	.send({ email: req.user.email });
@@ -254,9 +281,9 @@ module.exports = function(app) {
 							}
 							var emailBody = jade.renderFile('./views/main/mail-bodies/email-confirm.jade', { code: code, email: data.email, fullname: data.fullname });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   data.email,
 							  subject: 'Подтверждение адреса электронной почты',
 							  html:   emailBody
 							});
@@ -328,9 +355,9 @@ module.exports = function(app) {
 							}
 							var emailBody = jade.renderFile('./views/main/mail-bodies/change-password.jade', { code: code });
 							var send = require('gmail-send')({
-							  user: 'humbledevelopers@gmail.com',
-							  pass: '87051605199dD',
-							  to:   'humbledevelopers@gmail.com',
+							  user: config.gmail.login,
+							  pass: config.gmail.password,
+							  to:   req.body.email,
 							  subject: 'Смена забытого пароля',
 							  html:    emailBody
 							});
@@ -402,6 +429,15 @@ module.exports = function(app) {
 	  		errorHandler(err, req, res, 500, "Internal server error, try later");
 	  		return;
 	  	}
+	  	var message = 'New bid:\nStudent: ' + newBid.student + 
+	  												'\nPhone: ' + newBid.phone + 
+	  												'\nSubject: ' + newBid.subject +
+	  												'\nPreferred days: ' + newBid.prefDays +
+	  												'\nPreferred time: ' + newBid.prefTime +
+	  												'\nTarget: ' + newBid.target + '\n';
+		  bot.sendMessage(298493325, message);
+		  bot.sendMessage(66075583, message);
+		  bot.sendMessage(288260717, message);
 	    res
 	    	.status(200)
 	    	.send('success');
