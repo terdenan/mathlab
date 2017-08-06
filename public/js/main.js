@@ -75,3 +75,4 @@ function sendConfirmationEmail(){
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-71816939-6', 'auto');
       ga('send', 'pageview');
+
