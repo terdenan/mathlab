@@ -642,7 +642,8 @@ hr {
 }
 
 .landing-comment-body img {
-  width: 150px;
+  width: 150px !important;
+  display: inline-block !important;
 }
 
 .landing-comment-body h4 {
