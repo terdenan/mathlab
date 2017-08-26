@@ -267,7 +267,7 @@ module.exports = function(admin){
 	    find({
 	      _id: { $gt: mongoose.Types.ObjectId(req.body.lastID) }
 	    }).
-	    select('_id subject student teacher days time date endingTime').
+	    select('_id subject student teacher days time startingDate endingDate').
 	    //limit(10).
 	    exec(function(err, data){
 	      if (err) {
