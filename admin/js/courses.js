@@ -23,8 +23,8 @@ function loadCourses(lastID) {
             "<td class='course-teacher'>" + course.teacher + "</td>" +
             "<td>" + course.days + "</td>" +
             "<td>" + course.time + "</td>" + 
-            "<td>" + moment(course.date).format("DD.MM.YY") + "</td>" + 
-            "<td class='course-endingTime'>" + moment(course.endingTime).format("DD.MM.YY") + "</td>" + 
+            "<td>" + moment(course.StartingDate).format("DD.MM.YY") + "</td>" + 
+            "<td class='course-endingTime'>" + moment(course.endingDate).format("DD.MM.YY") + "</td>" + 
             "<td>Недоступно</td>" +
           "</tr>";
       });
