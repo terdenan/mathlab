@@ -3275,7 +3275,7 @@
 })(window.Zepto || window.jQuery, window, document);
 
 $(document).ready(function(){
-  $(".owl-carousel").owlCarousel({
+  $(".owl-carousel-teachers").owlCarousel({
     loop: false,
     margin: 20,
     responsive: {
@@ -3288,5 +3288,24 @@ $(document).ready(function(){
             nav:false
         }
     }
+  });
+});
+
+$(document).ready(function(){
+  $(".owl-carousel-comments").owlCarousel({
+    loop: false,
+    margin: 20,
+    nav: false,
+    responsive: {
+        0:{
+            items:1,
+            nav:false
+        },
+        600:{
+            items:2,
+            nav:false
+        }
+    }
+
   });
 });

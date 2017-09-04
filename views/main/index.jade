@@ -122,11 +122,11 @@ html( lang='ru' )
 			div( class="row" )
 				div( class="col-sm-12" )
 					h2( class="article-title" ) Наши преподаватели
-			div( class=" owl-carousel owl-theme" )
+			div( class=" owl-carousel owl-carousel-teachers owl-theme")
 				div( class="item" )
 					div( class="landing-comment landing-teacher" )
-						div( class="landing-comment-body text-center" )
-							img( src="images/teacher-img-2.png" class="img-circle img-thumbnail" alt="Галия Мрзановна Альжанова" title="Учитель математики, информатики" )
+						div( class="text-center" )
+							img( src="images/teacher-img-2.png" class="img-circle img-thumbnail img-150 inline-block" alt="Галия Мрзановна Альжанова" title="Учитель математики, информатики" )
 							h4 Галия Мрзановна Альжанова
 							h6 Учитель математики, информатики
 							blockquote
@@ -135,8 +135,8 @@ html( lang='ru' )
 								h6 г. Алматы
 				div( class="item" )
 					div( class="landing-comment landing-teacher" )
-						div( class="landing-comment-body text-center" )
-							img( src="images/teacher-img-1.png" class="img-circle img-thumbnail" alt="Василий Васильевич Соколов" title="Учитель физики" )
+						div( class="text-center" )
+							img( src="images/teacher-img-1.png" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Васильевич Соколов" title="Учитель физики" )
 							h4 Василий Васильевич Соколов
 							h6 Учитель физики
 							blockquote
@@ -145,8 +145,8 @@ html( lang='ru' )
 								h6 г. Алматы
 				div( class="item" )
 					div( class="landing-comment landing-teacher" )
-						div( class="landing-comment-body text-center" )
-							img( src="images/teacher-img-3.png" class="img-circle img-thumbnail" alt="Анастасия Николаевна Гребенюк" title="Учитель математики" )
+						div( class="text-center" )
+							img( src="images/teacher-img-3.png" class="img-circle img-thumbnail img-150 inline-block" alt="Анастасия Николаевна Гребенюк" title="Учитель математики" )
 							h4 Анастасия Николаевна Гребенюк
 							h6 Учитель математики
 							blockquote
@@ -155,8 +155,8 @@ html( lang='ru' )
 								h6 г. Алматы
 				div( class="item" )
 					div( class="landing-comment landing-teacher" )
-						div( class="landing-comment-body text-center" )
-							img( src="images/teacher-img-4.jpg" class="img-circle img-thumbnail" alt="Василий Савельевич Скиба" title="Учитель математики")
+						div( class="text-center" )
+							img( src="images/teacher-img-4.jpg" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Савельевич Скиба" title="Учитель математики")
 							h4 Василий Савельевич Скиба
 							h6 Учитель математики
 							blockquote
@@ -168,32 +168,47 @@ html( lang='ru' )
 			div( class="row" )
 				div( class="col-sm-12" )
 					h2( class="article-title" ) Отзывы
-			div( class="row" )
-				div( class="col-sm-12" )
-					div( class="col-md-4" )
-						div( class="landing-comment" )
-							div( class="landing-comment-body text-center" )
-								img( src="/images/comment-img-2.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+			div( class="owl-carousel owl-carousel-comments owl-theme" )
+				div( class="item" )
+					div( class="landing-comment" )
+						div( class="landing-comment-body media" )
+							div( class="media-left")
+								img( src="/images/comment-img-4.png" class="img-circle img-thumbnail img-70" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+							div( class="media-body" )
+								h4 Ярослав Плотников.
+								h6 Отец
+						blockquote
+							p #[i Так получилось, что моя семья живет в Алматы, а я работаю в Актау. Александр, мой сын, учится в Специализированном лицее №165 в Алматы. Учеба там сложная, напряженная, однако лицей дает глубокие знания, которые позволяют детям поступать в самые лучшие вузы мира. Дети, обычно занимаются и летом, чтобы не забыть программу и немного поработать на опережение – это позволит начать новый учебный год более комфортно. На лето жена с детьми приезжает ко мне, в Актау. Здесь возможностей учиться у репетиторов такого уровня как в Алматы, нет. Поэтому мы воспользовались услугами учителей сайта Mathlab.kz и остались очень довольны. Саша постигал физику с прекрасным педагогом - Василием Васильевичем Соколовым. Мы ездили в Атырау, в Алматы, в Астану, но уроки шли своим чередом благодаря удобной дистанционной форме обучения. Спасибо порталу Mathlab.kz и Василию Васильевичу Соколову. Мы обязательно продолжим сотрудничество с данным обучающим порталом и его учителями.]
+				div( class="item" )
+					div( class="landing-comment" )
+						div( class="landing-comment-body media" )
+							div( class="media-left")
+								img( src="/images/comment-img-2.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+							div( class="media-body" )
 								h4 Гулистан Нусипжан
 								h6 Мама
-								blockquote
-									p Галия Мрзановна – профессионал своего дела, Учитель с большой буквы и просто наша любимая учительница. Она вела уроки у моих старших детей, а сейчас – у младших. Галия Мрзановна – очень добрый, отзывчивый в меру строгий учитель. Если нужна помощь, то всегда можно к ней обратиться. Она нам помогала в подготовке к поступлению в физмат школу. Огромная благодарность ей как учителю и как человеку. Спасибо Вам, мои дети Вас любят и благодарны за все, что Вы им дали.
-					div( class="col-md-4" )
-						div( class="landing-comment" )
-							div( class="landing-comment-body text-center" )
-								img( src="/images/comment-img-3.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+						blockquote
+							p #[i Галия Мрзановна – профессионал своего дела, Учитель с большой буквы и просто наша любимая учительница. Она вела уроки у моих старших детей, а сейчас – у младших. Галия Мрзановна – очень добрый, отзывчивый в меру строгий учитель. Если нужна помощь, то всегда можно к ней обратиться. Она нам помогала в подготовке к поступлению в физмат школу. Огромная благодарность ей как учителю и как человеку. Спасибо Вам, мои дети Вас любят и благодарны за все, что Вы им дали.]
+				div( class="item" )
+					div( class="landing-comment" )
+						div( class="landing-comment-body media" )
+							div( class="media-left")
+								img( src="/images/comment-img-3.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+							div( class="media-body" )
 								h4 Алия Абдраимова
 								h6 Мама
-								blockquote
-									p Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм!
-					div( class="col-md-4" )
-						div( class="landing-comment" )
-							div( class="landing-comment-body text-center" )
-								img( src="/images/comment-img-1.png" class="img-circle" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+						blockquote
+							p #[i Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм! ]
+				div( class="item" )
+					div( class="landing-comment" )
+						div( class="landing-comment-body media" )
+							div( class="media-left")
+								img( src="/images/comment-img-1.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+							div( class="media-body" )
 								h4 Майя Ванькова
 								h6 Мама
-								blockquote
-									p Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать!
+						blockquote
+							p #[i Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать! ]
 
 		div( id="contacts" class="nav-anchor" )
 			div( class="container main-content animated animated-post" )
