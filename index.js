@@ -12,8 +12,8 @@ const express = require('express'),
 const ObjectId = require('mongodb').ObjectID,
 			Message = require('./db/models/message');
 
-const TelegramBot = require('node-telegram-bot-api'),
-			bot = new TelegramBot(config.telegram.token, {polling: true});
+//const TelegramBot = require('node-telegram-bot-api'),
+//			bot = new TelegramBot(config.telegram.token, {polling: true});
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
@@ -29,11 +29,11 @@ teacher.use(function(req, res, next){
 
 require('./db/db');
 
-require('./routers/app')(app, bot);
+require('./routers/app')(app);
 require('./routers/admin')(admin);
 require('./routers/teacher')(teacher);
 
-require('./routers/telegramBot')(bot);
+//require('./routers/telegramBot')(bot);
 
 io.on('connection', function(socket){
 	socket.on('setRoom', function(courseId){
