@@ -67,7 +67,7 @@ module.exports = function(app, bot){
 	  {
 	    clientID:     config.vk.appId,
 	    clientSecret: config.vk.appSecret,
-	    callbackURL:  "http://localhost/auth/vkontakte/callback"
+	    callbackURL:  "https://mathlab.kz/auth/vkontakte/callback"
 	  },
 	  function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
 	  	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
