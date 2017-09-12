@@ -35,6 +35,21 @@ html( lang='ru' )
 		<![endif]-->
 	body( class="landing" itemscope itemtype="http://schema.org/EducationalOrganization" )
 
+		div( id="presentModal" class="modal fade" role="dialog" )
+			div( class="modal-dialog")
+				div( class="modal-content" )
+					div( class="modal-header" )
+						button( type="button" class="close" data-dismiss="modal") &times;
+						h4( class="modal-title" ) У нас есть подарок для Вас!
+					div( class="modal-body" )
+						p Поздравляем Вас с началом нового учебного года и желаем только плодотворных и успешных результатов! А в качестве подарка мы приготовили для Вас календарь от портала MathLab.kz, Вы можете скачать и распечатать его в отличном качестве. Успехов!
+						hr
+						a( href="/images/calendar-MathLab.jpg" download class="btn btn-success btn-block") Скачать
+						hr
+						img( src="/images/calendar-MathLab-min.png" )
+					div( class="modal-footer" ) 
+						button( type="button" class="btn btn-default" data-dismiss="modal" ) Закрыть
+
 		// NAVBAR
 		nav( class="navbar navbar-inverse navbar-fixed-top no-margin" )
 			div( class="container-fluid" )
@@ -63,6 +78,9 @@ html( lang='ru' )
 							a( href="/how-to-use" target="_blank" ) Как проходит обучение
 						li
 							a( href="/prices" target="_blank" ) Расценки и способы оплаты
+						li( data-toggle="modal" data-target="#presentModal" )
+							a( href="#" ) Подарок &nbsp;
+								i( class="fa fa-gift" aria-hidden="true" style="color: #FFEB3B;")
 					ul( class="nav navbar-nav navbar-right" )
 						li
 							a( href="/sign-in" )
@@ -259,7 +277,7 @@ html( lang='ru' )
 									a( href="https://vk.com/mathlabkz" target="_blank")
 										img( src="images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
 								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656" target="_blank" )
+									a( href="https://www.facebook.com/mathlab.mathlab" target="_blank" )
 										img( src="images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
 								li
 									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
@@ -269,7 +287,8 @@ html( lang='ru' )
 								li © MathLab.kz 2017
 						div( class="col-md-4 text-right md-text-center" )
 							ul( class="footer-links" )
-								li Разработка и поддержка: #[a( href="http://quve.kz" target="_blank" ) Quve.kz]		
+								li Разработка и поддержка: #[a( href="http://quve.kz" target="_blank" ) Quve.kz]	
+
 
 		link( href="/css/animate.css" rel="stylesheet" )
 		script( src="js/smoothscroll.min.js" defer )
