@@ -34,7 +34,6 @@
 	                          "</div>" +
 	                      "</div>" +
 	                  "</div>");
-				$(".panel-body").css("height", "545px");
 			}
 			if( fileName ) {
 				fileSize = ((e.target.files[0].size)/1024).toFixed(2);
@@ -51,8 +50,8 @@
 	                          "</div>" +
 	                      "</div>" +
 	                  "</div>");
-				$(".panel-body").css("height", "545px");
-				}
+				$(".panel-body").css("height", "-=60px");
+			}
 			else
 				label.innerHTML = labelVal;
 		});
