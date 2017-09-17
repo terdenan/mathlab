@@ -445,6 +445,7 @@ hr {
 
 .message-body li {
   line-height: 20px;
+  white-space: pre-wrap;
 }
 
 .messages-content {

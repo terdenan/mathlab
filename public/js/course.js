@@ -109,7 +109,7 @@ function waypoint() {
 function sendMessage() {
   var formData = new FormData(),
       courseId = (window.location.href).split('/')[4],
-      message = $('.message-input').html(),
+      message = $('.message-input').html().replace(/<br\s*\/?>/mg,"\n").replace(/<div>/mg, "\n").replace(/<\/div>/mg, ""),
       fileList = $("#attachment").prop('files');
   
   $.each(fileList, function(i, file){
