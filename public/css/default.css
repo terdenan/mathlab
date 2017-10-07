@@ -19,6 +19,13 @@ input[type=text], input[type=submit], textarea{
   -webkit-appearance: none;
 }
 
+.hidden{
+  opacity:0!important;
+}
+.visible{
+  opacity:1!important;
+}
+
 .main-content {
     margin-top: 30px;
 }
