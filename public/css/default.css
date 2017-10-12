@@ -83,6 +83,10 @@ hr {
   margin: 0;
 }
 
+.base header .green  {
+  color: #4CAF50;
+}
+
 .navbar i {
   font-size: 14px;
 }
@@ -1066,6 +1070,14 @@ hr {
 #loader-md{
   width:56px;
   margin:auto;
+}
+
+.material {
+  margin-bottom: 10px;
+}
+
+.material i  {
+  color: #03a9f4; 
 }
 
 blockquote footer {
