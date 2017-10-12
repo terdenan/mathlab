@@ -65,6 +65,22 @@ html( lang='ru' )
 									h6( class="sub" ) Класс учебы:
 									h6( id="grad" ) #{grade}
 							a( href="/settings" class="btn btn-default btn-block" ) Редактировать
+					if (grade < 5)
+						div( class="base" )
+							header
+								h4 Вам доступны материалы для скачивания &nbsp;
+									i( class="fa fa-cloud-download green" aria-hidden="true" )
+							div( class="material" )
+								i( class="fa fa-file-text" aria-hidden="true") &nbsp; &nbsp;
+								| О.Н. Пупышева "Задания школьных олимпиад" (
+								a( href="/materials/O.N.Pupysheva_Zadaniya_shkolnyh_olimpiad.doc" download ) скачать
+								|)
+							div( class="material" )
+								i( class="fa fa-file-text" aria-hidden="true") &nbsp; &nbsp;
+								| Сборник заданий по математике для поступающих в 5 класс (
+								a( href="/materials/Sbornik_zadaniy_po_matematike_dlya_postupayushchih_v_5_klass.docx" download ) скачать
+								|)
+
 				div( class="col-md-8" )
 					div( class="base" )
 						header
