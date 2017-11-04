@@ -15,6 +15,10 @@ section.grey {
   background-color: #ccc;
 }
 
+.landing footer {
+  background: #fff;
+  margin-top: 40px;
+}
 
 footer {
   padding: 40px 0 20px;
@@ -40,6 +44,14 @@ input[type=text], input[type=submit], textarea{
     margin-top: 30px;
 }
 
+.main-offset {
+  margin-top: 80px;
+}
+
+.page-header {
+  margin: 60px 0 20px;
+}
+
 .form-head {
     margin: 20px 0 5px;
 }
@@ -61,6 +73,60 @@ input[type=text], input[type=submit], textarea{
 
 hr {
   border-top: 1px solid #ebeff7;
+}
+
+.news-card {
+  width: 100%;
+  -webkit-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  -moz-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  box-shadow: 0px 8px 13px -2px rgba(204,204,204,0.3);
+  margin-bottom: 40px;
+}
+
+.news-card-img {
+  width: 100%;
+  max-height: 240px;
+  overflow: hidden;
+}
+
+.news-card-img img {
+  width: 100%;
+}
+
+.news-card-body {
+  padding: 20px 20px 0;
+}
+
+.news-card-body h2 {
+  padding: 0px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.news-card-body p {
+  margin: 10px 0;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+.news-card-footer {
+  padding: 10px 20px 10px;
+  border-top: 1px solid #f1f4fa;
+  display: flex;
+}
+
+.news-card-footer-author {
+  font-size: 13px;
+  color: #69717b;
+  width: 50%;
+}
+
+.news-card-footer-author img {
+  margin-right: 10px;
+}
+
+.news-card-button {
+  width: 50%;
 }
 
 .offset-left-50 {
@@ -255,6 +321,73 @@ hr {
 
 .profile, .teaher-profile {
     display: block;
+}
+
+.breadcrumb {
+  background-color: #fff;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.post-visualization {
+    font-size: 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ececec;
+}
+
+.post-visualization h1 {
+   padding-bottom: 5px;
+   border-bottom: 1px solid #e6e9ed;
+}
+
+.post-visualization h2 {margin-top: 20px;}
+
+.post-visualization h3 {
+   font-size: 25px;
+}
+
+.post-visualization h4 {
+   font-size: 20px;
+}
+
+.post-visualization h5 {
+   font-size: 16px; 
+}
+
+.post-visualization h6 {
+   font-size: 14px; 
+}
+
+.visupost-visualizationalization a {
+   color: #2381d4; 
+}
+
+.post-visualization blockquote {
+   margin: 10px 0;
+   border-width: 3px;
+   font-size: 14px;
+   padding: 10px 15px;
+}
+
+.post-visualization img {
+   float: left;
+   margin: 10px 15px 10px 0;
+   max-width: 50%;
+   max-height: 300px;
+}
+
+.post-img {
+  width: 100%;
+}
+
+.post-img img {
+  width: 100%;
+}
+
+.post-date {
+  margin: 10px 0;
+  font-size: 12px;
+  color: #868383;
 }
 
 

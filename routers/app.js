@@ -215,6 +215,12 @@ module.exports = function(app, bot){
 			.render('./news');
 	});
 
+	app.get('/single-news', function(req, res){
+		res
+			.status(200)
+			.render('./single-news');
+	});
+
 	app.get('/prices', function(req, res){
 		res
 			.status(200)
