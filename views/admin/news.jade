@@ -23,7 +23,7 @@ html( lang='ru' )
 		//Scripts
 		script( src="/vendors/jquery/dist/jquery.min.js" )
 		script( src="/js/viewportchecker.js" )
-		script( src="/js/teachers.js" )
+		script( src="/js/marked.js" )
 
 	body( class="nav-md" )
 		div( class="container body" )
@@ -40,7 +40,7 @@ html( lang='ru' )
 
 				include ./includes/navigation
 
-				div( class="right_col" role="main" )
+				div( class="right_col" role="main" id='asdasdas')
 					div( class="row" )
 						div( class="col-md-12 col-sm-12 col-xs-12" )
 							div( class="x_panel" )
@@ -49,12 +49,13 @@ html( lang='ru' )
 									div( class="clearfix" )
 									p Markdown разметка для основного текстового блока новости:
 								div( class="x_content" )
-									textarea( class="markdown-textarea" )
+									textarea( class="markdown-textarea" id="markdown-textarea")
 								div( class="x_content" )
 									p Загрузка изображения новости
 									input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
 									label( for="file" )
 										strong Выбрать файл
+								button( class="btn btn-success" id="publish") Опубликовать
 
 					div( class="row" )
 						div( class="col-md-12 col-sm-12 col-xs-12" )
@@ -62,7 +63,7 @@ html( lang='ru' )
 								h2 Превью новости
 								div( class="clearfix" )
 								div( class="x_content" )
-									div( class="visualization")
+									div( class="visualization" id="visualization")
 										h1 Заголовок h1
 										h2 Заголовок h2
 										h3 Заголовок h3
@@ -97,6 +98,7 @@ html( lang='ru' )
 		script( src="/vendors/moment/min/moment.min.js" )
 		script( src="/vendors/bootstrap-daterangepicker/daterangepicker.js" )
 		script( src="../vendors/dropzone/dist/min/dropzone.min.js" )
+		script( src="/js/news.js" )
 
 		// Custom Theme Scripts
 		script( src="/js/custom.min.js" )

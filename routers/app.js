@@ -5,6 +5,7 @@ const http = require('http'),
 			fs = require('fs'),
 			config = require('config.json')('./config.json'),
 			serveStatic = require('serve-static'),
+			marked = require('marked'),
 
 			VK = require('vksdk'),
 			vk = new VK({
