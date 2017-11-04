@@ -3289,9 +3289,6 @@ $(document).ready(function(){
         }
     }
   });
-});
-
-$(document).ready(function(){
   $(".owl-carousel-comments").owlCarousel({
     loop: false,
     margin: 20,
@@ -3306,6 +3303,23 @@ $(document).ready(function(){
             nav:false
         }
     }
-
+  });
+  $(".owl-carousel-header").owlCarousel({
+    loop: false,
+    margin: 20,
+    nav: false,
+    autoplay:true,
+		autoplayTimeout:10000,
+		autoplayHoverPause:true,
+    responsive: {
+        0:{
+            items:1,
+            nav:false
+        },
+        600:{
+            items:1,
+            nav:false
+        }
+    }
   });
 });

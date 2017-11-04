@@ -208,6 +208,12 @@ module.exports = function(app, bot){
 			.render('./how-to-use');
 	});
 
+	app.get('/news', function(req, res){
+		res
+			.status(200)
+			.render('./news');
+	});
+
 	app.get('/prices', function(req, res){
 		res
 			.status(200)
