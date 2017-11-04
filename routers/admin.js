@@ -13,6 +13,7 @@ const http = require('http'),
 			bodyParser = require('body-parser'),
 			session = require('express-session'),
 			flash = require('connect-flash'),
+			cyrillicToTranslit = require('cyrillic-to-translit-js'),
 
 			LocalStrategy = require('passport-local').Strategy,
 
@@ -27,7 +28,7 @@ mongoose.Promise = require('bluebird');
 
 const User = require('../db/models/user'),
 	  Bid = require('../db/models/bid'),
-	  News = require('../db/models/news')
+	  News = require('../db/models/news'),
 	  Course = require('../db/models/course');
 
 const storage = multer.diskStorage({
@@ -183,8 +184,11 @@ module.exports = function(admin){
 	});
 
 	admin.post('/api/note', upload.single('file'), function(req, res) {
+		let title = cyrillicToTranslit().transform(req.body.title.toLowerCase(), '-');
+		title = title.replace(/[^a-z0-9\-]/gi, "");
 		var newPost = News({
-          title: req.body.title,
+          title: title,
+          cyrillicTitle: req.body.title,
 		  body: req.body.body,
 		  photoUrl: "/uploads/" + req.file.filename,
 		  date: Date.now()

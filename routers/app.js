@@ -6,6 +6,7 @@ const http = require('http'),
 			config = require('config.json')('./config.json'),
 			serveStatic = require('serve-static'),
 			marked = require('marked'),
+			jade = require('jade'),
 
 			VK = require('vksdk'),
 			vk = new VK({
@@ -36,6 +37,7 @@ const http = require('http'),
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Message = require('../db/models/message'),
+			News = require('../db/models/news'),
 			Course = require('../db/models/course');
 
 const storage = multer.diskStorage({
@@ -138,6 +140,7 @@ module.exports = function(app, bot){
 	});
 
 	app.locals.moment = require('moment');
+	app.locals.marked = marked;
 
 	app.set('view engine', 'jade');
 	app.set('views', path.join(__dirname, '../views/main'));
@@ -210,15 +213,36 @@ module.exports = function(app, bot){
 	});
 
 	app.get('/news', function(req, res){
-		res
-			.status(200)
-			.render('./news');
+		News
+			.find({})
+			.select('title cyrillicTitle body photoUrl date')
+			.exec(function(err, news) {
+				if (err) {
+					errorHandler(err, req, res, 500, "Internal server error, try later");
+					return;
+				}
+				res
+					.status(200)
+					.render('./news', {news: news});
+			});
 	});
 
-	app.get('/single-news', function(req, res){
-		res
-			.status(200)
-			.render('./single-news');
+	app.get('/news/:title', function(req, res){
+		News.findOne({title: req.params.title}, function(err, data) {
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			if (!data) {
+				res
+					.status(404)
+					.render('./404');
+				return;
+			}
+			res
+				.status(200)
+				.render('./single-news', {data: data});
+		});
 	});
 
 	app.get('/prices', function(req, res){

@@ -25,9 +25,10 @@ const parser = new MarkdownParser("markdown-textarea");
 $('#publish').on('click', () => {
     var file = $('#file').prop('files')[0];
     var formData = new FormData();
+    var title = document.getElementById("news-title").value;
 
     formData.append('file', file);
-    formData.append('title', "Hello, world!");
+    formData.append('title', title.replace(/\s+/g, ' ').trim());
     formData.append('body', parser.getValue());
 
     $.ajax({

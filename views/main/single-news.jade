@@ -62,43 +62,15 @@ html( lang='ru' )
 							a( href="/" ) Главная
 						li
 							a( href="/news" ) Новости
-						li( class="active" ) Заголовок новости
-					h1( class="post-title") Заголовок новости
+						li( class="active" )!= data.cyrillicTitle
+					h1( class="post-title")!= data.cyrillicTitle
 					div( class="post-visualization" )
 						div( class="post-img")
-							img( src="/images/news/news-1.png" class="img-responsive")
+							img( src="#{data.photoUrl}" class="img-responsive")
 
-						/////////////MARKDOWN ВСТАВЛЯЕМ НИЖЕ///////////////////
-						
-						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget purus sem. Morbi ultricies cursus lacus quis vestibulum. Sed nec ex pretium tortor imperdiet gravida et id dui. Morbi vulputate dui pretium pharetra tristique. Quisque quis urna eget risus dignissim volutpat eu eu magna. Curabitur iaculis diam in felis maximus suscipit et at dui. Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.
-						h2 Заголовок новости
-						h3 Заголовок новости
-						h4 Заголовок новости
-						h5 Заголовок новости
-						h6 Заголовок новости
-						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget purus sem. Morbi ultricies cursus lacus quis vestibulum. Sed nec ex pretium tortor imperdiet gravida et id dui. Morbi vulputate dui pretium pharetra tristique. Quisque quis urna eget risus dignissim volutpat eu eu magna. Curabitur iaculis diam in felis maximus suscipit et at dui. Fusce aliquam nunc justo, eget interdum augue fringilla non. Nulla eget dui id enim dignissim euismod. Ut tristique dolor eu ex posuere, quis hendrerit risus interdum.
-						hr
+						!= marked(data.body)
 
-						p Quisque ac ante et mi sodales bibendum ut a nunc. Vestibulum sit amet leo efficitur, gravida libero vitae, laoreet tellus. Etiam vel suscipit nisi, non porta elit. 
-							img( src="https://pp.userapi.com/c637122/v637122606/5b25b/Z4f0C2Ue8Jg.jpg" alt="alt text" title="Logo Title Text 1" )
-							| Etiam et feugiat risus, non fermentum lorem. Cras in hendrerit enim. Nulla pulvinar, lorem semper tempor lacinia, orci nibh lobortis massa, eu vulputate justo est et diam. In a erat faucibus, scelerisque sem eget, tempus justo. Nunc elit sem, placerat non risus at, mattis molestie lectus. Pellentesque auctor blandit justo, a finibus lectus consectetur a. Phasellus vel interdum dolor, at vestibulum risus. Mauris tempor massa est, eget laoreet risus venenatis eget. In porta id lectus a tempus. Curabitur mattis purus quis urna sodales, eu pellentesque risus porttitor. Donec ex tortor, tristique quis dui sagittis, mollis interdum neque. Cras luctus neque id eros dignissim, eget pulvinar metus lacinia. Nunc vel elit bibendum eros viverra pellentesque in a velit.  Vivamus quis velit in ipsum suscipit imperdiet. Morbi congue maximus nunc vel ornare. Integer hendrerit sem dictum tristique facilisis. Aliquam et urna quis felis pharetra maximus. Etiam varius sapien at velit lobortis, sed cursus nibh sodales. Nulla facilisi. Fusce fringilla magna id nunc feugiat interdum.Phasellus vel interdum dolor, at vestibulum risus. Mauris tempor massa est, eget laoreet risus venenatis eget. In porta id lectus a tempus. Curabitur mattis purus quis urna sodales, eu pellentesque risus porttitor. Donec ex tortor, tristique quis dui sagittis, mollis interdum neque. Cras luctus neque id eros dignissim, eget pulvinar metus lacinia. Nunc vel elit bibendum eros viverra pellentesque in a velit.  Vivamus quis velit in ipsum suscipit imperdiet. Morbi congue maximus nunc vel ornare. Integer hendrerit sem dictum tristique facilisis. Aliquam et urna quis felis pharetra maximus. Etiam varius sapien at velit lobortis, sed cursus nibh sodales. Nulla facilisi. Fusce fringilla magna id nunc feugiat interdum.Phasellus vel interdum dolor, at vestibulum risus. Mauris tempor massa est, eget laoreet risus venenatis eget. In porta id lectus a tempus. Curabitur mattis purus quis urna sodales, eu pellentesque risus porttitor. Donec ex tortor, tristique quis dui sagittis, mollis interdum neque. Cras luctus neque id eros dignissim, eget pulvinar metus lacinia. Nunc vel elit bibendum eros viverra pellentesque in a velit.  Vivamus quis velit in ipsum suscipit imperdiet. Morbi congue maximus nunc vel ornare. Integer hendrerit sem dictum tristique facilisis. Aliquam et urna quis felis pharetra maximus. Etiam varius sapien at velit lobortis, sed cursus nibh sodales. Nulla facilisi. Fusce fringilla magna id nunc feugiat interdum.
-
-						ul 
-							li First
-							li Second
-							li Third
-
-						ol 
-							li First
-							li Second
-							li Third
-
-						blockquote 
-							p Morbi congue maximus nunc vel ornare. Integer hendrerit sem dictum tristique facilisis.
-
-						a( href="#" ) Some link here
-					div( class="post-date" )
-						span 12 ноября 2017
+					div( class="post-date" )!= moment(data.date).format('DD.MM.YYYY')
 				aside( class="col-md-4 col-lg-3" )
 					
 		// FOOTER

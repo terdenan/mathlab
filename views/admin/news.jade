@@ -40,7 +40,7 @@ html( lang='ru' )
 
 				include ./includes/navigation
 
-				div( class="right_col" role="main" id='asdasdas')
+				div( class="right_col" role="main")
 					div( class="row" )
 						div( class="col-md-12 col-sm-12 col-xs-12" )
 							div( class="x_panel" )
@@ -55,7 +55,7 @@ html( lang='ru' )
 										input( type="text" id="news-title" required="" class="form-control col-md-7 col-xs-12" )
 								div( class="x_content" )
 									label( class="control-label" ) Разметка:
-									textarea( class="markdown-textarea" )
+									textarea( class="markdown-textarea" id="markdown-textarea" )
 								div( class="x_content" )
 									p Загрузка изображения новости
 									input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
