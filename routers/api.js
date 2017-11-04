@@ -435,9 +435,9 @@ module.exports = function(app, bot) {
 	  												'\nPreferred days: ' + newBid.prefDays +
 	  												'\nPreferred time: ' + newBid.prefTime +
 	  												'\nTarget: ' + newBid.target + '\n';
-		  bot.sendMessage(298493325, message);
+		  /*bot.sendMessage(298493325, message);
 		  bot.sendMessage(66075583, message);
-		  bot.sendMessage(288260717, message);
+		  bot.sendMessage(288260717, message);*/
 	    res
 	    	.status(200)
 	    	.send('success');

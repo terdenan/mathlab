@@ -4,6 +4,7 @@ const http = require('http'),
 			passport = require('passport'),
 			config = require('config.json')('./config.json'),
 			serveStatic = require('serve-static'),
+			multer = require('multer'),
 
 			bcrypt = require('bcrypt'),
 			helmet = require('helmet'),
@@ -25,8 +26,19 @@ const http = require('http'),
 mongoose.Promise = require('bluebird');
 
 const User = require('../db/models/user'),
-			Bid = require('../db/models/bid'),
-			Course = require('../db/models/course');
+	  Bid = require('../db/models/bid'),
+	  News = require('../db/models/news')
+	  Course = require('../db/models/course');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    	cb(null, './public/uploads/')
+    },
+    filename: function (req, file, cb) {
+    	cb(null, Date.now() + "-" + (file.originalname));
+    }
+});
+upload = multer({ storage: storage });
 
 passport.use(new LocalStrategy(
   function(login, password, done) {
@@ -168,6 +180,24 @@ module.exports = function(admin){
 		res
 			.status(200)
 			.render('./teacher-form');
+	});
+
+	admin.post('/api/note', upload.single('file'), function(req, res) {
+		var newPost = News({
+          title: req.body.title,
+		  body: req.body.body,
+		  photoUrl: "/uploads/" + req.file.filename,
+		  date: Date.now()
+        });
+        newPost.save(function(err) {
+        	if (err) {
+	          	errorHandler(err, req, res, 500, "Internal server error, try later");
+	          	return;
+	        }
+	        res
+	        	.status(200)
+	          	.send('success');
+        });
 	});
 
 	admin.get('/api/bid', function(req, res){

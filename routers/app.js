@@ -5,6 +5,7 @@ const http = require('http'),
 			fs = require('fs'),
 			config = require('config.json')('./config.json'),
 			serveStatic = require('serve-static'),
+			marked = require('marked'),
 
 			VK = require('vksdk'),
 			vk = new VK({
@@ -67,7 +68,7 @@ module.exports = function(app, bot){
 	  {
 	    clientID:     config.vk.appId,
 	    clientSecret: config.vk.appSecret,
-	    callbackURL:  "http://localhost/auth/vkontakte/callback"
+	    callbackURL:  "https://mathlab.kz/auth/vkontakte/callback"
 	  },
 	  function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
 	  	User.findOne( { $or: [ { vk_id: profile.id }, { email: params.email } ] }, function(err, user){
