@@ -130,6 +130,16 @@ module.exports = function(admin){
 			.render('./teachers');
 	});
 
+	admin.get('/news', function(req, res){
+		if (!req.user){
+			res.redirect('/sign-in');
+			return;
+		}
+		res
+			.status(200)
+			.render('./news');
+	});
+
 	admin.get('/students', function(req, res){
 		if (!req.user){
 			res.redirect('/sign-in');

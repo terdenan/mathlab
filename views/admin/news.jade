@@ -1,0 +1,102 @@
+doctype html
+html( lang='ru' )
+	head
+		mata( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+
+		title Admin Panel - MathLab.kz
+
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+
+		// Bootstrap Core CSS
+		link( href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+
+		// Font Awesome
+		link( href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( href="/css/custom.css" rel="stylesheet" )
+		link( href="/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/vendors/jquery/dist/jquery.min.js" )
+		script( src="/js/viewportchecker.js" )
+		script( src="/js/teachers.js" )
+
+	body( class="nav-md" )
+		div( class="container body" )
+			div( class="main_container" )
+				div( class="col-md-3 left_col" )
+					div( class="left_col scroll-view" )
+						div( class="navbar nav_title" style="border: 0;" )
+							a( href="/" class="site_title" )
+								img( src="/images/logo.svg" )
+								span Admin Panel
+						div( class="clearfix" )
+						br
+						include ./includes/sidebar
+
+				include ./includes/navigation
+
+				div( class="right_col" role="main" )
+					div( class="row" )
+						div( class="col-md-12 col-sm-12 col-xs-12" )
+							div( class="x_panel" )
+								div( class="x_title" )
+									h2 Добавление новости
+									div( class="clearfix" )
+									p Markdown разметка для основного текстового блока новости:
+								div( class="x_content" )
+									textarea( class="markdown-textarea" )
+								div( class="x_content" )
+									p Загрузка изображения новости
+									input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
+									label( for="file" )
+										strong Выбрать файл
+
+					div( class="row" )
+						div( class="col-md-12 col-sm-12 col-xs-12" )
+							div( class="x_panel" )
+								h2 Превью новости
+								div( class="clearfix" )
+								div( class="x_content" )
+									div( class="visualization")
+										h1 Заголовок h1
+										h2 Заголовок h2
+										h3 Заголовок h3
+										h4 Заголовок h4
+										h5 Заголовок h5
+										h6 Заголовок h6
+										hr 
+										p Some text
+										ol
+											li First ordered list item
+											li Another item
+										ul
+											li Unordered sub-list.
+										a( href="https://www.google.com" ) I'm an inline-style link
+										blockquote
+											p Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
+										a( href="http://www.youtube.com/watch?feature=player_embedded&v=0wCC3aLXdOw" target="_blank" )
+											img( src="http://img.youtube.com/vi/0wCC3aLXdOw/0.jpg" alt="IMAGE ALT TEXT HERE" width="480" height="360" border="10" )
+
+				footer
+					div( class="pull-right" ) Admin Panel - MathLab.kz
+					div( class="clearfix" )
+
+		
+		// Bootstrap
+		script( src="/vendors/bootstrap/dist/js/bootstrap.min.js" )
+		// FastClick
+		script( src="/vendors/fastclick/lib/fastclick.js" )
+		// bootstrap-progressbar
+		script( src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		// bootstrap-daterangepicker
+		script( src="/vendors/moment/min/moment.min.js" )
+		script( src="/vendors/bootstrap-daterangepicker/daterangepicker.js" )
+		script( src="../vendors/dropzone/dist/min/dropzone.min.js" )
+
+		// Custom Theme Scripts
+		script( src="/js/custom.min.js" )

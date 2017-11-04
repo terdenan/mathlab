@@ -68,16 +68,6 @@ html( lang='ru' )
 				div( class="collapse navbar-collapse" id="navbar-collapse" )
 					ul( class="nav navbar-nav" )
 						li
-							a( href="#main" ) Главная
-						li
-							a( href="#about-us" ) О нас
-						li
-							a( href="#teachers" ) Наши преподаватели
-						li
-							a( href="#comments" ) Отзывы
-						li
-							a( href="#contacts" ) Контакты
-						li
 							a( href="/how-to-use" target="_blank" ) Как проходит обучение
 						li
 							a( href="/prices" target="_blank" ) Расценки и способы оплаты
@@ -91,167 +81,187 @@ html( lang='ru' )
 								| &nbsp; Вход и регистрация
 
 		// CONTENT
-		div( class="landing-head" id="main" )
+		header( class="landing-head" id="main" )
 			div( class="container-fluid" )
-				div( class="row text-center" )
-					h1( itemprop="name" ) Новая эра в дистанционном образовании
-					p 
-						span( itemprop="description") MathLab - это интерактивный обучающий портал, который поможет Вам подготовиться даже к самым сложным экзаменам!
-					a( href="/sign-up" class="btn btn-warning visible-sm-inline-block visible-xs-inline-block" role="button" ) Попробовать
 				div( class="row landing-mac hidden-sm hidden-xs" )
-					div( class="col-md-3 text-center" )
-						h4 Перестаньте нанимать дорогих репетиторов
-						p Наш портал специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. Причем репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
-						a( href="/sign-up" class="btn btn-lg btn-warning" role="button" ) Попробовать
+					div( class="col-md-6 text-left offset-left-50" )
+						div( class="owl-carousel owl-carousel-header owl-theme")
+							div( class="item" )
+								h1 Портал дистанционного образования
+								p MathLab - это сервис, который специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. Причем репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
+								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" ) Регистрация
+								a( href="#" class="btn btn-warning btn-lg btn-video" role="button" ) Видео-презентация
+							div( class="item" )
+								h2 Почему именно дистанционное образование?
+								p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
+								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" ) Заказать консультационный звонок
 					div( class="col-md-6 text-center" )
-						img( src="/images/landing-mac.svg" )
-					div( class="col-md-3 text-center" )
-						h4 Почему именно дистанционное образование?
-						p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
-						a( href="/sign-up" class="btn btn-lg btn-warning" role="button" ) Регистрация 
-				div( class="row text-center" )
-					ul( class="social-network social-circle" )
-						li: a( href="https://vk.com/mathlabkz" title="VK") 
-							i( class="fa fa-vk" )
-						li: a( href="https://www.facebook.com/mathlabkz-246075022465656" title="Facebook") 
-							i( class="fa fa-facebook" )
-						li: a( href="https://www.instagram.com/mathlab.kz/" title="Instagram") 
-							i( class="fa fa-instagram" )
+			div( class="presentation-block" )
 
-		div( id="about-us" class="nav-anchor" )
-		div( class="container main-content" )
-			div( class="row animated animated-post" )
-				div( class="col-sm-12" )
-					h2( class="article-title" ) Интерактивное обучение - это удобно и интересно! #[br] #[small Mathlab.kz] 
+		section
+			div( class="container" )
+				div( class="row" )
+					div( class="col-sm-6" )
+						h2( class="article-title" ) Различные образовательные программы
+						p( class="article-p" ) Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика, программирование, химия, биология, а так же многих других - ребятам, обучающимся по стандартной школьной программе. Подберем для ребенка квалифицированного преподавателя, который составит индивидуальный план обучения и начнет работу с ним.
+						button( class="btn btn-default" ) Заказать консультационный звонок
+					div( class="col-sm-6" )
+						img( src="/images/article-img-new-1.svg" class="img-responsive")
 
-			div( class="row article main-content animated animated-post" )
-				div( class="col-sm-4 text-center" )
-					img( src="/images/article-img-1.svg" alt="MathLab" title="MathLab" )
-					h4 Различные образовательные программы
-					p( class="article-p" ) Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика и программирование ребятам, обучающимся по стандартной школьной программе.
-				div( class="col-sm-4 text-center" )
-					img( src="/images/article-img-2.svg" alt="MathLab" title="MathLab" )
-					h4 Преподаватели Высшей категории
-					p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад.
-				div( class="col-sm-4 text-center" )
-					img( src="/images/article-img-3.svg" alt="MathLab" title="MathLab" )
-					h4 Не нужно никуда ехать
-					p( class="article-p" ) Обучаясь в нашем онлайн центре, ваш ребенок не будет привязан к определенному времени встречи с учителем, а вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
-			
-		div( id="teachers" class="nav-anchor" )
-		div( class="container main-content animated animated-post" )
-			div( class="row" )
-				div( class="col-sm-12" )
-					h2( class="article-title" ) Наши преподаватели
-			div( class=" owl-carousel owl-carousel-teachers owl-theme")
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-2.png" class="img-circle img-thumbnail img-150 inline-block" alt="Галия Мрзановна Альжанова" title="Учитель математики, информатики" )
-							h4 Галия Мрзановна Альжанова
-							h6 Учитель математики и информатики
-							blockquote
-								p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
-								h6 Стаж работы репетитором - 10 лет
-								h6 г. Алматы
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-1.png" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Васильевич Соколов" title="Учитель физики" )
-							h4 Василий Васильевич Соколов
-							h6 Учитель физики
-							blockquote
-								p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
-								h6 Стаж работы репетитором - 7 лет
-								h6 г. Алматы
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-3.png" class="img-circle img-thumbnail img-150 inline-block" alt="Анастасия Николаевна Гребенюк" title="Учитель математики" )
-							h4 Анастасия Николаевна Гребенюк
-							h6 Учитель математики
-							blockquote
-								p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
-								h6 Стаж работы репетитором - 3 года
-								h6 г. Алматы
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-4.jpg" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Савельевич Скиба" title="Учитель математики")
-							h4 Василий Савельевич Скиба
-							h6 Учитель математики
-							blockquote
-								p Выпускник Специализированного учебно-научного центра при Новосибирском Государственном Университете (Россия), бакалавр прикладной математики и информатикм НГУ. Математик в четвертом поколении.
-								h6 Стаж работы репетитором - 4 года
-								h6 г. Новосибирск
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-5.png" class="img-circle img-thumbnail img-150 inline-block" alt="Марина Викторовна Панченко" title="Учитель химии и биологии")
-							h4 Марина Викторовна Панченко
-							h6 Учитель химии и биологии
-							blockquote
-								p Преподаватель в физмат лицее. Автор текстов по биологии Алматинского ГЦНТО. Имеет учеников-призеров городских, республиканских и международных олимпиад. Стабильно высокий результат ЕНТ у учеников.
-								h6 Стаж работы репетитором - 26 лет
-								h6 г. Алматы
-				div( class="item" )
-					div( class="landing-comment landing-teacher" )
-						div( class="text-center" )
-							img( src="images/teacher-img-6.png" class="img-circle img-thumbnail img-150 inline-block" alt="Марина Викторовна Панченко" title="Учитель химии и биологии")
-							h4 Ирина Борисовна Цхай
-							h6 Учитель математики
-							blockquote
-								p Преподаватель математики в физико-математическом лицее. Имеет учеников-призеров городских, районных, международных олимпиад.
-								h6 Стаж работы репетитором - 20 лет
-								h6 г. Алматы
-		div( id="comments" class="nav-anchor" )
-		div( class="container main-content animated animated-post" )
-			div( class="row" )
-				div( class="col-sm-12" )
-					h2( class="article-title" ) Отзывы
-			div( class="owl-carousel owl-carousel-comments owl-theme" )
-				div( class="item" )
-					div( class="landing-comment" )
-						div( class="landing-comment-body media" )
-							div( class="media-left")
-								img( src="/images/comment-img-4.png" class="img-circle img-thumbnail img-70" style="width: 100px;" alt="Отзыв" title="Отзыв" )
-							div( class="media-body" )
-								h4 Ярослав Плотников
-								h6 Отец
-						blockquote
-							p #[i Так получилось, что моя семья живет в Алматы, а я работаю в Актау. Александр, мой сын, учится в Специализированном лицее №165 в Алматы. Учеба там сложная, напряженная, однако лицей дает глубокие знания, которые позволяют детям поступать в самые лучшие вузы мира. Дети, обычно занимаются и летом, чтобы не забыть программу и немного поработать на опережение – это позволит начать новый учебный год более комфортно. На лето жена с детьми приезжает ко мне, в Актау. Здесь возможностей учиться у репетиторов такого уровня как в Алматы, нет. Поэтому мы воспользовались услугами учителей сайта Mathlab.kz и остались очень довольны. Саша постигал физику с прекрасным педагогом - Василием Васильевичем Соколовым. Мы ездили в Атырау, в Алматы, в Астану, но уроки шли своим чередом благодаря удобной дистанционной форме обучения. Спасибо порталу Mathlab.kz и Василию Васильевичу Соколову. Мы обязательно продолжим сотрудничество с данным обучающим порталом и его учителями.]
-				div( class="item" )
-					div( class="landing-comment" )
-						div( class="landing-comment-body media" )
-							div( class="media-left")
-								img( src="/images/comment-img-2.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
-							div( class="media-body" )
-								h4 Гулистан Нусипжан
-								h6 Мама
-						blockquote
-							p #[i Галия Мрзановна – профессионал своего дела, Учитель с большой буквы и просто наша любимая учительница. Она вела уроки у моих старших детей, а сейчас – у младших. Галия Мрзановна – очень добрый, отзывчивый в меру строгий учитель. Если нужна помощь, то всегда можно к ней обратиться. Она нам помогала в подготовке к поступлению в физмат школу. Огромная благодарность ей как учителю и как человеку. Спасибо Вам, мои дети Вас любят и благодарны за все, что Вы им дали.]
-				div( class="item" )
-					div( class="landing-comment" )
-						div( class="landing-comment-body media" )
-							div( class="media-left")
-								img( src="/images/comment-img-3.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
-							div( class="media-body" )
-								h4 Алия Абдраимова
-								h6 Мама
-						blockquote
-							p #[i Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм! ]
-				div( class="item" )
-					div( class="landing-comment" )
-						div( class="landing-comment-body media" )
-							div( class="media-left")
-								img( src="/images/comment-img-1.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
-							div( class="media-body" )
-								h4 Майя Ванькова
-								h6 Мама
-						blockquote
-							p #[i Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать! ]
+		section
+			div( class="container" )
+				div( class="row" )
+					div( class="col-sm-6" )
+						img( src="/images/article-img-new-2.svg" class="img-responsive")
+					div( class="col-sm-6" )
+						h2( class="article-title" ) Преподаватели Высшей категории
+						p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. 
+						button( class="btn btn-default" ) Заказать консультационный звонок
 
-		div( id="contacts" class="nav-anchor" )
+		section
+			div( class="container" )
+				div( class="row" )
+					div( class="col-sm-6" )
+						h2( class="article-title" ) Не нужно никуда ехать
+						p( class="article-p" ) Обучаясь в нашем онлайн центре, ваш ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения. Для комфортного обучения ребенка, досточно иметь точку доступа в интернет в виде персонального компьютера, планшета и даже обычного смартфона.
+						button( class="btn btn-default" ) Заказать консультационный звонок
+					div( class="col-sm-6" )
+						img( src="/images/article-img-new-3.svg" class="img-responsive")
+
+		section
+			div( class="container" )
+				div( class="row")
+					div( class="col-xs-12" )
+						h2( class="article-title" ) Скриншоты сервиса
+				div( class="row" )
+					div( class="col-xs-12")
+						div( class="presentation" )
+							div( class="block" )
+								img(src="/images/presentation-slide-1.png" class="img-responsive")
+							div( class="block active" )
+								img(src="/images/presentation-slide-2.png" class="img-responsive")
+							div( class="block" )
+								img(src="/images/presentation-slide-3.png" class="img-responsive")
+				div( class="row")
+					div( class="col-sm-2" )
+					div( class="col-xs-8" )
+						p( class="article-p text-center" ) Мы разработали уникальную систему организации онлайн курсов, которая включает в себя удобный интерфейс, легкий дизайн, а также самое главное - текстовые и видео уроки.
+					div( class="col-sm-2" )
+					
+		section
+			div( class="container main-content animated animated-post" )
+				div( class="row" )
+					div( class="col-sm-12" )
+						h2( class="article-title" ) Команда преподавателей
+				div( class=" owl-carousel owl-carousel-teachers owl-theme")
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-2.png" class="img-circle img-thumbnail img-150 inline-block" alt="Галия Мрзановна Альжанова" title="Учитель математики, информатики" )
+								h4 Галия Мрзановна Альжанова
+								h6 Учитель математики и информатики
+								blockquote
+									p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
+									h6 Стаж работы репетитором - 10 лет
+									h6 г. Алматы
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-1.png" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Васильевич Соколов" title="Учитель физики" )
+								h4 Василий Васильевич Соколов
+								h6 Учитель физики
+								blockquote
+									p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
+									h6 Стаж работы репетитором - 7 лет
+									h6 г. Алматы
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-3.png" class="img-circle img-thumbnail img-150 inline-block" alt="Анастасия Николаевна Гребенюк" title="Учитель математики" )
+								h4 Анастасия Николаевна Гребенюк
+								h6 Учитель математики
+								blockquote
+									p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
+									h6 Стаж работы репетитором - 3 года
+									h6 г. Алматы
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-4.jpg" class="img-circle img-thumbnail img-150 inline-block" alt="Василий Савельевич Скиба" title="Учитель математики")
+								h4 Василий Савельевич Скиба
+								h6 Учитель математики
+								blockquote
+									p Выпускник Специализированного учебно-научного центра при Новосибирском Государственном Университете (Россия), бакалавр прикладной математики и информатикм НГУ. Математик в четвертом поколении.
+									h6 Стаж работы репетитором - 4 года
+									h6 г. Новосибирск
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-5.png" class="img-circle img-thumbnail img-150 inline-block" alt="Марина Викторовна Панченко" title="Учитель химии и биологии")
+								h4 Марина Викторовна Панченко
+								h6 Учитель химии и биологии
+								blockquote
+									p Преподаватель в физмат лицее. Автор текстов по биологии Алматинского ГЦНТО. Имеет учеников-призеров городских, республиканских и международных олимпиад. Стабильно высокий результат ЕНТ у учеников.
+									h6 Стаж работы репетитором - 26 лет
+									h6 г. Алматы
+					div( class="item" )
+						div( class="landing-comment landing-teacher" )
+							div( class="text-center" )
+								img( src="images/teacher-img-6.png" class="img-circle img-thumbnail img-150 inline-block" alt="Марина Викторовна Панченко" title="Учитель химии и биологии")
+								h4 Ирина Борисовна Цхай
+								h6 Учитель математики
+								blockquote
+									p Преподаватель математики в физико-математическом лицее. Имеет учеников-призеров городских, районных, международных олимпиад.
+									h6 Стаж работы репетитором - 20 лет
+									h6 г. Алматы
+		section
+			div( class="container main-content animated animated-post" )
+				div( class="row" )
+					div( class="col-sm-12" )
+						h2( class="article-title" ) Отзывы
+				div( class="owl-carousel owl-carousel-comments owl-theme" )
+					div( class="item" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body media" )
+								div( class="media-left")
+									img( src="/images/comment-img-4.png" class="img-circle img-thumbnail img-70" style="width: 100px;" alt="Отзыв" title="Отзыв" )
+								div( class="media-body" )
+									h4 Ярослав Плотников
+									h6 Отец
+							blockquote
+								p #[i Так получилось, что моя семья живет в Алматы, а я работаю в Актау. Александр, мой сын, учится в Специализированном лицее №165 в Алматы. Учеба там сложная, напряженная, однако лицей дает глубокие знания, которые позволяют детям поступать в самые лучшие вузы мира. Дети, обычно занимаются и летом, чтобы не забыть программу и немного поработать на опережение – это позволит начать новый учебный год более комфортно. На лето жена с детьми приезжает ко мне, в Актау. Здесь возможностей учиться у репетиторов такого уровня как в Алматы, нет. Поэтому мы воспользовались услугами учителей сайта Mathlab.kz и остались очень довольны. Саша постигал физику с прекрасным педагогом - Василием Васильевичем Соколовым. Мы ездили в Атырау, в Алматы, в Астану, но уроки шли своим чередом благодаря удобной дистанционной форме обучения. Спасибо порталу Mathlab.kz и Василию Васильевичу Соколову. Мы обязательно продолжим сотрудничество с данным обучающим порталом и его учителями.]
+					div( class="item" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body media" )
+								div( class="media-left")
+									img( src="/images/comment-img-2.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+								div( class="media-body" )
+									h4 Гулистан Нусипжан
+									h6 Мама
+							blockquote
+								p #[i Галия Мрзановна – профессионал своего дела, Учитель с большой буквы и просто наша любимая учительница. Она вела уроки у моих старших детей, а сейчас – у младших. Галия Мрзановна – очень добрый, отзывчивый в меру строгий учитель. Если нужна помощь, то всегда можно к ней обратиться. Она нам помогала в подготовке к поступлению в физмат школу. Огромная благодарность ей как учителю и как человеку. Спасибо Вам, мои дети Вас любят и благодарны за все, что Вы им дали.]
+					div( class="item" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body media" )
+								div( class="media-left")
+									img( src="/images/comment-img-3.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+								div( class="media-body" )
+									h4 Алия Абдраимова
+									h6 Мама
+							blockquote
+								p #[i Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм! ]
+					div( class="item" )
+						div( class="landing-comment" )
+							div( class="landing-comment-body media" )
+								div( class="media-left")
+									img( src="/images/comment-img-1.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+								div( class="media-body" )
+									h4 Майя Ванькова
+									h6 Мама
+							blockquote
+								p #[i Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать! ]
+
+		section
 			div( class="container main-content animated animated-post" )
 				div( class="row" )
 					div( class="col-md-12" )
@@ -302,9 +312,9 @@ html( lang='ru' )
 							ul( class="footer-links" )
 								li Разработка и поддержка: #[a( href="http://quve.kz" target="_blank" ) Quve.kz]	
 
-		script( src="/js/smoothscroll.min.js" defer )
 		script( src="/js/bootstrap.min.js" defer )
 		script( src="/js/owl.carousel.js" defer )
+		script( src="/js/presentation.js" defer )
 		script.
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

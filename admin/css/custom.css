@@ -4,6 +4,55 @@ html , body{
  height:100%;
  
 }
+
+.markdown-textarea {
+    width: 100%;
+    min-height: 400px;
+    border: 1px solid #e6e9ed;
+    font-size: 15px;
+    resize: none;
+}
+
+.markdown-textarea:focus {
+    outline: none!important;
+    border: 1px solid #ccc;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #2b4054;
+    display: inline-block;
+    padding: 5px 20px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #172e45;
+}
+
+.inputfile + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    pointer-events: none;
+}
  
 .full-width {
     
@@ -2170,8 +2219,52 @@ button,
     color: #ffffff;
     background-color: #ffffff;
     height: 1px;
-    margin: 20px 0
+    margin: 20px 0;
 }
+
+.visualization {
+    font-size: 14px;
+}
+
+.visualization h1 {
+   font-size: 50px;
+   padding-bottom: 5px;
+   border-bottom: 1px solid #e6e9ed;
+}
+
+.visualization h2 {
+   font-size: 30px;
+   border-bottom: 1px solid #e6e9ed;
+   padding-bottom: 5px;
+}
+
+.visualization h3 {
+   font-size: 25px; 
+}
+
+.visualization h4 {
+   font-size: 20px; 
+}
+
+.visualization h5 {
+   font-size: 16px; 
+}
+
+.visualization h6 {
+   font-size: 14px; 
+}
+
+.visualization a {
+   color: #2381d4; 
+}
+
+.visualization blockquote {
+   margin: 10px 0;
+   border-width: 3px;
+   font-size: 14px;
+   padding: 10px 15px;
+}
+
 span.section {
     display: block;
     width: 100%;
@@ -2425,7 +2518,7 @@ a.btn-danger {
 textarea {
     padding: 10px;
     vertical-align: top;
-    width: 200px
+    width: 200px;
 }
 textarea:focus {
     outline-style: solid;
@@ -4174,8 +4267,9 @@ ul.notifications {
     background: #ccc
 }
 .dropzone {
-    min-height: 300px;
-    border: 1px solid #e5e5e5
+    border: 1px solid #e5e5e5;
+    padding: 50px;
+    text-align: center;
 }
 
 /*
