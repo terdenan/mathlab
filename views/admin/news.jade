@@ -49,7 +49,13 @@ html( lang='ru' )
 									div( class="clearfix" )
 									p Markdown разметка для основного текстового блока новости:
 								div( class="x_content" )
-									textarea( class="markdown-textarea" id="markdown-textarea")
+									div( class="form-group" )
+										label( for="first-name" class="control-label" ) Заголовок новости: 
+											span( class="required") *
+										input( type="text" id="news-title" required="" class="form-control col-md-7 col-xs-12" )
+								div( class="x_content" )
+									label( class="control-label" ) Разметка:
+									textarea( class="markdown-textarea" )
 								div( class="x_content" )
 									p Загрузка изображения новости
 									input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
