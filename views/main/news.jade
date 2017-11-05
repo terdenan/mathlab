@@ -65,7 +65,10 @@ html( lang='ru' )
 						div( class="news-card" )
 							div( class="news-card-img" )
 								img( src="#{item.photoUrl}" class="img-responsive")
-							div( class="news-card-body" )!= body
+							div( class="news-card-body" )
+								h2 #{item.cyrillicTitle}
+								div( class="news-card-body-text" )
+									!= marked(body)
 							div( class="news-card-footer" )
 								div( class="news-card-footer-author" )
 									img( src="/images/editor-img.png" )

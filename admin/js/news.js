@@ -38,7 +38,19 @@ $('#publish').on('click', () => {
         processData: false,
         contentType: false,
         success: function(data) {
-            console.log(data);
+            $(".alerts").html("<div class='alert alert-success alert-dismissable'>" +
+                              "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                              "<strong>Готово!</strong> Новость успешно добавлена." +
+                            "</div>");
+            $("#news-title").val("");
+            $("#markdown-textarea").val("");
+            $("#visualization").val("");
+        },
+        error: function(data){
+            $(".alerts").html("<div class='alert alert-danger alert-dismissable'>" +
+                                "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                                "<strong>Произошла ошибка!</strong> Попробуйте позже. " +
+                              "</div>");
         }
     });
 });

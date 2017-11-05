@@ -5,6 +5,19 @@ html , body{
  
 }
 
+.short-description {
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid #e6e9ed;
+    font-size: 15px;
+    resize: none;
+}
+
+.short-description:focus {
+    outline: none!important;
+    border: 1px solid #ccc;
+}
+
 .markdown-textarea {
     width: 100%;
     min-height: 400px;
@@ -34,6 +47,7 @@ html , body{
     background-color: #2b4054;
     display: inline-block;
     padding: 5px 20px;
+    border-radius: 3px;
 }
 
 .inputfile:focus + label,
@@ -1147,14 +1161,24 @@ h2 {
     width: 100%;
     float: left;
     clear: both;
-    margin-top: 5px
+    margin-top: 5px;
 }
+
+.x_content hr {
+    margin:10px 0!important;
+}
+
 .x_content h4 {
     font-size: 16px;
     font-weight: 500
 }
 legend {
     padding-bottom: 7px
+}
+
+.control-label {
+    font-weight: 700;
+    margin: 5px 0
 }
 .demo-placeholder {
     height: 280px
@@ -2317,7 +2341,7 @@ legend {
     padding-right: 45px
 }
 .form-group {
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 .validate {
     margin-top: 10px
@@ -4358,3 +4382,4 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 .alerts {
     margin-top: 10px; 
 }
+ 
