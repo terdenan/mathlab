@@ -189,6 +189,7 @@ module.exports = function(admin){
 		var newPost = News({
           title: title,
           cyrillicTitle: req.body.title,
+          description: req.body.description,
 		  body: req.body.body,
 		  photoUrl: "/uploads/" + req.file.filename,
 		  date: Date.now()
