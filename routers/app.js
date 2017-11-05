@@ -181,9 +181,15 @@ module.exports = function(app, bot){
 	});
 
 	app.get('/', function(req, res){
-		res
-			.status(200)
-			.render('./index');
+		News
+			.find()
+			.sort({ date: -1 })
+			.limit(3)
+			.exec(function(err, news){
+				res
+					.status(200)
+					.render('./index', {data: news});
+			});
 	});
 
 	app.get('/sign-in', function(req, res){
