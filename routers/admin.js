@@ -189,6 +189,7 @@ module.exports = function(admin){
 	admin.post('/api/note', upload.single('file'), function(req, res) {
 		let title = cyrillicToTranslit().transform(req.body.title.toLowerCase(), '-');
 		title = title.replace(/[^a-z0-9\-]/gi, "");
+		title = title.replace(/\-+/g, "-");
 		var newPost = News({
           title: title,
           cyrillicTitle: req.body.title,
