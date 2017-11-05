@@ -66,8 +66,7 @@ html( lang='ru' )
 				for item in news
 					div( class="col-sm-4" )
 						div( class="news-card" onClick="window.location.href='news/#{item.title}'")
-							div( class="news-card-img" )
-								img( src="#{item.photoUrl}" class="img-responsive")
+							div( class="news-card-img" style="background-image: url('#{item.photoUrl}')")
 							div( class="news-card-body" )
 								h6 #{moment(item.date).locale('ru').calendar()}
 								h2 #{item.cyrillicTitle}
@@ -75,31 +74,13 @@ html( lang='ru' )
 							div( class="news-card-footer" )
 								div( class="news-card-footer-author" )
 									img( src="/images/editor-img.png" )
-									span Гребенюк Ольга
+									span Ольга Сладких
 								div( class="news-card-button")
 									a( class="btn btn-succes btn-block" href="news/#{item.title}") Перейти к новости 
 										i( class="fa fa-angle-right" aria-hidden="true")
 
 		// FOOTER
-		footer
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-12" )
-						div( class="col-md-7 md-text-center" )
-							ul( class="footer-links" )
-								li Мы в социальных сетях:
-								li
-									a( href="https://vk.com/mathlabkz" target="_blank")
-										img( src="/images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
-								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
-										img( src="/images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
-								li
-									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
-										img( src="/images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
-						div( class="col-md-5 text-right md-text-center" )
-							ul( class="footer-links" )
-								li © MathLab.kz 2017
+		include ./includes/footer-main
 
 		script( src="/js/bootstrap.min.js" defer )
 		span( itemprop="address" style="display: none;" ) Казахстан, Алматы

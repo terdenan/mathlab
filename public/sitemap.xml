@@ -1,40 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-<loc>https://mathlab.kz/</loc>
-<lastmod>2017-05-31T16:15:19+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://mathlab.kz/how-to-use</loc>
-<lastmod>2017-05-30T12:19:19+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://mathlab.kz/prices</loc>
-<lastmod>2017-05-30T12:19:19+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://mathlab.kz/sign-in</loc>
-<lastmod>2017-05-10T14:40:20+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://mathlab.kz/sign-up</loc>
-<lastmod>2017-05-10T14:40:20+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://mathlab.kz/news</loc>
-<lastmod>2017-11-05T14:40:20+00:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.80</priority>
-</url>
-
+  <url>
+    <loc>https://mathlab.kz/</loc>
+    <lastmod>2017-05-31T16:15:19+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/how-to-use</loc>
+    <lastmod>2017-05-30T12:19:19+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/prices</loc>
+    <lastmod>2017-05-30T12:19:19+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/sign-in</loc>
+    <lastmod>2017-05-10T14:40:20+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/sign-up</loc>
+    <lastmod>2017-05-10T14:40:20+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news</loc>
+    <lastmod>2017-11-05T14:40:20+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news/odna-iz-samih-populyarnih-idei-dlya-biznesa-na-etoi-nedele--servis-obedinyayushii-v-odnom-okne-slack-trello-elektronnuyu-pochtu-i-drugie-instrumenti</loc>
+    <lastmod>2017-11-05T18:02:35+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news/privlekshii-50-mln-investicii-razrabotchik-umnih-naushnikov-doppler-labs-zakrilsya</loc>
+    <lastmod>2017-11-06T00:02:12+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news/issledovanie-portret-naibolee-aktivnoi-ukrainskoi-auditorii-telegram</loc>
+    <lastmod>2017-11-06T00:11:31+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news/glava-amazon-dzheff-bezos-za-nedelyu-prodal-akcii-kompanii-na-1-mlrd</loc>
+    <lastmod>2017-11-06T00:37:06+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://mathlab.kz/news/iphone-x-den-pervii-mneniya-predprinimatelei-i-pokupatelei</loc>
+    <lastmod>2017-11-06T00:43:13+03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
 </urlset>

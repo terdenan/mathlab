@@ -4,6 +4,8 @@ function MarkdownParser() {
 
     this.elemTitle = document.getElementById("news-title");
     this.elemDescription = document.getElementById("short-description");
+    this.elemFile = document.getElementById("file");
+    this.elemFileSpan = document.getElementById("file").querySelector('span');
     this.elemMd = document.getElementById("markdown-textarea");
     this.elemVisualization = document.getElementById("visualization");
     this.elemAlertBox = document.getElementById("alerts");
@@ -24,6 +26,8 @@ function MarkdownParser() {
         self.elemDescription.value = "";
         self.elemMd.value = "";
         self.elemVisualization.innerHTML = "";
+        self.elemFile.value = "";
+        self.elemFileSpan.innerHTML = "Выбрать изображение";
     }
 
     this.setAlert = function(type) {
@@ -57,7 +61,7 @@ $('#publish').on('click', () => {
     formData.append('title', title);
     formData.append('description', parser.elemDescription.value);
     formData.append('body', parser.elemMd.value);
-    if (!$('#publish').hasClass("disabled")) {
+    if (!$('#publish').hasClass("disabled") && !$("#file").val() == '') {
         $.ajax({
             type: "post",
             url: "/api/note",
@@ -73,4 +77,23 @@ $('#publish').on('click', () => {
             }
         });
     }
+    else {
+        $("#file-error").html("Вы не загрузили изображение обложки")
+    }
+});
+
+    var input = document.getElementById("file"),
+        label = input.nextElementSibling,
+        labelVal = label.innerHTML,
+        fileName = '';
+
+    input.addEventListener('change', function(e){
+        fileName = e.target.value.split( '\\' ).pop();
+
+        if( fileName ) {
+            label.querySelector('span').innerHTML = fileName;
+            $("#file-error").html('');
+        }
+        else
+            label.innerHTML = labelVal;
 });
