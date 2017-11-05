@@ -215,7 +215,8 @@ module.exports = function(app, bot){
 	app.get('/news', function(req, res){
 		News
 			.find({})
-			.select('title cyrillicTitle body photoUrl date')
+			.select('title cyrillicTitle description photoUrl date')
+			.sort({ date: -1 })
 			.exec(function(err, news) {
 				if (err) {
 					errorHandler(err, req, res, 500, "Internal server error, try later");

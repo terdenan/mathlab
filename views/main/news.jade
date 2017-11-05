@@ -60,15 +60,13 @@ html( lang='ru' )
 		div( class="container main-content" )
 			div( class="row" )
 				for item in news
-					- var body = marked(item.body)
 					div( class="col-sm-4" )
 						div( class="news-card" )
 							div( class="news-card-img" )
 								img( src="#{item.photoUrl}" class="img-responsive")
 							div( class="news-card-body" )
 								h2 #{item.cyrillicTitle}
-								div( class="news-card-body-text" )
-									!= marked(body)
+								p #{item.description}
 							div( class="news-card-footer" )
 								div( class="news-card-footer-author" )
 									img( src="/images/editor-img.png" )
