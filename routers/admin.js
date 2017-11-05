@@ -9,6 +9,9 @@ const http = require('http'),
 			bcrypt = require('bcrypt'),
 			helmet = require('helmet'),
 
+			fs = require('fs'),
+			xml2js = require('xml2js'),
+
 			cookieParser = require('cookie-parser'),
 			bodyParser = require('body-parser'),
 			session = require('express-session'),
@@ -199,9 +202,28 @@ module.exports = function(admin){
 	          	errorHandler(err, req, res, 500, "Internal server error, try later");
 	          	return;
 	        }
-	        res
-	        	.status(200)
-	          	.send('success');
+
+	        var parser = new xml2js.Parser();
+			var builder = new xml2js.Builder();
+			var sitemapPath = path.join(__dirname, "..", "public", "sitemap.xml");
+
+			fs.readFile(sitemapPath, function(err, data) {
+			    var obj = {
+			        loc: "https://mathlab.kz/news/" + title,
+			        lastmod: moment().format(),
+			        changefreq: "monthly",
+			        priority: "0.70"
+			    };
+			    parser.parseString(data, function (err, result) {
+			        result.urlset.url.push(obj);
+			        var newXml = builder.buildObject(result);
+			        fs.writeFile(sitemapPath, newXml, function(err) {
+			        	res
+				        	.status(200)
+				          	.send('success');
+			        });
+			    });
+			});
         });
 	});
 
