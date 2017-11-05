@@ -59,63 +59,24 @@ html( lang='ru' )
 				h1 Последние новости портала MathLab.kz	
 		div( class="container main-content" )
 			div( class="row" )
-				div( class="col-sm-4" )
-					div( class="news-card" )
-						div( class="news-card-img" )
-							img( src="/images/news/news-1.png" class="img-responsive")
-						div( class="news-card-body" )
-							h2 Уроки, которые ученики не забудут никогда! 
-							p Однажды учитель физики Василий Васильевич пришел на урок очень загадочный. В одной руке у он держал термос, а в другой – цветок гвоздики. Ученики сидели притихшие, предвкушая что-то необычное и интересное. Они еще на перемене заметили, что Василий Васильевич стремительно выбежал из школы, вернувшись через несколько минут с цветком...
-						div( class="news-card-footer" )
-							div( class="news-card-footer-author" )
-								img( src="/images/editor-img.png" )
-								span Гребенюк Ольга
-							div( class="news-card-button")
-								a( class="btn btn-succes btn-block") Перейти к новости 
-									i( class="fa fa-angle-right" aria-hidden="true")
-				div( class="col-sm-4" )
-					div( class="news-card" )
-						div( class="news-card-img" )
-							img( src="/images/news/news-2.png" class="img-responsive")
-						div( class="news-card-body" )
-							h2 ТРИЗ-технологии – универсальный метод решения любых задач! 
-							p Лето – пора не только активного и пассивного отдыха, но и прекрасная возможность увеличить время общения с детьми. Научить их чему-то новому. Поверьте, знания, которые дают родители – бесценны. Один мой знакомый всегда с гордостью говорил, что научил его играть на гитаре папа, хоть и показал всего три аккорда, а остальному научил педагог. Папа показал главные три аккорда...
-						div( class="news-card-footer" )
-							div( class="news-card-footer-author" )
-								img( src="/images/editor-img.png" )
-								span Гребенюк Ольга
-							div( class="news-card-button")
-								a( class="btn btn-succes btn-block") Перейти к новости 
-									i( class="fa fa-angle-right" aria-hidden="true")
-				div( class="col-sm-4" )
-					div( class="news-card" )
-						div( class="news-card-img" )
-							img( src="/images/news/news-1.png" class="img-responsive")
-						div( class="news-card-body" )
-							h2 Уроки, которые ученики не забудут никогда! 
-							p Однажды учитель физики Василий Васильевич пришел на урок очень загадочный. В одной руке у он держал термос, а в другой – цветок гвоздики. Ученики сидели притихшие, предвкушая что-то необычное и интересное. Они еще на перемене заметили, что Василий Васильевич стремительно выбежал из школы, вернувшись через несколько минут с цветком...
-						div( class="news-card-footer" )
-							div( class="news-card-footer-author" )
-								img( src="/images/editor-img.png" )
-								span Гребенюк Ольга
-							div( class="news-card-button")
-								a( class="btn btn-succes btn-block") Перейти к новости 
-									i( class="fa fa-angle-right" aria-hidden="true")
-				div( class="col-sm-4" )
-					div( class="news-card" )
-						div( class="news-card-img" )
-							img( src="/images/news/news-1.png" class="img-responsive")
-						div( class="news-card-body" )
-							h2 Уроки, которые ученики не забудут никогда! 
-							p Однажды учитель физики Василий Васильевич пришел на урок очень загадочный. В одной руке у он держал термос, а в другой – цветок гвоздики. Ученики сидели притихшие, предвкушая что-то необычное и интересное. Они еще на перемене заметили, что Василий Васильевич стремительно выбежал из школы, вернувшись через несколько минут с цветком...
-						div( class="news-card-footer" )
-							div( class="news-card-footer-author" )
-								img( src="/images/editor-img.png" )
-								span Гребенюк Ольга
-							div( class="news-card-button")
-								a( class="btn btn-succes btn-block") Перейти к новости 
-									i( class="fa fa-angle-right" aria-hidden="true")
-		
+				for item in news
+					- var body = marked(item.body)
+					div( class="col-sm-4" )
+						div( class="news-card" )
+							div( class="news-card-img" )
+								img( src="#{item.photoUrl}" class="img-responsive")
+							div( class="news-card-body" )
+								h2 #{item.cyrillicTitle}
+								div( class="news-card-body-text" )
+									!= marked(body)
+							div( class="news-card-footer" )
+								div( class="news-card-footer-author" )
+									img( src="/images/editor-img.png" )
+									span Гребенюк Ольга
+								div( class="news-card-button")
+									a( class="btn btn-succes btn-block" href="news/#{item.title}") Перейти к новости 
+										i( class="fa fa-angle-right" aria-hidden="true")
+
 		// FOOTER
 		footer
 			div( class="container" )

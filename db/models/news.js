@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var newsSchema = new Schema({
   title: String,
+  cyrillicTitle: String,
   body: String,
   photoUrl: String,
   date: Date
