@@ -223,53 +223,22 @@ html( lang='ru' )
 					div( class="col-xs-12" )
 						h2( class="article-title" ) Последние новости
 				div( class="row" )
-					div( class="col-sm-4" )
-						div( class="news-card" onClick="window.location.href='news/#'")
-							div( class="news-card-img" )
-								img( src="/uploads/1509886744186-Без названия.jpeg" class="img-responsive")
-							div( class="news-card-body" )
-								h6 Сегодня в 15:59
-								h2 Стартапы больше не боятся конкурентов. Куда страшнее для них Марк Цукерберг и его Facebook, считает колумнист Wired
-								p В 2010 году соучредитель Foursquare Навин Селвадурай считал, что его компания и несколько других социальных сетей других социальных сетей других соц сетей.
-							div( class="news-card-footer" )
-								div( class="news-card-footer-author" )
-									img( src="/images/editor-img.png" )
-									span Гребенюк Ольга
-								div( class="news-card-button")
-									a( class="btn btn-succes btn-block" href="news/#") Перейти к новости 
-										i( class="fa fa-angle-right" aria-hidden="true")
-
-					div( class="col-sm-4" )
-						div( class="news-card" onClick="window.location.href='news/#'")
-							div( class="news-card-img" )
-								img( src="/uploads/1509886744186-Без названия.jpeg" class="img-responsive")
-							div( class="news-card-body" )
-								h6 Сегодня в 15:59
-								h2 Стартапы больше не боятся конкурентов. Куда страшнее для них Марк Цукерберг и его Facebook, считает колумнист Wired
-								p В 2010 году соучредитель Foursquare Навин Селвадурай считал, что его компания и несколько других социальных сетей других социальных сетей других соц сетей.
-							div( class="news-card-footer" )
-								div( class="news-card-footer-author" )
-									img( src="/images/editor-img.png" )
-									span Гребенюк Ольга
-								div( class="news-card-button")
-									a( class="btn btn-succes btn-block" href="/news/#") Перейти к новости 
-										i( class="fa fa-angle-right" aria-hidden="true")
-
-					div( class="col-sm-4" )
-						div( class="news-card" onClick="window.location.href='/news/#'")
-							div( class="news-card-img" )
-								img( src="/uploads/1509886744186-Без названия.jpeg" class="img-responsive")
-							div( class="news-card-body" )
-								h6 Сегодня в 15:59
-								h2 Стартапы больше не боятся конкурентов. Куда страшнее для них Марк Цукерберг и его Facebook, считает колумнист Wired
-								p В 2010 году соучредитель Foursquare Навин Селвадурай считал, что его компания и несколько других социальных сетей других социальных сетей других соц сетей.
-							div( class="news-card-footer" )
-								div( class="news-card-footer-author" )
-									img( src="/images/editor-img.png" )
-									span Гребенюк Ольга
-								div( class="news-card-button")
-									a( class="btn btn-succes btn-block" href="/news/#") Перейти к новости 
-										i( class="fa fa-angle-right" aria-hidden="true")
+					for item in data
+						div( class="col-sm-4" )
+							div( class="news-card" onClick="window.location.href='news/#{item.title}'")
+								div( class="news-card-img" )
+									img( src="#{item.photoUrl}" class="img-responsive")
+								div( class="news-card-body" )
+									h6 #{moment(item.date).locale('ru').calendar()}
+									h2 #{item.cyrillicTitle}
+									p #{item.description}
+								div( class="news-card-footer" )
+									div( class="news-card-footer-author" )
+										img( src="/images/editor-img.png" )
+										span Гребенюк Ольга
+									div( class="news-card-button")
+										a( class="btn btn-succes btn-block" href="news/#{item.title}") Перейти к новости 
+											i( class="fa fa-angle-right" aria-hidden="true")
 
 					div( class="row" )
 						div( class="col-sm-12 text-center" )
