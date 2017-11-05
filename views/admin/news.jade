@@ -49,34 +49,40 @@ html( lang='ru' )
 										h2 Добавление новости
 										div( class="clearfix" )
 										p Markdown разметка для основного текстового блока новости:
-									div( class="x_content" )
-										div( class="form-group" )
-											label( for="first-name" class="control-label" ) Заголовок новости: 
-												span( class="required") *
-											input( type="text" id="news-title" required="" class="form-control col-md-7 col-xs-12" )
-									div( class="x_content" )
-										label( class="control-label" ) Краткое описание новости: 
-											span( class="required") *
-										textarea( class="short-description" id="short-description" )
-									div( class="x_content" )
-										label( class="control-label" ) Разметка: 
-											span( class="required") *
-										textarea( class="markdown-textarea" id="markdown-textarea" )
-									div( class="x_content" )
-										div( class="form-group" )
-											p( class="control-label" for="file") Обложка новости: 
-												span( class="required") *
-											input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
-											label( for="file" )
-												strong Выбрать изображение
-									div( class="x_content" style="margin-top:-10px;")
-										hr
-										div( class="row" )
-											div( class="col-md-6" )
-												button( class="btn btn-success" id="publish") Опубликовать
-											div( class="col-md-6" )
-												div( class="alerts" id="alerts")
-
+									form( data-toggle="validator" onsubmit="return false")
+										div( class="x_content" )
+											div( class="form-group" )
+												label( for="first-name" class="control-label" ) Заголовок новости: 
+													span( class="required") *
+												input( type="text" id="news-title" required class="form-control col-md-7 col-xs-12" minlength="36")
+												div( class="help-block with-errors" )
+										div( class="x_content" )
+											div( class="form-group" )
+												label( class="control-label" ) Краткое описание новости: 
+													span( class="required") *
+												textarea( type="number" class="short-description form-control" id="short-description" required minlength="100" maxlength="500" )
+												div( class="help-block with-errors" )
+										div( class="x_content" )
+											div( class="form-group" )
+												label( class="control-label" ) Разметка: 
+													span( class="required") *
+												textarea( type="number" class="markdown-textarea form-control" id="markdown-textarea" required )
+										div( class="x_content" )
+											div( class="form-group" )
+												p( class="control-label" for="file") Обложка новости: 
+													span( class="required") *
+												input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
+												label( for="file" )
+													strong Выбрать изображение
+										div( class="x_content" style="margin-top:-10px;")
+											hr
+											div( class="row" )
+												div( class="col-md-12" )
+													div( class="form-group" )
+														button( class="btn btn-success" type="submit" id="publish") Опубликовать
+												div( class="col-md-12" )
+													div( class="alerts" )
+                          
 							div( class="col-md-6" )
 								div( class="x_panel" )
 									div( class="x_title" )
@@ -115,6 +121,8 @@ html( lang='ru' )
 		script( src="/vendors/moment/min/moment.min.js" )
 		script( src="/vendors/bootstrap-daterangepicker/daterangepicker.js" )
 		script( src="../vendors/dropzone/dist/min/dropzone.min.js" )
+		script( src="/js/validator.min.js" )
+		script( src="/js/formhelpers.min.js" )
 		script( src="/js/news.js" )
 
 		// Custom Theme Scripts
