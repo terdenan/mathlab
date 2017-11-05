@@ -57,19 +57,20 @@ $('#publish').on('click', () => {
     formData.append('title', title);
     formData.append('description', parser.elemDescription.value);
     formData.append('body', parser.elemMd.value);
-
-    $.ajax({
-        type: "post",
-        url: "/api/note",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-            parser.setAlert('success');
-            parser.clearAll();
-        },
-        error: function(data){
-            parser.setAlert('error')
-        }
-    });
+    if (!$('#publish').hasClass("disabled")) {
+        $.ajax({
+            type: "post",
+            url: "/api/note",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                parser.setAlert('success');
+                parser.clearAll();
+            },
+            error: function(data){
+                parser.setAlert('error')
+            }
+        });
+    }
 });

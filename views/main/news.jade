@@ -4,7 +4,7 @@ html( lang='ru' )
 		meta( charset="utf-8" )
 		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
 		meta( name="viewport" content="width=device-width, initial-scale=1" )
-		meta( name="description" content="Мы предлагаем Вам репетиторские услуги в online режиме по математике, физике и информатике." )
+		meta( name="description" content="Каждую неделю мы выкладываем акутальные новости, которые происходят внутри и снаружи нашего портала" )
 		meta( name="keywords" content="Репетитор онлайн, репетиторские услуги, математика онлайн, информатика онлайн, физика онлайн, онлайн образование" )
 		meta( name="author" content="Quve Development" )
 
@@ -55,16 +55,21 @@ html( lang='ru' )
 
 		// CONTENT
 		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Новости
 			div( class="page-header" )
 				h1 Последние новости портала MathLab.kz	
-		div( class="container main-content" )
+		div( class="container" )
 			div( class="row" )
 				for item in news
 					div( class="col-sm-4" )
-						div( class="news-card" )
+						div( class="news-card" onClick="window.location.href='news/#{item.title}'")
 							div( class="news-card-img" )
 								img( src="#{item.photoUrl}" class="img-responsive")
 							div( class="news-card-body" )
+								h6 #{moment(item.date).locale('ru').calendar()}
 								h2 #{item.cyrillicTitle}
 								p #{item.description}
 							div( class="news-card-footer" )
