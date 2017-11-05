@@ -71,40 +71,36 @@ html( lang='ru' )
 				article( class="col-md-8 col-lg-9" )
 					h1( class="post-title")!= data.cyrillicTitle
 					div( class="post-visualization" )
-						div( class="post-img")
-							img( src="#{data.photoUrl}" class="img-responsive")
-
+						div( class="post-img" style="background-image: url('#{data.photoUrl}')")
 						!= marked(data.body)
 					div( class="row" )
 						div( class="col-sm-6" )
 							h6 Поделитесь новостью с друзьями в соц.сетях и мессенджерах:
 							div( id="share" )
 						div( class="col-sm-6 text-right" )
-							div( class="post-date" )!= moment(data.date).format('DD.MM.YYYY')
+							div( class="post-date" )!= moment(data.date).locale("ru").calendar()
 
 
 				aside( class="col-md-4 col-lg-3" )
+					h3 Вам также может быть это интересно
+					div( class="another-news-block" )
+						h4 iPhone X, день первый: мнения предпринимателей и покупателей
+						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
+						a( href="#" ) Читать далее 
+							i( aria-hidden="true" class="fa fa-angle-right" )
+					div( class="another-news-block" )
+						h4 iPhone X, день первый: мнения предпринимателей и покупателей
+						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
+						a( href="#" ) Читать далее 
+							i( aria-hidden="true" class="fa fa-angle-right" )
+					div( class="another-news-block" )
+						h4 iPhone X, день первый: мнения предпринимателей и покупателей
+						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
+						a( href="#" ) Читать далее 
+							i( aria-hidden="true" class="fa fa-angle-right" )
 					
 		// FOOTER
-		footer
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-12" )
-						div( class="col-md-7 md-text-center" )
-							ul( class="footer-links" )
-								li Мы в социальных сетях:
-								li
-									a( href="https://vk.com/mathlabkz" target="_blank")
-										img( src="/images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
-								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
-										img( src="/images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
-								li
-									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
-										img( src="/images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
-						div( class="col-md-5 text-right md-text-center" )
-							ul( class="footer-links" )
-								li © MathLab.kz 2017
+		include ./includes/footer-main
 
 		script( src="/js/bootstrap.min.js" defer )
 		span( itemprop="address" style="display: none;" ) Казахстан, Алматы

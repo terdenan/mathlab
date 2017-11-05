@@ -73,9 +73,10 @@ html( lang='ru' )
 												label( class="control-label" for="file") Обложка новости: 
 													span( class="required") *
 												div( style="width:100%;" )
-												input( type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" )
-												label( for="file" )
-													strong Выбрать изображение
+												input( type="file" name="file" id="file" class="inputfile form-control" data-multiple-caption="{count} files selected" )
+												label( for="file" required)
+													span Выбрать изображение
+												div( class="help-block with-errors" id="file-error" style="color: #a94442;")
 										div( class="x_content" style="margin-top:-10px;")
 											hr
 											div( class="row" )

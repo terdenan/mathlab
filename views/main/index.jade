@@ -85,20 +85,20 @@ html( lang='ru' )
 		// CONTENT
 		header( class="landing-head" id="main" )
 			div( class="container-fluid" )
-				div( class="row landing-mac hidden-sm hidden-xs" )
+				div( class="row landing-mac" )
 					div( class="col-md-6 text-left offset-left-50" )
 						div( class="owl-carousel owl-carousel-header owl-theme")
 							div( class="item" )
 								h1 Портал дистанционного образования
 								p MathLab - это сервис, который специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. Причем репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
 								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" ) Регистрация
-								a( href="#" class="btn btn-warning btn-lg btn-video" role="button" ) Видео-презентация
+								a( href="#" class="btn btn-warning btn-lg btn-video hidden-xs hidden-sm" role="button" ) Видео-презентация
 							div( class="item" )
 								h2 Почему именно дистанционное образование?
 								p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
 								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" ) Заказать консультационный звонок
 					div( class="col-md-6 text-center" )
-			div( class="presentation-block" )
+			div( class="presentation-block hidden-xs hidden-sm" )
 
 		section
 			div( class="container" )
@@ -146,7 +146,7 @@ html( lang='ru' )
 								img(src="/images/presentation-slide-3.png" class="img-responsive")
 				div( class="row")
 					div( class="col-sm-2" )
-					div( class="col-xs-8" )
+					div( class="col-sm-8" )
 						p( class="article-p text-center" ) Мы разработали уникальную систему организации онлайн курсов, которая включает в себя удобный интерфейс, легкий дизайн, а также самое главное - текстовые и видео уроки.
 					div( class="col-sm-2" )
 					
@@ -226,8 +226,7 @@ html( lang='ru' )
 					for item in data
 						div( class="col-sm-4" )
 							div( class="news-card" onClick="window.location.href='news/#{item.title}'")
-								div( class="news-card-img" )
-									img( src="#{item.photoUrl}" class="img-responsive")
+								div( class="news-card-img" style="background-image: url('#{item.photoUrl}')")
 								div( class="news-card-body" )
 									h6 #{moment(item.date).locale('ru').calendar()}
 									h2 #{item.cyrillicTitle}
@@ -235,7 +234,7 @@ html( lang='ru' )
 								div( class="news-card-footer" )
 									div( class="news-card-footer-author" )
 										img( src="/images/editor-img.png" )
-										span Гребенюк Ольга
+										span Ольга Сладких
 									div( class="news-card-button")
 										a( class="btn btn-succes btn-block" href="news/#{item.title}") Перейти к новости 
 											i( class="fa fa-angle-right" aria-hidden="true")
@@ -245,7 +244,7 @@ html( lang='ru' )
 							a( class="btn btn-succes" href="/news") Перейти ко всем новостям
 
 
-		section
+		section( class="last" )
 			div( class="container animated animated-post" )
 				div( class="row" )
 					div( class="col-sm-12" )
@@ -292,56 +291,8 @@ html( lang='ru' )
 							blockquote
 								p #[i Хочу выразить огромную благодарность Анастасии Николаевне за высокий профессиональный подход к моему ребенку – Давиду. За то время, как он начал заниматься уроками математики у Вас, очень заметно улучшение знаний. Понимание предмета в такой сложной науке немаловажно. Любовь моего ребенка к предмету – большая заслуга преподавателя. Огромное Вам спасибо, Анастасия Николаевна, за Ваше внимание, терпение и любовь к детям, где требуется подход к каждому ребенку, который исходит от Вас. Так держать! ]
 
-		section
-			div( class="container animated animated-post" )
-				div( class="row" )
-					div( class="col-md-12" )
-						h2( class="article-title" ) Контакты и реквизиты
-				div( class="row" )
-
-					div( class="col-sm-4 contacts-block" )
-						div( class="col-md-5 text-center" )
-							img( src="/images/contacts-img-1.svg" alt="Телефоны" title="Телефоны" )
-						div( class="col-md-7" )
-							p
-								span( itemprop="telephone" ) +7 (707) 308-53-33 #[br]
-								span( itemprop="telephone" ) +7 (777) 794-45-05 #[br]
-								span( itemprop="email" ) mathlab.kz@gmail.com
-
-					div( class="col-sm-4 contacts-block" )
-						div( class="col-md-5 text-center" )
-							img( src="/images/contacts-img-2.svg" alt="Режим работы" title="Режим работы" )
-						div( class="col-md-7" )
-							p Пн-Сб: С 9.00 до 19.00#[br]Вс: Выходной
-
-					div( class="col-sm-4 contacts-block" )
-						div( class="col-md-5 text-center" )
-							img( src="/images/contacts-img-3.svg" alt="Методы оплаты" title="Методы оплаты" )
-						div( class="col-md-7" )
-							p Расчетный счет:#[br] Kaspi Bank#[br]KZ04722R000134318824
 		// FOOTER
-		footer
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-12" )
-						div( class="col-md-4 md-text-center" )
-							ul( class="footer-links" )
-								li Мы в социальных сетях:
-								li
-									a( href="https://vk.com/mathlabkz" target="_blank")
-										img( src="images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
-								li
-									a( href="https://www.facebook.com/mathlab.mathlab" target="_blank" )
-										img( src="images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
-								li
-									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
-										img( src="images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
-						div( class="col-md-4 text-center" )
-							ul( class="footer-links" )
-								li © MathLab.kz 2017
-						div( class="col-md-4 text-right md-text-center" )
-							ul( class="footer-links" )
-								li Разработка и поддержка: #[a( href="http://quve.kz" target="_blank" ) Quve.kz]	
+		include ./includes/footer-main
 
 		script( src="/js/bootstrap.min.js" defer )
 		script( src="/js/owl.carousel.js" defer )
