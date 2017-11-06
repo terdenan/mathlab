@@ -246,9 +246,15 @@ module.exports = function(app, bot){
 					.render('./404');
 				return;
 			}
-			res
-				.status(200)
-				.render('./single-news', {data: data});
+			News
+				.find({title: {"$ne": req.params.title}})
+				.sort({ date: -1 })
+				.limit(3)
+				.exec(function(err, news){
+					res
+						.status(200)
+						.render('./single-news', {data: data, news: news});
+				});
 		});
 	});
 
