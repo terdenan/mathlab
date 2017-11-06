@@ -2,3 +2,4 @@ config.json
 public/uploads/
 sslcert/
 node_modules/
+public/sitemap.xml
