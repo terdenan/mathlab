@@ -83,21 +83,12 @@ html( lang='ru' )
 
 				aside( class="col-md-4 col-lg-3" )
 					h3 Вам также может быть это интересно
-					div( class="another-news-block" )
-						h4 iPhone X, день первый: мнения предпринимателей и покупателей
-						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
-						a( href="#" ) Читать далее 
-							i( aria-hidden="true" class="fa fa-angle-right" )
-					div( class="another-news-block" )
-						h4 iPhone X, день первый: мнения предпринимателей и покупателей
-						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
-						a( href="#" ) Читать далее 
-							i( aria-hidden="true" class="fa fa-angle-right" )
-					div( class="another-news-block" )
-						h4 iPhone X, день первый: мнения предпринимателей и покупателей
-						p 3 ноября Apple запустила продажи iPhone X с «безрамочным» экраном и системой распознавания лица Face ID. Первые российские владельцы новых смартфонов рассказали
-						a( href="#" ) Читать далее 
-							i( aria-hidden="true" class="fa fa-angle-right" )
+					for item in news
+						div( class="another-news-block" )
+							h4 #{item.cyrillicTitle}
+							p #{item.description}
+							a( href="/news/#{item.title}" ) Читать далее 
+								i( aria-hidden="true" class="fa fa-angle-right" )
 					
 		// FOOTER
 		include ./includes/footer-main
