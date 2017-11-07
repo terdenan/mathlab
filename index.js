@@ -4,6 +4,7 @@ const express = require('express'),
       config = require('config.json')('./config.json'),
       mongoose = require('mongoose'),
       io = require('socket.io')(http),
+      compression = require('compression'),
 
       subdomain = require('express-subdomain'),
       admin = express(),
@@ -17,6 +18,7 @@ const ObjectId = require('mongodb').ObjectID,
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
+app.use(compression());
 
 app.use(function(req, res, next){
 	res.io = io;
