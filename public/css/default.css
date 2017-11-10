@@ -1,5 +1,5 @@
 body {
-    background-color: #f5f7fb;
+    background-color: #fbfbfb;
     color: #354251;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     outline: none;
@@ -23,25 +23,33 @@ section.last {
   color: #778292;
 }
 
-.landing footer h4 {
+footer h4 {
   font-size: 22px;
   font-weight: 600;
   color: #788594;
 }
 
-.landing footer h5 {
+footer h5 {
   font-size: 16px;
   font-weight: 600;
   color: #788594;
 }
 
-.landing footer h6 {
+footer p {
+  margin-bottom: 0;
+}
+
+.landing footer p {
+  margin-bottom: 10px;
+}
+
+footer h6 {
   font-weight: 600;
   color: #788594;
   margin: 5px 0;
 }
 
-.landing footer a {
+footer a {
   color: #788594;
 }
 
@@ -60,12 +68,13 @@ section.last {
 }
 
 footer {
-  padding: 40px 0 20px;
-  border-top: 3px solid #f1f4f9;
+  padding: 20px 0 20px;
+  margin-top: 20px;
+  border-top: 1px solid #eceff7;
   color: #7b7b7b;
   font-size: 12px;
   font-weight: 300;
-  background: #f5f7fb;
+  background: #fbfbfb;
 }
 
 input[type=text], input[type=submit], textarea{
@@ -455,6 +464,13 @@ hr {
   float: left;
 }
 
+@media (max-width: 767px) {
+  .post-img {
+    width: 100%;
+    float: none;
+  }
+}
+
 .post-img img {
   width: 100%;
 }
@@ -582,7 +598,7 @@ hr {
 .course-info-img  {
     padding: 10px;
     border-radius: 3px;
-    background-color: #f5f7fb
+    background-color: #fbfbfb;
 }
 
 .course-info-img img {

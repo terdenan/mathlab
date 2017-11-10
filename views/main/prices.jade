@@ -55,7 +55,11 @@ html( lang='ru' )
 								| &nbsp;Вход и регистрация
 
 		// CONTENT
-		div( class="container main-content" style="padding-top: 40px;" )
+		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Расценки и способы оплаты
 			div( class="page-header" )
 				h1 Расценки и способы оплаты
 			div( class="table-responsive" )
@@ -127,7 +131,7 @@ html( lang='ru' )
 							td 16.000
 							td -
 				p * Рассчитана стоймость курса, включающего 8 занятий.
-		div( class="container main-content" )
+		div( class="container" )
 			div( class="page-header" )
 				h4 Способы оплаты
 				p На данный момент на портале возможны три способа оплаты, Вы можете выбрать более удобный для Вас.
@@ -146,25 +150,7 @@ html( lang='ru' )
 						h5 KZ04722R000134318824
 		
 		// FOOTER
-		footer
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-12" )
-						div( class="col-md-7 md-text-center" )
-							ul( class="footer-links" )
-								li Мы в социальных сетях:
-								li
-									a( href="https://vk.com/mathlabkz" target="_blank")
-										img( src="/images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
-								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
-										img( src="/images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
-								li
-									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
-										img( src="/images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
-						div( class="col-md-5 text-right md-text-center" )
-							ul( class="footer-links" )
-								li © MathLab.kz 2017
+		include ./includes/footer-main
 
 		script( src="/js/bootstrap.min.js" defer )
 		script( src="/js/lightbox.js" )
