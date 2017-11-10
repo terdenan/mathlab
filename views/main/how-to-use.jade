@@ -55,7 +55,11 @@ html( lang='ru' )
 								| &nbsp;Вход и регистрация
 
 		// CONTENT
-		div( class="container main-content" style="padding-top: 40px;" )
+		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Как проходит обучение
 			div( class="page-header" )
 				h1 Как проходит обучение
 			p После того, как Вы #[a( href="/sign-up" ) зарегистрировались], и подали заявку, в Ваш Личный кабинет на страничку «Активные курсы» приходит первый урок с комментариями учителя и разбором наиболее трудных задач и примеров.
@@ -70,49 +74,30 @@ html( lang='ru' )
 				li Вы также можете позвонить своему учителю и рассказать о затруднениях.
 			blockquote 
 				p Желаем удачи! #[br] И запомни - для знаний нет преград!
-				footer MathLab.kz
-		div( class="container main-content" )
-			div( class="page-header" )
-				h4 Интерфейс сервиса
-			div( class="row" )
-				div( class="col-md-6 text-center" )
-					a( href="/images/interface-1.png" data-lightbox="image-1" )
-						img( src="/images/interface-1.png" class="img-thumbnail interface-img" )
-					h5 Личный кабинет ученика
-				div( class="col-md-6 text-center" )
-					a( href="/images/interface-2.png" data-lightbox="image-2" )
-						img( src="/images/interface-2.min.png" class="img-thumbnail interface-img" )
-					h5 Окно диалога между учителем и учеником
-			div( class="row" )
-				div( class="col-md-6 text-center" )
-					a( href="/images/interface-3.png" data-lightbox="image-3" )
-						img( src="/images/interface-3.png" class="img-thumbnail interface-img" )
-					h5 Форма заявки на обучение
-				div( class="col-md-6 text-center" )
-					a( href="/images/interface-4.jpg" data-lightbox="image-4" )
-						img( src="/images/interface-4.min.jpg" class="img-thumbnail interface-img" )
-					h5 Пример выполнения домашнего задания
+		//- div( class="container main-content" )
+		//- 	div( class="page-header" )
+		//- 		h4 Интерфейс сервиса
+		//- 	div( class="row" )
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-1.png" data-lightbox="image-1" )
+		//- 				img( src="/images/interface-1.png" class="img-thumbnail interface-img" )
+		//- 			h5 Личный кабинет ученика
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-2.png" data-lightbox="image-2" )
+		//- 				img( src="/images/interface-2.min.png" class="img-thumbnail interface-img" )
+		//- 			h5 Окно диалога между учителем и учеником
+		//- 	div( class="row" )
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-3.png" data-lightbox="image-3" )
+		//- 				img( src="/images/interface-3.png" class="img-thumbnail interface-img" )
+		//- 			h5 Форма заявки на обучение
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-4.jpg" data-lightbox="image-4" )
+		//- 				img( src="/images/interface-4.min.jpg" class="img-thumbnail interface-img" )
+		//- 			h5 Пример выполнения домашнего задания
 		
 		// FOOTER
-		footer
-			div( class="container" )
-				div( class="row" )
-					div( class="col-md-12" )
-						div( class="col-md-7 md-text-center" )
-							ul( class="footer-links" )
-								li Мы в социальных сетях:
-								li
-									a( href="https://vk.com/mathlabkz" target="_blank")
-										img( src="/images/vk.svg" alt="Мы в ВК" title="Мы в ВК" )
-								li
-									a( href="https://www.facebook.com/mathlabkz-246075022465656/?ref=aymt_homepage_panel" target="_blank" )
-										img( src="/images/facebook.svg" alt="Мы в Facebook" title="Мы в Facebook" )
-								li
-									a( href="https://www.instagram.com/mathlab.kz/" target="_blank" )
-										img( src="/images/instagram.svg" alt="Мы в Instagram" title="Мы в Instagram" )
-						div( class="col-md-5 text-right md-text-center" )
-							ul( class="footer-links" )
-								li © MathLab.kz 2017
+		include ./includes/footer-main
 
 		script( src="/js/bootstrap.min.js" defer )
 		script( src="/js/lightbox.js" )
