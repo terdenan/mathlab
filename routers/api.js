@@ -12,7 +12,8 @@ const MongoClient = require('mongodb').MongoClient,
 const User = require('../db/models/user'),
 			Bid = require('../db/models/bid'),
 			Message = require('../db/models/message'),
-			Course = require('../db/models/course');
+			Course = require('../db/models/course'),
+			Callback = require('../db/models/callback')
 
 const storage = multer.diskStorage({
 		    destination: function (req, file, cb) {
@@ -49,6 +50,30 @@ module.exports = function(app, bot) {
       		.send("success");
       }
     );
+	});
+
+	app.put('/api/callback', function(req, res){
+		var name = req.body.name;
+		var phone_number = req.body.phone;
+
+		var callback_obj = {
+			name: name,
+			phone_number: phone_number
+		}
+		var newCallback = Callback(callback_obj);
+
+		newCallback.save(function(err) {
+			if (err) {
+				errorHandler(err, req, res, 500, "Internal server error, try later");
+				return;
+			}
+			message = `Заказ на обратный звонок\nИмя: ${callback_obj.name}\nТелефон: ${callback_obj.phone_number}`;
+			bot.sendMessage(298493325, message)
+
+			res
+            	.status(200)
+            	.send(callback_obj);
+		});
 	});
 
 	app.post('/api/profileInfo', function(req, res){
@@ -102,6 +127,7 @@ module.exports = function(app, bot) {
 			      		errorHandler(err, req, res, 500, "Internal server error, try later");
 								return;
 			      	}
+
 	            res
 	            	.status(200)
 	            	.send("success");
@@ -164,8 +190,8 @@ module.exports = function(app, bot) {
 																	 '\nEmail: ' + newUser.email + 
 																	 '\nThrough VK: no\n';
 		  			bot.sendMessage(298493325, message);
-		  			bot.sendMessage(66075583, message);
-		  			bot.sendMessage(288260717, message);
+		  			// bot.sendMessage( 66075583, message);
+		  			// bot.sendMessage(288260717, message);
             res
             	.status(200)
             	.send({ email: req.user.email });
@@ -435,9 +461,9 @@ module.exports = function(app, bot) {
 	  												'\nPreferred days: ' + newBid.prefDays +
 	  												'\nPreferred time: ' + newBid.prefTime +
 	  												'\nTarget: ' + newBid.target + '\n';
-		  /*bot.sendMessage(298493325, message);
-		  bot.sendMessage(66075583, message);
-		  bot.sendMessage(288260717, message);*/
+		  bot.sendMessage(298493325, message);
+		  // bot.sendMessage(66075583, message);
+		  // bot.sendMessage(288260717, message);
 	    res
 	    	.status(200)
 	    	.send('success');

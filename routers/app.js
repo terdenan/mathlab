@@ -91,8 +91,8 @@ module.exports = function(app, bot){
 		  				if (err) return done(err);
 		  				var message = 'New user:\nGiven name: ' + newUser.fullname + '\nEmail: ' + newUser.email + '\nThrough VK: yes\n';
 		  				bot.sendMessage(298493325, message);
-		  				bot.sendMessage(66075583, message);
-		  				bot.sendMessage(288260717, message);
+		  				// bot.sendMessage(66075583, message);
+		  				// bot.sendMessage(288260717, message);
 		  				done(null, newUser);
 		  			});
 					});
