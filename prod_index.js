@@ -5,6 +5,7 @@ const express = require('express'),
       fs = require('fs'),
       config = require('config.json')('./config.json'),
       mongoose = require('mongoose'),
+      compression = require('compression'),
 
       subdomain = require('express-subdomain'),
       admin = express(),
@@ -30,6 +31,7 @@ const TelegramBot = require('node-telegram-bot-api'),
 
 app.use(subdomain('admin', admin));
 app.use(subdomain('t', teacher));
+app.use(compression());
 
 app.use(function(req, res, next){
 	res.io = io;

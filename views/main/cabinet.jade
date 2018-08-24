@@ -104,8 +104,12 @@ html( lang='ru' )
 																				img( src="/images/subject-inform.png" )
 																			when 'Физика'
 																				img( src="/images/subject-physic.png" )
+																			when 'Русский язык'
+																				img( src="/images/subject-russian.png" )
+																			when 'Профориентация'
+																				img( src="/images/subject-prof.png" )
 																			default
-																				img( src="/images/subject-math.png" )
+																				img( src="/images/subject-def.png" )
 																	div( class="course-info-titles" )
 																		h5 #[span( class="course-desc" ) Преподаватель:] #{item.teacher}
 																		h5 #[span( class="course-desc" ) Предмет обучения:] #{item.subject}
@@ -122,7 +126,18 @@ html( lang='ru' )
 										h4 У Вас пока нет активных курсов
 										p Подайте заявку на обучение и начинайте заниматься.
 										a( href="/request" class="btn btn-default" ) Подать заявку
-
+					div( class="base" )
+						header
+							h4 Это может быть интересно
+						div
+							script( async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" )
+							ins( class="adsbygoogle"
+							     style="display:block"
+							     data-ad-client="ca-pub-2356380864302489"
+							     data-ad-slot="2219785768"
+							     data-ad-format="auto" )
+							script.
+								(adsbygoogle = window.adsbygoogle || []).push({});
 
 		// FOOTER
 		include ./includes/footer
