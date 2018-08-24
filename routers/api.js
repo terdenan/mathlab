@@ -71,6 +71,7 @@ module.exports = function(app, bot) {
 			message = `Заказ на обратный звонок\nИмя: ${callback_obj.name}\nТелефон: ${callback_obj.phone_number}`;
 			bot.sendMessage(298493325, message);
 			bot.sendMessage(288260717, message);
+			bot.sendMessage(662981748, message)
 
 			res
             	.status(200)
@@ -464,6 +465,7 @@ module.exports = function(app, bot) {
 	  												'\nTarget: ' + newBid.target + '\n';
 		  bot.sendMessage(298493325, message);
 		  bot.sendMessage(288260717, message);
+		  bot.sendMessage(662981748, message);
 	    res
 	    	.status(200)
 	    	.send('success');
