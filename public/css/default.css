@@ -3,6 +3,7 @@ body {
     color: #354251;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     outline: none;
+    overflow-x: hidden;
 }
 
 section {
@@ -863,6 +864,18 @@ hr {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+@media (max-width: 991px) {
+  .landing-head h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-head h2 {
+    font-size: 26px;
+  }
 }
 
 .start-button {
