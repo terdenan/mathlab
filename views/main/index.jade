@@ -65,7 +65,7 @@ html( lang='ru' )
 								i( class="fa fa-gift" aria-hidden="true" style="color: #FFEB3B;")
 					ul( class="nav navbar-nav navbar-right" )
 						li
-							a( href="/sign-in" )
+							a( href="/sign-in" onClick="yaCounter50080147.reachGoal('navbar-sign-in');")
 								i( class="fa fa-lock" aria-hidden="true" ) 
 								| &nbsp; Вход и регистрация
 
@@ -78,16 +78,16 @@ html( lang='ru' )
 							div( class="item" )
 								h1 Портал дистанционного и полудистанционного образования
 								p MathLab - это сервис, который специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. Причем репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
-								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" ) Регистрация
+								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" onClick="yaCounter50080147.reachGoal('header-sign-up');") Регистрация
 							div( class="item" )
 								h2 Почему именно дистанционное образование?
 								p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
-								a( href="#" data-toggle="modal" data-target="#callbackModal" class="btn btn-warning btn-lg" role="button" ) Заказать консультационный звонок
+								a( href="#" data-toggle="modal" data-target="#callbackModal" class="btn btn-warning btn-lg" role="button" onClick="yaCounter50080147.reachGoal('header-callback');") Заказать консультационный звонок
 							div( class="item" )
 								h2 Что такое полудистанционное образование?
 								p Для алматинских школьников мы предлагаем смешанную форму обучения «Blended learning». Она опробована нашими учениками и получила хорошие отзывы.
 								p Ученик выбирает удобный для него вариант:  например, один раз в неделю встречается с преподавателем очно и два раза в неделю высылает уроки дистанционно. Варианты очных и дистанционных занятий варьируются. Подробнее читайте в наших новостях.
-								a( href="/news" class="btn btn-warning btn-lg" role="button" )  Новости
+								a( href="/news" class="btn btn-warning btn-lg" role="button" onClick="yaCounter50080147.reachGoal('header-news');")  Новости
 					div( class="col-md-6 text-center" )
 			div( class="presentation-block hidden-xs hidden-sm" )
 
@@ -97,7 +97,6 @@ html( lang='ru' )
 					div( class="col-sm-6" )
 						h2( class="article-title" ) Различные образовательные программы
 						p( class="article-p" ) Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика, программирование, химия, биология, а так же многих других - ребятам, обучающимся по стандартной школьной программе. Подберем для ребенка квалифицированного преподавателя, который составит индивидуальный план обучения и начнет работу с ним.
-						button( class="btn btn-default" ) Заказать консультационный звонок
 					div( class="col-sm-6" )
 						img( src="/images/article-img-new-1.svg" class="img-responsive" alt="Различные образовательные программы" title="Различные образовательные программы")
 
@@ -109,7 +108,7 @@ html( lang='ru' )
 					div( class="col-sm-6" )
 						h2( class="article-title" ) Преподаватели Высшей категории
 						p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. 
-						button( class="btn btn-default" ) Заказать консультационный звонок
+						button( class="btn btn-default" data-toggle="modal" data-target="#callbackModal" onClick="yaCounter50080147.reachGoal('body-callback');") Заказать консультационный звонок
 
 		section
 			div( class="container" )
@@ -117,7 +116,7 @@ html( lang='ru' )
 					div( class="col-sm-6" )
 						h2( class="article-title" ) Не нужно никуда ехать
 						p( class="article-p" ) Обучаясь в нашем онлайн центре, ваш ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения. Для комфортного обучения ребенка, досточно иметь точку доступа в интернет в виде персонального компьютера, планшета и даже обычного смартфона.
-						button( class="btn btn-default" ) Заказать консультационный звонок
+						button( class="btn btn-default" data-toggle="modal" data-target="#callbackModal" onClick="yaCounter50080147.reachGoal('body-callback');") Заказать консультационный звонок
 					div( class="col-sm-6" )
 						img( src="/images/article-img-new-3.svg" class="img-responsive" alt="Не нужно никуда ехать" title="Не нужно никуда ехать")
 
@@ -283,12 +282,12 @@ html( lang='ru' )
 										img( src="/images/editor-img.png" alt="Редактор портала MathLab.kz" title="Ольга Сладких")
 										span Ольга Сладких
 									div( class="news-card-button")
-										a( class="btn btn-succes btn-block" href="news/#{item.title}") Перейти к новости 
+										a( class="btn btn-succes btn-block" href="news/#{item.title}" onClick="yaCounter50080147.reachGoal('body-single-news');") Перейти к новости 
 											i( class="fa fa-angle-right" aria-hidden="true")
 
 					div( class="row" )
 						div( class="col-sm-12 text-center" )
-							a( class="btn btn-succes" href="/news") Перейти ко всем новостям
+							a( class="btn btn-succes" href="/news" onClick="yaCounter50080147.reachGoal('body-all-news');") Перейти ко всем новостям
 
 
 		section( class="last" )

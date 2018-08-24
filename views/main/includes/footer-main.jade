@@ -24,8 +24,8 @@ footer
 					a( href="/prices" ) Расценки и способы оплаты
 				p 
 					a( href="/news" ) Новости
-				p 
-					a( href="/faq" ) FAQ
+				//- p 
+				//- 	a( href="/faq" ) FAQ
 			div( class="col-md-3" )
 				h5 Контактные данные
 				h6 Телефоны:
@@ -53,7 +53,35 @@ footer
 	div( class="container" )
 		div( class="row" )
 			div( class="col-md-6 md-text-center")
-				p Все права защищены 2017 © MathLab.kz
+				p Все права защищены 2017-2018 © MathLab.kz
 			div( class="col-md-6 text-right md-text-center")
-				p Разработка и поддержка сервиса:&nbsp;
-					a( href="http://quve.kz" target="_blank" ) Quve.kz
+				p Разработка и поддержка сервиса: MathLab Development
+
+	script.
+		(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+		try {
+		w.yaCounter50080147 = new Ya.Metrika2({
+		id:50080147,
+		clickmap:true,
+		trackLinks:true,
+		accurateTrackBounce:true,
+		webvisor:true
+		});
+		} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+		s = d.createElement("script"),
+		f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+		if (w.opera == "[object Opera]") {
+		d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+		})(document, window, "yandex_metrika_callbacks2");
+	noscript
+		div
+		img(src='https://mc.yandex.ru/watch/50080147', style='position:absolute; left:-9999px;', alt='')

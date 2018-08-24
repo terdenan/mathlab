@@ -30,6 +30,7 @@ module.exports = function(app, bot) {
 		if (err && err != "timeError" && err != "dataError") {
 			console.log(err);
 			bot.sendMessage(298493325, "Monsieur, there is new error on server...");
+			bot.sendMessage(288260717, "Monsieur, there is new error on server...");
 		}
 		res
 			.status(statusCode)
@@ -68,7 +69,8 @@ module.exports = function(app, bot) {
 				return;
 			}
 			message = `Заказ на обратный звонок\nИмя: ${callback_obj.name}\nТелефон: ${callback_obj.phone_number}`;
-			bot.sendMessage(298493325, message)
+			bot.sendMessage(298493325, message);
+			bot.sendMessage(288260717, message);
 
 			res
             	.status(200)
@@ -190,8 +192,7 @@ module.exports = function(app, bot) {
 																	 '\nEmail: ' + newUser.email + 
 																	 '\nThrough VK: no\n';
 		  			bot.sendMessage(298493325, message);
-		  			// bot.sendMessage( 66075583, message);
-		  			// bot.sendMessage(288260717, message);
+		  			bot.sendMessage(288260717, message);
             res
             	.status(200)
             	.send({ email: req.user.email });
@@ -462,8 +463,7 @@ module.exports = function(app, bot) {
 	  												'\nPreferred time: ' + newBid.prefTime +
 	  												'\nTarget: ' + newBid.target + '\n';
 		  bot.sendMessage(298493325, message);
-		  // bot.sendMessage(66075583, message);
-		  // bot.sendMessage(288260717, message);
+		  bot.sendMessage(288260717, message);
 	    res
 	    	.status(200)
 	    	.send('success');
