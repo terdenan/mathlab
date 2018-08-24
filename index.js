@@ -36,7 +36,7 @@ require('./routers/app')(app, bot);
 require('./routers/admin')(admin);
 require('./routers/teacher')(teacher);
 
-//require('./routers/telegramBot')(bot);
+require('./routers/telegramBot')(bot);
 
 io.on('connection', function(socket){
 	socket.on('setRoom', function(courseId){
