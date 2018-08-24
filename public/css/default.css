@@ -779,6 +779,17 @@ hr {
   margin: 0 !important;
 }
 
+.owl-theme .owl-dots .owl-dot {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+  transform: scale(1.3,1.3);
+  transition: all 0.2s ease-in-out;
+}
+
 .landing {
   background-color: #fff !important;
   color: #333;
@@ -808,6 +819,12 @@ hr {
 .landing-head .owl-theme .owl-nav.disabled+.owl-dots {
   padding-top: 20px;
   float: left;
+}
+
+.landing-head .owl-theme .owl-dots .owl-dot {
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .landing-head .owl-theme .owl-dots .owl-dot span {
