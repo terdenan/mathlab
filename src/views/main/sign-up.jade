@@ -1,0 +1,155 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="Регистрация на портале MathLab займет у Вас всего пару кликов!" )
+		meta( name="author" content="Quve Development" )
+
+		title Регистрация
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/bootstrap-formhelpers.min.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/js/validator.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		nav( class="navbar navbar-inverse" )
+			div( class="container-fluid" )
+				div( class="navbar-header" )
+					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
+						span( class="sr-only" ) Меню
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+					a( class="navbar-brand" href="/" )
+						img( src="/images/logo.svg" alt="MathLab" title="Logo" )
+						span MathLab.kz
+				div( class="collapse navbar-collapse" id="navbar-collapse" )
+					ul( class="nav navbar-nav" )
+						li
+							a( href="/" )
+								i( class="fa fa-home" aria-hidden="true" )
+								| &nbsp; Главная
+						li
+							a( href="/how-to-use" target="_blank" )
+								i( class="fa fa-graduation-cap" aria-hidden="true" )
+								| &nbsp; Как проходит обучение
+						li
+							a( href="/prices" target="_blank" )
+								i( class="fa fa-usd" aria-hidden="true" )
+								| &nbsp; Расценки и способы оплаты
+					ul( class="nav navbar-nav navbar-right" )
+						li
+							a( href="/sign-in" ) 
+								i(class="fa fa-lock" aria-hidden="true")
+								|	&nbsp;Вход в личный кабинет
+
+		// CONTENT
+		div( class="error-alerts" )
+
+		div( class="container" )
+			div( class="row" )
+				div( class="col-md-8 col-md-offset-2" )
+					div( class="row form-head" )
+						div( class="col-xs-8 nopadding" )
+							h3 Регистрация
+						div( class="col-xs-4 text-right form-head-reg" )
+							a( href="/sign-in" ) Вход
+					div( class="form" )
+						div( class="row form-pagination" )
+							div( class="col-sm-4 text-center" )
+								a( id="page-1" ) Персональные данные
+							div( class="col-sm-4 text-center" )
+								a( id="page-3" class="disabled-page" ) Подтверждение аккаунта
+							div( class="col-sm-4 text-center" )
+								a( id="page-4" class="disabled-page" ) Начало работы
+							div( class="form-pagination-progress" )
+						div( class="forms" )
+							div( id="form-1" class="animated" )
+								form( data-toggle="validator" role="form" onsubmit="return false" )
+									div( class="form-group" )
+										label( for="login" ) Ваше ФИО:
+										input( type="text" class="form-control" id="login" required )
+										div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( for="email" ) Ваш E-mail:
+										input( type="email" class="form-control" id="email" required )
+										div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( for="password" ) Придумайте пароль:
+										div( class="input-group" )
+											input( type="password" data-minlength="6"  class="form-control" id="password" placeholder="Не менее 6 символов" data-error="К сожалению, Ваш пароль слишком короткий" required )
+											span( class="input-group-btn" )
+												button( class="btn btn-default" type="button" id="show-password" )
+													i( class="fa fa-eye" aria-hidden="true" )
+										div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( for="tel" ) Ваш телефон:
+										input( type="tel" class="form-control bfh-phone" id="tel" data-format="+7 (ddd) ddd-dd-dd" required )
+										div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( for="sex" required) Ваш пол:
+										select( class="form-control" id="sex" )
+											option Не указано
+											option( value="0" ) Мужской
+											option( value="1" ) Женский
+									div( class="form-group" )
+										label( for="grade" required) Ваш класс учебы:
+										select( class="form-control" id="grade" )
+											option 1
+											option 2
+											option 3
+											option 4
+											option 5
+											option 6
+											option 7
+											option 8
+											option 9
+											option 10
+											option 11
+									div( class="form-group" )
+										button( type="submit" class="btn btn-primary btn-block btn-md" id="submit-1" ) Далее
+							div( id="form-3" class="hide-form animated text-center" )
+								div( class="confirm-info" )
+									img( src="/images/mail-confirm-req.png" )
+									h4 Мы выслали Вам на почту письмо с подтверждением Вашего E-mail 
+									hr
+									p Для подтверждения почты просто перейдите по ссылке в письме. 
+								button( type="submit" class="btn btn-primary btn-block btn-md" id="submit-3" ) Далее
+							div( id="form-4" class="hide-form animated text-center" )
+								img( src="/images/success.png" )
+								h4 Вы успешно зарегистрировались на портале MathLab.kz! 
+								hr
+								ul( class="list-inline text-center" )
+									li: a( href="/cabinet" class="btn btn-default btn-block" ) Личный кабинет
+									li: a( href="/request" class="btn btn-default btn-block" ) Заявка на обучение
+							div( class="loader-reg" )
+											
+											
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+		script( src="/js/registration.js" )
+		script( src="/js/formhelpers.min.js" )
+
+

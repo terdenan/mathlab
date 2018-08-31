@@ -1,0 +1,126 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Заявка на обучение
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/bootstrap-formhelpers.min.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="/js/main.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		if (!confirmed)
+			include ./includes/email-confirm-alert
+
+		// CONTENT
+		div( class="container" )
+			div( class="row" )
+				div( class="col-md-12" )
+					h2 Заявка на обучение
+			div( class="row" )
+				div( class="col-md-6" )
+					div( class="base" id="request-form")
+						form( data-toggle="validator" role="form" onsubmit="return false" )
+							div( class="form-group" )
+								label( for="subject" ) Предмет обучения:
+								select( class="form-control" id="subject" )
+									option Математика
+									option Информатика
+									option Физика
+									option Русский язык
+									option Профориентация
+							div( class="form-group" )
+								label( for="days" ) Желаемые дни уроков:
+								div( class="btn-group btn-group-justified" data-toggle="buttons" )
+									label( class="btn btn-default focus-none" ) Пн
+										input( type="checkbox" autocomplete="off" id="monday" )
+									label( class="btn btn-default focus-none" ) Вт
+										input( type="checkbox" autocomplete="off" id="tuesday" )
+									label( class="btn btn-default focus-none" ) Ср
+										input( type="checkbox" autocomplete="off" id="wednesday" )
+									label( class="btn btn-default focus-none" ) Чт
+										input( type="checkbox" autocomplete="off" id="thursday" )
+									label( class="btn btn-default focus-none" ) Пт
+										input( type="checkbox" autocomplete="off" id="friday" )
+									label( class="btn btn-default focus-none" ) Сб
+										input( type="checkbox" autocomplete="off" id="saturday" )
+									label( class="btn btn-default focus-none" ) Вс
+										input( type="checkbox" autocomplete="off" id="sunday" )
+							div( class="form-group" )
+								label( for="time" ) Желаемое время урока:
+								div( class="bfh-timepicker" data-time="18:00" )
+									div( class="input-prepend bfh-timepicker-toggle" data-toggle="bfh-timepicker" )
+										span( class="add-on" )
+											i( class="icon-time" )
+										input( type="text" id="time" class="input-medium" readonly )
+									div( class="bfh-timepicker-popover" )
+										table( class="table" )
+											tbody
+												tr
+													td( class="hour" )
+														a( class="next" href="#" )
+															i( class="icon-chevron-up" )
+														br
+														input( input type="text" class="input-mini" readonly )
+														a( class="previous" href="#" )
+															i( class="icon-chevron-down" )
+													td( class="separator" ) :
+													td( class="minute" )
+														a( class="next" href="#" )
+															i( class="icon-chevron-up" )
+														br
+														input( input type="text" class="input-mini" readonly )
+														br
+														a( class="previous" href="#" )
+															i( class="icon-chevron-down" )
+							div( class="form-group" )
+								label( for="target" ) Цель занятий:
+								select( class="form-control" id="target" )
+									option Не выбрано
+									option Улучшить успеваемость по предмету
+									option Поступить в физико-математическую школу
+							div( class="form-group" )
+								button( type="submit" class="btn btn-primary btn-block btn-md relative" id="req-submit" ) Отправить
+
+				div( class="col-md-6" )
+					div( class="base" )
+						h4 Как проходит процесс обучения?
+						p На самом деле все очень просто, сам процесс разбит на несколько шагов:
+						ol
+							li Вы подаете заявку на обучение, в которой указываете все Ваши предпочтения относительно курса.
+							li Наш менеджер, видя заявку в системе, связывается в Вами по телефону, который указан в заявке.
+							li Обсудив все моменты и объяснив как проходят уроки, менеджер выставляет Вам счет на оплату, оплатить можно несколькими способами, найти их можно на #[a( href="/prices" ) специальной странице]. 
+							li Далее открывается обучающий курс, войти в него Вы сможете в личном кабинете, и уже через некоторое время, обычно не более часа, учитель свяжется в Вами.
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+		script( src="/js/formhelpers.min.js" )
+
+

@@ -1,0 +1,122 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Наши преподаватели
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="/js/main.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		if (!confirmed)
+			include ./includes/email-confirm-alert
+
+		// CONTENT
+		div( class="container" )
+			div( class="row" )
+				div( class="col-md-12" )
+					h2 Наши преподаватели
+			div( class="row" )
+				div( class="col-md-12" )
+					div(	class="base" )
+						div(	class="col-md-10" )
+							p Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. Они постоянно повышают педагогическое мастерство, осваивают новые, передовые педагогические технологии. В своей педагогической деятельности основываются на гуманном отношении к ученику, индивидуальном подходе к обучению каждого ребенка, исходя из его способностей, уровня подготовки, целей обучения.
+						div( class="col-md-2 text-left" )
+							img( src="/images/network.svg" style="width: 120px;" )
+			div( class="row" )
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-2.jpg" class="img-circle" )
+							h4 Галия Мрзановна Альжанова
+							h6 Учитель математики и информатики
+							blockquote
+								p Преподает в физмат лицее. Призер республиканской олимпиады среди учителей математики, физики, информатики (2 место). Большой опыт подготовки призеров международных, республиканских олимпиад.
+								h6 Стаж работы репетитором - 10 лет
+								h6 г. Алматы
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-1.jpg" class="img-circle" )
+							h4 Василий Васильевич Соколов
+							h6 Учитель физики
+							blockquote
+								p Преподает в физмат школе. Призер Международной олимпиады среди учителей математики, физики, информатики (1 место). Имеет учеников-призеров международных и республиканских олимпиад.
+								h6 Стаж работы репетитором - 7 лет
+								h6 г. Алматы
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-3.jpg" class="img-circle" )
+							h4 Анастасия Николаевна Гребенюк
+							h6 Учитель математики
+							blockquote
+								p Выпускница Специализированной школы-лицея для одаренных детей. Призер Республиканской олимпиады среди студентов технических вузов по начертательной геометрии (2 место).
+								h6 Стаж работы репетитором - 3 года
+								h6 г. Алматы
+			div( class="row" )
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-4.jpg" class="img-circle" )
+							h4 Василий Савельевич Скиба
+							h6 Учитель математики
+							blockquote
+								p Выпускник Специализированного учебно-научного центра при Новосибирском Государственном Университете (Россия), бакалавр прикладной математики и информатикм НГУ. Математик в четвертом поколении.
+								h6 Стаж работы репетитором - 4 года
+								h6 г. Новосибирск
+
+				div( class="col-md-4 text-right" )
+					div( class="base" )
+						div( class="teacher-profile text-center" )
+							img( src="images/teacher-img-5.png" class="img-circle" )
+							h4 Марина Викторовна Панченко
+							h6 Учитель химии и биологии
+							blockquote
+								p Преподаватель в физмат лицее. Автор текстов по биологии Алматинского ГЦНТО. Имеет учеников-призеров городских, республиканских и международных олимпиад. Стабильно высокий результат ЕНТ у учеников.
+								h6 Стаж работы репетитором - 26 лет
+								h6 г. Алматы
+
+			div( class="row" )
+				div( class="col-md-4" )
+				div( class="col-md-4" )
+					div( class="base text-center" )
+						img( src="/images/search-teachers.png" )
+						h5 У Вас есть знакомые преподаватели?
+						h6 Порекомендуйте Нас, мы всегда ищем сильных учителей!
+				div( class="col-md-4" )
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+
+

@@ -1,0 +1,110 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title #{courseInfo.subject} (#{courseInfo.teacher})
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+		link( href="/css/nanoscroller.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="/js/waypoints.min.js" )
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body( style="overflow: hidden;" )
+
+		// NAVBAR
+		include ./includes/header
+
+		if (!confirmed)
+			include ./includes/email-confirm-alert
+
+		div( class="container" )
+			div( class="row" )
+				div( class="col-md-10 col-md-offset-1" )
+					div( class="panel panel-default" )
+						div( class="panel-heading relative" )
+							div( class="row" )
+								div( class="col-sm-6 dialog-info")
+									div( class="center-cropped img-30" style="background-image: url('#{courseInfo.teacherAvatarUrl}');" )
+									span #{courseInfo.teacher}
+								div( class="col-sm-6 text-right course-info" )
+									span( id="panel-heading-subject" ) #{courseInfo.subject}
+									span( class="dropdown" )
+										img( src="/images/ellipsis.svg" class="panel-heading-icon" data-toggle="dropdown" )
+										ul( class="dropdown-menu dropdown-menu-right" )
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Преподаватель: 
+													span( id="ci-teacher" ) #{courseInfo.teacher}
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Ученик: 
+													span( id="ci-student" ) #{courseInfo.student}
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Начало курса: 
+													span( id="ci-start-date" ) #{moment(courseInfo.startingDate).format('DD.MM.YYYY')}
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Окончание курса: 
+													span( id="ci-end-date" ) #{moment(courseInfo.endingDate).format('DD.MM.YYYY')}
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Дни уроков: 
+													span( id="ci-days" ) #{courseInfo.days}
+											li( class="disabled" )
+												a( href="#" )
+													span( class="course-info-li" ) Время уроков: 
+													span( id="ci-time" ) #{courseInfo.time}
+						div( class="panel-body nano" style="height: 600px;" )
+							div( class="nano-content" )
+								div( class="messages" )
+									if (messages.length)
+										include ./includes/messages
+									else 
+										div( class="empty-dialog text-center" )
+											h5 Здесь будет выводиться история сообщений
+						div( class="panel-footer" )
+							div( class="row" )
+								div( class="col-sm-1 col-xs-2 text-center attachment no-padding" )
+									label( for="attachment" )
+										i( class="fa fa-paperclip" aria-hidden="true" )
+									input( type="file" name="attachment" id="attachment" class="attachment-input" data-multiple-caption="Количество файлов: {count}" multiple )
+								div( class="col-sm-10 col-xs-8 message-input-block no-padding" )
+									div( class="message-input" contenteditable="true" )
+									div( class="placeholder" ) Ваше сообщение...
+								div( class="col-sm-1 col-xs-2 send-button messages-loader-block text-center no-padding" id="send-button" )
+									i( class="fa fa-paper-plane" aria-hidden="true" )
+							div( class="row" )
+								div( class="col-sm-1 col-xs-2 no-padding" )
+								div( class="col-sm-10 col-xs-8 no-padding" )
+									div( class="attachments-block" )
+								div( class="col-sm-1 col-xs-2 no-padding" )
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/attachment-visualization.js" )
+		script( src="/js/course.js" )
+		script( src="/js/bootstrap.min.js" )
+		script( src="/js/nanoscroller.min.js" )
+		script( src="/js/moment.min.js" )

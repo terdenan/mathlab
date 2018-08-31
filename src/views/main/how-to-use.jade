@@ -1,0 +1,107 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="Мы предлагаем Вам репетиторские услуги в online режиме по математике, физике и информатике." )
+		meta( name="keywords" content="Репетитор онлайн, репетиторские услуги, математика онлайн, информатика онлайн, физика онлайн, онлайн образование" )
+		meta( name="author" content="Quve Development" )
+
+		title Как проходит обучение
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+		link( href="/css/lightbox.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+	body( class="landing" )
+
+		// NAVBAR
+		nav( class="navbar navbar-inverse navbar-fixed-top no-margin" )
+			div( class="container-fluid" )
+				div( class="navbar-header" )
+					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
+						span( class="sr-only" ) Меню
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+					a( class="navbar-brand" href="/" )
+						img( src="/images/logo.svg" alt="MathLab" title="MathLab - Logo" itemprop="logo" )
+						span MathLab.kz
+				div( class="collapse navbar-collapse" id="navbar-collapse" )
+					ul( class="nav navbar-nav" )
+						li
+							a( href="/" ) Главная
+						li
+							a( href="/prices" ) Расценки и способы оплаты
+						
+					ul( class="nav navbar-nav navbar-right" )
+						li
+							a( href="/sign-in" )
+								i( class="fa fa-lock" aria-hidden="true" ) 
+								| &nbsp;Вход и регистрация
+
+		// CONTENT
+		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Как проходит обучение
+			div( class="page-header" )
+				h1 Как проходит обучение
+			p После того, как Вы #[a( href="/sign-up" ) зарегистрировались], и подали заявку, в Ваш Личный кабинет на страничку «Активные курсы» приходит первый урок с комментариями учителя и разбором наиболее трудных задач и примеров.
+			p Вы решаете урок и отсылаете учителю со своими комментариями. Если что-то не получилось решить, все равно отправляйте домашнее задание! Мы будем ждать его в срок, установленный Вами.
+			p Вы попробовали учиться у нас и захотели продолжить обучение? - Тогда ознакомьтесь со способами и условиями оплаты занятий.
+			p Для того, чтобы у учителя не возникло проблем с пониманием того, что вы написали, Вы должны соблюдать несколько нехитрых правил:
+			ul( style="list-style-type: decimal;" )
+				li Писать четко на обычном тетрадном листе.
+				li Выполнять каждое задание на отдельном листе.
+				li Сфотографировать выполненную работу в хорошем качестве. Фотографии отправить учителю.
+				li Если есть необходимость, учитель будет Вам звонить в день получения Вашего задания.
+				li Вы также можете позвонить своему учителю и рассказать о затруднениях.
+			blockquote 
+				p Желаем удачи! #[br] И запомни - для знаний нет преград!
+		//- div( class="container main-content" )
+		//- 	div( class="page-header" )
+		//- 		h4 Интерфейс сервиса
+		//- 	div( class="row" )
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-1.png" data-lightbox="image-1" )
+		//- 				img( src="/images/interface-1.png" class="img-thumbnail interface-img" )
+		//- 			h5 Личный кабинет ученика
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-2.png" data-lightbox="image-2" )
+		//- 				img( src="/images/interface-2.min.png" class="img-thumbnail interface-img" )
+		//- 			h5 Окно диалога между учителем и учеником
+		//- 	div( class="row" )
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-3.png" data-lightbox="image-3" )
+		//- 				img( src="/images/interface-3.png" class="img-thumbnail interface-img" )
+		//- 			h5 Форма заявки на обучение
+		//- 		div( class="col-md-6 text-center" )
+		//- 			a( href="/images/interface-4.jpg" data-lightbox="image-4" )
+		//- 				img( src="/images/interface-4.min.jpg" class="img-thumbnail interface-img" )
+		//- 			h5 Пример выполнения домашнего задания
+		
+		// FOOTER
+		include ./includes/footer-main
+
+		script( src="/js/bootstrap.min.js" defer )
+		script( src="/js/lightbox.js" )
+		span( itemprop="address" style="display: none;" ) Казахстан, Алматы
+		
+
+

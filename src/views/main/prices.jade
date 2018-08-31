@@ -1,0 +1,203 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="Мы предлагаем Вам репетиторские услуги в online режиме по математике, физике и информатике." )
+		meta( name="keywords" content="Репетитор онлайн, репетиторские услуги, математика онлайн, информатика онлайн, физика онлайн, онлайн образование" )
+		meta( name="author" content="Quve Development" )
+
+		title Расценки и способы оплаты
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+		link( href="/css/lightbox.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+	body( class="landing" )
+
+		// NAVBAR
+		nav( class="navbar navbar-inverse navbar-fixed-top no-margin" )
+			div( class="container-fluid" )
+				div( class="navbar-header" )
+					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
+						span( class="sr-only" ) Меню
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+						span( class="icon-bar" )
+					a( class="navbar-brand" href="/" )
+						img( src="/images/logo.svg" alt="MathLab" title="MathLab - Logo" itemprop="logo" )
+						span MathLab.kz
+				div( class="collapse navbar-collapse" id="navbar-collapse" )
+					ul( class="nav navbar-nav" )
+						li
+							a( href="/" ) Главная
+						li
+							a( href="/how-to-use" ) Как проходит обучение
+						
+					ul( class="nav navbar-nav navbar-right" )
+						li
+							a( href="/sign-in" )
+								i( class="fa fa-lock" aria-hidden="true" ) 
+								| &nbsp;Вход и регистрация
+
+		// CONTENT
+		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Расценки и способы оплаты
+			div( class="page-header" )
+				h1 Расценки и способы оплаты
+			div( class="table-responsive" )
+				table( class="table table-bordered table-condensed" )
+					thead
+						tr
+							th Предмет
+							th Класс
+							th Цена за урок, тг
+							th Скидки
+							th Минимальное количество уроков в неделю
+							th Итого стоимость уроков за месяц (8 занятий)*, тг
+					tbody
+						tr
+							td Математика
+							td 1-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000
+						tr
+							td Математика
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Физика
+							td 6-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000
+						tr
+							td Физика
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Информатика
+							td 6-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000	
+						tr
+							td Информатика
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Программирование
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Русский язык
+							td 1-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000
+						tr
+							td Русский язык
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Биология
+							td 7-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000
+						tr
+							td Биология
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Химия
+							td 7-8
+							td 2500
+							td Первый урок - бесплатно
+							td 2
+							td 20.000
+						tr
+							td Химия
+							td 9-11
+							td 3000
+							td Первый урок - бесплатно
+							td 2
+							td 24.000
+						tr
+							td Профориентация
+							td 4-11
+							td 3000
+							td -
+							td 2
+							td 
+								span( class="label label-success") Бесплатно!
+
+				p * Расценки могут меняться в зависимости от квалификации и рейтинга преподавателя.
+		div( class="container" )
+			div( class="page-header" )
+				h4 Способы оплаты
+				p На данный момент на портале возможны три способа оплаты, Вы можете выбрать более удобный для Вас.
+			div( class="row" )
+				div( class="col-md-4 text-center" )
+					div( class="payment-method" )
+						img( src="/images/visa.png" )
+						h5 4174 3400 0004 2533
+				div( class="col-md-4 text-center" )
+					div( class="payment-method" )
+						img( src="/images/qiwi.png" )
+						h5 +7 (777) 794-45-05
+				div( class="col-md-4 text-center" )
+					div( class="payment-method" )
+						img( src="/images/kaspi.png" )
+						h5 KZ04722R000134318824
+		
+		// FOOTER
+		include ./includes/footer-main
+
+		script( src="/js/bootstrap.min.js" defer )
+		script( src="/js/lightbox.js" )
+		span( itemprop="address" style="display: none;" ) Казахстан, Алматы
+		
+
+

@@ -1,0 +1,136 @@
+doctype html
+html( lang='ru' )
+	head
+
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="author" content="Quve Development" )
+
+		title Настройки профиля
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/fileinput.min.css" rel="stylesheet" )
+		link( href="/css/bootstrap-formhelpers.min.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+		script( src="/js/validator.js" )
+		script( src="/socket.io/socket.io.js" )
+		script( src="/js/moment.min.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+
+	body
+
+		// NAVBAR
+		include ./includes/header
+
+		if (!confirmed)
+			include ./includes/email-confirm-alert
+
+		// CONTENT
+		div( class="container" )
+			div( class="row" )
+				div( class="col-md-4" )
+					h3 Ваша фотография
+					div( class="base text-center avatar-block" )
+						div( id="kv-avatar-errors-1" class="center-block" style="display:none" )
+						form( class="text-center" onsubmit="return false" )
+							div( class="kv-avatar center-block" )
+								input( id="avatar" name="avatar" type="file" class="file-loading" )
+						h6 Ваша фотография будет видна только Вам и Вашим учителям
+					div( class="base main-content" )
+						ul( class="list-links" )
+							li
+								a( href="#" ) Частые вопросы
+							li
+								a( href="#" ) Техническая поддержка
+							li
+								a( href="#" ) Условия пользования
+				div( class="col-md-8" )
+					h3 Ваши личные данные
+					div( class="base settings-block" )
+						form( data-toggle="validator" role="form" onsubmit="return false" )
+							div( class="form-group" )
+								label( for="login" ) Ваше ФИО:
+								input( type="text" class="form-control" id="login" placeholder="#{fullname}")
+								div( class="help-block with-errors" )
+							div( class="form-group" )
+								label( for="email" ) Ваш E-mail:
+								input( type="email" class="form-control" id="email" disabled="disabled" placeholder="#{email}")
+								div( class="help-block with-errors" )
+							div( class="form-group" )
+								label( for="tel" ) Ваш телефон:
+								input( type="tel" class="form-control bfh-phone" id="phone" placeholder="#{phone}" data-format="+7 (ddd) ddd-dd-dd" value="#{phone}")
+								div( class="help-block with-errors" )
+							div( class="form-group" )
+								label( for="grade1" ) Ваш класс учебы:
+								select( class="form-control" id="grade1" value="alo" )
+									-for (var i = 1; i <= 11; i++) {
+										if i == grade
+											option(selected) #{i}
+										else
+											option #{i}
+									-}
+
+							div( class="form-group" )
+								button( type="submit" class="btn btn-primary btn-block btn-md" id="save-settings" ) Сохранить личные данные
+					if (password)
+						h3 Ваш пароль
+						div( class="base password-block" )
+							form( data-toggle="validator" role="form" onsubmit="return false" )
+								div( class="form-group" )
+									label( for="password" ) Старый пароль:
+									input( type="password" data-minlength="6"  class="form-control" id="old-password" data-error="" required )
+								div( class="form-group" )
+									label( for="password" ) Новый пароль:
+									div( class="input-group" )
+										input( type="password" data-minlength="6"  class="form-control" id="new-password" placeholder="Не менее 6 символов" data-error="К сожалению, Ваш пароль слишком короткий" required )
+										span( class="input-group-btn" )
+											button( class="btn btn-default" type="button" id="show-password" )
+												i( class="fa fa-eye" aria-hidden="true" )
+									div( class="help-block with-errors" )
+								div( class="form-group" )
+									button( type="submit" class="btn btn-primary btn-block btn-md" id="submit-1" ) Сохранить пароль
+
+		// FOOTER
+		include ./includes/footer
+
+		script( src="/js/bootstrap.min.js" )
+		script( src="/js/fileinput.min.js" )
+		script( src="/js/formhelpers.min.js" )
+		script( src="/js/settings.js" )
+		script.
+			function setPhoto() {
+			  $("#avatar").fileinput({
+			    overwriteInitial: true,
+			    maxFileSize: 1500,
+			    showClose: false,
+			    showCaption: false,
+			    browseLabel: 'Выбрать...',
+			    removeLabel: 'Удалить',
+			    uploadLabel: 'Загрузить',
+			    browseIcon: '<i class="fa fa-folder-open" aria-hidden="true"></i>',
+			    removeIcon: '<i class="fa fa-close" aria-hidden="true"></i>',
+			    uploadIcon: '<i class="fa fa-upload" aria-hidden="true"></i>',
+			    browseClass: 'btn btn-default',
+			    removeTitle: 'Отменить',
+			    elErrorContainer: '#kv-avatar-errors-1',
+			    msgErrorClass: 'alert alert-block alert-danger',
+			    defaultPreviewContent: '<img src="#{avatarUrl}" alt="Ваш аватар" class="img-circle" style="width:100%">',
+			    layoutTemplates: {main2: '{preview} ' + '<div class="btn-group">' + '{browse} {remove} {upload}' + '</div>'},
+			    allowedFileExtensions: ["jpg", "jpeg", "png"]
+			  });
+			}
+

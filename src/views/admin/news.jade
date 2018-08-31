@@ -1,0 +1,132 @@
+doctype html
+html( lang='ru' )
+	head
+		mata( http-equiv="Content-Type" content="text/html; charset=UTF-8" )
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+
+		title Admin Panel - MathLab.kz
+
+		link( rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" )
+
+		// Bootstrap Core CSS
+		link( href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+
+		// Font Awesome
+		link( href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( href="./css/custom.css" rel="stylesheet" )
+		link( href="./vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="./vendors/jquery/dist/jquery.min.js" )
+		script( src="./js/viewportchecker.js" )
+		script( src="/js/marked.js" )
+
+	body( class="nav-md" )
+		div( class="container body" )
+			div( class="main_container" )
+				div( class="col-md-3 left_col" )
+					div( class="left_col scroll-view" )
+						div( class="navbar nav_title" style="border: 0;" )
+							a( href="./" class="site_title" )
+								img( src="./images/logo.svg" )
+								span Admin Panel
+						div( class="clearfix" )
+						br
+						include ./includes/sidebar
+
+				include ./includes/navigation
+
+				div( class="right_col" role="main")
+					div( class="container" )
+						div( class="row" )
+							div( class="col-md-6" )
+								div( class="x_panel" )
+									div( class="x_title" )
+										h2 Добавление новости
+										div( class="clearfix" )
+										p Markdown разметка для основного текстового блока новости:
+									form( data-toggle="validator" onsubmit="return false" novalidate="true")
+										div( class="x_content" )
+											div( class="form-group" )
+												label( for="first-name" class="control-label" ) Заголовок новости: 
+													span( class="required") *
+												input( type="text" id="news-title" required class="form-control col-md-7 col-xs-12" minlength="36")
+												div( class="help-block with-errors" )
+										div( class="x_content" )
+											div( class="form-group" )
+												label( class="control-label" ) Краткое описание новости: 
+													span( class="required") *
+												textarea( type="number" class="short-description form-control" id="short-description" required minlength="100" maxlength="160" )
+												div( class="help-block with-errors" )
+										div( class="x_content" )
+											div( class="form-group" )
+												label( class="control-label" ) Разметка: 
+													span( class="required") *
+												textarea( type="number" class="markdown-textarea form-control" id="markdown-textarea" required )
+												div( class="help-block with-errors" )
+										div( class="x_content" )
+											div( class="form-group" )
+												label( class="control-label" for="file") Обложка новости: 
+													span( class="required") *
+												div( style="width:100%;" )
+												input( type="file" name="file" id="file" class="inputfile form-control" data-multiple-caption="{count} files selected" )
+												label( for="file" required)
+													span Выбрать изображение
+												div( class="help-block with-errors" id="file-error" style="color: #a94442;")
+										div( class="x_content" style="margin-top:-10px;")
+											hr
+											div( class="row" )
+												div( class="col-md-12" )
+													div( class="form-group" )
+														button( class="btn btn-success" type="submit" id="publish") Опубликовать
+												div( class="col-md-12" )
+													div( class="alerts" id="alerts")
+                          
+							div( class="col-md-6" )
+								div( class="x_panel" )
+									div( class="x_title" )
+										h2 Превью новости
+										div( class="clearfix" )
+									div( class="x_content" )
+										div( class="visualization" id="visualization")
+											h2 Заголовок h2
+											h3 Заголовок h3
+											h4 Заголовок h4
+											h5 Заголовок h5
+											h6 Заголовок h6
+											hr 
+											p Some text
+											ol
+												li First ordered list item
+												li Another item
+											ul
+												li Unordered sub-list.
+											a( href="https://www.google.com" ) I'm an inline-style link
+											blockquote
+												p Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
+
+				footer
+					div( class="pull-right" ) Admin Panel - MathLab.kz
+					div( class="clearfix" )
+
+		
+		// Bootstrap
+		script( src="./vendors/bootstrap/dist/js/bootstrap.min.js" )
+		// FastClick
+		script( src="./vendors/fastclick/lib/fastclick.js" )
+		// bootstrap-progressbar
+		script( src="./vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		// bootstrap-daterangepicker
+		script( src="./vendors/moment/min/moment.min.js" )
+		script( src="./vendors/bootstrap-daterangepicker/daterangepicker.js" )
+		script( src="./vendors/dropzone/dist/min/dropzone.min.js" )
+		script( src="./js/validator.js" )
+		script( src="./js/formhelpers.min.js" )
+		script( src="./js/news.js" )
+
+		// Custom Theme Scripts
+		script( src="./js/custom.min.js" )
