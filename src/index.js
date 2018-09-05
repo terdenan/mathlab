@@ -101,6 +101,18 @@ app.use('/api', apiRouter);
 app.use('/teacher', teacherRouter);
 
 
+app.use((err, req, res, next) => {
+    console.log(err);
+    if (err instanceof ApplicationError) {
+        res.status(err.status);
+        res.send(err.messages)
+    }
+    else {
+        res.status(500);
+        res.send('There is an error occured on server. Try later.');
+    }
+});
+
 httpServer.listen(config.server.httpPort, () => {
     console.log('Running');
 });

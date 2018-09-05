@@ -9,6 +9,8 @@ services:
         links:
             - mongo
         volumes:
+            - ./test:/app/test
+            - ./config:/app/config
             - ./src:/app/src
             - ./static:/app/static
         ports:

@@ -34,7 +34,7 @@ describe('/api', () => {
 
     describe('/user POST', () => {
         before(async () => {
-            const student = Object.assign({email: 'student@mail.ru', priority: 0}, base_user);
+            const student = Object.assign({email: 'student0@mail.ru', priority: 0}, base_user);
             await User.create(student);
         });
 
@@ -45,7 +45,7 @@ describe('/api', () => {
         it('it should not POST a user with duplicate email', async () => {
             const newUser = {
                 fullname: 'Test',
-                email: 'student@mail.ru',
+                email: 'student0@mail.ru',
                 password: 'secret',
                 phone: '8(111)111-11-11',
                 sex: 1,
@@ -94,11 +94,95 @@ describe('/api', () => {
             const res = await chai.request(server)
                 .post('/api/user')
                 .send(newUser);
+            res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('confirmed').equal(false);
+            res.body.should.have.property('priority').equal(0);
             res.body.should.have.property('emailConfirmCode');
             res.body.should.have.property('emailConfirmDuration');
             res.body.should.have.property('lastEmailDate');
+        })
+    });
+
+    describe('/teacher POST', () => {
+        const agent_admin = chai.request.agent(server);
+
+        before(async () => {
+            const admin = Object.assign({email: 'admin@mail.ru', priority: 2}, base_user);
+            const teacher = Object.assign({email: 'teacher0@mail.ru', priority: 1}, base_user);
+            await User.create(admin);
+            await User.create(teacher);
+
+            const res = await agent_admin
+                .post('/admin/login')
+                .send({username: 'admin@mail.ru', password: 'secret'});
+            res.req.path.should.be.equal('/admin/');
+        });
+
+        after(async () => {
+            await User.deleteMany();
+        });
+
+        it('it should not POST a user with duplicate email', async () => {
+            const newUser = {
+                fullname: 'Test',
+                email: 'teacher0@mail.ru',
+                password: 'secret',
+                subject: 'mathematics',
+                phone: '8(111)111-11-11',
+                sex: 1,
+            }
+            const res = await agent_admin
+                .post('/api/teacher')
+                .send(newUser);
+            res.should.have.status(400);
+        });
+
+        it('it should not POST a user without required fields', async () => {
+            const newUser = {
+                fullname: 'Test',
+                email: 'teacher@mail.ru',
+                phone: '8(111)111-11-11',
+                sex: 1,
+            }
+            const res = await agent_admin
+                .post('/api/teacher')
+                .send(newUser);
+            res.should.have.status(400);
+        });
+
+        it('it should not POST a user with invalid fields', async () => {
+            const newUser = {
+                fullname: 'Test',
+                email: 'teacher@mail.ru',
+                password: 'secret',
+                subject: 'mathematics',
+                phone: '8(111)111-11-11',
+                sex: undefined,
+            }
+            const res = await agent_admin
+                .post('/api/teacher')
+                .send(newUser);
+            res.should.have.status(400);
+        });
+
+        it('it should POST a user', async () => {
+            const newUser = {
+                fullname: 'Test',
+                email: 'teacher@mail.ru',
+                password: 'secret',
+                subject: 'mathematics',
+                phone: '8(111)111-11-11',
+                sex: 1,
+            }
+            const res = await agent_admin
+                .post('/api/teacher')
+                .send(newUser);
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('confirmed').equal(true);
+            res.body.should.have.property('lastEmailDate');
+            res.body.should.have.property('priority').equal(1);
         })
     });
 
@@ -123,6 +207,7 @@ describe('/api', () => {
         });
         
     });
+
 
     describe('/students GET', () => {
         const agent_admin = chai.request.agent(server);
