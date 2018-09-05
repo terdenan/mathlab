@@ -1,5 +1,8 @@
-config.json
-public/uploads/
-sslcert/
+config/
 node_modules/
-public/sitemap.xml
+permanent-data/
+sslcert/
+static/public/uploads/
+static/public/attachments/
+static/public/sitemap.xml
+.env

@@ -1,0 +1,23 @@
+version: '3'
+services:
+    web:
+        build: .
+        container_name: mathlab
+        command: bash -c "npm start"
+        environment:
+            - NODE_ENV=${NODE_ENV}
+        links:
+            - mongo
+        volumes:
+            - ./src:/app/src
+            - ./static:/app/static
+        ports:
+            - 8000:8000
+    mongo:
+        container_name: mongo
+        image: mongo:3.4
+        volumes:
+            - ${MONGO_PERMANENT_FOLDER}:/data/db
+        ports:
+            - 27017:27017
+        restart: always
