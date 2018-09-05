@@ -28,7 +28,7 @@ const createNewsController = require('../controllers/news/create');
 router.post('/user', asyncHandler(createUserController));
 router.put('/profileInfo', passport.auth('user'), asyncHandler(updateUserController));
 router.get('/students', passport.auth('admin'), asyncHandler(getStudentsController));
-router.put('/teacher', passport.auth('admin'), asyncHandler(createTeacherController));
+router.post('/teacher', passport.auth('admin'), asyncHandler(createTeacherController));
 router.get('/teachers', passport.auth('admin'), asyncHandler(getTeachersController));
 router.post('/changeAvatar', passport.auth('user'), upload.single('file'), asyncHandler(changeAvatarController));
 router.post('/changePassword', passport.auth('user'), asyncHandler(changePasswordController));

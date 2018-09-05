@@ -1,4 +1,18 @@
 module.exports = async (req, res) => {
+
+    const body = req.body;
+    const isDataValid = body
+            && Object.prototype.hasOwnProperty.call(body, 'name')
+            && typeof(body.name) === 'string'
+            && Object.prototype.hasOwnProperty.call(body, 'phone')
+            && typeof(body.phone) === 'string';
+
+    if (!isDataValid) {
+        res.status(400);
+        res.send('Callback request data is invalid');
+        return;
+    }
+
     const name = req.body.name;
     const phone_number = req.body.phone;
     const newCallback = {

@@ -7,6 +7,25 @@ const jade = require('jade');
 const config = require('config');
 
 module.exports = async (req, res) => {
+
+    const isDataValid = req.body
+            && Object.prototype.hasOwnProperty.call(req.body, 'fullname')
+            && typeof(req.body.fullname) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'email')
+            && typeof(req.body.email) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'password')
+            && typeof(req.body.password) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'phone')
+            && typeof(req.body.phone) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'sex')
+            && typeof(parseInt(req.body.sex)) === 'number';
+
+    if (!isDataValid) {
+        res.status(400);
+        res.send('User data is invalid');
+        return;
+    }
+
     const user = await req.userModel.getBy({email: req.body.email});
     if (user) {
         res.status(400);
@@ -31,7 +50,6 @@ module.exports = async (req, res) => {
         lastEmailDate: Date.now(),
     };
     const savedUser = await req.userModel.create(newUser);
-
     const context = { 
         code: confirmationCode,
         email: newUser.email,

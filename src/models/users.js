@@ -9,24 +9,8 @@ class Users extends DbModel {
     }
 
     async create(user) {
-        const isDataValid = user
-            && Object.prototype.hasOwnProperty.call(user, 'fullname')
-            && typeof(user.fullname) === 'string'
-            && Object.prototype.hasOwnProperty.call(user, 'email')
-            && typeof(user.email) === 'string'
-            && Object.prototype.hasOwnProperty.call(user, 'password')
-            && typeof(user.password) === 'string'
-            && Object.prototype.hasOwnProperty.call(user, 'phone')
-            && typeof(user.phone) === 'string'
-            && Object.prototype.hasOwnProperty.call(user, 'sex')
-            && typeof(user.sex) === 'number';
-
-        if (isDataValid) {
-            await this._insert(user);
-            return user;
-        }
-
-        throw new ApplicationError('User data is invalid', 400);
+        await this._insert(user);
+        return user;
     }
 
     async update(user_id, fields) {
