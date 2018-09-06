@@ -12,7 +12,7 @@ router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) =
 }));
 
 router.get('/cabinet', passport.auth('teacher'), asyncHandler(async (req, res) => {
-    const courses = await req.courseModel.getMany({_teacher_id: req.user._id})
+    const courses = await req.courseModel.getMany({_teacher_id: req.user._id}, {}, 100)
     const context = Object.assign({
         courses: courses,
         currentDate: Date.now()
