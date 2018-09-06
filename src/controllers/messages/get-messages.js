@@ -1,3 +1,4 @@
+const jade = require('jade');
 const ObjectId = require('mongodb').ObjectID;
 
 const DEFAULT_COUNT = 15;
@@ -8,10 +9,15 @@ module.exports = async (req, res) => {
     const last_id = req.query.lastId || DEFAULT_LAST_ID;
     const count = parseInt(req.query.count) || DEFAULT_COUNT;
 
+    const responseBody = Object.assign({}, req.user);
+    responseBody.courseInfo = await req.courseModel.getBy({ _id: course_id });
+
     const messages = await req.messageModel.getMany(
         { $and: [ { _course_id: course_id }, { _id: { $lt: ObjectId(last_id) } } ] },
         {date: -1},
         count
     );
-    res.send(messages);
+    responseBody.messages = messages.reverse();
+    
+    res.render('main/includes/messages.jade', responseBody);
 }
