@@ -19,5 +19,10 @@ module.exports = async (req, res) => {
     );
     responseBody.messages = messages.reverse();
     
-    res.render('main/includes/messages.jade', responseBody);
+    if (req.user.priority == 0) {
+        res.render('main/includes/messages.jade', responseBody);
+    }
+    else {
+        res.render('teacher/includes/messages.jade', responseBody);
+    }
 }
