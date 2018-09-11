@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     }
     const now = moment(Date.now()).format();
     const send_again_date = moment(user.lastEmailDate).add(15, 'm').format();
-    if (now < send_again_date) {
+    if (user.lastEmailDate && now < send_again_date) {
         res.status(403);
         res.send();
         return;
