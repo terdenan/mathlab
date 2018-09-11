@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     const emailOptions = {
         user: config.gmail.login,
         pass: config.gmail.password,
-        to:   newUser.email,
+        to:   user.email,
         subject: 'Смена забытого пароля',
         html:   emailBody,
     };
