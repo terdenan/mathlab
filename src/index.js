@@ -18,6 +18,7 @@ const flash = require('connect-flash');
 const socketIO = require('socket.io');
 const telegramBot = require('libs/telegram-bot');
 
+const logger = require('libs/logger');
 const ApplicationError = require('libs/application-error');
 const isProduction = process.env.NODE_ENV === 'production';
 const NewsModel = require('./models/news');
@@ -122,15 +123,24 @@ app.use('/teacher', teacherRouter);
 
 
 app.use((err, req, res, next) => {
-    console.log(err);
-    if (err instanceof ApplicationError) {
-        res.status(err.status);
-        res.send(err.messages)
+    if (isProduction) {
+        logger.log({
+            level: 'error',
+            user: req.user ? req.user.email : 'unauthorized user',
+            url: `${req.method} ${req.url}`,
+            message: err,
+        });
     }
     else {
-        res.status(500);
-        res.send('There is an error occured on server. Try later.');
+        console.log(err);
+        if (err instanceof ApplicationError) {
+            res.status(err.status);
+            res.send(err.messages)
+            return;
+        }
     }
+    res.status(500);
+    res.send('There is an error occured on server. Try later.');
 });
 
 httpServer.listen(config.server.httpPort, () => {
