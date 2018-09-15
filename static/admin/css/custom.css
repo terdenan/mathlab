@@ -1178,7 +1178,7 @@ legend {
 
 .control-label {
     font-weight: 700;
-    margin: 5px 0
+    margin: 0;
 }
 .demo-placeholder {
     height: 280px
@@ -1351,6 +1351,18 @@ h3.degrees {
 table.countries_list {
     width: 100%
 }
+
+.certificates-list {
+    padding-left: 0;
+    list-style:  none;
+    margin-bottom: 0;
+}
+
+.certificates-list li {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
 table.countries_list td {
     padding: 0 10px;
     line-height: 30px;
@@ -2305,7 +2317,7 @@ span.section {
     width: 100%
 }
 .form-horizontal .control-label {
-    padding-top: 8px
+    padding-top: 0px;
 }
 .form-control:focus {
     border-color: #CCD0D7;
