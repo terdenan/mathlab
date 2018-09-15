@@ -44,6 +44,10 @@ router.get('/teacher-form', passport.auth('admin'), asyncHandler(async (req, res
     res.render('admin/teacher-form');
 }));
 
+router.get('/edit-public-page', passport.auth('admin'), asyncHandler(async (req, res) => {
+    res.render('admin/edit-public-page');
+}));
+
 router.get('/log-out', (req, res) => {
     req.logout();
     res.redirect('/admin/sign-in');

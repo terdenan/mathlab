@@ -34,6 +34,10 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
     res.render('main/how-to-use');
 }));
 
+router.get('/teacher', asyncHandler(async (req, res) => {
+    res.render('main/teacher');
+}));
+
 router.get('/news', asyncHandler(async (req, res) => {
     const news = await req.newsModel.getMany({}, {date: -1}, 100);
     res.render('main/news', {news})
