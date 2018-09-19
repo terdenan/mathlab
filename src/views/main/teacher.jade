@@ -1,0 +1,180 @@
+doctype html
+html( lang='ru' )
+	head
+		meta( charset="utf-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge" )
+		meta( name="viewport" content="width=device-width, initial-scale=1" )
+		meta( name="description" content="" )
+		meta( name="keywords" content="Репетитор онлайн, репетиторские услуги, математика онлайн, информатика онлайн, физика онлайн, онлайн образование" )
+		meta( name="author" content="Quve Development" )
+
+		title Василий Васильевич Соколов - учитель физики | MathLab.kz
+
+		// Bootstrap Core CSS
+		link( href="/css/bootstrap.css" rel="stylesheet" )
+
+		//Custom CSS	
+		link( rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" )
+		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" )
+		link( rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" )
+		link( rel="stylesheet" href="/css/font-awesome.min.css" )
+		link( href="/css/animate.css" rel="stylesheet" )
+		link( href="/css/default.css" rel="stylesheet" )
+		link( href="/css/lightbox.css" rel="stylesheet" )
+
+		//Scripts
+		script( src="/js/jquery.min.js" )
+
+		<!--[if IE]>
+		link( rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" )
+		script( type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js" )
+		<![endif]-->
+	body( class="landing teacher" )
+
+		// NAVBAR
+		include ./includes/navbar
+
+		// CONTENT
+		div( class="container main-content" )
+			ol( class="breadcrumb" )
+				li
+					a( href="/" ) Главная
+				li( class="active" ) Василий Васильевич Соколов
+			div( class="row offset-top-20" )
+				div( class="col-sm-4" )
+					div( class="base")
+						div( class="text-center" )
+							img( src="images/teacher-img-1.png" class="img-circle img-150 inline-block" alt="Василий Васильевич Соколов" title="Учитель физики" )
+							h1 Василий Васильевич Соколов
+							h6 Учитель физики
+						hr
+						div( class="text-left" )
+							div( class="sm-info-block" )
+								h4 Город:
+								h5 Алматы, Казахстан
+							div( class="sm-info-block" )
+								h4 Учебное заведение:
+								h5 Специализированный лицей №165
+						button( class="btn btn-success btn-block" data-toggle="modal" data-target="#callbackModal") Хочу к этому преподавателю!
+
+					div( class="base" )
+						h3 Расскажите о преподавателе в соц.сетях!
+							div( id="share" class="offset-top-10")
+
+					div( class="base" )
+						h3 Преподаватель в новостях
+						div( class="another-news-block" )
+							h4 Василий Васильевич решил наглядно…
+							p Он погрузил на несколько секунд цветок в жидкий азот и затем с силой ударил гвоздику об стол. Цветок, будто превратившийся…
+							a( href="/news/" ) Читать далее 
+								i( aria-hidden="true" class="fa fa-angle-right" )
+
+
+				div( class="col-sm-8" )
+					div( class="lg-info-block" )
+						h2 Биография
+						p Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap. Hashtag typewriter banh mi, squid keffiyeh High Life Brooklyn twee craft beer tousled chillwave. PBR&B selfies chillwave, bespoke tote bag blog post-ironic. Single-origin coffee put a bird on it craft beer YOLO, Portland hella deep v Schlitz. Tumblr Bushwick post-ironic Thundercats. Vinyl 90's keytar, literally cardigan Williamsburg YOLO squid pickled Etsy salvia lo-fi locavore. Meh leggings retro narwhal Neutra.
+					div( class="lg-info-block" )
+						h2 О себе
+						p Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art letterpress hoodie occupy Wes Anderson Banksy. Asymmetrical viral letterpress, McSweeney's seitan 3 wolf moon drinking vinegar sartorial pour-over messenger bag photo booth umami next level craft beer. Tote bag 8-bit flannel dreamcatcher photo booth. Tofu photo booth American Apparel, cliche brunch swag freegan lomo retro cray Vice gastropub post-ironic +1 pickled. Marfa Tonx next level, Banksy lo-fi vegan pop-up chia small batch DIY seitan asymmetrical viral. Disrupt salvia bespoke craft beer master cleanse. Butcher cornhole gentrify pop-up, raw denim viral literally.
+					div( class="lg-info-block" )
+						h2 Достижения
+						div( class="sertificates owl-carousel owl-theme" id="sertificates")
+							a( href="http://crazh.net/CatalogImages/Image/diplom_0/25.jpg" data-lightbox="roadtrip" )
+								div( class="sertificate text-center" )
+									div( class="image" style="background-image: url('http://crazh.net/CatalogImages/Image/diplom_0/25.jpg')")
+									div( class="info")
+										h5 Сертификат  «Лучший учитель года», 2018
+
+							a( href="http://lachugina.com/wp-content/uploads/2013/03/Sertifikat-na-foto-v-odincovo1.jpg" data-lightbox="roadtrip" )
+								div( class="sertificate text-center" )
+									div( class="image" style="background-image: url('http://lachugina.com/wp-content/uploads/2013/03/Sertifikat-na-foto-v-odincovo1.jpg')")
+									div( class="info")
+										h5 Сертификат  «Лучший учитель года», 2018
+
+					div( class="lg-info-block" )
+						h2 Отзывы
+						div( class="comments owl-carousel owl-theme" id="comments")
+							div( class="landing-comment" )
+								div( class="landing-comment-body media" )
+									div( class="media-left")
+										img( src="/images/comment-img-3.png" class="img-circle img-thumbnail img-70" alt="Отзыв" title="Отзыв" )
+									div( class="media-body" )
+										h4 Алия Абдраимова
+										h6 Мама
+								blockquote
+									p #[i Мой сын третий год занимается дополнительно физикой у Василия Васильевича. Мы очень рады, что нам встретился такой замечательный педагог!!! Василий Васильевич моему сыну привил любовь к такой сложной науке, как физика. Он очень опытный, сильный, внимательный, имеющий подход к каждому ребенку преподаватель, знающий свой предмет. Доходчиво объясняет. Благодаря Василию Васильевичу, мой ребенок полюбил физику и после окончания школы мечтает поступить в МФТИ. Побольше бы таких преподавателей! Спасибо Вам, Василий Васильевич, за Ваш высокий профессионализм! ]
+		
+		// FOOTER
+		include ./includes/footer-main
+
+		div( id="callbackModal" class="modal fade" role="dialog" )
+			div( class="modal-dialog")
+				div( class="modal-content" )
+					div( class="modal-header" )
+						button( type="button" class="close" data-dismiss="modal") &times;
+						h4( class="modal-title" ) Обратный звонок
+					div( class="modal-body" )
+						form( data-toggle="validator" role="form" onSubmit="return false;")
+							div( class="form-group" )
+								label( for="name" ) Как Вас зовут?
+								input( type="text" class="form-control" id="name" name="name" required )
+								div( class="help-block with-errors" )
+							div( class="form-group" )
+								label( for="tel" ) Ваш телефон:
+								input( type="tel" class="form-control bfh-phone" id="tel" data-format="+7 (ddd) ddd-dd-dd" required )
+								div( class="help-block with-errors" )
+							div( class="form-group" )
+								button( button type="submit" class="btn btn-primary btn-block btn-md" onClick="sendCallbackBid(this, 'Василий Васильевич Соколов')" ) Отправить
+						hr
+						p Оставьте заявку на обратный звонок и наш менеджер перезвонит Вам в ближайшее время.
+
+					div( class="modal-footer" ) 
+						button( type="button" class="btn btn-default" data-dismiss="modal" ) Закрыть
+
+		script( src="/js/bootstrap.min.js" defer )
+		script( src="/js/lightbox.js" defer)
+		script( src="/js/landing.js" defer )
+		script( src="/js/formhelpers.min.js" defer)
+		script( src="/js/validator.js" defer)
+		script( type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js")
+		script( type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js" )
+		link( type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" )
+		link( type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" )
+		script.
+			$("#share").jsSocials({
+				showCount: true,
+				showLabel: true,
+				shares: ["facebook", "twitter", "whatsapp", "telegram"]
+			});
+
+			$('#sertificates').owlCarousel({
+				loop: false,
+				margin: 20,
+				nav: false,
+				dots: true,
+					responsive:{
+						0:{
+							items: 1
+						},
+						600:{
+							items: 2
+						},
+						1200:{
+							items: 3
+						}
+				}
+			});
+
+			$('#comments').owlCarousel({
+				loop: false,
+				margin: 10,
+				nav: false,
+				dots: true,
+				items: 1
+			})
+
+		span( itemprop="address" style="display: none;" ) Казахстан, Алматы
+		
+
+

@@ -33,29 +33,7 @@ html( lang='ru' )
 	body( class="landing" )
 
 		// NAVBAR
-		nav( class="navbar navbar-inverse navbar-fixed-top no-margin" )
-			div( class="container-fluid" )
-				div( class="navbar-header" )
-					button( type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" )
-						span( class="sr-only" ) Меню
-						span( class="icon-bar" )
-						span( class="icon-bar" )
-						span( class="icon-bar" )
-					a( class="navbar-brand" href="/" )
-						img( src="/images/logo.svg" alt="MathLab" title="MathLab - Logo" itemprop="logo" )
-						span MathLab.kz
-				div( class="collapse navbar-collapse" id="navbar-collapse" )
-					ul( class="nav navbar-nav" )
-						li
-							a( href="/" ) Главная
-						li
-							a( href="/prices" ) Расценки и способы оплаты
-						
-					ul( class="nav navbar-nav navbar-right" )
-						li
-							a( href="/sign-in" )
-								i( class="fa fa-lock" aria-hidden="true" ) 
-								| &nbsp;Вход и регистрация
+		include ./includes/navbar
 
 		// CONTENT
 		div( class="container main-offset" )
@@ -98,12 +76,14 @@ html( lang='ru' )
 		script( type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js" )
 		link( type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" )
 		link( type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" )
+
 		script.
 			$("#share").jsSocials({
 				showCount: true,
 				showLabel: true,
-				shares: ["vkontakte", "facebook", "twitter", "whatsapp", "googleplus", "telegram"]
+				shares: ["facebook", "twitter", "whatsapp", "telegram"]
 			});
+
 		script.
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

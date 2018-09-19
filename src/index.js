@@ -18,6 +18,7 @@ const flash = require('connect-flash');
 const socketIO = require('socket.io');
 const telegramBot = require('libs/telegram-bot');
 
+const logger = require('libs/logger');
 const ApplicationError = require('libs/application-error');
 const isProduction = process.env.NODE_ENV === 'production';
 const NewsModel = require('./models/news');
@@ -39,8 +40,28 @@ mongoose.Promise = global.Promise;
 
 
 const app = express();
-const httpServer = http.createServer(app);
-const io = sockioModel(httpServer);
+let httpServer = undefined;
+let httpsServer = undefined;
+let io = undefined;
+if (isProduction) {
+    const protocolSecrets = {
+        key: fs.readFileSync(config.sslcert.key),
+        cert: fs.readFileSync(config.sslcert.cert),
+    };
+    
+    httpsServer = https.createServer(protocolSecrets, app);
+    httpServer = http
+        .createServer((req, res) => {
+            res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+            res.end();
+        });
+    io = sockioModel(httpsServer);
+}
+else {
+    httpServer = http
+        .createServer(app);
+    io = sockioModel(httpServer);
+}
 
 const mainRouter = require('./routers/main');
 const apiRouter = require('./routers/api');
@@ -102,19 +123,34 @@ app.use('/teacher', teacherRouter);
 
 
 app.use((err, req, res, next) => {
-    console.log(err);
-    if (err instanceof ApplicationError) {
-        res.status(err.status);
-        res.send(err.messages)
+    if (isProduction) {
+        logger.log({
+            level: 'error',
+            user: req.user ? req.user.email : 'unauthorized user',
+            url: `${req.method} ${req.url}`,
+            message: err,
+        });
     }
     else {
-        res.status(500);
-        res.send('There is an error occured on server. Try later.');
+        console.log(err);
+        if (err instanceof ApplicationError) {
+            res.status(err.status);
+            res.send(err.messages)
+            return;
+        }
     }
+    res.status(500);
+    res.send('There is an error occured on server. Try later.');
 });
 
 httpServer.listen(config.server.httpPort, () => {
-    console.log('Running');
+    console.log('Running http server');
 });
+
+if (isProduction) {
+    httpsServer.listen(config.server.httpsPort, () => {
+        console.log('Running https server');
+    });
+}
 
 module.exports = app;

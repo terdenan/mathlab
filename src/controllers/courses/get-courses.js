@@ -1,6 +1,6 @@
 const ObjectId = require('mongodb').ObjectID;
 
-const DEFAULT_COUNT = 10;
+const DEFAULT_COUNT = 100;
 const DEFAULT_LAST_ID = '000000000000000000000000';
 
 module.exports = async (req, res) => {

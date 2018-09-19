@@ -102,7 +102,7 @@ input[type=text], input[type=submit], textarea{
 }
 
 .form-head {
-    margin: 20px 0 5px;
+    margin: 70px 0 5px;
 }
 
 .align-items {
@@ -126,6 +126,115 @@ input[type=text], input[type=submit], textarea{
 
 hr {
   border-top: 1px solid #ebeff7;
+}
+
+body.teacher {
+
+}
+
+body.teacher .base {
+  border: none;
+  border-radius: 2px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  background-color: #ffffff !important;
+  display: block;
+  -webkit-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  -moz-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  box-shadow: 0px 8px 13px -2px rgba(204,204,204,0.3);
+}
+
+body.teacher .main-content .base img {
+  width: 150px;
+}
+
+body.teacher .main-content .base button {
+  margin-top: 20px;
+}
+
+body.teacher .main-content h1 {
+  font-size: 18px;
+}
+
+body.teacher .main-content h2 {
+  font-size: 20px;
+  margin-top: 0;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #ebeff7;
+}
+
+body.teacher .main-content h3 {
+  font-size: 15px;
+  margin-top: 0;
+}
+
+body.teacher .main-content h4 {
+  font-size: 12px;
+  color: #7B7B7B;
+}
+
+body.teacher .main-content h5 {
+  font-size: 14px;
+  margin-top: -5px;
+}
+
+body.teacher .main-content h6 {
+  font-size: 12px;
+}
+
+body.teacher .main-content .sm-info-block {
+  margin-top: 15px;
+}
+
+body.teacher .main-content .lg-info-block {
+  margin-bottom: 40px;
+}
+
+body.teacher .main-content .sertificates {
+  margin-top: 20px;
+}
+
+body.teacher .main-content .sertificates a {
+  text-decoration: none;
+  color: #333;
+}
+
+body.teacher .main-content .sertificates .sertificate {
+  border: none;
+  border-radius: 2px;
+  padding: 0 0 20px;
+  background-color: #ffffff !important;
+  display: block;
+  margin: 0 5px 20px;
+  -webkit-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  -moz-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  box-shadow: 0px 8px 13px -2px rgba(204,204,204,0.3);
+}
+
+body.teacher .main-content .sertificates .sertificate .image {
+  width: 100%;
+  height: 160px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+body.teacher .main-content .sertificates .sertificate .info {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+body.teacher .main-content .sertificates .sertificate .info h5 {
+  margin-top: 0;
+}
+
+body.teacher .main-content .landing-comment {
+  margin: 20px 5px 20px;
+}
+
+body.teacher .main-content .landing-comment h4 {
+  font-size: 18px;
+  color: #333;
 }
 
 .news-card {
@@ -202,6 +311,30 @@ hr {
 
 .news-card-button {
   width: 50%;
+}
+
+.offset-top-50 {
+  padding-top: 50px;
+}
+
+.offset-top-40 {
+  padding-top: 40px;
+}
+
+.offset-top-30 {
+  padding-top: 30px;
+}
+
+.offset-top-20 {
+  padding-top: 20px;
+}
+
+.offset-top-10 {
+  padding-top: 10px;
+}
+
+.offset-top-5 {
+  padding-top: 5px;
 }
 
 .offset-left-50 {
@@ -489,7 +622,8 @@ hr {
 }
 
 .another-news-block h4 {
-  font-size: 16px;
+  font-size: 16px!important;
+  color: inherit!important;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -956,6 +1090,16 @@ hr {
 
 .article-p {
   margin-bottom: 20px;
+}
+
+.landing-base {
+  border-radius: 2px;
+  padding: 30px 20px;
+  background-color: #ffffff !important;
+  display: block;
+  -webkit-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  -moz-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
+  box-shadow: 0px 8px 13px -2px rgba(204,204,204,0.3);
 }
 
 

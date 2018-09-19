@@ -9,6 +9,8 @@ services:
         links:
             - mongo
         volumes:
+            - ./libs:/app/libs
+            - ./logs:/app/logs
             - ./test:/app/test
             - ./config:/app/config
             - ./src:/app/src
