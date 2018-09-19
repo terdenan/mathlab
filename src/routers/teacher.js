@@ -12,7 +12,7 @@ router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) =
 }));
 
 router.get('/cabinet', passport.auth('teacher'), asyncHandler(async (req, res) => {
-    const courses = await req.courseModel.getMany({_teacher_id: req.user._id})
+    const courses = await req.courseModel.getMany({$and: [ {_teacher_id: req.user._id}, {endingDate: {$gt: Date.now()}} ]}, {}, 100);
     const context = Object.assign({
         courses: courses,
         currentDate: Date.now()
@@ -26,7 +26,7 @@ router.get('/course/:id', passport.auth('teacher'), asyncHandler(async (req, res
         return;
     }
     const courseId = ObjectId(req.params.id);
-    const course = await req.courseModel.getBy({$and: [ { _id: courseId}, {_teacher_id: req.user._id} ]});
+    const course = await req.courseModel.getBy({$and: [ {_id: courseId}, {_teacher_id: req.user._id} ]});
     if (!course) {
         res.status(403);
         res.render('teacher/permission-denied');

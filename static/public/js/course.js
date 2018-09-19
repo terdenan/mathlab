@@ -1,36 +1,112 @@
+"use strict";
+
 var socket = io();
-var splittedURL = (window.location.href).split('/');
-var courseId = splittedURL[splittedURL.length - 1];
 var rows = 1;
 var loaderGrey = "<img src='/images/loader-grey.svg' class='loader'>";
+var splittedURL = (window.location.href).split('/');
+var courseId = splittedURL[splittedURL.length - 1];
 
-$(document).ready(function() {
+function initWaypoint() {
+  if ($('.message').length !== 0) {
+    var waypoint = new Waypoint({
+      element: $('.message')[0],
+      handler: function(direction) {
+        if (direction === "up") {
+          $.ajax({
+            url: '/api/messages',
+            type: 'get',
+            data: { courseId: courseId, lastId: $(".message").first().attr('id') },
+            beforeSend: function(){
+              $(".panel-heading").prepend(loaderGrey);
+            },
+            error: function(response){
+              console.log("Не удалось загрузить сообщения.")
+            },
+            success: function(response){
+              $('.messages').prepend(response);
+              $('.loader').remove();
+            }
+          });
+        }
+      },
+      context: $('.nano-content')[0],
+      offset: -180
+    })
+  }
+};
 
-  socket.emit('setRoom', courseId);
-  socket.on('newMessage', function(data){
-    data = data.replace(" unread", "");
-    $('.messages').append(data);
-    socket.emit('accepted', { courseId: courseId, _message_id: $('.message:last-child').attr('id') });
-    $(".nano").nanoScroller();
-    $(".nano").nanoScroller({ 
-      scroll: 'bottom' 
+function sendMessage() {
+  var formData = new FormData();
+  var message = $('.message-input').html().replace(/<br\s*\/?>/mg,"\n").replace(/<div>/mg, "\n").replace(/<\/div>/mg, "");
+  var fileList = $("#attachment").prop('files');
+  
+  $.each(fileList, function(i, file){
+    formData.append('file', file);
+  });
+
+  formData.append('message', message);
+  formData.append('courseId', courseId);
+
+  if (!(!message && fileList.length == 0)) {
+    $.ajax({
+      url: '/api/message',
+      data: formData,
+      method: 'put',
+      contentType: false,
+      processData: false,
+      beforeSend: function(){
+        switchSendButton(0);
+      },
+      error: function(response){
+        console.log('Не удалось отправить сообщение.');
+      },
+      success: function(response){
+        var windowHeight = $(window).height();
+        $('.messages').append(response);
+        $('.message-input').html("");
+        $('.attachments-block').html("");
+        $("#attachment").val("");
+        $(".panel-body").height(windowHeight * 0.7);
+        $(".empty-dialog").remove();
+        socket.emit('sendMessage', {courseId: courseId, message: response} );
+        switchSendButton(1);
+        initNanoScroller();
+      }
     });
-  });
-  socket.on('markReaded', function(){
-    $(".unread").removeClass("unread");
-  });
-  var windowHeight = $(window).height();
-  $(".panel-body").height(windowHeight * 0.7);
+  }
+};
 
-  $(".send-button").on('click', function(){
-    sendMessage();
-  });
-
+function initNanoScroller() {
   $(".nano").nanoScroller();
   $(".nano").nanoScroller({ 
     scroll: 'bottom' 
   });
+};
 
+function switchSendButton(stage) {
+  if (stage === 0) {
+    $("#send-button").removeClass("send-button").html("<div class='send-message-loader'><div id='loader-sm'><div id='loader-sm_1' class='loader-sm'></div><div id='loader-sm_2' class='loader-sm'></div><div id='loader-sm_3' class='loader-sm'></div></div></div>");
+  }
+  else {
+    $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
+  }
+}
+
+$(document).ready(function() {
+  var windowHeight = $(window).height();
+
+  $(".panel-body").height(windowHeight * 0.7);
+
+  socket.emit('setRoom', courseId);
+  socket.on('newMessage', function(data){
+    data = data.replace(" unread", "");
+    socket.emit('accepted', { courseId: courseId, _message_id: $('.message:last-child').attr('id') });
+    $('.messages').append(data);
+    initNanoScroller();
+  });
+  socket.on('markReaded', function(){
+    $(".unread").removeClass("unread");
+  });
 
   $(".message-input").on("focusin", function(){
     if (!$(".message-input").html()) {
@@ -70,92 +146,9 @@ $(document).ready(function() {
     }
   });
 
+  initNanoScroller();
+  initWaypoint();
 });
-
-$(window).on('resize load', function() {
-  waypoint();
-})
-
-function waypoint() {
-  var waypoint = new Waypoint({
-    element: $('.message')[0],
-    handler: function(direction) {
-      if (direction === "up") {
-        $.ajax({
-          url: '/api/messages',
-          type: 'get',
-          data: { courseId: courseId, lastId: $(".message").first().attr('id') },
-          beforeSend: function(){
-            $(".panel-heading").prepend(loaderGrey);
-          },
-          error: function(response){
-
-          },
-          success: function(response){
-            $('.messages').prepend(response);
-            $('.loader').remove();
-          }
-        });
-      }
-    },
-    context: $('.nano-content')[0],
-    offset: -180
-  })
-}
-
-
-
-function sendMessage() {
-  var formData = new FormData();
-  var splittedURL = (window.location.href).split('/');
-  var courseId = splittedURL[splittedURL.length - 1];
-  var message = $('.message-input').html().replace(/<br\s*\/?>/mg,"\n").replace(/<div>/mg, "\n").replace(/<\/div>/mg, "");
-  var fileList = $("#attachment").prop('files');
-  
-  $.each(fileList, function(i, file){
-    formData.append('file', file);
-  });
-
-  formData.append('message', message);
-  formData.append('courseId', courseId);
-
-  if (!(!message && fileList.length == 0)) {
-    $.ajax({
-      url: '/api/message',
-      data: formData,
-      method: 'put',
-      contentType: false,
-      processData: false,
-      beforeSend: function(){
-        $("#send-button").removeClass("send-button").html("<div class='send-message-loader'>" +
-                                                            "<div id='loader-sm'>" +
-                                                              "<div id='loader-sm_1' class='loader-sm'></div>" +
-                                                              "<div id='loader-sm_2' class='loader-sm'></div>" +
-                                                              "<div id='loader-sm_3' class='loader-sm'></div>" +
-                                                            "</div>" +
-                                                          "</div>");
-      },
-      error: function(response){
-        console.log('error');
-      },
-      success: function(response){
-        var windowHeight = $(window).height();
-        $('.messages').append(response);
-        $('.message-input').html("");
-        $('.attachments-block').html("");
-        $("#attachment").val("");
-        $(".panel-body").height(windowHeight * 0.7);
-        $(".nano").nanoScroller();
-        $(".nano").nanoScroller({ 
-          scroll: 'bottom' 
-        });
-        $("#send-button").addClass("send-button").html("<i class='fa fa-paper-plane' aria-hidden='true'></i>");
-        $(".empty-dialog").remove();
-        socket.emit('sendMessage', {courseId: courseId, message: response} );
-      }
-    });
-  }
-};
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
