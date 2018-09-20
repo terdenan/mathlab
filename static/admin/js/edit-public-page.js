@@ -4,28 +4,31 @@ var certificates = [];
 
 function sendData(el) {
   var id = window.location.href.split('/')[5];
-  // var fullname = $('#fullname').val();
-  // var subject = $('#subject').val();
-  // var geoposition = $('#geoposition').val();
-  // var school = $('#school').val();
+  var fullname = $('#fullname').val();
+  var subject = $('#subject').val();
+  var geoposition = $('#geoposition').val();
+  var school = $('#school').val();
   var photo = $('#photo').prop('files')[0];
-  // var bio = $('#bio').val();
-  // var about = $('#about').val();
+  var bio = $('#bio').val();
+  var about = $('#about').val();
   var formData = new FormData();
 
-  formData.append('test', 'test');
+  // formData.append('fullname', fullname);
   // formData.append('subject', subject);
-  // formData.append('geoposition', geoposition)
-  // formData.append('school', school);
-  formData.append('file', photo);
-  // formData.append('bio', bio);
-  // formData.append('about', about);
-  // formData.append('certificates', certificates);
+  formData.append('geoposition', geoposition)
+  formData.append('school', school);
+  formData.append('avatar', photo);
+  formData.append('bio', bio);
+  formData.append('about', about);
+  certificates.forEach((item) => {
+    formData.append('certificatesNames[]', item.certificateName);
+    formData.append('certificates', item.certificateImage);
+  });
 
   if (!$("#reg-teacher").hasClass("disabled")) {
     $.ajax({
       type: 'put',
-      url: '/api/teacherInfo/' + id,
+      url: `/api/teacherInfo/${id}`,
       data: formData,
       processData: false,
       contentType: false,

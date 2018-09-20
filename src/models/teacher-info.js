@@ -20,6 +20,15 @@ class TeacherInfo extends DbModel {
         throw new ApplicationError('News data is invalid', 400);
     }
 
+    async update(cond, fields) {
+        try {
+            await this._update(cond, fields);
+        } catch (e) {
+            console.log(e);
+            throw new ApplicationError('Error occured while updating teacherInfo', 500);
+        }
+    }
+
 }
 
 module.exports = TeacherInfo;
