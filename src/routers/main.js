@@ -131,6 +131,7 @@ router.get('/course/:id', passport.auth(), asyncHandler(async (req, res) => {
     if (!course) {
         res.status(403);
         res.render('main/permission-denied');
+        return;
     }
     await req.messageModel.updateMany(
         { $and: [ { _course_id: courseId }, {_sender_id: course._teacher_id}, { read_state: false } ] },
