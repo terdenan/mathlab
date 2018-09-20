@@ -82,18 +82,18 @@ $('#publish').on('click', () => {
     }
 });
 
-    var input = document.getElementById("file"),
-        label = input.nextElementSibling,
-        labelVal = label.innerHTML,
-        fileName = '';
+var input = document.getElementById("file"),
+    label = input.nextElementSibling,
+    labelVal = label.innerHTML,
+    fileName = '';
 
-    input.addEventListener('change', function(e){
-        fileName = e.target.value.split( '\\' ).pop();
+input.addEventListener('change', function(e){
+    fileName = e.target.value.split( '\\' ).pop();
 
-        if( fileName ) {
-            label.querySelector('span').innerHTML = fileName;
-            $("#file-error").html('');
-        }
-        else
-            label.innerHTML = labelVal;
+    if( fileName ) {
+        label.querySelector('span').innerHTML = fileName;
+        $("#file-error").html('');
+    }
+    else
+        label.innerHTML = labelVal;
 });

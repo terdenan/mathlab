@@ -7,9 +7,10 @@ $(document).ready(function() {
   });
 });
 
-function sendCallbackBid(el) {
+function sendCallbackBid(el, prefTeacher) {
 	var name = $('#name').val();
 	var phone = $('#tel').val();
+	var teacher = (prefTeacher) ? prefTeacher : '';
 
 	if (!$(el).hasClass('disabled')) {
 		if (phone != '+7 ') {
@@ -18,7 +19,8 @@ function sendCallbackBid(el) {
 		    url: '/api/callback',
 		    data: {
 		    	name: name,
-		    	phone: phone
+		    	phone: phone,
+		    	teacher: teacher
 		    },
 		    error: function(response){
 		     	$(el).parent().parent().append('<p class="response text-danger small">Произошла ошибка, попробуйте позже.</p>');

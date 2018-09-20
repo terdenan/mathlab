@@ -34,6 +34,10 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
     res.render('main/how-to-use');
 }));
 
+router.get('/teacher', asyncHandler(async (req, res) => {
+    res.render('main/teacher');
+}));
+
 router.get('/news', asyncHandler(async (req, res) => {
     const news = await req.newsModel.getMany({}, {date: -1}, 100);
     res.render('main/news', {news})
@@ -127,6 +131,7 @@ router.get('/course/:id', passport.auth(), asyncHandler(async (req, res) => {
     if (!course) {
         res.status(403);
         res.render('main/permission-denied');
+        return;
     }
     await req.messageModel.updateMany(
         { $and: [ { _course_id: courseId }, {_sender_id: course._teacher_id}, { read_state: false } ] },
