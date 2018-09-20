@@ -8,7 +8,7 @@ function loadCourses(lastID) {
   $.ajax({
     url: '/api/courses',
     method: 'get',
-    data: {lastID: lastID, count: 10},
+    data: {lastID: lastID, count: 200},
     beforeSend: function() {
       pending = true;
     },

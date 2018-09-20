@@ -128,7 +128,6 @@ router.get('/course/:id', passport.auth(), asyncHandler(async (req, res) => {
     }
     const courseId = ObjectId(req.params.id);
     const course = await req.courseModel.getBy({$and: [ { _id: courseId}, {_student_id: req.user._id} ]});
-    console.log(course);
     if (!course) {
         res.status(403);
         res.render('main/permission-denied');
