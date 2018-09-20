@@ -8,21 +8,21 @@ html( lang='ru' )
 
 		title Admin Panel - MathLab.kz
 
-		link( rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" )
+		link( rel="shortcut icon" href="/admin/images/favicon.ico" type="image/x-icon" )
 
 		// Bootstrap Core CSS
-		link( href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+		link( href="/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
 
 		// Font Awesome
-		link( href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+		link( href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
 
 		//Custom CSS	
-		link( href="./css/custom.css" rel="stylesheet" )
+		link( href="/admin/css/custom.css" rel="stylesheet" )
 
 		//Scripts
-		script( src="./vendors/jquery/dist/jquery.min.js" )
-		script( src="./js/viewportchecker.js" )
-		script( src="./js/edit-public-page.js" )
+		script( src="/admin/vendors/jquery/dist/jquery.min.js" )
+		script( src="/admin/js/viewportchecker.js" )
+		script( src="/admin/js/edit-public-page.js" )
 
 	body( class="nav-md" )
 		div( class="container body" )
@@ -30,8 +30,8 @@ html( lang='ru' )
 				div( class="col-md-3 left_col" )
 					div( class="left_col scroll-view" )
 						div( class="navbar nav_title" style="border: 0;" )
-							a( href="./" class="site_title" )
-								img( src="./images/logo.svg" )
+							a( href="/admin" class="site_title" )
+								img( src="/admin/images/logo.svg" )
 								span Admin Panel
 						div( class="clearfix" )
 						br
@@ -51,12 +51,12 @@ html( lang='ru' )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname" ) ФИО: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required )
+											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required value="#{teacher.fullname}" )
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="subject" ) Предмет: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required placeholder="Например: Учитель физики")
+											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required placeholder="Например: Учитель физики" value="#{teacher.subject}" )
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="geoposition" ) Местоположение: #[span( class="required" ) *]
@@ -134,15 +134,15 @@ html( lang='ru' )
 							button( type="button" class="btn btn-default" data-dismiss="modal" ) Закрыть
 		
 		// Bootstrap
-		script( src="./vendors/bootstrap/dist/js/bootstrap.min.js" )
+		script( src="/admin/vendors/bootstrap/dist/js/bootstrap.min.js" )
 		// FastClick
-		script( src="./vendors/fastclick/lib/fastclick.js" )
+		script( src="/admin/vendors/fastclick/lib/fastclick.js" )
 		// bootstrap-progressbar
-		script( src="./vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		script( src="/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
 		// bootstrap-daterangepicker
-		script( src="./vendors/moment/min/moment.min.js" )
-		script( src="./vendors/bootstrap-daterangepicker/daterangepicker.js" )
+		script( src="/admin/vendors/moment/min/moment.min.js" )
+		script( src="/admin/vendors/bootstrap-daterangepicker/daterangepicker.js" )
 
 		// Custom Theme Scripts
-		script( src="./js/validator.js" )
-		script( src="./js/custom.min.js" )
+		script( src="/admin/js/validator.js" )
+		script( src="/admin/js/custom.min.js" )

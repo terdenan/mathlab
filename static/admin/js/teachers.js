@@ -22,7 +22,7 @@ function loadTeachers(lastID) {
             "<td>" + teacher.phone + "</td>" +
             "<td>" + (teacher.sex ? "Женский" : "Мужской") + "</td>" + 
             "<td>" + teacher.subject + "</td>" + 
-            "<td>" + "<a class='btn btn-sm btn-primary' href='/admin/edit-public-page'>Редактировать</a>" + "</td>" +
+            "<td>" + `<a class='btn btn-sm btn-primary' href='/admin/teacher/${teacher._id}'>Редактировать</a>` + "</td>" +
           "</tr>";
       });
       $('tbody').append(teachers);
