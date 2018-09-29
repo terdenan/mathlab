@@ -1,6 +1,7 @@
 'use sctrict';
 
-var certificates = [];
+var certificateNames = [];
+var certificateImages = [];
 
 function sendData(el) {
   var fullname = $('#fullname').val();
@@ -19,9 +20,10 @@ function sendData(el) {
   formData.append('photo', photo);
   formData.append('bio', bio);
   formData.append('about', about);
-  formData.append('certificates', certificates);
+  formData.append('certificateNames', certificateNames);
+  formData.append('certificateImages', certificateImages);
 
-  if (!$("#reg-teacher").hasClass("disabled")) {
+  if (!$(el).hasClass("disabled")) {
     $.ajax({
       url: '',
       type: 'post',
@@ -29,16 +31,10 @@ function sendData(el) {
       processData: false,
       contentType: false,
       error: function(response){
-        $(".alerts").html("<div class='alert alert-danger alert-dismissable'>" +
-                              "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                              "<strong>Ошибка!</strong> Произошла ошибка на сервере, попробуйте позже." +
-                            "</div>");
+        showResponseMessage("danger", "Ошибка! Произошла ошибка на сервере, попробуйте позже.");
       },
       success: function(response){
-        $(".alerts").html("<div class='alert alert-success alert-dismissable'>" +
-                            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
-                            "<strong>Готово!</strong> Страница успешно отредактирована." +
-                          "</div>");
+        showResponseMessage("success", "Готово! Страница успешно отредактирована.");
         clearForm();
       }
     });
@@ -49,15 +45,22 @@ function sendData(el) {
 function addCertificate(el) {
   var certificateName = $('#certificate-name').val();
   var certificateImage = $('#certificate-image').prop('files')[0];
-  var certificateImagePath = $('#certificate-image').val();
 
-  certificates.push({
-    certificateName: certificateName,
-    certificateImage: certificateImage,
-    certificateImagePath: certificateImagePath
-  });
-
+  if (certificateNames.length < 5) {
+    certificateNames.push(certificateName);
+    certificateImages.push(certificateImage);
+    updateCertificatesList();
+  }
+  else {
+    showResponseMessage("danger", "Добавлено максимальное количество сертификатов: 5.");
+  }
+  
   $('#addCertificateModal').modal('hide');
+}
+
+function deleteCertificate(index) {
+  certificateNames.splice(index, 1);
+  certificateImages.splice(index, 1);
   updateCertificatesList();
 }
 
@@ -105,9 +108,17 @@ function updateCertificatesList() {
   var list = $('#certificates-list');
 
   list.html('');
-  certificates.forEach(function(certificate, certificates) {
-    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c;"></i> &nbsp;' + certificate.certificateName + '</li>')
+  certificateNames.forEach(function(certificate, i, certificateNames) {
+    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c;"></i> &nbsp;' + certificate + '<a href="#" style="margin-left: 20px;" onClick="deleteCertificate(' + i + ')" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>')
   })
+}
+
+function showResponseMessage(status, text) {
+  $(".alerts").html("<div class='alert alert-" + status + " alert-dismissable'>" + 
+    "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" + text + "</div>");
+  setTimeout(function() {
+    $(".alerts").hide(500)
+  }, 3000);
 }
 
 $(document).ready(function() { 
