@@ -16,7 +16,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const flash = require('connect-flash');
 const socketIO = require('socket.io');
-//const telegramBot = require('libs/telegram-bot');
+const telegramBot = require('libs/telegram-bot');
 
 const logger = require('libs/logger');
 const ApplicationError = require('libs/application-error');
@@ -80,7 +80,7 @@ app.use((req, res, next) => {
     req.callbackModel = new CallbackModel();
     req.teacherInfo = new TeacherInfo();
     res.io = io;
-    //req.telegramBot = telegramBot;
+    req.telegramBot = telegramBot;
     next();
 });
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
