@@ -4,6 +4,7 @@ var certificateNames = [];
 var certificateImages = [];
 
 function sendData(el) {
+  var id = window.location.href.split('/')[5];
   var fullname = $('#fullname').val();
   var subject = $('#subject').val();
   var geoposition = $('#geoposition').val();
@@ -13,11 +14,11 @@ function sendData(el) {
   var about = $('#about').val();
   var formData = new FormData();
 
-  formData.append('fullname', fullname);
-  formData.append('subject', subject);
+  // formData.append('fullname', fullname);
+  // formData.append('subject', subject);
   formData.append('geoposition', geoposition)
   formData.append('school', school);
-  formData.append('photo', photo);
+  formData.append('avatar', photo);
   formData.append('bio', bio);
   formData.append('about', about);
   formData.append('certificateNames', certificateNames);
@@ -25,8 +26,8 @@ function sendData(el) {
 
   if (!$(el).hasClass("disabled")) {
     $.ajax({
-      url: '',
-      type: 'post',
+      type: 'put',
+      url: `/api/teacherInfo/${id}`,
       data: formData,
       processData: false,
       contentType: false,

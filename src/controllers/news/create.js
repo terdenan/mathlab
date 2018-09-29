@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
     title = title.replace(/[^a-z0-9\-]/gi, "");
     title = title.replace(/\-+/g, "-");
     const news = await req.newsModel.getBy({title: title});
-    console.log(news);
     if (news) {
         res.status(400);
         res.send('This title is not available');

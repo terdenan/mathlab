@@ -34,7 +34,12 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
     res.render('main/how-to-use');
 }));
 
-router.get('/teacher', asyncHandler(async (req, res) => {
+router.get('/teacher/:id', asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) {
+        res.render('main/404')
+        return;
+    }
     res.render('main/teacher');
 }));
 

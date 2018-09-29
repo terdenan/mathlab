@@ -24,6 +24,7 @@ const getMessagesController = require('../controllers/messages/get-messages');
 const createMessageController = require('../controllers/messages/create');
 const createCallbackController = require('../controllers/callback-requests/create');
 const createNewsController = require('../controllers/news/create');
+const updateTeacherInfoController = require('../controllers/teacher-info/update');
 
 router.post('/user', asyncHandler(createUserController));
 router.put('/profileInfo', passport.auth('user'), asyncHandler(updateUserController));
@@ -50,5 +51,7 @@ router.put('/message', passport.auth('user'), upload.single('file'), asyncHandle
 router.post('/callback', asyncHandler(createCallbackController));
 
 router.post('/news', passport.auth('admin'), upload.single('file'), asyncHandler(createNewsController));
+
+router.put('/teacherInfo/:id', passport.auth('admin'), upload.fields([{name: 'certificates', maxCount: 5}, {name: 'avatar', maxCount: 1}]), asyncHandler(updateTeacherInfoController));
 
 module.exports = router;

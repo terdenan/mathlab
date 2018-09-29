@@ -3,6 +3,7 @@ const router = express.Router();
 const asyncHandler = require('express-async-handler');
 const serveStatic = require('serve-static');
 const passport = require('../models/passport');
+const ObjectId = require('mongodb').ObjectID;
 
 router.use(serveStatic('static/admin'));
 
@@ -28,6 +29,27 @@ router.get('/teachers', passport.auth('admin'), asyncHandler(async (req, res) =>
     res.render('admin/teachers');
 }));
 
+router.get('/teacher/:id', passport.auth('admin'), asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) {
+        res.send(`ObejctId '${id}' is not valid`);
+        return;
+    }
+    const teacher = await req.userModel.getBy({_id: ObjectId(id)});
+    if (!teacher) {
+        res.send(`There is no teacher mathcing id '${id}'`);
+        return;
+    }
+    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+    if (!profileInfo) {
+        await req.teacherInfo.create({_teacher_id: id});
+    }
+    res.render('admin/edit-public-page', {
+        teacher,
+        profileInfo,
+    });
+}));
+
 router.get('/news', passport.auth('admin'), asyncHandler(async (req, res) => {
     res.render('admin/news');
 }));
@@ -42,10 +64,6 @@ router.get('/courses', passport.auth('admin'), asyncHandler(async (req, res) => 
 
 router.get('/teacher-form', passport.auth('admin'), asyncHandler(async (req, res) => {
     res.render('admin/teacher-form');
-}));
-
-router.get('/edit-public-page', passport.auth('admin'), asyncHandler(async (req, res) => {
-    res.render('admin/edit-public-page');
 }));
 
 router.get('/log-out', (req, res) => {
