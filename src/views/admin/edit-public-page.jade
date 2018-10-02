@@ -46,17 +46,16 @@ html( lang='ru' )
 								div( class="x_title" )
 									h2 Редактирование публичной страницы преподавателя
 									div( class="clearfix" )
-									p Markdown разметка для основного текстового блока новости:
 								form( data-toggle="validator" class="form-horizontal form-label-left" onsubmit="return false" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname" ) ФИО: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required )
+											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required disabled)
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="subject" ) Предмет: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required placeholder="Например: Учитель физики")
+											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required disabled)
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="geoposition" ) Местоположение: #[span( class="required" ) *]
@@ -70,7 +69,7 @@ html( lang='ru' )
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="photo" ) Фотография: #[span( class="required" ) *]
-										div( class="col-md-7 col-xs-12")
+										div( class="col-md-6 col-sm-6 col-xs-12")
 											div( style="width:100%;" )
 											input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected" required)
 											label( for="photo" required)
@@ -91,11 +90,20 @@ html( lang='ru' )
 									div( class="form-group" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="certificates" ) Достижения:
-										div( class="col-md-6 col-sm-6 col-xs-12" )
+										div( class="col-md-3 col-sm-3")
+											p Загруженные сертификаты:
+											ul( class="certificates-list")
+												li( class="uploaded-certificates")
+													i( class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px")
+													| Учитель года, 2016 
+													a( href="#" style="margin-left: 10px;" onClick="deleteUploadedCertificate('<id>')" title="Удалить" )
+														i( class="fa fa-trash-o" aria-hidden="true" )
+										div( class="col-md-3 col-sm-3 col-xs-12" )
+											p Новые сертификаты:
 											ul( class="certificates-list" id="certificates-list")
 											a( class="btn btn-default btn-sm" onsubmit="return false;" data-toggle="modal" data-target="#addCertificateModal" onClick="  clearModal();")
 												i( class="fa fa-plus" aria-hidden="true")  &nbsp;
-												| Добавить
+												| Добавить					
 
 									div( class="ln_solid" )
 									div( class="form-group" )
