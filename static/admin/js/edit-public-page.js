@@ -2,6 +2,7 @@
 
 var certificateNames = [];
 var certificateImages = [];
+var uploadedCertificatesLength = 0;
 
 function sendData(el) {
   var id = window.location.href.split('/')[5];
@@ -32,7 +33,7 @@ function sendData(el) {
       processData: false,
       contentType: false,
       error: function(response){
-        showResponseMessage("danger", "Ошибка! Произошла ошибка на сервере, попробуйте позже.");
+        showResponseMessage("danger", "Произошла ошибка на сервере, попробуйте позже.");
       },
       success: function(response){
         showResponseMessage("success", "Готово! Страница успешно отредактирована.");
@@ -47,7 +48,7 @@ function addCertificate(el) {
   var certificateName = $('#certificate-name').val();
   var certificateImage = $('#certificate-image').prop('files')[0];
 
-  if (certificateNames.length < 5) {
+  if ((certificateNames.length + uploadedCertificatesLength) < 5) {
     certificateNames.push(certificateName);
     certificateImages.push(certificateImage);
     updateCertificatesList();
@@ -60,9 +61,29 @@ function addCertificate(el) {
 }
 
 function deleteCertificate(index) {
-  certificateNames.splice(index, 1);
-  certificateImages.splice(index, 1);
-  updateCertificatesList();
+  if (confirm('Вы уверены, что хотите удалить сертификат?')) {
+    certificateNames.splice(index, 1);
+    certificateImages.splice(index, 1);
+    updateCertificatesList();
+  } 
+}
+
+function deleteUploadedCertificate(id) {
+  if (confirm('Вы уверены, что хотите удалить ранее загруженный сертификат?')) {
+    $.ajax({
+      url: '',
+      type: 'post',
+      data: {
+        id: id
+      },
+      error: function(response){
+        showResponseMessage("danger", "Произошла ошибка на сервере, попробуйте позже.");
+      },
+      success: function(response){
+        showResponseMessage("success", "Готово! Сертификат успешно удален.");
+      }
+    });
+  }
 }
 
 function initPhotoFileButton() {
@@ -110,19 +131,25 @@ function updateCertificatesList() {
 
   list.html('');
   certificateNames.forEach(function(certificate, i, certificateNames) {
-    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c;"></i> &nbsp;' + certificate + '<a href="#" style="margin-left: 20px;" onClick="deleteCertificate(' + i + ')" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>')
+    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i>' + certificate + '<a href="#" style="margin-left: 10px;" onClick="deleteCertificate(' + i + ')" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>')
   })
 }
 
+function countUploadedCertificates() {
+  uploadedCertificatesLength = $('.uploaded-certificates').length;
+}
+
 function showResponseMessage(status, text) {
+  $(".alerts").show(1);
   $(".alerts").html("<div class='alert alert-" + status + " alert-dismissable'>" + 
     "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" + text + "</div>");
   setTimeout(function() {
-    $(".alerts").hide(500)
+    $(".alerts").hide(500);
   }, 3000);
 }
 
 $(document).ready(function() { 
   initPhotoFileButton();
   initCertificateFileButton();
+  countUploadedCertificates();
 });
