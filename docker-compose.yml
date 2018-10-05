@@ -3,7 +3,7 @@ services:
     web:
         build: .
         container_name: mathlab
-        command: bash -c "npm start"
+        command: bash -c "npm run start:dev"
         environment:
             - NODE_ENV=${NODE_ENV}
         links:
