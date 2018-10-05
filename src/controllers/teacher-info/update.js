@@ -1,4 +1,15 @@
 const ObjectId = require('mongodb').ObjectID;
+const path = require('path');
+const fs = require('fs');
+
+function deleteAvatar(path) {
+    return new Promise((resolve, reject) => {
+        fs.unlink(path, (err) => {
+            if (err && err.code !== 'ENOENT') reject(err);
+            resolve();
+        });
+    });
+}
 
 module.exports = async (req, res) => {
     const teacher_id = req.params.id;
@@ -30,6 +41,7 @@ module.exports = async (req, res) => {
             && typeof(req.body.about) === 'string';
             // && Object.prototype.hasOwnProperty.call(req.body, 'certificatesNames')
             // && Array.isArray(req.body.certificatesNames);
+
     if (!isDataValid) {
         res.status(400);
         res.send('User data is invalid');
@@ -42,14 +54,16 @@ module.exports = async (req, res) => {
         bio: req.body.bio,
         about: req.body.about,
     };
-    
+    const certificates = [];
+
     if (req.files.avatar) {
         fields['photo_url'] = `/uploads/${req.files.avatar[0].filename}`;
+        const oldAvatarPath = path.join(process.cwd(), '/static/public', profileInfo.photo_url);
+        await deleteAvatar(oldAvatarPath);
     }
-    if (req.files.certificates && req.body.certificatesNames) {
-        fields['certificates'] = [];
-        req.files.certificates.forEach((item, i) => {
-            fields['certificates'].push({
+    if (req.files.certificatesImages && req.body.certificatesNames) {
+        req.files.certificatesImages.forEach((item, i) => {
+            certificates.push({
                 title: req.body.certificatesNames[i],
                 url: `/uploads/${item.filename}`,
             });
@@ -57,6 +71,8 @@ module.exports = async (req, res) => {
     }
     
     await req.teacherInfo.update({_teacher_id: teacher_id}, fields);
+    await req.teacherInfo.insertCertificates({_teacher_id: teacher_id}, certificates);
+
     res.status(200);
     res.send('success');
 }

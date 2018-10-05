@@ -40,7 +40,13 @@ router.get('/teacher/:id', asyncHandler(async (req, res) => {
         res.render('main/404')
         return;
     }
-    res.render('main/teacher');
+    const teacher = await req.userModel.getBy({_id: ObjectId(id)});
+    if (!teacher) {
+        res.render('main/404')
+        return;
+    }
+    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+    res.render('main/teacher', {teacher, profileInfo});
 }));
 
 router.get('/news', asyncHandler(async (req, res) => {

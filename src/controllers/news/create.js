@@ -1,6 +1,3 @@
-const xml2js = require('xml2js');
-const parser = new xml2js.Parser();
-const builder = new xml2js.Builder();
 const path = require('path');
 const sitemapPath = path.join(__dirname, '..', '..', '..', 'static', 'public', 'sitemap.xml');
 const sitemapper = require('libs/sitemapper');
@@ -26,16 +23,12 @@ module.exports = async (req, res) => {
         date: Date.now(),
     }
     await req.newsModel.create(newPost);
-    const sitemap = await sitemapper.readFile(sitemapPath);
-    const obj = {
+    const newsUrl = {
         loc: "https://mathlab.kz/news/" + title,
         lastmod: moment().format(),
         changefreq: "monthly",
         priority: "0.70"
     };
-    const parsedSitemap = await sitemapper.parse(sitemap);
-    parsedSitemap.urlset.url.push(obj);
-    const updatedSitemap = builder.buildObject(parsedSitemap);
-    await sitemapper.writeFile(sitemapPath, updatedSitemap);
+    await sitemapper.insertUrl(sitemapPath, newsUrl);
     res.send('success');
 }

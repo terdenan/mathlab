@@ -1,5 +1,6 @@
 const fs = require('fs');
 const xml2js = require('xml2js');
+const builder = new xml2js.Builder();
 const parser = xml2js.Parser();
 
 module.exports = {
@@ -32,5 +33,12 @@ module.exports = {
                 resolve(result);
             });
         });
+    },
+    insertUrl: async function(filepath, data) {
+        const sitemap = await this.readFile(filepath);
+        const parsedSitemap = await this.parse(sitemap);
+        parsedSitemap.urlset.url.push(data);
+        const updatedSitemap = builder.buildObject(parsedSitemap);
+        await this.writeFile(filepath, updatedSitemap);
     }
 }
