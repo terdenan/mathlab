@@ -17,10 +17,10 @@ const compression = require('compression');
 const flash = require('connect-flash');
 const socketIO = require('socket.io');
 const telegramBot = require('libs/telegram-bot');
+const isProduction = process.env.NODE_ENV === 'production';
 
 const logger = require('libs/logger');
 const ApplicationError = require('libs/application-error');
-const isProduction = process.env.NODE_ENV === 'production';
 const NewsModel = require('./models/news');
 const UserModel = require('./models/users');
 const CourseModel = require('./models/courses');
