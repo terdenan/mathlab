@@ -33,15 +33,6 @@ function loadTeachers(lastID) {
   });
 }
 
-function changePublicPageVisibility(checkbox, id) {
-  if ($(checkbox).is(":checked")) {
-    console.log(id + ' checked')
-  }
-  else {
-    console.log(id + ' unchecked')
-  }
-}
-
 $(document).ready(function() {
   $('#anchor').viewportChecker({
         offset: 0,

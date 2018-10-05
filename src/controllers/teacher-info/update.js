@@ -5,7 +5,7 @@ const fs = require('fs');
 function deleteAvatar(path) {
     return new Promise((resolve, reject) => {
         fs.unlink(path, (err) => {
-            if (err && err.code !== 'ENOENT') reject(err);
+            if (err && err.code !== 'ENOENT' && err.code !== 'EISDIR') reject(err);
             resolve();
         });
     });

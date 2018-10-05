@@ -44,7 +44,12 @@ html( lang='ru' )
 						div( class="col-sm-12" )
 							div( class="x_panel" )
 								div( class="x_title" )
-									h2 Редактирование публичной страницы преподавателя
+									div( class="row" )
+										div( class="col-sm-9")
+											h2 Редактирование публичной страницы преподавателя
+										div( class="col-sm-3 text-right" style="padding-top: 5px;")
+											label( for="visibility-checkbox") Отображать страницу &nbsp;
+											input( id="visibility-checkbox" class="form-check-input" type="checkbox" checked onChange="changePublicPageVisibility(this, '123')")
 									div( class="clearfix" )
 								form( data-toggle="validator" class="form-horizontal form-label-left" onsubmit="return false" )
 									div( class="form-group" )
@@ -66,6 +71,11 @@ html( lang='ru' )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="school" ) Учебное заведение: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
 											input( type="text" id="school" class="form-control col-md-7 col-xs-12" required placeholder="Например: Специализированный лицей №165" value="#{profileInfo.school}")
+											div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="experience" ) Стаж работы репетитором: #[span( class="required" ) *]
+										div( class="col-md-6 col-sm-6 col-xs-12" )
+											input( type="text" id="experience" class="form-control col-md-7 col-xs-12" required placeholder="Например: 8 лет или 3 года")
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="photo" ) Фотография: #[span( class="required" ) *]

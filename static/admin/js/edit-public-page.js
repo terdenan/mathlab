@@ -6,19 +6,17 @@ var certificateImages = [];
 var uploadedCertificatesLength = 0;
 
 function sendData(el) {
-  var fullname = $('#fullname').val();
-  var subject = $('#subject').val();
   var geoposition = $('#geoposition').val();
   var school = $('#school').val();
+  var experience = $('#experience').val();
   var photo = $('#photo').prop('files')[0];
   var bio = $('#bio').val();
   var about = $('#about').val();
   var formData = new FormData();
 
-  // formData.append('fullname', fullname);
-  // formData.append('subject', subject);
   formData.append('geoposition', geoposition)
   formData.append('school', school);
+  formData.append('experience', experience);
   formData.append('avatar', photo);
   formData.append('bio', bio);
   formData.append('about', about);
@@ -136,6 +134,15 @@ function updateCertificatesList() {
 
 function countUploadedCertificates() {
   uploadedCertificatesLength = $('.uploaded-certificates').length;
+}
+
+function changePublicPageVisibility(checkbox, id) {
+  if ($(checkbox).is(":checked")) {
+    console.log(id + ' checked')
+  }
+  else {
+    console.log(id + ' unchecked')
+  }
 }
 
 function showResponseMessage(status, text) {
