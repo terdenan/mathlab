@@ -15,9 +15,11 @@ module.exports = async (req, res) => {
 
     const name = req.body.name;
     const phone_number = req.body.phone;
+    const preferred_teacher = req.body.teacher || '';
     const newCallback = {
         name: name,
         phone_number: phone_number,
+        preferred_teacher: preferred_teacher
     };
     await req.callbackModel.create(newCallback);
     const message = `Заказ на обратный звонок:

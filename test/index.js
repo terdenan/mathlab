@@ -6,6 +6,7 @@ const CourseModel = require('../src/models/courses');
 const BidModel = require('../src/models/bids');
 const MessageModel = require('../src/models/messages');
 const CallbackModel = require('../src/models/callback-requests');
+const TeacherInfoModel = require('../src/models/teacher-info');
 
 const News = new NewsModel();
 const User = new UserModel();
@@ -13,6 +14,7 @@ const Course = new CourseModel();
 const Bid = new BidModel();
 const Message = new MessageModel();
 const Callback = new CallbackModel();
+const TeacherInfo = new TeacherInfoModel();
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -197,11 +199,6 @@ describe('/api', () => {
             const teacher = Object.assign({email: 'teacher@mail.ru', priority: 1}, base_user);
             await User.create(student);
             await User.create(teacher);
-
-            // const res2 = await agent_teacher
-            //     .post('/login')
-            //     .send({username: 'teacher@mail.ru', password: 'secret'});
-            // res.req.path.should.be.equal('/teacher/cabinet/');
         });
 
         it('it should UPDATE a student\'s profile info', async () => {
@@ -302,6 +299,49 @@ describe('/api', () => {
                 .get('/api/students?lastID=ffffffffffffffffffffffff');
             res.body.should.be.a('array');
             res.body.length.should.be.equal(0);
+        });
+    });
+
+    describe('/callback POST', () => {
+
+        afterEach(async () => {
+            await Callback.deleteMany();
+        });
+
+        it('it should POST a callback request', async () => {
+            const callback = {
+                name: 'test',
+                phone: '8(111)111-11-11'
+            }
+            const res = await chai.request(server)
+                .post('/api/callback')
+                .send(callback);
+
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('name');
+            res.body.should.have.property('phone_number');
+        });
+        it('it should not POST a callback request with undefined data', async () => {
+            const callback = undefined;
+            const res = await chai.request(server)
+                .post('/api/callback')
+                .send(callback);
+            res.should.have.status(400);
+        });
+        it('it should not POST a callback request with invalid fields', async () => {
+            const callback = { name: 'test', phone: undefined };
+            const res = await chai.request(server)
+                .post('/api/callback')
+                .send(callback);
+            res.should.have.status(400);
+        });
+        it('it should not POST a callback request without required fields', async () => {
+            const callback = { name: 'test' };
+            const res = await chai.request(server)
+                .post('/api/callback')
+                .send(callback);
+            res.should.have.status(400);
         });
     });
 

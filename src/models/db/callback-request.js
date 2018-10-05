@@ -9,6 +9,10 @@ const CallbackRequest = mongoose.model('CallbackRequest', {
         type: String,
         required: [true, 'Phone required']
     },
+    preferred_teacher: {
+        type: String,
+        default: '',
+    },
     date: {
         type: Date,
         default: Date.now
