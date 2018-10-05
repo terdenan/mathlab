@@ -39,14 +39,14 @@ html( lang='ru' )
 			ol( class="breadcrumb" )
 				li
 					a( href="/" ) Главная
-				li( class="active" ) Василий Васильевич Соколов
+				li( class="active" )= teacher.fullname
 			div( class="row offset-top-20" )
 				div( class="col-sm-4" )
 					div( class="base")
 						div( class="text-center" )
-							img( src="images/teacher-img-1.png" class="img-circle img-150 inline-block" alt="Василий Васильевич Соколов" title="Учитель физики" )
-							h1 Василий Васильевич Соколов
-							h6 Учитель физики
+							img( src="#{profileInfo.photo_url}" class="img-circle img-150 inline-block" alt="#{teacher.full_name}" title="Учитель физики" )
+							h1= teacher.fullname
+							h6= teacher.subject
 						hr
 						div( class="text-left" )
 							div( class="sm-info-block" )
@@ -54,7 +54,7 @@ html( lang='ru' )
 								h5 Алматы, Казахстан
 							div( class="sm-info-block" )
 								h4 Учебное заведение:
-								h5 Специализированный лицей №165
+								h5= profileInfo.school
 						button( class="btn btn-success btn-block" data-toggle="modal" data-target="#callbackModal") Хочу к этому преподавателю!
 
 					div( class="base" )
@@ -73,24 +73,19 @@ html( lang='ru' )
 				div( class="col-sm-8" )
 					div( class="lg-info-block" )
 						h2 Биография
-						p Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap. Hashtag typewriter banh mi, squid keffiyeh High Life Brooklyn twee craft beer tousled chillwave. PBR&B selfies chillwave, bespoke tote bag blog post-ironic. Single-origin coffee put a bird on it craft beer YOLO, Portland hella deep v Schlitz. Tumblr Bushwick post-ironic Thundercats. Vinyl 90's keytar, literally cardigan Williamsburg YOLO squid pickled Etsy salvia lo-fi locavore. Meh leggings retro narwhal Neutra.
+						p= profileInfo.bio
 					div( class="lg-info-block" )
 						h2 О себе
-						p Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art letterpress hoodie occupy Wes Anderson Banksy. Asymmetrical viral letterpress, McSweeney's seitan 3 wolf moon drinking vinegar sartorial pour-over messenger bag photo booth umami next level craft beer. Tote bag 8-bit flannel dreamcatcher photo booth. Tofu photo booth American Apparel, cliche brunch swag freegan lomo retro cray Vice gastropub post-ironic +1 pickled. Marfa Tonx next level, Banksy lo-fi vegan pop-up chia small batch DIY seitan asymmetrical viral. Disrupt salvia bespoke craft beer master cleanse. Butcher cornhole gentrify pop-up, raw denim viral literally.
+						p= profileInfo.about
 					div( class="lg-info-block" )
 						h2 Достижения
 						div( class="sertificates owl-carousel owl-theme" id="sertificates")
-							a( href="http://crazh.net/CatalogImages/Image/diplom_0/25.jpg" data-lightbox="roadtrip" )
-								div( class="sertificate text-center" )
-									div( class="image" style="background-image: url('http://crazh.net/CatalogImages/Image/diplom_0/25.jpg')")
-									div( class="info")
-										h5 Сертификат  «Лучший учитель года», 2018
-
-							a( href="http://lachugina.com/wp-content/uploads/2013/03/Sertifikat-na-foto-v-odincovo1.jpg" data-lightbox="roadtrip" )
-								div( class="sertificate text-center" )
-									div( class="image" style="background-image: url('http://lachugina.com/wp-content/uploads/2013/03/Sertifikat-na-foto-v-odincovo1.jpg')")
-									div( class="info")
-										h5 Сертификат  «Лучший учитель года», 2018
+							for certificate in profileInfo.certificates
+								a( href="#{certificate.url}" data-lightbox="roadtrip" )
+									div( class="sertificate text-center" )
+										div( class="image" style="background-image: url('#{certificate.url}')")
+										div( class="info")
+											h5= certificate.title
 
 					div( class="lg-info-block" )
 						h2 Отзывы

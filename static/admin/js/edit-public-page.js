@@ -1,11 +1,11 @@
 'use sctrict';
 
+var id = window.location.href.split('/')[5];
 var certificateNames = [];
 var certificateImages = [];
 var uploadedCertificatesLength = 0;
 
 function sendData(el) {
-  var id = window.location.href.split('/')[5];
   var fullname = $('#fullname').val();
   var subject = $('#subject').val();
   var geoposition = $('#geoposition').val();
@@ -22,8 +22,12 @@ function sendData(el) {
   formData.append('avatar', photo);
   formData.append('bio', bio);
   formData.append('about', about);
-  formData.append('certificateNames', certificateNames);
-  formData.append('certificateImages', certificateImages);
+  certificateNames.forEach((item) => {
+    formData.append('certificatesNames[]', item);
+  });
+  certificateImages.forEach((item) => {
+    formData.append('certificatesImages', item);
+  });
 
   if (!$(el).hasClass("disabled")) {
     $.ajax({
@@ -68,14 +72,11 @@ function deleteCertificate(index) {
   } 
 }
 
-function deleteUploadedCertificate(id) {
+function deleteUploadedCertificate(certId) {
   if (confirm('Вы уверены, что хотите удалить ранее загруженный сертификат?')) {
     $.ajax({
-      url: '',
-      type: 'post',
-      data: {
-        id: id
-      },
+      url: `/api/teacherInfo/${id}/certificate/${certId}`,
+      type: 'delete',
       error: function(response){
         showResponseMessage("danger", "Произошла ошибка на сервере, попробуйте позже.");
       },
@@ -115,8 +116,6 @@ function clearModal() {
 }
 
 function clearForm() {
-  $('#fullname').val('');
-  $('#subject').val('');
   $('#geoposition').val('');
   $('#school').val('');
   $('#photo').val(null);

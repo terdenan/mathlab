@@ -29,6 +29,33 @@ class TeacherInfo extends DbModel {
         }
     }
 
+    async insertCertificates(cond, certificates) {
+        try {
+            await this._MongooseModel
+                .update(
+                    cond, 
+                    { $push: { certificates: { $each: certificates } } },
+                );
+        } catch (e) {
+            console.log(e);
+            throw new ApplicationError('Error occured while inserting certificates', 500);
+        }
+    }
+
+    async deleteCertificate(cond, certId) {
+        try {
+            const res = await this._MongooseModel
+                .findOneAndUpdate(
+                    cond, 
+                    { $pull: { 'certificates': { _id: certId } } },
+                );
+            return res;
+        } catch (e) {
+            console.log(e);
+            throw new ApplicationError('Error occured while deleting certificate', 500);
+        }
+    }
+
 }
 
 module.exports = TeacherInfo;

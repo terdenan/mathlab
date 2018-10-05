@@ -60,31 +60,34 @@ html( lang='ru' )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="geoposition" ) Местоположение: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="geoposition" class="form-control col-md-7 col-xs-12" required placeholder="Например: Алматы, Казахстан")
+											input( type="text" id="geoposition" class="form-control col-md-7 col-xs-12" required placeholder="Например: Алматы, Казахстан" value="#{profileInfo.geoposition}")
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="school" ) Учебное заведение: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="school" class="form-control col-md-7 col-xs-12" required placeholder="Например: Специализированный лицей №165")
+											input( type="text" id="school" class="form-control col-md-7 col-xs-12" required placeholder="Например: Специализированный лицей №165" value="#{profileInfo.school}")
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="photo" ) Фотография: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12")
 											div( style="width:100%;" )
-											input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected" required)
-											label( for="photo" required)
+											if (!profileInfo.photo_url)
+												input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected" required)
+											else
+												input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected")
+											label( for="photo")
 												span( id="photo-span") Выбрать изображение
 											div( class="help-block with-errors" id="file-error" style="color: #a94442;")
 									div( class="form-group" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="bio" ) Биография: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											textarea( id="bio" class="form-control" required)
+											textarea( id="bio" class="form-control" required )= profileInfo.bio
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="about" ) О себе: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											textarea( id="about" class="form-control" required)
+											textarea( id="about" class="form-control" required value="#{profileInfo.about}")= profileInfo.about
 											div( class="help-block with-errors" )
 
 									div( class="form-group" )
@@ -93,11 +96,12 @@ html( lang='ru' )
 										div( class="col-md-3 col-sm-3")
 											p Загруженные сертификаты:
 											ul( class="certificates-list")
-												li( class="uploaded-certificates")
-													i( class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px")
-													| Учитель года, 2016 
-													a( href="#" style="margin-left: 10px;" onClick="deleteUploadedCertificate('<id>')" title="Удалить" )
-														i( class="fa fa-trash-o" aria-hidden="true" )
+												for certificate in profileInfo.certificates
+													li( class="uploaded-certificates")
+														i( class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px")
+														| #{certificate.title}
+														a( style="margin-left: 10px;" onClick="deleteUploadedCertificate('#{certificate._id}')" title="Удалить" )
+															i( class="fa fa-trash-o" aria-hidden="true" )
 										div( class="col-md-3 col-sm-3 col-xs-12" )
 											p Новые сертификаты:
 											ul( class="certificates-list" id="certificates-list")

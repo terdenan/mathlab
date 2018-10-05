@@ -1,7 +1,6 @@
 const multer  = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log('uploader', req.path);
         if (req.path === '/message') {
             cb(null, './static/public/attachments')
         }
