@@ -23,7 +23,6 @@ function loadTeachers(lastID) {
             "<td>" + (teacher.sex ? "Женский" : "Мужской") + "</td>" + 
             "<td>" + teacher.subject + "</td>" + 
             "<td>" + "<a class='btn btn-sm btn-primary' href='/admin/teacher/" + teacher._id + "'>Редактировать</a>" + "</td>" +
-            "<td>" + "<input class='form-check-input' type='checkbox' checked onChange='changePublicPageVisibility(this, `" + teacher._id + "`)'>" + "</td>" +
           "</tr>";
       });
       $('tbody').append(teachers);
