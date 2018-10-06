@@ -75,6 +75,19 @@ class TeacherInfo extends DbModel {
         }
     }
 
+    async getAll() {
+        try {
+            const res = await this._MongooseModel
+                .find()
+                .populate('_teacher_id');
+
+            return res;
+        } catch(e) {
+            console.log(e)
+            throw new ApplicationError('Error occured while getAll teacherInfo', 500);
+        }
+    }
+
 }
 
 module.exports = TeacherInfo;
