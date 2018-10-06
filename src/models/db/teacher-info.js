@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TeacherInfo = mongoose.model('TeacherInfo', {
-    _teacher_id: Schema.Types.ObjectId,
+    _teacher_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     geoposition: {
         type: String,
         default: '',
