@@ -11,6 +11,10 @@ const TeacherInfo = mongoose.model('TeacherInfo', {
         type: String,
         default: '',
     },
+    experience: {
+        type: String,
+        default: '',
+    },
     photo_url: {
         type: String,
         default: '',

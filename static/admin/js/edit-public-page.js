@@ -12,14 +12,17 @@ function sendData(el) {
   var photo = $('#photo').prop('files')[0];
   var bio = $('#bio').val();
   var about = $('#about').val();
+  var visible = $('#visibility-checkbox').is(':checked');
+  var experience = $('#experience').val();
   var formData = new FormData();
 
   formData.append('geoposition', geoposition)
   formData.append('school', school);
-  formData.append('experience', experience);
   formData.append('avatar', photo);
   formData.append('bio', bio);
   formData.append('about', about);
+  formData.append('visible', visible);
+  formData.append('experience', experience);
   certificateNames.forEach((item) => {
     formData.append('certificatesNames[]', item);
   });
@@ -114,12 +117,9 @@ function clearModal() {
 }
 
 function clearForm() {
-  $('#geoposition').val('');
-  $('#school').val('');
   $('#photo').val(null);
-  $('#bio').val('');
-  $('#about').val('');
-  certificates = [];
+  certificateNames = [];
+  certificateImages = [];
   updateCertificatesList();
 }
 
@@ -128,7 +128,7 @@ function updateCertificatesList() {
 
   list.html('');
   certificateNames.forEach(function(certificate, i, certificateNames) {
-    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i>' + certificate + '<a href="#" style="margin-left: 10px;" onClick="deleteCertificate(' + i + ')" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>')
+    list.append('<li><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i>' + certificate + '<a style="margin-left: 10px;" onClick="deleteCertificate(' + i + ')" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>')
   })
 }
 
@@ -148,7 +148,7 @@ function changePublicPageVisibility(checkbox, id) {
 function showResponseMessage(status, text) {
   $(".alerts").show(1);
   $(".alerts").html("<div class='alert alert-" + status + " alert-dismissable'>" + 
-    "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" + text + "</div>");
+    "<a class='close' data-dismiss='alert' aria-label='close'>&times;</a>" + text + "</div>");
   setTimeout(function() {
     $(".alerts").hide(500);
   }, 3000);

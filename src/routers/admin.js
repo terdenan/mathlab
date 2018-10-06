@@ -40,10 +40,13 @@ router.get('/teacher/:id', passport.auth('admin'), asyncHandler(async (req, res)
         res.send(`There is no teacher mathcing id '${id}'`);
         return;
     }
-    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+    
+    let profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
     if (!profileInfo) {
         await req.teacherInfo.create({_teacher_id: id});
+        profileInfo = await req.teacherInfo.getBy({_teacher_id: id});
     }
+    
     res.render('admin/edit-public-page', {
         teacher,
         profileInfo,

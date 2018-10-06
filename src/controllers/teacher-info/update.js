@@ -38,7 +38,11 @@ module.exports = async (req, res) => {
             && Object.prototype.hasOwnProperty.call(req.body, 'bio')
             && typeof(req.body.bio) === 'string'
             && Object.prototype.hasOwnProperty.call(req.body, 'about')
-            && typeof(req.body.about) === 'string';
+            && typeof(req.body.about) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'experience')
+            && typeof(req.body.experience) === 'string'
+            && Object.prototype.hasOwnProperty.call(req.body, 'visible')
+            && (req.body.visible === 'true' || req.body.visible === 'false');
             // && Object.prototype.hasOwnProperty.call(req.body, 'certificatesNames')
             // && Array.isArray(req.body.certificatesNames);
 
@@ -53,6 +57,8 @@ module.exports = async (req, res) => {
         school: req.body.school,
         bio: req.body.bio,
         about: req.body.about,
+        experience: req.body.experience,
+        visible: req.body.visible,
     };
     const certificates = [];
 
