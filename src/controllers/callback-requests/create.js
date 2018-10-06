@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
     const name = req.body.name;
     const phone_number = req.body.phone;
-    const preferred_teacher = req.body.teacher || '';
+    const preferred_teacher = req.body.teacher || 'не указан';
     const newCallback = {
         name: name,
         phone_number: phone_number,
@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     const message = `Заказ на обратный звонок:
                      Имя: ${newCallback.name}
                      Телефон: ${newCallback.phone_number}
+                     Преподаватель: ${newCallback.preferred_teacher}
                     `;
     await req.telegramBot._sendMessage(298493325, message);
     await req.telegramBot._sendMessage(288260717, message);

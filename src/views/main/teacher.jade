@@ -57,11 +57,11 @@ html( lang='ru' )
 							h6= teacher.subject
 						hr
 						div( class="text-left" )
-							if (profileInfo.geoposition)
+							if (profileInfo.visible && profileInfo.geoposition)
 								div( class="sm-info-block" )
 									h4 Город:
 									h5= profileInfo.geoposition
-							if (profileInfo.school)
+							if (profileInfo.visible && profileInfo.school)
 								div( class="sm-info-block" )
 									h4 Учебное заведение:
 									h5= profileInfo.school
@@ -81,13 +81,15 @@ html( lang='ru' )
 
 
 				div( class="col-md-8" )
-					if (profileInfo.bio && profileInfo.about && profileInfo.certificates.length > 0)
+					if (profileInfo.visible && profileInfo.bio)
 						div( class="lg-info-block" )
 							h2 Биография
 							p= profileInfo.bio
+					if (profileInfo.visible && profileInfo.about)
 						div( class="lg-info-block" )
 							h2 О себе
 							p= profileInfo.about
+					if (profileInfo.visible && profileInfo.certificates.length > 0)
 						div( class="lg-info-block" )
 							h2 Достижения
 							div( class="sertificates owl-carousel owl-theme" id="sertificates")
@@ -97,7 +99,7 @@ html( lang='ru' )
 											div( class="image" style="background-image: url('#{certificate.url}')")
 											div( class="info")
 												h5= certificate.title
-					else
+					if (!profileInfo.visible)
 						div( class="moderation text-center" )
 							img( src="/images/moderation-icon.svg" width="56")
 							h2 Страница находится на модерации
