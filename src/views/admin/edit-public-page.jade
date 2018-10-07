@@ -108,12 +108,12 @@ html( lang='ru' )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="certificates" ) Достижения:
 										div( class="col-md-3 col-sm-3")
 											p Загруженные сертификаты:
-											ul( class="certificates-list")
+											ul( class="certificates-list" id="uploaded-certificates-list")
 												for certificate in profileInfo.certificates
 													li( class="uploaded-certificates")
 														i( class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px")
-														| #{certificate.title}
-														a( style="margin-left: 10px;" onClick="deleteUploadedCertificate('#{certificate._id}')" title="Удалить" )
+														span= certificate.title
+														a( style="margin-left: 10px;" onClick="deleteUploadedCertificate(this, '#{certificate._id}')" data-id="#{certificate._id}" title="Удалить" )
 															i( class="fa fa-trash-o" aria-hidden="true" )
 										div( class="col-md-3 col-sm-3 col-xs-12" )
 											p Новые сертификаты:

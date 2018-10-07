@@ -3,6 +3,7 @@
 var id = window.location.href.split('/')[5];
 var certificateNames = [];
 var certificateImages = [];
+var uploadedCertificates = [];
 var uploadedCertificatesLength = 0;
 
 function sendData(el) {
@@ -42,6 +43,14 @@ function sendData(el) {
       },
       success: function(response){
         showResponseMessage("success", "Готово! Страница успешно отредактирована.");
+        certificateNames.forEach(function(certificate, i, certificateNames) {
+          var uploadedCertificate = {
+            name: certificate,
+            id: null
+          }
+          uploadedCertificates.push(uploadedCertificate);
+        });
+        updateUploadedCertificatesList();
         clearForm();
       }
     });
@@ -53,7 +62,7 @@ function addCertificate(el) {
   var certificateName = $('#certificate-name').val();
   var certificateImage = $('#certificate-image').prop('files')[0];
 
-  if ((certificateNames.length + uploadedCertificatesLength) < 5) {
+  if ((certificateNames.length + uploadedCertificates.length) < 5) {
     certificateNames.push(certificateName);
     certificateImages.push(certificateImage);
     updateCertificatesList();
@@ -73,7 +82,7 @@ function deleteCertificate(index) {
   } 
 }
 
-function deleteUploadedCertificate(certId) {
+function deleteUploadedCertificate(el, certId) {
   if (confirm('Вы уверены, что хотите удалить ранее загруженный сертификат?')) {
     $.ajax({
       url: `/api/teacherInfo/${id}/certificate/${certId}`,
@@ -83,6 +92,8 @@ function deleteUploadedCertificate(certId) {
       },
       success: function(response){
         showResponseMessage("success", "Готово! Сертификат успешно удален.");
+        $(el).parent().remove();
+        collectUploadedCertificates();
       }
     });
   }
@@ -132,8 +143,26 @@ function updateCertificatesList() {
   })
 }
 
-function countUploadedCertificates() {
-  uploadedCertificatesLength = $('.uploaded-certificates').length;
+function collectUploadedCertificates() {
+  uploadedCertificates = [];
+  $('.uploaded-certificates').each(function(index) {
+    var uploadedCertificate = {
+      name: $(this).find('span').text(),
+      id: $(this).find('a').data('id')
+    }
+    uploadedCertificates.push(uploadedCertificate);
+  })
+  updateUploadedCertificatesList();
+}
+
+function updateUploadedCertificatesList() {
+  var list = $('#uploaded-certificates-list');
+
+  list.html('');
+  uploadedCertificates.forEach(function(certificate, i, uploadedCertificates) {
+    if (certificate.id != null) list.append('<li class="uploaded-certificates"><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i><span>' + certificate.name + '</span><a style="margin-left: 10px;" onClick="deleteUploadedCertificate(this, `' + certificate.id + '`)" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>');
+    else list.append('<li class="uploaded-certificates"><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i><span>' + certificate.name + '</span></li>');
+  })
 }
 
 function changePublicPageVisibility(checkbox, id) {
@@ -157,5 +186,5 @@ function showResponseMessage(status, text) {
 $(document).ready(function() { 
   initPhotoFileButton();
   initCertificateFileButton();
-  countUploadedCertificates();
+  collectUploadedCertificates();
 });
