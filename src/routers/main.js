@@ -12,7 +12,6 @@ router.use(serveStatic('static/public'));
 router.get('/', asyncHandler(async (req, res) => {
     const recentNews = await req.newsModel.getRecent(3);
     const teachers = await req.teacherInfo.getAll();
-    console.log(teachers);
     res.render('main/index', {recentNews, teachers});
 }));
 
