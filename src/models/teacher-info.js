@@ -31,11 +31,14 @@ class TeacherInfo extends DbModel {
 
     async insertCertificates(cond, certificates) {
         try {
-            await this._MongooseModel
-                .update(
+            const res = await this._MongooseModel
+                .findOneAndUpdate(
                     cond, 
                     { $push: { certificates: { $each: certificates } } },
+                    { new: true },
                 );
+
+            return res;
         } catch (e) {
             console.log(e);
             throw new ApplicationError('Error occured while inserting certificates', 500);

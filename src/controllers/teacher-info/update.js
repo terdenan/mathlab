@@ -77,8 +77,16 @@ module.exports = async (req, res) => {
     }
     
     await req.teacherInfo.update({_teacher_id: teacher_id}, fields);
-    await req.teacherInfo.insertCertificates({_teacher_id: teacher_id}, certificates);
+    const updateTeacherInfo = await req.teacherInfo.insertCertificates(
+        {_teacher_id: teacher_id},
+        certificates
+    );
 
+    const response = {
+        status: 'success',
+        certificates_id: updateTeacherInfo.certificates,
+    };
+    
     res.status(200);
-    res.send('success');
+    res.send(JSON.stringify(response));
 }
