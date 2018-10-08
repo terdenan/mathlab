@@ -42,11 +42,13 @@ router.get('/teacher/:id', asyncHandler(async (req, res) => {
         return;
     }
     const teacher = await req.userModel.getBy({_id: ObjectId(id)});
-    if (!teacher) {
+    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+
+    if (!teacher || !profileInfo) {
         res.render('main/404')
         return;
     }
-    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+    
     res.render('main/teacher', {teacher, profileInfo});
 }));
 
