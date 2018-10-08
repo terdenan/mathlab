@@ -11,7 +11,8 @@ router.use(serveStatic('static/public'));
 
 router.get('/', asyncHandler(async (req, res) => {
     const recentNews = await req.newsModel.getRecent(3);
-    res.render('main/index', {recentNews});
+    const teachers = await req.teacherInfo.getAll();
+    res.render('main/index', {recentNews, teachers});
 }));
 
 router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) => {
@@ -34,8 +35,21 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
     res.render('main/how-to-use');
 }));
 
-router.get('/teacher', asyncHandler(async (req, res) => {
-    res.render('main/teacher');
+router.get('/teacher/:id', asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    if (!ObjectId.isValid(id)) {
+        res.render('main/404')
+        return;
+    }
+    const teacher = await req.userModel.getBy({_id: ObjectId(id)});
+    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+
+    if (!teacher || !profileInfo) {
+        res.render('main/404')
+        return;
+    }
+    
+    res.render('main/teacher', {teacher, profileInfo});
 }));
 
 router.get('/news', asyncHandler(async (req, res) => {
@@ -44,6 +58,7 @@ router.get('/news', asyncHandler(async (req, res) => {
 }));
 
 router.get('/teachers', passport.auth(), asyncHandler(async (req, res) => {
+    const teachers = await req.teacherInfo.getAll();
     res.render('main/teachers', req.user);
 }));
 

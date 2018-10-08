@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_PATH=. mocha",
     "start": "NODE_PATH=. node ./src/index.js",
-    "start:dev": "NODE_PATH=. NODE_ENV=dev nodemon ./src/index.js"
+    "start:dev": "NODE_PATH=${PWD} nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",

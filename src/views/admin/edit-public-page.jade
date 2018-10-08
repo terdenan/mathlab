@@ -8,21 +8,21 @@ html( lang='ru' )
 
 		title Admin Panel - MathLab.kz
 
-		link( rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" )
+		link( rel="shortcut icon" href="/admin/images/favicon.ico" type="image/x-icon" )
 
 		// Bootstrap Core CSS
-		link( href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
+		link( href="/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" )
 
 		// Font Awesome
-		link( href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
+		link( href="/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" )
 
 		//Custom CSS	
-		link( href="./css/custom.css" rel="stylesheet" )
+		link( href="/admin/css/custom.css" rel="stylesheet" )
 
 		//Scripts
-		script( src="./vendors/jquery/dist/jquery.min.js" )
-		script( src="./js/viewportchecker.js" )
-		script( src="./js/edit-public-page.js" )
+		script( src="/admin/vendors/jquery/dist/jquery.min.js" )
+		script( src="/admin/js/viewportchecker.js" )
+		script( src="/admin/js/edit-public-page.js" )
 
 	body( class="nav-md" )
 		div( class="container body" )
@@ -30,8 +30,8 @@ html( lang='ru' )
 				div( class="col-md-3 left_col" )
 					div( class="left_col scroll-view" )
 						div( class="navbar nav_title" style="border: 0;" )
-							a( href="./" class="site_title" )
-								img( src="./images/logo.svg" )
+							a( href="/admin" class="site_title" )
+								img( src="/admin/images/logo.svg" )
 								span Admin Panel
 						div( class="clearfix" )
 						br
@@ -44,67 +44,94 @@ html( lang='ru' )
 						div( class="col-sm-12" )
 							div( class="x_panel" )
 								div( class="x_title" )
-									h2 Редактирование публичной страницы преподавателя
+									div( class="row" )
+										div( class="col-sm-9")
+											h2 Редактирование публичной страницы преподавателя
+										div( class="col-sm-3 text-right" style="padding-top: 5px;")
+											label( for="visibility-checkbox") Отображать страницу &nbsp;
+											if profileInfo.visible
+												input( id="visibility-checkbox" class="form-check-input" type="checkbox" checked onChange="changePublicPageVisibility(this, '123')")
+											else
+												input( id="visibility-checkbox" class="form-check-input" type="checkbox"  onChange="changePublicPageVisibility(this, '123')")
 									div( class="clearfix" )
-									p Markdown разметка для основного текстового блока новости:
 								form( data-toggle="validator" class="form-horizontal form-label-left" onsubmit="return false" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="fullname" ) ФИО: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required )
+											input( type="text" id="fullname" class="form-control col-md-7 col-xs-12" required disabled value="#{teacher.fullname}" )
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="subject" ) Предмет: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required placeholder="Например: Учитель физики")
+											input( type="text" id="subject" class="form-control col-md-7 col-xs-12" required disabled value="#{teacher.subject}" )
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="geoposition" ) Местоположение: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="geoposition" class="form-control col-md-7 col-xs-12" required placeholder="Например: Алматы, Казахстан")
+											input( type="text" id="geoposition" class="form-control col-md-7 col-xs-12" required placeholder="Например: Алматы, Казахстан" value="#{profileInfo.geoposition}")
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="school" ) Учебное заведение: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											input( type="text" id="school" class="form-control col-md-7 col-xs-12" required placeholder="Например: Специализированный лицей №165")
+											input( type="text" id="school" class="form-control col-md-7 col-xs-12" required placeholder="Например: Специализированный лицей №165" value="#{profileInfo.school}")
+											div( class="help-block with-errors" )
+									div( class="form-group" )
+										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="experience" ) Стаж работы репетитором: #[span( class="required" ) *]
+										div( class="col-md-6 col-sm-6 col-xs-12" )
+											input( type="text" id="experience" class="form-control col-md-7 col-xs-12" required placeholder="Например: 8 лет или 3 года" value="#{profileInfo.experience}")
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="photo" ) Фотография: #[span( class="required" ) *]
-										div( class="col-md-7 col-xs-12")
+										div( class="col-md-6 col-sm-6 col-xs-12")
 											div( style="width:100%;" )
-											input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected" required)
-											label( for="photo" required)
+											if (!profileInfo.photo_url)
+												input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected" required)
+											else
+												input( type="file" name="file" id="photo" class="inputfile form-control" data-multiple-caption="{count} files selected")
+											label( for="photo")
 												span( id="photo-span") Выбрать изображение
 											div( class="help-block with-errors" id="file-error" style="color: #a94442;")
 									div( class="form-group" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="bio" ) Биография: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											textarea( id="bio" class="form-control" required)
+											textarea( id="bio" class="form-control" required )= profileInfo.bio
 											div( class="help-block with-errors" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="about" ) О себе: #[span( class="required" ) *]
 										div( class="col-md-6 col-sm-6 col-xs-12" )
-											textarea( id="about" class="form-control" required)
+											textarea( id="about" class="form-control" required value="#{profileInfo.about}")= profileInfo.about
 											div( class="help-block with-errors" )
 
 									div( class="form-group" )
 									div( class="form-group" )
 										label( class="control-label col-md-3 col-sm-3 col-xs-12" for="certificates" ) Достижения:
-										div( class="col-md-6 col-sm-6 col-xs-12" )
+										div( class="col-md-3 col-sm-3")
+											p Загруженные сертификаты:
+											ul( class="certificates-list" id="uploaded-certificates-list")
+												for certificate in profileInfo.certificates
+													li( class="uploaded-certificates")
+														i( class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px")
+														span= certificate.title
+														a( style="margin-left: 10px;" onClick="deleteUploadedCertificate(this, '#{certificate._id}')" data-id="#{certificate._id}" title="Удалить" )
+															i( class="fa fa-trash-o" aria-hidden="true" )
+										div( class="col-md-3 col-sm-3 col-xs-12" )
+											p Новые сертификаты:
 											ul( class="certificates-list" id="certificates-list")
 											a( class="btn btn-default btn-sm" onsubmit="return false;" data-toggle="modal" data-target="#addCertificateModal" onClick="  clearModal();")
 												i( class="fa fa-plus" aria-hidden="true")  &nbsp;
-												| Добавить
+												| Добавить					
 
 									div( class="ln_solid" )
 									div( class="form-group" )
 										div( class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" )
 											button( class="btn btn-primary" type="reset" onClick="clearForm()") Сбросить
-											button( type="submit" class="btn btn-success" onClick="sendData(this)" onsubmit="return false;") Отправить
+											button( type="submit" class="btn btn-success" onClick="sendData(this)" onsubmit="return false;") Сохранить
+										div( class="col-md-6 col-sm-6 col-xs-12")
+											a( href="https://mathlab.kz/teachers/#{profileInfo._id}" ) Ссылка на страницу
 								div( class="row" )
 									div( class="alerts col-md-6 col-md-offset-3" )
-									
+
 
 				footer
 					div( class="pull-right" ) Admin Panel - MathLab.kz
@@ -134,15 +161,15 @@ html( lang='ru' )
 							button( type="button" class="btn btn-default" data-dismiss="modal" ) Закрыть
 		
 		// Bootstrap
-		script( src="./vendors/bootstrap/dist/js/bootstrap.min.js" )
+		script( src="/admin/vendors/bootstrap/dist/js/bootstrap.min.js" )
 		// FastClick
-		script( src="./vendors/fastclick/lib/fastclick.js" )
+		script( src="/admin/vendors/fastclick/lib/fastclick.js" )
 		// bootstrap-progressbar
-		script( src="./vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
+		script( src="/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" )
 		// bootstrap-daterangepicker
-		script( src="./vendors/moment/min/moment.min.js" )
-		script( src="./vendors/bootstrap-daterangepicker/daterangepicker.js" )
+		script( src="/admin/vendors/moment/min/moment.min.js" )
+		script( src="/admin/vendors/bootstrap-daterangepicker/daterangepicker.js" )
 
 		// Custom Theme Scripts
-		script( src="./js/validator.js" )
-		script( src="./js/custom.min.js" )
+		script( src="/admin/js/validator.js" )
+		script( src="/admin/js/custom.min.js" )

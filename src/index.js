@@ -17,16 +17,17 @@ const compression = require('compression');
 const flash = require('connect-flash');
 const socketIO = require('socket.io');
 const telegramBot = require('libs/telegram-bot');
+const isProduction = process.env.NODE_ENV === 'production';
 
 const logger = require('libs/logger');
 const ApplicationError = require('libs/application-error');
-const isProduction = process.env.NODE_ENV === 'production';
 const NewsModel = require('./models/news');
 const UserModel = require('./models/users');
 const CourseModel = require('./models/courses');
 const BidModel = require('./models/bids');
 const MessageModel = require('./models/messages');
 const CallbackModel = require('./models/callback-requests');
+const TeacherInfo = require('./models/teacher-info');
 const sockioModel = require('./models/sockio');
 
 
@@ -77,12 +78,13 @@ app.use((req, res, next) => {
     req.bidModel = new BidModel();
     req.messageModel = new MessageModel();
     req.callbackModel = new CallbackModel();
+    req.teacherInfo = new TeacherInfo();
     res.io = io;
     req.telegramBot = telegramBot;
     next();
 });
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(session({
     store: new MongoStore({
         mongooseConnection: mongoose.connection

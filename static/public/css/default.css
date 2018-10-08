@@ -237,6 +237,24 @@ body.teacher .main-content .landing-comment h4 {
   color: #333;
 }
 
+body.teacher .moderation {
+  padding-top: 20vh;
+}
+
+body.teacher .moderation h2 {
+  font-size: 18px;
+  margin-top: 20px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+@media (max-width: 991px) {
+  body.teacher .moderation {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
 .news-card {
   width: 100%;
   -webkit-box-shadow: 0px 3px 13px 0px rgba(204,204,204,0.3);
@@ -1161,8 +1179,15 @@ body.teacher .main-content .landing-comment h4 {
 
 .landing-comment.landing-teacher blockquote {
   margin-left: 0px;
-  height: 150px;
   overflow: hidden;
+}
+
+.landing-comment.landing-teacher blockquote p.short-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .landing-comment-body {
