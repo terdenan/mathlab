@@ -42,14 +42,18 @@ function sendData(el) {
         showResponseMessage("danger", "Произошла ошибка на сервере, попробуйте позже.");
       },
       success: function(response){
+        var $response = JSON.parse(response);
         showResponseMessage("success", "Готово! Страница успешно отредактирована.");
-        certificateNames.forEach(function(certificate, i, certificateNames) {
-          var uploadedCertificate = {
-            name: certificate,
-            id: null
-          }
-          uploadedCertificates.push(uploadedCertificate);
-        });
+        if ($response.status === 'success') {
+          uploadedCertificates = [];
+          $response.certificates_id.forEach(function(certificate, i) {
+            var uploadedCertificate = {
+              name: certificate.title,
+              id: certificate._id
+            };
+            uploadedCertificates.push(uploadedCertificate);
+          });
+        }
         updateUploadedCertificatesList();
         clearForm();
       }
@@ -148,10 +152,11 @@ function collectUploadedCertificates() {
   $('.uploaded-certificates').each(function(index) {
     var uploadedCertificate = {
       name: $(this).find('span').text(),
-      id: $(this).find('a').data('id')
+      id: $(this).find('a').data('id'),
+
     }
     uploadedCertificates.push(uploadedCertificate);
-  })
+  });
   updateUploadedCertificatesList();
 }
 
@@ -159,8 +164,8 @@ function updateUploadedCertificatesList() {
   var list = $('#uploaded-certificates-list');
 
   list.html('');
-  uploadedCertificates.forEach(function(certificate, i, uploadedCertificates) {
-    if (certificate.id != null) list.append('<li class="uploaded-certificates"><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i><span>' + certificate.name + '</span><a style="margin-left: 10px;" onClick="deleteUploadedCertificate(this, `' + certificate.id + '`)" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>');
+  uploadedCertificates.forEach(function(certificate, i) {
+    if (certificate.id != null) list.append('<li class="uploaded-certificates"><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i><span>' + certificate.name + '</span><a style="margin-left: 10px;" onClick="deleteUploadedCertificate(this, `' + certificate.id + '`)" data-id="' + certificate.id + '" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>');
     else list.append('<li class="uploaded-certificates"><i class="fa fa-file-text-o" aria-hidden="true" style="color: #1abb9c; margin-right: 7px"></i><span>' + certificate.name + '</span></li>');
   })
 }

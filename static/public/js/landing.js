@@ -29,10 +29,11 @@ function sendCallbackBid(el, prefTeacher) {
 		    success: function(response){
 		      $(el).parent().parent().append('<p class="response text-success small">Спасибо! Ваша заявка успешно отправлена.</p>');
 		      removeResponseMsg();
+		      $('input').val('');
 		      yaCounter50080147.reachGoal('callback-submit');
 		      setTimeout(function() { 
 				    $('#callbackModal').modal('hide');
-				  }, 3000);
+				  }, 2500);
 		    }
 		  });
 		}

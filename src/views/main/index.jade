@@ -157,7 +157,7 @@ html( lang='ru' )
 										h4= teacher._teacher_id.fullname
 										h6= teacher._teacher_id.subject
 										blockquote
-											p( class="short-description" )= teacher.about
+											p( class="short-description" )= teacher.bio
 											h6= ('Стаж работы репетитором:' + ' ' + teacher.experience)
 											h6= teacher.geoposition
 										a( href="/teacher/#{teacher._teacher_id._id}" class="btn btn-default btn-block" onClick="yaCounter50080147.reachGoal('teacher-page-btn-click');") Подробнее
