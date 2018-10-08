@@ -56,6 +56,7 @@ router.get('/news', asyncHandler(async (req, res) => {
 }));
 
 router.get('/teachers', passport.auth(), asyncHandler(async (req, res) => {
+    const teachers = await req.teacherInfo.getAll();
     res.render('main/teachers', req.user);
 }));
 
