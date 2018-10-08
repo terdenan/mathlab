@@ -2,10 +2,6 @@ const bcrypt = require('bcrypt');
 const ApplicationError = require('libs/application-error');
 const mongoose = require('mongoose');
 const md5 = require('md5');
-const sitemapper = require('libs/sitemapper');
-const moment = require('moment');
-const path = require('path');
-const sitemapPath = path.join(__dirname, '..', '..', '..', 'static', 'public', 'sitemap.xml');
 
 module.exports = async (req, res) => {
 
@@ -54,13 +50,7 @@ module.exports = async (req, res) => {
     };
     const savedUser = await req.userModel.create(newUser);
     await req.teacherInfo.create({_teacher_id: newUser._id});
-    const teacherUrl = {
-        loc: `https://mathlab.kz/teacher/${newUser._id}`,
-        lastmod: moment().format(),
-        changefreq: "monthly",
-        priority: "0.70"
-    };
-    await sitemapper.insertUrl(sitemapPath, teacherUrl);
+
     res.status(200);
     res.send(savedUser);
 }

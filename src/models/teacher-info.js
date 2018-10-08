@@ -3,6 +3,11 @@
 const DbModel = require('./common/dbModel');
 const ApplicationError = require('libs/application-error');
 
+const sitemapper = require('libs/sitemapper');
+const moment = require('moment');
+const path = require('path');
+const sitemapPath = path.join(process.cwd(), 'static', 'public', 'sitemap.xml');
+
 class TeacherInfo extends DbModel {
     constructor() {
         super('teacher-info');
@@ -13,10 +18,17 @@ class TeacherInfo extends DbModel {
             && true;
 
         if (isDataValid) {
-            await this._insert(data);
-            return data;
+            const savedData = await this._insert(data);
+            const teacherUrl = {
+                loc: `https://mathlab.kz/teacher/${savedData._teacher_id}`,
+                lastmod: moment().format(),
+                changefreq: "monthly",
+                priority: "0.70"
+            };
+            await sitemapper.insertUrl(sitemapPath, teacherUrl);
+            return savedData;
         }
-        
+
         throw new ApplicationError('News data is invalid', 400);
     }
 
