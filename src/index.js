@@ -118,10 +118,10 @@ app.use(cookieParser());
 app.locals.moment = moment;
 app.locals.marked = marked;
 
-app.use('', mainRouter);
+app.use('/teacher', teacherRouter);
 app.use('/admin', adminRouter);
 app.use('/api', apiRouter);
-app.use('/teacher', teacherRouter);
+app.use('', mainRouter);
 
 
 app.use((err, req, res, next) => {
