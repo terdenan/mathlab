@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=. mocha",
+    "test": "NODE_ENV=test NODE_PATH=. mocha",
     "start": "NODE_PATH=. node ./src/index.js",
     "start:dev": "NODE_PATH=${PWD} nodemon ./src/index.js"
   },
