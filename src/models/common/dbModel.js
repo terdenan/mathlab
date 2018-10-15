@@ -58,7 +58,6 @@ class DbModel  {
     async _insert(item) {
         const savedItem = await this._MongooseModel
             .create(item);
-        const count = (await this.getMany()).length;
 
         return savedItem;
     }

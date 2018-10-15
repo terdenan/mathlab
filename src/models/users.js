@@ -9,8 +9,8 @@ class Users extends DbModel {
     }
 
     async create(user) {
-        await this._insert(user);
-        return user;
+        const doc = await this._insert(user);
+        return doc;
     }
 
     async update(user_id, fields) {

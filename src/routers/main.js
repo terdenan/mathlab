@@ -38,6 +38,7 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
 router.get('/teacher/:id', asyncHandler(async (req, res) => {
     const id = req.params.id;
     if (!ObjectId.isValid(id)) {
+        res.status(404);
         res.render('main/404')
         return;
     }
@@ -45,6 +46,7 @@ router.get('/teacher/:id', asyncHandler(async (req, res) => {
     const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
 
     if (!teacher || !profileInfo) {
+        res.status(404);
         res.render('main/404')
         return;
     }
@@ -78,6 +80,7 @@ router.get('/log-out', (req, res) => {
 router.get('/news/:title', asyncHandler(async (req, res) => {
     const news = await req.newsModel.getBy({title: req.params.title});
     if (!news) {
+        res.status(404);
         res.render('main/404')
         return;
     }
@@ -138,6 +141,7 @@ router.get('/cabinet', passport.auth(), asyncHandler(async (req, res) => {
 
 router.get('/course/:id', passport.auth(), asyncHandler(async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
+        res.status(404);
         res.render('main/404');
         return;
     }
