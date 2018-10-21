@@ -71,7 +71,7 @@ html( lang='ru' )
 											tbody
 												for item in courses
 													tr
-														td( id="#{item.id}" )
+														td( id="#{item._id}" )
 															div( class="course" onClick="window.location.href='./course/#{item._id}'")
 																div( class="course-header" )
 																	div( class="course-info-img" )
@@ -97,7 +97,7 @@ html( lang='ru' )
 																		else 
 																			h5 #[span( class="course-desc" ) Статус:] #[span( class="text-danger" ) Закончен ]
 																div( class="course-entrance" )
-																	a( href="./course/#{item.id}" )
+																	a( href="./course/#{item._id}" )
 								else
 									div( class="no-courses text-center" )
 										img( src="/images/blackboard.png" )
