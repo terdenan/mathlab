@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     else {
         await req.courseModel.updateMany(
             {_teacher_id: req.user._id},
-            { studentAvatarUrl: imagePath}
+            { teacherAvatarUrl: imagePath}
         );
     }
 
