@@ -120,7 +120,7 @@ $(document).ready(function() {
     }
   });
 
-  $(".message-input").keypress(function(e){
+  $("body").keypress(function(e){
       if(e.keyCode == 13 && e.shiftKey){
         if (rows <= 2) {
           $(".message-input").css("height", "+=20");
