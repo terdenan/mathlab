@@ -310,7 +310,7 @@ html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vm
                                   td(style='padding-right: 10px; padding-left: 10px; padding-top: 15px; padding-bottom: 5px;')
                           div(style="color:#555555;font-family:'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:150%; padding-right: 10px; padding-left: 10px; padding-top: 15px; padding-bottom: 5px;")
                             div(style="font-size:12px;line-height:18px;color:#555555;font-family:'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;")
-                              p(style='margin: 0;font-size: 14px;line-height: 21px') Здравствуйте, <name>!
+                              p(style='margin: 0;font-size: 14px;line-height: 21px') Здравствуйте, #{fullname}!
                               p(style='margin: 0;font-size: 14px;line-height: 21px') У Вас есть непрочитанное сообщение на портале.
                           //if mso
                           // [if (!mso)&(!IE)] <!
@@ -373,7 +373,7 @@ html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vm
                               p(style='margin: 0;font-size: 14px;line-height: 17px')
                                 span(style='font-size: 16px; line-height: 19px;')
                                   | Сообщение от 
-                                  strong Галия Мрзановна Альжанова
+                                  strong #{sender}
                                   | :
                           //if mso
                           // [if (!mso)&(!IE)] <!
@@ -407,7 +407,7 @@ html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vm
                               p(style='margin: 0;line-height: 18px;font-size: 12px')
                                 span(style='font-size: 15px; line-height: 22px;')
                                   em
-                                    | Здравствуйте, Иван! На сегодняшнем занятии мы рассмотрим использование циклов for, while. Вам необходимо прочитать теорию...
+                                    | #{message}
                           //if mso
                           // [if (!mso)&(!IE)] <!
                           // <![endif]
@@ -468,7 +468,7 @@ html(xmlns='http://www.w3.org/1999/xhtml', xmlns:v='urn:schemas-microsoft-com:vm
                                       w:anchorlock
                                         v:textbox(inset='0,0,0,0')
                                           center(style="color:#ffffff; font-family:'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;")
-                          div(style="color: #ffffff; background-color: #3AAEE0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 186px; width: 146px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; text-align: center; mso-border-alt: none;")
+                          a(href="#{link}" style="color: #ffffff; background-color: #3AAEE0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 186px; width: 146px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; text-align: center; mso-border-alt: none;")
                             span(style="font-family:'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size:16px;line-height:32px;") Перейти на портал
                           //if mso
                           // [if (!mso)&(!IE)] <!
