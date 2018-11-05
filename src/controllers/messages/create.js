@@ -60,6 +60,8 @@ module.exports = async (req, res) => {
         emailContext.sender = course.teacher;
         emailContext.link = `https://mathlab.kz/course/${req.body.courseId}`
     }
+    
+    res.render('./main/includes/message', responseBody);
 
     if (previousMessages.length == 0) {
         const emailBody = jade.renderFile('src/views/main/mail-bodies/new-message.jade', emailContext);
@@ -72,6 +74,4 @@ module.exports = async (req, res) => {
         };
         await sendmail(emailOptions);
     }
-    
-    res.render('./main/includes/message', responseBody);
 }
