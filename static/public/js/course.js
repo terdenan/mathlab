@@ -76,6 +76,33 @@ function sendMessage() {
   }
 };
 
+function deleteMessage(id) {
+  if (confirm('Вы действительно хотите удалить сообщение?')) {
+    var formData = new FormData;
+    formData.append('id', id);
+
+    $.ajax({
+      url: '',
+      data: formData,
+      method: 'delete',
+      contentType: false,
+      processData: false,
+      error: function(response){
+        console.log('Не удалось удалить сообщение.');
+      },
+      success: function(response){
+        var message = $('#' + id);
+        var windowHeight = $(window).height();
+
+        message.remove();
+        $('.messages').append(response);
+        $(".panel-body").height(windowHeight * 0.7);
+        initNanoScroller();
+      }
+    });
+  }
+}
+
 function initNanoScroller() {
   $(".nano").nanoScroller();
   $(".nano").nanoScroller({ 

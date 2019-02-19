@@ -33,4 +33,7 @@ for item in messages
 			ul
 				li #{item.message}
 		div( class="message-date" )
+			if (_id.toString() == (item._sender_id).toString())  
+				button( class="message-delete" onClick="deleteMessage('#{item._id}')")
+					i( class="fa fa-trash" aria-hidden="true" )
 			span #{moment(item.date).format("DD.MM.YY, HH:mm")}

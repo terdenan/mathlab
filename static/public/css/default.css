@@ -599,32 +599,22 @@ body.teacher .moderation h2 {
    padding: 10px 15px;
 }
 
-.post-visualization img {
-   float: left;
-   margin: 10px 15px 10px 0;
-   max-width: 50%;
-   max-height: 300px;
-}
-
 .post-img {
-  width: 420px;
-  height: 280px;
-  margin: 0 15px 15px 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  float: left;
+  width: 50%;
+  margin: 0;
+  float: right;
+  border-radius: 3px;
+  box-shadow: 0 10px 30px -15px rgba(37, 47, 57, 0.57);
+  padding: 5px;
+  border: 0;
 }
 
 @media (max-width: 767px) {
   .post-img {
     width: 100%;
     float: none;
+    margin-bottom: 30px;
   }
-}
-
-.post-img img {
-  width: 100%;
 }
 
 .post-date {
@@ -863,6 +853,7 @@ body.teacher .moderation h2 {
 .message-body {
   display: block;
   font-size: 13px;
+  max-width: 75%;
 }
 
 .message-body h5, .attachment-document h5 {
@@ -1361,10 +1352,36 @@ body.teacher .moderation h2 {
   background: #e0e0e0;
 }
 
+.message:hover {
+  cursor: pointer
+}
+
 .message-date {
   position: absolute;
   right: 7px;
   top: 5px;
+}
+
+.message-date .message-delete {
+  position: absolute;
+  top: 2px;
+  left: -25px;
+  background-color: transparent;
+  border: none;
+  font-size: 11px;
+  color: #a8adb7;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.message:hover .message-delete {
+  opacity: 0.7;
+}
+
+.message-date .message-delete:hover {
+  opacity: 1;
+  color: #5b6375;
 }
 
 .message-date span {
