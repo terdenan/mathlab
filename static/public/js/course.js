@@ -78,12 +78,8 @@ function sendMessage() {
 
 function deleteMessage(id) {
   if (confirm('Вы действительно хотите удалить сообщение?')) {
-    var formData = new FormData;
-    formData.append('id', id);
-
     $.ajax({
-      url: '',
-      data: formData,
+      url: '/api/messages/' + id,
       method: 'delete',
       contentType: false,
       processData: false,
