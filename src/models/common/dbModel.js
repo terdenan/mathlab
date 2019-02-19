@@ -14,9 +14,9 @@ class DbModel  {
         return data;
     }
 
-    async get(id) {
+    async get(_id) {
         const data = await this._MongooseModel
-            .findOne({id})
+            .findOne({_id})
             .lean()
             .exec();
         return data;

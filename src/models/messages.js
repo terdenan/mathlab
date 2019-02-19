@@ -38,6 +38,16 @@ class Messages extends DbModel {
         }
     }
 
+    async isSender(userId, messageId) {
+        try {
+            const messageSenderId = await this.get(messageId);
+            return userId === messageSenderId;
+        } catch (e) {
+            console.log(e);
+            throw new ApplicationError('Error occured while performing isSender method', 500);
+        }
+    }
+
 }
 
 module.exports = Messages;

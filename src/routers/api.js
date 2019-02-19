@@ -22,6 +22,7 @@ const getCoursesController = require('../controllers/courses/get-courses');
 const extendCourseController = require('../controllers/courses/extend-course');
 const getMessagesController = require('../controllers/messages/get-messages');
 const createMessageController = require('../controllers/messages/create');
+const deleteMessageController = require('../controllers/messages/delete');
 const createCallbackController = require('../controllers/callback-requests/create');
 const createNewsController = require('../controllers/news/create');
 const updateTeacherInfoController = require('../controllers/teacher-info/update');
@@ -48,6 +49,7 @@ router.post('/extendCourse', passport.auth('admin'), asyncHandler(extendCourseCo
 
 router.get('/messages', passport.auth('user'), asyncHandler(getMessagesController));
 router.put('/message', passport.auth('user'), upload.single('file'), asyncHandler(createMessageController));
+router.delete('/messages/:messageId', passport.auth('user'), asyncHandler(deleteMessageController));
 
 router.post('/callback', asyncHandler(createCallbackController));
 
