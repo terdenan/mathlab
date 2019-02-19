@@ -7,3 +7,5 @@ static/public/uploads/
 static/public/attachments/
 static/public/sitemap.xml
 .env
+
+.idea
