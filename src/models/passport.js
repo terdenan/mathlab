@@ -47,7 +47,7 @@ passport.auth = function(router='main') {
     const levels = {
         'main':    [[0], '/sign-in'],
         'teacher': [[1], '/sign-in'],
-        'user':    [[0,1], '/sign-in'],
+        'user':    [[0, 1], '/sign-in'],
         'admin':   [[2], '/admin/sign-in'],
     };
     const [priority, redirect_url] = levels[router]
@@ -56,6 +56,7 @@ passport.auth = function(router='main') {
         if (req.isAuthenticated() && priority.includes(req.user.priority)) {
             return next();
         }
+
         res.redirect(redirect_url);
     }
 }

@@ -1,9 +1,17 @@
 version: '3'
 services:
+    mongo:
+        container_name: mongo
+        image: mongo:3.4
+        volumes:
+            - ${MONGO_PERMANENT_FOLDER}:/data/db
+        ports:
+            - 27017:27017
+        restart: always
     web:
         build: .
         container_name: mathlab
-        command: bash -c "npm run start:dev"
+        command: bash -c "sleep 10 && npm run start:dev"
         environment:
             - NODE_ENV=${NODE_ENV}
         links:
@@ -17,11 +25,3 @@ services:
             - ./static:/app/static
         ports:
             - 8000:8000
-    mongo:
-        container_name: mongo
-        image: mongo:3.4
-        volumes:
-            - ${MONGO_PERMANENT_FOLDER}:/data/db
-        ports:
-            - 27017:27017
-        restart: always

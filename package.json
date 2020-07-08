@@ -1,5 +1,5 @@
 {
-  "name": "new-mathlab",
+  "name": "mathlab",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,10 +8,10 @@
     "start": "NODE_PATH=. node ./src/index.js",
     "start:dev": "NODE_PATH=${PWD} nodemon ./src/index.js"
   },
-  "author": "",
+  "author": "Mathlab Development",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.8",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "config": "^2.0.1",
