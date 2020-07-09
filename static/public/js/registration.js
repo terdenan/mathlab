@@ -76,6 +76,10 @@ $(document).ready(function() {
   }).mouseout(function(){
     $("#password").attr('type','password');
   });
+
+  $("form").one("change", function(){
+    amplitude.getInstance().logEvent(`Sign-up form edited`);
+  });
 })
 
 function realHeight() {
