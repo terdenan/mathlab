@@ -129,19 +129,7 @@ html( lang='ru' )
 										img( src="/images/blackboard.png" )
 										h4 У Вас пока нет активных курсов
 										p Подайте заявку на обучение и начинайте заниматься.
-										a( href="/request" class="btn btn-default" ) Подать заявку
-					div( class="base" )
-						header
-							h4 Это может быть интересно
-						div
-							script( async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" )
-							ins( class="adsbygoogle"
-							     style="display:block"
-							     data-ad-client="ca-pub-2356380864302489"
-							     data-ad-slot="2219785768"
-							     data-ad-format="auto" )
-							script.
-								(adsbygoogle = window.adsbygoogle || []).push({});
+										a( href="/request" class="btn btn-primary" ) Подать заявку
 
 		// FOOTER
 		include ./includes/footer
@@ -151,3 +139,6 @@ html( lang='ru' )
 		script( src="/js/validator.js" )
 		script( src="/js/main.js" )
 		script( src="/js/formhelpers.min.js" )
+
+		// METRICS
+		include ./includes/metrics

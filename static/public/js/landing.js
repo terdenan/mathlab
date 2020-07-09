@@ -1,10 +1,12 @@
-$(document).ready(function() { 
+$(function() { 
   $(".presentation .block").on("click", function(){
   	if (!$(this).hasClass("active")) {
  			$(".presentation .block").removeClass("active");
  			$(this).addClass("active");
  		}
   });
+
+  amplitude.getInstance().logEvent(`Landing page view`);
 });
 
 function sendCallbackBid(el, prefTeacher) {
@@ -30,7 +32,6 @@ function sendCallbackBid(el, prefTeacher) {
 		      $(el).parent().parent().append('<p class="response text-success small">Спасибо! Ваша заявка успешно отправлена.</p>');
 		      removeResponseMsg();
 		      $('input').val('');
-		      yaCounter50080147.reachGoal('callback-submit');
 		      setTimeout(function() { 
 				    $('#callbackModal').modal('hide');
 				  }, 2500);
@@ -49,8 +50,3 @@ function removeResponseMsg() {
     $('.response').hide(500);
   }, 3000);
 }
-
-
-
-
-
