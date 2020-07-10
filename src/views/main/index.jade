@@ -77,16 +77,16 @@ html( lang='ru' )
 							div( class="item" )
 								h1 Портал дистанционного и полудистанционного образования
 								p MathLab - это сервис, который специализируется на предоставлении онлайн курсов, при которых для обучающегося подбирается нужный преподаватель, а также составляется индивидуальная программа занятий. Причем репетитор возьмет плату только за свою работу, без учета аренды помещения и транспортных расходов.
-								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" onClick="amplitude.getInstance().logEvent(`Slider button sign-up clicked`);") Регистрация
+								a( href="/sign-up" class="btn btn-warning btn-lg" role="button" data-event-name="Slider button sign-up clicked" onClick="sendEvent(this)" ) Регистрация
 							div( class="item" )
 								h2 Почему именно дистанционное образование?
 								p Обучаясь в нашем онлайн центре, ребенок не будет привязан к определенному времени встречи с учителем, а Вы, выбирая репетитора для своего ребенка, не будете ограничены географическим положением педагога – и это несомненное преимуществом онлайн обучения.
-								a( href="#" data-toggle="modal" data-target="#callbackModal" class="btn btn-warning btn-lg hidden-xs hidden-sm" role="button" onClick="amplitude.getInstance().logEvent(`Slider button callback clicked`);") Заказать консультационный звонок
+								a( href="#" data-toggle="modal" data-target="#callbackModal" class="btn btn-warning btn-lg hidden-xs hidden-sm" role="button" data-event-name="Slider button callback clicked" onClick="sendEvent(this)") Заказать консультационный звонок
 							div( class="item" )
 								h2 Что такое полудистанционное образование?
 								p Для алматинских школьников мы предлагаем смешанную форму обучения «Blended learning». Она опробована нашими учениками и получила хорошие отзывы.
 								p Ученик выбирает удобный для него вариант:  например, один раз в неделю встречается с преподавателем очно и два раза в неделю высылает уроки дистанционно. Варианты очных и дистанционных занятий варьируются. Подробнее читайте в наших новостях.
-								a( href="/news" class="btn btn-warning btn-lg" role="button" onClick="amplitude.getInstance().logEvent(`Slider button news clicked`);")  Новости
+								a( href="/news" class="btn btn-warning btn-lg" role="button" data-event-name="Slider button news clicked" onClick="sendEvent(this)" ) Новости
 					div( class="col-md-6 text-center" )
 			div( class="presentation-block hidden-xs hidden-sm" )
 
@@ -96,6 +96,7 @@ html( lang='ru' )
 					div( class="col-sm-6" )
 						h2( class="article-title" ) Различные образовательные программы
 						p( class="article-p" ) Мы поможем в освоении таких важных школьных дисциплин как математика, физика, информатика, программирование, химия, биология, а так же многих других - ребятам, обучающимся по стандартной школьной программе. Подберем для ребенка квалифицированного преподавателя, который составит индивидуальный план обучения и начнет работу с ним.
+						a( href="/sign-up" class="btn btn-success" role="button" data-event-name="Body button sign-up clicked" onClick="sendEvent(this)" ) Регистрация
 					div( class="col-sm-6" )
 						img( src="/images/article-img-new-1.svg" class="img-responsive" alt="Различные образовательные программы" title="Различные образовательные программы")
 
@@ -107,7 +108,7 @@ html( lang='ru' )
 					div( class="col-sm-6" )
 						h2( class="article-title" ) Преподаватели Высшей категории
 						p( class="article-p" ) Наши учителя имеют многолетний опыт работы в физико-математических школах, внушительное портфолио собственных профессиональных и научных достижений, впечатляющее количество учеников – призеров международных, республиканских и городских олимпиад. 
-						button( class="btn btn-primary" data-toggle="modal" data-target="#callbackModal" onClick="amplitude.getInstance().logEvent(`Body button callback clicked`);") Заказать консультационный звонок
+						button( class="btn btn-primary" data-toggle="modal" data-target="#callbackModal" data-event-name="Body button callback clicked" onClick="sendEvent(this)" ) Заказать консультационный звонок
 
 		section
 			div( class="container" )
@@ -135,7 +136,7 @@ html( lang='ru' )
 				div( class="row")
 					div( class="col-sm-2" )
 					div( class="col-sm-8" )
-						p( class="article-p text-center" ) Мы разработали уникальную систему организации онлайн курсов, которая включает в себя удобный интерфейс, легкий дизайн, а также самое главное - текстовые и видео уроки.
+						p( class="article-p text-center" ) Мы разработали уникальную систему организации онлайн курсов, которая включает в себя удобный интерфейс, легкий дизайн, а также самое главное - возможность получать знания от лучших репетиторов Казахстана.
 					div( class="col-sm-2" )
 					
 		section
@@ -159,7 +160,7 @@ html( lang='ru' )
 											p( class="short-description" )= teacher.bio
 											h6= ('Стаж работы репетитором:' + ' ' + teacher.experience)
 											h6= teacher.geoposition
-										a( href="/teacher/#{teacher._teacher_id._id}" class="btn btn-default btn-block" onClick="amplitude.getInstance().logEvent(`Body button teacher clicked`, {name: `#{teacher._teacher_id.fullname}`});") Подробнее
+										a( href="/teacher/#{teacher._teacher_id._id}" class="btn btn-default btn-block" data-event-name="Body button teacher clicked" data-event-properties='{"name": "#{teacher._teacher_id.fullname}"}' onClick="sendEvent(this)" ) Подробнее
 
 		section 
 			div( class="container" )
@@ -180,7 +181,7 @@ html( lang='ru' )
 										img( src="/images/editor-img.png" alt="Редактор портала MathLab.kz" title="Ольга Сладких")
 										span Ольга Сладких
 									div( class="news-card-button")
-										a( class="btn btn-succes btn-block" href="news/#{item.title}" onClick="amplitude.getInstance().logEvent(`Body button news clicked`, {title: `#{item.cyrillicTitle}`});" ) Перейти к новости 
+										a( class="btn btn-succes btn-block" href="news/#{item.title}" data-event-name="Body button news clicked" data-event-properties='{"title": "#{item.cyrillicTitle}"}' onClick="sendEvent(this)" ) Перейти к новости 
 											i( class="fa fa-angle-right" aria-hidden="true")
 
 					div( class="row" )
@@ -366,7 +367,7 @@ html( lang='ru' )
 
 		script( src="/js/bootstrap.min.js" defer )
 		script( src="/js/owl.carousel.js" defer )
-		script( src="/js/landing.js" defer )
+		script( src="/js/landing.js" defer data-event-name="Landing page view" onload="sendEvent(this);")
 		script( src="/js/formhelpers.min.js" defer)
 		script( src="/js/validator.js" defer)
 
