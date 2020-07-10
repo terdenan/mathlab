@@ -48,16 +48,6 @@ function sendBid() {
       },
       success: function(response) {
         if (response == "success") {
-          sendEvent({
-            dataset: {
-              eventName: 'Course request submitted',
-              eventProperties: JSON.stringify({
-                "subject": $('#subject option:selected').text(),
-                "aim": $('#target option:selected').text()
-              }),
-              //eventUserProperties: '{"user_id":"test@gmail.com","user_properties":{"user_type":"student","user_sex":"male","user_school_grade":11,"cohort_day":192,"cohort_week":28,"cohort_month":7}}' //TODO: Получать и проставлять свойства юзера
-            }
-          });
           $("#request-form").html(
             "<div class='text-center'>" +
               "<img src='/images/success.png' >" +

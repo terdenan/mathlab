@@ -28,11 +28,6 @@ $(document).ready(function() {
           $(".error-alerts").html("");
           $("#cabinet-link").attr("href", "/cabinet");
           $("#user-email").html(response.email);
-          sendEvent({
-            dataset: {
-              eventName: 'Sign-up form submitted',
-            }
-          });
           setTimeout(function() {
             $(".loader-reg").hide();
             $("#form-3").show();
@@ -83,11 +78,7 @@ $(document).ready(function() {
   });
 
   $("form").one("change", function(){
-    sendEvent({
-      dataset: {
-        eventName: 'Sign-up form edited',
-      }
-    });
+    amplitude.getInstance().logEvent(`Sign-up form edited`);
   });
 })
 
