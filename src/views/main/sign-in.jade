@@ -50,11 +50,16 @@ html( lang='ru' )
 								label( for="password" ) Ваш пароль:
 								input( type="password" class="form-control" id="password" name="password" required )
 							div( class="form-group" )
-								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" data-event-name="Sign-in" data-event-properties='{"success_entry": #{(message == ``) ? "true" : "false"}}' onClick="sendEvent(this)" ) Войти
+								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" ) Войти
 							if (message != '')
 								div( class="alert alert-warning alert-dismissable text-center" )
 									a( href="#" class="close" data-dismiss="alert" aria-label="close") &times;
 									|	Неверный логин или пароль, попробуйте еще раз.
+						hr
+						h6( class="text-center" ) Войдите или зарегиструйтесь всего за один клик.
+						ul( class="list-inline text-center" )
+							li: a( href="#" class="btn btn-default btn-block" )
+								span( style="color: #45668F;") ВКонтакте
 
 		// FOOTER
 		include ./includes/footer
