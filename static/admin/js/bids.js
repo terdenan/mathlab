@@ -105,6 +105,15 @@ $(document).ready(function() {
                                 "<strong>Готово!</strong> Курс установлен!" +
                               "</div>");
         $("#" + id).find(".bid-status").first().html(acceptStatus);
+        sendEvent({
+          dataset: {
+            eventName: 'Course started',
+            eventProperties: JSON.stringify({
+              "subject": subject,
+              "teacher": $('#teacher-list option:selected').text()
+            }),
+          }
+        });
         setTimeout(function() { 
           $(".abs-alerts").html("");
         }, 2000);
