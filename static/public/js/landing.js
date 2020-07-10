@@ -5,6 +5,8 @@ $(function() {
  			$(this).addClass("active");
  		}
   });
+
+  amplitude.getInstance().logEvent(`Landing page view`);
 });
 
 function sendCallbackBid(el, prefTeacher) {
@@ -27,11 +29,6 @@ function sendCallbackBid(el, prefTeacher) {
 		     	removeResponseMsg();
 		    },
 		    success: function(response){
-		    	sendEvent({
-            dataset: {
-              eventName: 'Callback requested',
-            }
-          });
 		      $(el).parent().parent().append('<p class="response text-success small">Спасибо! Ваша заявка успешно отправлена.</p>');
 		      removeResponseMsg();
 		      $('input').val('');

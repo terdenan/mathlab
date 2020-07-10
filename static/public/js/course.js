@@ -69,15 +69,6 @@ function sendMessage() {
         $(".panel-body").height(windowHeight * 0.7);
         $(".empty-dialog").remove();
         socket.emit('sendMessage', {courseId: courseId, message: response} );
-        sendEvent({
-          dataset: {
-            eventName: 'Message sent',
-            eventProperties: JSON.stringify({
-              "content_type": (fileList.length == 0) ? "text" : "media",
-            }),
-            //eventUserProperties: '{"user_id":"test@gmail.com","user_properties":{"user_type":"student","user_sex":"male","user_school_grade":11,"cohort_day":192,"cohort_week":28,"cohort_month":7}}' //TODO: Получать и проставлять свойства юзера
-          }
-        });
         switchSendButton(1);
         initNanoScroller();
       }
@@ -103,13 +94,6 @@ function deleteMessage(id) {
         $('.messages').append(response);
         $(".panel-body").height(windowHeight * 0.7);
         initNanoScroller();
-
-        sendEvent({
-          dataset: {
-            eventName: 'Message deleted',
-            //eventUserProperties: '{"user_id":"test@gmail.com","user_properties":{"user_type":"student","user_sex":"male","user_school_grade":11,"cohort_day":192,"cohort_week":28,"cohort_month":7}}' //TODO: Получать и проставлять свойства юзера
-          }
-        });
       }
     });
   }
@@ -195,3 +179,4 @@ $(document).ready(function() {
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-71816939-6', 'auto');
       ga('send', 'pageview');
+

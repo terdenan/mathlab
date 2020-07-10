@@ -30,11 +30,6 @@ $(document).ready(function() {
           $('#password').val("");
           $('#tel').val("");
         }
-        sendEvent({
-          dataset: {
-            eventName: 'Teacher signed-up',
-          }
-        });
       }
     });
   });

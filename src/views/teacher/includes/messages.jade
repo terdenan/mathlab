@@ -25,7 +25,7 @@ for item in messages
 				for file in item.attachment
 					div( class="message-attachment" )
 						div( class="message-attachment-img" )
-							a( href="#{file.url}" class="btn btn-primary" role="button" download data-event-name="File downloaded" onClick="sendEvent(this)" )
+							a( href="#{file.url}" class="btn btn-primary" role="button" download onClick="amplitude.getInstance().logEvent(`File downloaded`);" )
 								i( class="fa fa-paperclip" aria-hidden="true" )
 						div( class="message-attachment-body" )
 							h5 #{file.originalName}
