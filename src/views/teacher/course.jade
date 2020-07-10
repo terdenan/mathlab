@@ -102,7 +102,7 @@ html( lang='ru' )
 		include ./includes/footer
 
 		script( src="/js/attachment-visualization.js" )
-		script( src="/js/course.js" )
+		script( src="/js/course.js" data-event-name="Course opened" onload="sendEvent(this);")
 		script( src="/js/bootstrap.min.js" )
 		script( src="/js/nanoscroller.min.js" )
 		script( src="/js/moment.min.js" )
