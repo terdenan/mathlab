@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const TeacherInfo = mongoose.model('TeacherInfo', {
+const teacherInfoSchema = new Schema({
     _teacher_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -38,6 +38,12 @@ const TeacherInfo = mongoose.model('TeacherInfo', {
         title: String,
         url: String,
     }],
+    transliterated_fullname: {
+        type: String,
+        default: null,
+    },
 });
+
+const TeacherInfo = mongoose.model('TeacherInfo', teacherInfoSchema);
 
 module.exports = TeacherInfo;

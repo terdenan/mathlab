@@ -79,8 +79,10 @@ app.use((req, res, next) => {
     req.messageModel = new MessageModel();
     req.callbackModel = new CallbackModel();
     req.teacherInfo = new TeacherInfo();
+
     res.io = io;
     req.telegramBot = telegramBot;
+    
     next();
 });
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
