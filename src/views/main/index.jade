@@ -28,6 +28,8 @@ html( lang='ru' )
 		link( href="/css/default.css" rel="stylesheet" )
 		link( href="/css/animate.css" rel="stylesheet" )
 
+		// METRICS
+		include ../common/metrics
 
 		//Scripts
 		script( src="/js/jquery.min.js" defer )
@@ -370,8 +372,5 @@ html( lang='ru' )
 		script( src="/js/landing.js" defer data-event-name="Landing page view" onload="sendEvent(this);")
 		script( src="/js/formhelpers.min.js" defer)
 		script( src="/js/validator.js" defer)
-
-		// METRICS
-		include ./includes/metrics
 		
 		span( itemprop="address" style="display: none;" ) Казахстан, Алматы

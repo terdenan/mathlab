@@ -6,7 +6,6 @@ const passport = require('../models/passport');
 const ObjectId = require('mongodb').ObjectID;
 const moment = require('moment');
 
-
 router.use(serveStatic('static/public'));
 
 router.get('/', asyncHandler(async (req, res) => {
