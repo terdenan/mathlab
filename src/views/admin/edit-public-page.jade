@@ -118,7 +118,7 @@ html( lang='ru' )
 										div( class="col-md-3 col-sm-3 col-xs-12" )
 											p Новые сертификаты:
 											ul( class="certificates-list" id="certificates-list")
-											a( class="btn btn-default btn-sm" onsubmit="return false;" data-toggle="modal" data-target="#addCertificateModal" onClick="  clearModal();")
+											a( class="btn btn-default btn-sm" onsubmit="return false;" data-toggle="modal" data-target="#addCertificateModal" onClick="clearModal();")
 												i( class="fa fa-plus" aria-hidden="true")  &nbsp;
 												| Добавить					
 
@@ -128,7 +128,7 @@ html( lang='ru' )
 											button( class="btn btn-primary" type="reset" onClick="clearForm()") Сбросить
 											button( type="submit" class="btn btn-success" onClick="sendData(this)" onsubmit="return false;") Сохранить
 										div( class="col-md-6 col-sm-6 col-xs-12")
-											a( href="https://mathlab.kz/teachers/#{profileInfo._id}" ) Ссылка на страницу
+											a( href="https://mathlab.kz/teachers/#{profileInfo._teacher_id}" ) Ссылка на страницу
 								div( class="row" )
 									div( class="alerts col-md-6 col-md-offset-3" )
 
