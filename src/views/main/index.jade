@@ -156,7 +156,10 @@ html( lang='ru' )
 											p( class="short-description" )= teacher.bio
 											h6= ('Стаж работы репетитором:' + ' ' + teacher.experience)
 											h6= teacher.geoposition
-										a( href="/teacher/#{teacher._teacher_id._id}" class="btn btn-default btn-block" onClick="amplitude.getInstance().logEvent(`Body button teacher clicked`, {name: `#{teacher._teacher_id.fullname}`});") Подробнее
+
+										- var linkAddress = teacher.transliterated_fullname ? teacher.transliterated_fullname : teacher._teacher_id.id
+
+										a( href="/teacher/#{linkAddress}" class="btn btn-default btn-block" onClick="amplitude.getInstance().logEvent(`Body button teacher clicked`, {name: `#{teacher._teacher_id.fullname}`});") Подробнее
 
 		section 
 			div( class="container" )

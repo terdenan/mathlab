@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const md5 = require('md5');
 
 module.exports = async (req, res) => {
-
     const isDataValid = req.body
             && Object.prototype.hasOwnProperty.call(req.body, 'fullname')
             && typeof(req.body.fullname) === 'string'
@@ -19,17 +18,19 @@ module.exports = async (req, res) => {
             && Object.prototype.hasOwnProperty.call(req.body, 'sex')
             && typeof(parseInt(req.body.sex)) === 'number';
 
-
     if (!isDataValid) {
         res.status(400);
         res.send('User data is invalid');
+
         return;
     }
 
     const user = await req.userModel.getBy({email: req.body.email});
+
     if (user) {
         res.status(400);
         res.send('This email is not available');
+
         return;
     }
 
@@ -49,6 +50,7 @@ module.exports = async (req, res) => {
 
     };
     const savedUser = await req.userModel.create(newUser);
+
     await req.teacherInfo.create({_teacher_id: newUser._id});
 
     res.status(200);
