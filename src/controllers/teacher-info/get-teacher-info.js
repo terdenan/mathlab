@@ -37,7 +37,7 @@ async function getById(req, res, next) {
     	await req.teacherInfo.update({ _teacher_id: id }, { transliterated_fullname });
     }
 
-    res.redirect(`/teacher/${transliterated_fullname}`);
+    res.redirect(301, `/teacher/${transliterated_fullname}`);
 }
 
 async function getByTransliteratedFullname(req, res, next) {
