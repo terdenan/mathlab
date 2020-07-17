@@ -13,12 +13,16 @@ function deleteAvatar(path) {
 
 module.exports = async (req, res) => {
     const teacher_id = req.params.id;
+
     if (!ObjectId.isValid(teacher_id)) {
         res.status(400);
         res.send(`ObejctId '${teacher_id}' is not valid`);
+
         return;
     }
+
     const teacher = await req.userModel.getBy({_id: ObjectId(teacher_id)});
+
     if (!teacher) {
         res.status(404);
         res.send(`There is no teacher mathcing id '${teacher_id}'`);
@@ -26,6 +30,7 @@ module.exports = async (req, res) => {
     }
 
     const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(teacher_id)});
+
     if (!profileInfo) {
         await req.teacherInfo.create({_teacher_id: teacher_id});
     }
@@ -43,8 +48,6 @@ module.exports = async (req, res) => {
             && typeof(req.body.experience) === 'string'
             && Object.prototype.hasOwnProperty.call(req.body, 'visible')
             && (req.body.visible === 'true' || req.body.visible === 'false');
-            // && Object.prototype.hasOwnProperty.call(req.body, 'certificatesNames')
-            // && Array.isArray(req.body.certificatesNames);
 
     if (!isDataValid) {
         res.status(400);
@@ -77,6 +80,7 @@ module.exports = async (req, res) => {
     }
     
     await req.teacherInfo.update({_teacher_id: teacher_id}, fields);
+    
     const updateTeacherInfo = await req.teacherInfo.insertCertificates(
         {_teacher_id: teacher_id},
         certificates

@@ -7,6 +7,7 @@ const moment = require('moment');
 
 const passport = require('../models/passport');
 const cookieMiddlewares = require('../controllers/common/cookies');
+const teacherInfoControllers = require('../controllers/teacher-info');
 
 router.use(serveStatic('static/public'));
 
@@ -15,7 +16,8 @@ router.use(cookieMiddlewares.setUserProperties);
 router.get('/', asyncHandler(async (req, res) => {
     const recentNews = await req.newsModel.getRecent(3);
     const teachers = await req.teacherInfo.getAll();
-    res.render('main/index', {recentNews, teachers});
+
+    res.render('main/index', { recentNews, teachers });
 }));
 
 router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) => {
@@ -38,24 +40,9 @@ router.get('/how-to-use', asyncHandler(async (req, res) => {
     res.render('main/how-to-use');
 }));
 
-router.get('/teacher/:id', asyncHandler(async (req, res) => {
-    const id = req.params.id;
-    if (!ObjectId.isValid(id)) {
-        res.status(404);
-        res.render('main/404')
-        return;
-    }
-    const teacher = await req.userModel.getBy({_id: ObjectId(id)});
-    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(id)});
+router.get('/teacher/:id', asyncHandler(teacherInfoControllers.getById));
 
-    if (!teacher || !profileInfo) {
-        res.status(404);
-        res.render('main/404')
-        return;
-    }
-    
-    res.render('main/teacher', {teacher, profileInfo});
-}));
+router.get('/teacher/:transliterated_fullname', asyncHandler(teacherInfoControllers.getByTransliteratedFullname));
 
 router.get('/news', asyncHandler(async (req, res) => {
     const news = await req.newsModel.getMany({}, {date: -1}, 100);

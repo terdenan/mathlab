@@ -43,7 +43,7 @@ html( lang='ru' )
 						div( class="col-xs-8 nopadding" )
 							h3 Вход в личный кабинет
 						div( class="col-xs-4 text-right form-head-reg" )
-							a( href="/recover" ) Забыли пароль?
+							a( href="/sign-up" ) Регистрация
 					div( class="form" )
 						form( data-toggle="validator" role="form" action='/login' method='post')
 							div( class="form-group" )
@@ -52,6 +52,8 @@ html( lang='ru' )
 							div( class="form-group" )
 								label( for="password" ) Ваш пароль:
 								input( type="password" class="form-control" id="password" name="password" required )
+								div( class="help-block" )
+									a( href="/recover" ) Забыли пароль?
 							div( class="form-group" )
 								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" data-event-name="Sign-in" data-event-properties='{"success_entry": #{(message == ``) ? "true" : "false"}}' onClick="sendEvent(this)" ) Войти
 							if (message != '')

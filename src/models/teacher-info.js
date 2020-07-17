@@ -1,11 +1,10 @@
-'use strict';
-
-const DbModel = require('./common/dbModel');
-const ApplicationError = require('libs/application-error');
-
-const sitemapper = require('libs/sitemapper');
 const moment = require('moment');
 const path = require('path');
+
+const ApplicationError = require('libs/application-error');
+const sitemapper = require('libs/sitemapper');
+const DbModel = require('./common/dbModel');
+
 const sitemapPath = path.join(process.cwd(), 'static', 'public', 'sitemap.xml');
 
 class TeacherInfo extends DbModel {
@@ -23,7 +22,7 @@ class TeacherInfo extends DbModel {
                 loc: `https://mathlab.kz/teacher/${savedData._teacher_id}`,
                 lastmod: moment().format(),
                 changefreq: "monthly",
-                priority: "0.70"
+                priority: "0.70",
             };
             await sitemapper.insertUrl(sitemapPath, teacherUrl);
             return savedData;

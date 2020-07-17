@@ -3,6 +3,7 @@
 class DbModel  {
     constructor(dbModelName) {
         const MongooseModel = require(`../db/${dbModelName}`);
+
         this._MongooseModel = MongooseModel;
     }
 
@@ -11,6 +12,7 @@ class DbModel  {
             .find()
             .lean()
             .exec();
+
         return data;
     }
 
@@ -27,6 +29,21 @@ class DbModel  {
             .findOne(cond)
             .lean()
             .exec();
+
+        return data;
+    }
+
+    async getWithPopulationBy(cond, populationFields) {
+        let request = this._MongooseModel.findOne(cond);
+
+        for (const field of populationFields) {
+            request = request.populate(field);
+        }
+
+        const data = await request
+            .lean()
+            .exec();
+
         return data;
     }
 
@@ -37,6 +54,25 @@ class DbModel  {
             .sort(sort)
             .limit(count)
             .exec();
+
+        return data;
+    }
+
+    async new_getMany(cond = {}, sort, limit) {
+        let query = this._MongooseModel
+            .find(cond)
+            .lean();
+
+        if (sort) {
+            query = query.sort(sort);
+        }
+
+        if (limit) {
+            query = query.limit(limit);
+        }
+
+        const data = await query.exec();
+
         return data;
     }
 
@@ -47,6 +83,7 @@ class DbModel  {
             .sort({'date': -1})
             .limit(count)
             .exec();
+
         return data;
     }
 

@@ -18,10 +18,10 @@ module.exports = async (req, res) => {
             && Object.prototype.hasOwnProperty.call(req.body, 'sex')
             && typeof(parseInt(req.body.sex)) === 'number';
 
-
     if (!isDataValid) {
         res.status(400);
         res.send('User data is invalid');
+
         return;
     }
 
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
     if (user) {
         res.status(400);
         res.send('This email is not available');
+
         return;
     }
 
