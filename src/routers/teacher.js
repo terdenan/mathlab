@@ -2,10 +2,14 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 const serveStatic = require('serve-static');
-const passport = require('../models/passport');
 const ObjectId = require('mongodb').ObjectID;
 
+const passport = require('../models/passport');
+const cookieMiddlewares = require('../controllers/common/cookies');
+
 router.use(serveStatic('static/public'));
+
+router.use(cookieMiddlewares.setUserProperties);
 
 router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) => {
     res.render('teacher/sign-in', {message: req.flash('error')});
