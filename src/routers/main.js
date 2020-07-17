@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 const serveStatic = require('serve-static');
-const passport = require('../models/passport');
 const ObjectId = require('mongodb').ObjectID;
 const moment = require('moment');
 
+const passport = require('../models/passport');
+const cookieMiddlewares = require('../controllers/common/cookies');
 const teacherInfoControllers = require('../controllers/teacher-info');
 
 router.use(serveStatic('static/public'));
+
+router.use(cookieMiddlewares.setUserProperties);
 
 router.get('/', asyncHandler(async (req, res) => {
     const recentNews = await req.newsModel.getRecent(3);

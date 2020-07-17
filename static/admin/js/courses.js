@@ -76,6 +76,14 @@ $(document).ready(function() {
           $(".abs-alerts").html("<div class='alert alert-success'>" +
                                   "<strong>Готово!</strong> Курс успешно продлен!" +
                                 "</div>");
+        sendEvent({
+          dataset: {
+            eventName: 'Course extended',
+            eventProperties: JSON.stringify({
+              "courseId": id,
+            }),
+          }
+        });
           $("#" + id).find(".course-endingTime").first().html(moment(endingTime, "DD.MM.YY").add(1, 'months').format("DD.MM.YY"));
           setTimeout(function() { 
             $(".abs-alerts").html("");

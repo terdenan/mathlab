@@ -19,7 +19,11 @@ const User = mongoose.model('User', {
     emailConfirmDuration: Date,
     lastEmailDate: Date,
     changePasswordCode: String,
-    changePasswordDuration: Date
+    changePasswordDuration: Date,
+    registrationDate: {
+        type: Date,
+        default: null,
+    },
 });
 
 module.exports = User;

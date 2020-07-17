@@ -18,6 +18,9 @@ html( lang='ru' )
 		link( rel="stylesheet" href="/css/font-awesome.min.css" )
 		link( href="/css/default.css" rel="stylesheet" )
 
+		// METRICS
+		include ../common/metrics
+
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/js/validator.js" )
@@ -52,21 +55,13 @@ html( lang='ru' )
 								div( class="help-block" )
 									a( href="/recover" ) Забыли пароль?
 							div( class="form-group" )
-								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" ) Войти
+								button( button type="submit" class="btn btn-primary btn-block btn-md" id="submit23" data-event-name="Sign-in" data-event-properties='{"success_entry": #{(message == ``) ? "true" : "false"}}' onClick="sendEvent(this)" ) Войти
 							if (message != '')
 								div( class="alert alert-warning alert-dismissable text-center" )
 									a( href="#" class="close" data-dismiss="alert" aria-label="close") &times;
 									|	Неверный логин или пароль, попробуйте еще раз.
-						hr
-						h6( class="text-center" ) Войдите или зарегиструйтесь всего за один клик.
-						ul( class="list-inline text-center" )
-							li: a( href="#" class="btn btn-default btn-block" )
-								span( style="color: #45668F;") ВКонтакте
 
 		// FOOTER
 		include ./includes/footer
 
 		script( src="/js/bootstrap.min.js" )
-
-		// METRICS
-		include ./includes/metrics

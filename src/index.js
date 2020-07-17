@@ -125,7 +125,6 @@ app.use('/admin', adminRouter);
 app.use('/api', apiRouter);
 app.use('', mainRouter);
 
-
 app.use((err, req, res, next) => {
     if (isProduction) {
         logger.log({

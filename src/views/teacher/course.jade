@@ -20,6 +20,9 @@ html( lang='ru' )
 		link( href="/css/default.css" rel="stylesheet" )
 		link( href="/css/nanoscroller.css" rel="stylesheet" )
 
+		// METRICS
+		include ../common/metrics
+
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/socket.io/socket.io.js" )
@@ -102,10 +105,7 @@ html( lang='ru' )
 		include ./includes/footer
 
 		script( src="/js/attachment-visualization.js" )
-		script( src="/js/course.js" )
+		script( src="/js/course.js" data-event-name="Course opened" onload="sendEvent(this);")
 		script( src="/js/bootstrap.min.js" )
 		script( src="/js/nanoscroller.min.js" )
 		script( src="/js/moment.min.js" )
-
-		// METRICS
-		include ./includes/metrics

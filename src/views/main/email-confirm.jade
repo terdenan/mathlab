@@ -18,6 +18,9 @@ html( lang='ru' )
 		link( rel="stylesheet" href="/css/font-awesome.min.css" )
 		link( href="/css/default.css" rel="stylesheet" )
 
+		// METRICS
+		include ../common/metrics
+
 		//Scripts
 		script( src="/js/jquery.min.js" )
 		script( src="/js/validator.js" )
@@ -34,7 +37,7 @@ html( lang='ru' )
 
 		// CONTENT
 		if (valid)
-			div( class="container" )
+			div( class="container" data-event-name="Sign-up confirmed" onClick="sendEvent(this)" )
 				div( class="row" )
 					div( class="col-md-8 col-md-offset-2" )
 						div( class="base text-center" )
@@ -58,6 +61,3 @@ html( lang='ru' )
 		include ./includes/footer
 
 		script( src="/js/bootstrap.min.js" )
-
-		// METRICS
-		include ./includes/metrics

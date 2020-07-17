@@ -1,0 +1,11 @@
+if (isProduction)
+	// GOOGLE ANALYTICS
+	script( src="/js/metrics/analytics.js" )
+
+// AMPLITUDE
+if (isProduction)
+	script( src="/js/metrics/amplitude.js" )
+else
+	script( src="/js/metrics/amplitude-mock.js" )
+
+script( src="/js/send-events.js" )

@@ -27,14 +27,16 @@ module.exports = async (req, res) => {
     }
 
     const user = await req.userModel.getBy({email: req.body.email});
+
     if (user) {
         res.status(400);
         res.send('This email is not available');
         return;
     }
 
+    const currentDate = Date.now();
     const hash = await bcrypt.hash(req.body.password, 10);
-    const confirmationCode = md5(Date.now());
+    const confirmationCode = md5(currentDate);
     const newUser = {
         _id: new mongoose.Types.ObjectId,
         fullname: req.body.fullname,
@@ -46,8 +48,9 @@ module.exports = async (req, res) => {
         confirmed: false,
         priority: 0,
         emailConfirmCode: confirmationCode,
-        emailConfirmDuration: Date.now() + 24 * 60 * 60 * 1000,
-        lastEmailDate: Date.now(),
+        emailConfirmDuration: currentDate + 24 * 60 * 60 * 1000,
+        lastEmailDate: currentDate,
+        registrationDate: currentDate,
     };
     const savedUser = await req.userModel.create(newUser);
     const context = { 

@@ -35,7 +35,8 @@ module.exports = async (req, res) => {
     }
 
     const hash = await bcrypt.hash(req.body.password, 10);
-    const confirmationCode = md5(Date.now());
+    const currentDate = Date.now();
+    const confirmationCode = md5(currentDate);
     const newUser = {
         _id: new mongoose.Types.ObjectId,
         fullname: req.body.fullname,
@@ -46,8 +47,8 @@ module.exports = async (req, res) => {
         subject: req.body.subject,
         confirmed: true,
         priority: 1,
-        lastEmailDate: Date.now(),
-
+        lastEmailDate: currentDate,
+        registrationDate: currentDate,
     };
     const savedUser = await req.userModel.create(newUser);
 
