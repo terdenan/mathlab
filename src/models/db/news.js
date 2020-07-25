@@ -6,7 +6,11 @@ const News = mongoose.model('News', {
     description: String, 
     body: String,
     photoUrl: String,
-    date: Date
+    date: Date,
+    lastUpdatedDate: {
+        type: Date,
+        default: null,
+    },
 });
 
 module.exports = News;

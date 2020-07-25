@@ -42,6 +42,10 @@ const teacherInfoSchema = new Schema({
         type: String,
         default: null,
     },
+    lastUpdatedDate: {
+        type: Date,
+        default: null,
+    },
 });
 
 const TeacherInfo = mongoose.model('TeacherInfo', teacherInfoSchema);
