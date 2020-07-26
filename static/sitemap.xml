@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://mathlab.kz/</loc>
-    <lastmod>2017-05-31T16:15:19+00:00</lastmod>
+    <lastmod>2020-07-25T16:15:19+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://mathlab.kz/how-to-use</loc>
-    <lastmod>2017-05-30T12:19:19+00:00</lastmod>
+    <lastmod>2020-07-25T12:19:19+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://mathlab.kz/prices</loc>
-    <lastmod>2017-05-30T12:19:19+00:00</lastmod>
+    <lastmod>2020-07-25T12:19:19+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://mathlab.kz/sign-in</loc>
-    <lastmod>2017-05-10T14:40:20+00:00</lastmod>
+    <lastmod>2020-07-25T14:40:20+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://mathlab.kz/sign-up</loc>
-    <lastmod>2017-05-10T14:40:20+00:00</lastmod>
+    <lastmod>2020-07-25T14:40:20+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://mathlab.kz/news</loc>
-    <lastmod>2017-11-05T14:40:20+00:00</lastmod>
+    <lastmod>2020-07-25T14:40:20+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
