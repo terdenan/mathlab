@@ -144,23 +144,23 @@ html( lang='ru' )
 					div( class="col-sm-12" )
 						h2( class="article-title" ) Команда преподавателей
 				div( class=" owl-carousel owl-carousel-teachers owl-theme")
-					for teacher in teachers
+					for teacherInfo in teacherInfos
 						if (teacher.visible)
 							div( class="item" )
 								div( class="landing-comment landing-teacher" )
 									div( class="text-center" )
 										if (teacher.photo_url)
-											img( src="#{teacher.photo_url}" class="img-circle img-150 inline-block" alt="#{teacher._teacher_id.fullname}" title="#{teacher._teacher_id.subject}" )
+											img( src="#{teacher.photo_url}" class="img-circle img-150 inline-block" alt="#{teacherInfo.teacher.fullname}" title="#{teacherInfo.teacher.subject}" )
 										else
-											img( src="/images/empty-teacher-img.svg" class="img-circle img-150 inline-block" alt="#{teacher._teacher_id.fullname}" title="#{teacher._teacher_id.subject}" )
-										h4= teacher._teacher_id.fullname
-										h6= teacher._teacher_id.subject
+											img( src="/images/empty-teacher-img.svg" class="img-circle img-150 inline-block" alt="#{teacherInfo.teacher.fullname}" title="#{teacherInfo.teacher.subject}" )
+										h4= teacherInfo.teacher.fullname
+										h6= teacherInfo.teacher.subject
 										blockquote
 											p( class="short-description" )= teacher.bio
 											h6= ('Стаж работы репетитором:' + ' ' + teacher.experience)
 											h6= teacher.geoposition
-										- var linkAddress = teacher.transliterated_fullname ? teacher.transliterated_fullname : teacher._teacher_id.id
-										a( href="/teacher/#{linkAddress}" class="btn btn-default btn-block" data-event-name="Body button teacher clicked" data-event-properties='{"name": "#{teacher._teacher_id.fullname}"}' onClick="sendEvent(this)" ) Подробнее
+										- var linkAddress = teacher.transliterated_fullname ? teacher.transliterated_fullname : teacherInfo.teacher.id
+										a( href="/teacher/#{linkAddress}" class="btn btn-default btn-block" data-event-name="Body button teacher clicked" data-event-properties='{"name": "#{teacherInfo.teacher.fullname}"}' onClick="sendEvent(this)" ) Подробнее
                     
 		section 
 			div( class="container" )

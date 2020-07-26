@@ -37,9 +37,7 @@ const exportTeacherInfosForSitemap = (teacherInfos) => {
     return teacherInfos.map(teacherInfo => {
         // lastUpdatedDate может не быть
         const lastmodDate = teacherInfo.lastUpdatedDate || new Date();
-        const locPath = teacherInfo.transliterated_fullname || teacherInfo._teacher_id._id;
-
-        console.log(teacherInfo);
+        const locPath = teacherInfo.transliterated_fullname || teacherInfo.teacher._id;
 
         return {
             loc: `${TEACHER_INFO_PATH}/${locPath}`,

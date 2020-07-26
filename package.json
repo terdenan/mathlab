@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test NODE_PATH=. mocha",
-    "start": "NODE_PATH=. node ./src/index.js",
+    "migrate": "npx migrate-mongo up",
+    "start": "npm run migrate && node ./src/index.js",
     "start:dev": "NODE_PATH=${PWD} nodemon ./src/index.js"
   },
   "author": "Mathlab Development",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "migrate-mongo": "^8.1.1",
     "mocha": "^5.2.0"
   }
 }

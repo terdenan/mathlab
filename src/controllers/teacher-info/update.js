@@ -29,10 +29,10 @@ module.exports = async (req, res) => {
         return;
     }
 
-    const profileInfo = await req.teacherInfo.getBy({_teacher_id: ObjectId(teacher_id)});
+    const profileInfo = await req.teacherInfo.getBy({teacher: ObjectId(teacher_id)});
 
     if (!profileInfo) {
-        await req.teacherInfo.create({_teacher_id: teacher_id});
+        await req.teacherInfo.create({teacher: teacher_id});
     }
 
     const isDataValid = req.body
@@ -82,10 +82,10 @@ module.exports = async (req, res) => {
         });
     }
     
-    await req.teacherInfo.update({_teacher_id: teacher_id}, fields);
+    await req.teacherInfo.update({teacher: teacher_id}, fields);
     
     const updateTeacherInfo = await req.teacherInfo.insertCertificates(
-        {_teacher_id: teacher_id},
+        {teacher: teacher_id},
         certificates
     );
 
