@@ -62,12 +62,15 @@ module.exports = async (req, res) => {
         about: req.body.about,
         experience: req.body.experience,
         visible: req.body.visible,
+        lastUpdatedDate: Date.now(),
     };
     const certificates = [];
 
     if (req.files.avatar) {
         fields['photo_url'] = `/uploads/${req.files.avatar[0].filename}`;
+
         const oldAvatarPath = path.join(process.cwd(), '/static/public', profileInfo.photo_url);
+
         await deleteAvatar(oldAvatarPath);
     }
     if (req.files.certificatesImages && req.body.certificatesNames) {

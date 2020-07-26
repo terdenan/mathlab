@@ -2,7 +2,6 @@ const moment = require('moment');
 const path = require('path');
 
 const ApplicationError = require('libs/application-error');
-const sitemapper = require('libs/sitemapper');
 const DbModel = require('./common/dbModel');
 
 const sitemapPath = path.join(process.cwd(), 'static', 'public', 'sitemap.xml');
@@ -13,18 +12,11 @@ class TeacherInfo extends DbModel {
     }
 
     async create(data) {
-        const isDataValid = data
-            && true;
+        const isDataValid = data && true;
 
         if (isDataValid) {
             const savedData = await this._insert(data);
-            const teacherUrl = {
-                loc: `https://mathlab.kz/teacher/${savedData._teacher_id}`,
-                lastmod: moment().format(),
-                changefreq: "monthly",
-                priority: "0.70",
-            };
-            await sitemapper.insertUrl(sitemapPath, teacherUrl);
+
             return savedData;
         }
 

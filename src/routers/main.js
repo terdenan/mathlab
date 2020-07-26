@@ -8,6 +8,7 @@ const moment = require('moment');
 const passport = require('../models/passport');
 const cookieMiddlewares = require('../controllers/common/cookies');
 const teacherInfoControllers = require('../controllers/teacher-info');
+const { getSitemap } = require('../controllers/sitemap');
 
 router.use(serveStatic('static/public'));
 
@@ -158,5 +159,7 @@ router.get('/course/:id', passport.auth(), asyncHandler(async (req, res) => {
     (res.io.in(req.params.id)).emit('markReaded');
     res.render('main/course', context);
 }));
+
+router.get('/sitemap.xml', asyncHandler(getSitemap));
 
 module.exports = router;

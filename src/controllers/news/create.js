@@ -1,6 +1,4 @@
 const path = require('path');
-const sitemapPath = path.join(__dirname, '..', '..', '..', 'static', 'public', 'sitemap.xml');
-const sitemapper = require('libs/sitemapper');
 const moment = require('moment');
 
 const translitirate = require('../../utils/transliterate');
@@ -27,18 +25,10 @@ module.exports = async (req, res) => {
         body: req.body.body,
         photoUrl: "/uploads/" + req.file.filename,
         date: Date.now(),
-    }
-
-    await req.newsModel.create(newPost);
-
-    const newsUrl = {
-        loc: "https://mathlab.kz/news/" + title,
-        lastmod: moment().format(),
-        changefreq: "monthly",
-        priority: "0.70"
+        lastUpdatedDate: Date.now(),
     };
 
-    await sitemapper.insertUrl(sitemapPath, newsUrl);
+    await req.newsModel.create(newPost);
 
     res.send('success');
 }
