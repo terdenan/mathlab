@@ -145,21 +145,21 @@ html( lang='ru' )
 						h2( class="article-title" ) Команда преподавателей
 				div( class=" owl-carousel owl-carousel-teachers owl-theme")
 					for teacherInfo in teacherInfos
-						if (teacher.visible)
+						if (teacherInfo.visible)
 							div( class="item" )
 								div( class="landing-comment landing-teacher" )
 									div( class="text-center" )
-										if (teacher.photo_url)
-											img( src="#{teacher.photo_url}" class="img-circle img-150 inline-block" alt="#{teacherInfo.teacher.fullname}" title="#{teacherInfo.teacher.subject}" )
+										if (teacherInfo.photo_url)
+											img( src="#{teacherInfo.photo_url}" class="img-circle img-150 inline-block" alt="#{teacherInfo.teacher.fullname}" title="#{teacherInfo.teacher.subject}" )
 										else
 											img( src="/images/empty-teacher-img.svg" class="img-circle img-150 inline-block" alt="#{teacherInfo.teacher.fullname}" title="#{teacherInfo.teacher.subject}" )
 										h4= teacherInfo.teacher.fullname
 										h6= teacherInfo.teacher.subject
 										blockquote
-											p( class="short-description" )= teacher.bio
-											h6= ('Стаж работы репетитором:' + ' ' + teacher.experience)
-											h6= teacher.geoposition
-										- var linkAddress = teacher.transliterated_fullname ? teacher.transliterated_fullname : teacherInfo.teacher.id
+											p( class="short-description" )= teacherInfo.bio
+											h6= ('Стаж работы репетитором:' + ' ' + teacherInfo.experience)
+											h6= teacherInfo.geoposition
+										- var linkAddress = teacherInfo.transliterated_fullname ? teacherInfo.transliterated_fullname : teacherInfo.teacher.id
 										a( href="/teacher/#{linkAddress}" class="btn btn-default btn-block" data-event-name="Body button teacher clicked" data-event-properties='{"name": "#{teacherInfo.teacher.fullname}"}' onClick="sendEvent(this)" ) Подробнее
                     
 		section 

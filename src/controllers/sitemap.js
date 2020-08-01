@@ -34,17 +34,19 @@ const exportNewsForSitemap = (news) => {
 }
 
 const exportTeacherInfosForSitemap = (teacherInfos) => {
-    return teacherInfos.map(teacherInfo => {
-        // lastUpdatedDate может не быть
-        const lastmodDate = teacherInfo.lastUpdatedDate || new Date();
-        const locPath = teacherInfo.transliterated_fullname || teacherInfo.teacher._id;
+    return teacherInfos
+        .filter(teacherInfo => teacherInfo.teacher)
+        .map(teacherInfo => {
+            // lastUpdatedDate может не быть
+            const lastmodDate = teacherInfo.lastUpdatedDate || new Date();
+            const locPath = teacherInfo.transliterated_fullname || teacherInfo.teacher._id;
 
-        return {
-            loc: `${TEACHER_INFO_PATH}/${locPath}`,
-            lastmod: moment(lastmodDate).format(),
-            ...SITEMAP_FIELDS_BY_ENTRY_TYPE['teacherInfo'],
-        };
-    });
+            return {
+                loc: `${TEACHER_INFO_PATH}/${locPath}`,
+                lastmod: moment(lastmodDate).format(),
+                ...SITEMAP_FIELDS_BY_ENTRY_TYPE['teacherInfo'],
+            };
+        });
 };
 
 async function getSitemap(req, res) {
