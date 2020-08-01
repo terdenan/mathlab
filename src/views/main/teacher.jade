@@ -9,7 +9,7 @@ html( lang='ru' )
 		meta( name="author" content="Quve Development" )
 		meta( property="og:title" content="#{teacher.fullname} - #{teacher.subject} | MathLab.kz" )
 		meta( property="og:type" content="website" )
-		meta( property="og:url" content="http://mathlab.kz/teacher/#{profileInfo.teacher}" )
+		meta( property="og:url" content="http://mathlab.kz/teacher/#{profileInfo.transliterated_fullname || teacher.id}" )
 		meta( property="og:image" content="http://mathlab.kz#{profileInfo.photo_url}" )
 		meta( property="og:description" content="#{profileInfo.about}" )
 
