@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
     };
     const savedUser = await req.userModel.create(newUser);
 
-    await req.teacherInfo.create({_teacher_id: newUser._id});
+    await req.teacherInfo.create({teacher: newUser._id});
 
     res.status(200);
     res.send(savedUser);

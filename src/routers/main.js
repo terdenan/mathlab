@@ -16,9 +16,9 @@ router.use(cookieMiddlewares.setUserProperties);
 
 router.get('/', asyncHandler(async (req, res) => {
     const recentNews = await req.newsModel.getRecent(3);
-    const teachers = await req.teacherInfo.getAll();
+    const teachersInfos = await req.teacherInfo.getAll();
 
-    res.render('main/index', { recentNews, teachers });
+    res.render('main/index', { recentNews, teachersInfos });
 }));
 
 router.get('/sign-in', passport.checkIfAuthed(), asyncHandler(async (req, res) => {

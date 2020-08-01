@@ -11,7 +11,7 @@ async function getById(req, res, next) {
         return;
     }
 
-    const teacherInfo = await req.teacherInfo.getWithPopulationBy({ _teacher_id: ObjectId(id) }, ['_teacher_id']);
+    const teacherInfo = await req.teacherInfo.getWithPopulationBy({ teacher: ObjectId(id) }, ['teacher']);
 
     if (!teacherInfo) {
         next();
@@ -19,8 +19,7 @@ async function getById(req, res, next) {
         return;
     }
 
-    // TODO: переименовать поле _teacher_id
-    const teacher = teacherInfo._teacher_id;
+    const teacher = teacherInfo.teacher;
     let transliterated_fullname = teacherInfo.transliterated_fullname;
 
     if (!transliterated_fullname) {
@@ -34,7 +33,7 @@ async function getById(req, res, next) {
             transliterated_fullname += `-${similarTeachers.length}`
         }
 
-    	await req.teacherInfo.update({ _teacher_id: id }, { transliterated_fullname });
+    	await req.teacherInfo.update({ teacher: id }, { transliterated_fullname });
     }
 
     res.redirect(301, `/teacher/${transliterated_fullname}`);
@@ -42,7 +41,7 @@ async function getById(req, res, next) {
 
 async function getByTransliteratedFullname(req, res, next) {
 	const transliterated_fullname = req.params.transliterated_fullname;
-	const data = await req.teacherInfo.getWithPopulationBy({ transliterated_fullname }, ['_teacher_id']);
+	const data = await req.teacherInfo.getWithPopulationBy({ transliterated_fullname }, ['teacher']);
 
 	if (!data) {
 		res.status(404);
@@ -51,10 +50,10 @@ async function getByTransliteratedFullname(req, res, next) {
         return;
 	}
 
-	const { _teacher_id, ...teacherInfo } = data;
+	const { teacher, ...teacherInfo } = data;
 
 	res.render('main/teacher', {
-		teacher: _teacher_id,
+		teacher,
 		profileInfo: teacherInfo,
 	});
 }

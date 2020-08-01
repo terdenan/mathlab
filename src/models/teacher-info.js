@@ -85,7 +85,7 @@ class TeacherInfo extends DbModel {
         try {
             const res = await this._MongooseModel
                 .find()
-                .populate('_teacher_id');
+                .populate('teacher');
 
             return res;
         } catch(e) {

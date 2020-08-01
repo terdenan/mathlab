@@ -58,7 +58,7 @@ module.exports = async () => {
     const teacher_student2_course = await Course.create(teacher_student2_course_fields);
 
     const teacherInfo_fields = {
-        _teacher_id: teacher._id,
+        teacher: teacher._id,
         geoposition: '-',
         school: '-',
         experience: '-',

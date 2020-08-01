@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     }
 
     const teacherInfo = await req.teacherInfo.deleteCertificate(
-        { _teacher_id: ObjectId(teacher_id) },
+        { teacher: ObjectId(teacher_id) },
         ObjectId(cert_id)
     );
     const certIndex = teacherInfo.certificates.findIndex(item => item._id == cert_id);

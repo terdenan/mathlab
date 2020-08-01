@@ -90,7 +90,6 @@ $(document).ready(function() {
       method: 'put',
       data: {id: id, studentId: studentId, student: student, subject: subject, teacherId: $('#teacher-list option:selected').attr('id'), teacher: $('#teacher-list option:selected').text(), days: prefDaysFinally, time: $("#time").val()},
       error: function(response){
-        console.log(response);
         $("#courseAddingModal").modal('hide');
         $(".abs-alerts").html("<div class='alert alert-danger'>" +
                                 "<strong>Ошибка!</strong> Попробуйте позже" +
